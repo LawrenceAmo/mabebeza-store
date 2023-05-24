@@ -1,0 +1,38 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('stores', function (Blueprint $table) {
+            $table->bigIncrements('storeID')->index();
+            $table->string('name'); 
+            $table->string('trading_name');   
+            $table->string('slogan')->nullable();   
+            $table->boolean('active')->default(false);    
+            $table->longText('discription')->nullable();
+            $table->foreignId('planID')->constrained('plans', 'planID')->onDelete('cascade');
+            $table->foreignId('userID')->constrained('users', 'id')->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     * 
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('stores');
+    }
+};
