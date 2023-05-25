@@ -16,6 +16,11 @@
         @csrf
         <div class="card border rounded p-3 w-100">
         <div class="d-flex justify-content-center "><p class="font-weight-bold h5">Product Information</p></div>
+        <div class="row mx-0 animated fadeInDown">
+            <div class="col-12 text-center p-0 m-0">
+                <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
+            </div>
+         </div>
         <div class=" row">
             <div class="col-md-6 p-2">
                  <div class="form-group">

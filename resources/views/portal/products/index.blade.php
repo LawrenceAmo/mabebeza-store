@@ -3,22 +3,22 @@
         
     <div class="  row bg-white shadow m-0   rounded p-3 w-100">
          
-        <div class="col-md-3">
+        <div class="col-md-4">
              <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center">Sales Change <span>83%</span></p>
+                <p class="font-weight-bold h5 text-center">Stock Value <span>R?</span></p>
              </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
              <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center"> New Orders  <span>13</span></p>
+                <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
              </div>
         </div>
-        <div class="col-md-3">
+        {{-- <div class="col-md-4">
              <div class="card p-3 border border-success">
                 <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
              </div>
-        </div>
-        <div class="col-md-3">
+        </div> --}}
+        <div class="col-md-4">
              <div class="card p-3 border border-success">
                 <p class="font-weight-bold h5 text-center">Total Products <span>{{count($products)}}</span></p>
              </div>
@@ -44,30 +44,37 @@
             <th>#</th>
             <th>Item</th>
             <th>Name</th>
+            <th>Cost Price</th>
             <th>Price</th>
-            <th>Inventory</th>
-             <th>Availability</th>
-             <th>Action</th>
+            <th>Total Inventory</th>
+            <th>Availability</th>
+            <th>Published</th>
+            <th>Action</th>
         </tr>
         </thead>
-        <tbody>
-            
+        <tbody>            
             @foreach ($products as $product)
-           {{-- {{$product}} --}}
-            <tr>
+             <tr>
                 <td scope="row">{{$i}}</td>
                 <td><img src="{{ asset('images/products/img.jpg') }}" alt="" style="height: 60px;"></td>
                 <td>{{$product->name}}</td>
                 <td>R{{$product->price}}</td>
-                {{-- <td>{{$product['stock']-$product['sold']}} in stock</td> --}}
-                
+                <td>R{{$product->cost_price}}</td>
+                <td>R{{$product->quantity}}</td> 
                 <td>
-                {{-- @if ($product['availability'])
-                    <span class="">Yes</span>
-                @else
-                    <span class="">No</span> 
-                @endif --}}
+                    @if ($product->availability)
+                        <span class="">Yes</span>
+                    @else
+                        <span class="">No</span> 
+                    @endif
                 </td>
+                <td>
+                    @if ($product->availability)
+                        <span class="">Yes</span>
+                    @else
+                        <span class="">No</span> 
+                    @endif
+                    </td>
                  <td class=" px-0">
                     <a href="" class="px-1 text-info"><i class="fas fa-eye    "></i></a> |
                     <a href="" class="px-1 text-primary"><i class="fa fa-fas fa-pencil-alt    "></i></a>|

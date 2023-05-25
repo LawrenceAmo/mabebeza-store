@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      *
@@ -104,8 +104,8 @@ class ProductController extends Controller
         //  return $request;
 
          DB::table('products')
-                ->where('productID', (int)$request->productID)  // find your user by their email
-                ->limit(1)  // optional - to ensure only one record is updated.
+                ->where('productID', (int)$request->productID)   
+                ->limit(1)   
                 ->update([
                     'name' => $request->name,
                     'sku' => $request->code,
@@ -141,8 +141,8 @@ class ProductController extends Controller
          $vat = (bool)$request->vat;
      
          DB::table('products')
-                ->where('productID', (int)$request->productID)  // find your user by their email
-                ->limit(1)  // optional - to ensure only one record is updated.
+                ->where('productID', (int)$request->productID)   
+                ->limit(1)   
                 ->update([
                     'cost_price' => $request->cost_price,
                     'price' => $request->price,
@@ -151,7 +151,8 @@ class ProductController extends Controller
                     'sale_name' => (string)$request->sale_name,                       
                     'description' => (string)$request->description,                       
                     'product_detail' => (string)$request->product_detail,                       
-                 ]);
+                 ]); 
+
         return redirect()->to(route('product_update_vendor', [(int)$request->productID]));
     }
 
@@ -185,8 +186,8 @@ class ProductController extends Controller
          ]);
           
          DB::table('products')
-                ->where('productID', (int)$request->productID)  // find your user by their email
-                ->limit(1)  // optional - to ensure only one record is updated.
+                ->where('productID', (int)$request->productID)   
+                ->limit(1)   
                 ->update([
                     'supplierID' => (int)$request->supplier,
                     'sub_categoryID' => (int)$request->sub_category,
@@ -220,8 +221,8 @@ class ProductController extends Controller
          $physical_product = (bool)$request->physical_product;
           
           DB::table('products')
-                ->where('productID', (int)$request->productID)  // find your user by their email
-                ->limit(1)  // optional - to ensure only one record is updated.
+                ->where('productID', (int)$request->productID)   
+                ->limit(1)   
                 ->update([
                     'weight' => $request->weight,
                     'length' => $request->length,
@@ -243,7 +244,7 @@ class ProductController extends Controller
                     // ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
                     // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.supplierID' )
                     ->where('products.productID', '=', (int)$id)
-                    ->select(['products.name as product_name','products.productID as product_productID','products.*' ])
+                    ->select(['products.name as product_name','products.productID as product_productID','products.*','product_photos.*' ])
                     ->get();
 
         return view('portal.products.update_media') 
@@ -273,7 +274,7 @@ class ProductController extends Controller
                     ->get();
 
         return $product;
-        return view('portal.products.update_media') 
+        return view('portal.products.update_publish') 
                 ->with('product', $product[0]);
     }
 

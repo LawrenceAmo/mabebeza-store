@@ -22,7 +22,7 @@
             <div class="col-12 text-center p-0 m-0">
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
             </div>
-         </div>
+         </div> 
         <div class="">
             <p class="">Please Insert Thumbnail</p>
         </div>
