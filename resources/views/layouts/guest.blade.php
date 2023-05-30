@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -45,8 +45,8 @@
        
           <img
             alt="fadaeco"
-                          height="35"
-            src="{{ asset('fadaeco.png') }}"
+                          height="100"
+            src="{{ asset('logo.png') }}"
             id="navbar-logo"
             class="animate fadeInLeft"
           />
@@ -69,14 +69,14 @@
             <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
             
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="index.html#services">Services</a> 
             </li>    <li class="nav-item">
               <a class="nav-link" href="index.html#ecommerce">Pricing</a>
             </li>
             <li class="nav-item  ">
               <a class="nav-link" href="{{route('contact-us')}}">Contact</a>
-            </li>
+            </li> --}}
             <!-- <li class="nav-item">
               <a class="nav-link" href="about.html">About Us</a>
             </li> -->
@@ -111,7 +111,7 @@
            
         </div>
         <!-- Footer -->
-        <div class="container pt-4">
+        <div class="container pt-4 d-none">
           <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">
               <!-- Theme's logo -->

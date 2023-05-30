@@ -20,7 +20,10 @@ use Illuminate\Support\Facades\DB;
     echo convert(memory_get_usage(true)); // 123 kb
  */
 
- Route::get('/', function () {    return view('welcome');  });
+ Route::get('/', function () {  
+    return redirect()->to( route('portal'));  
+    // return view('welcome');  
+});
 
  Route::prefix('pages/' )->group(function ()
     {

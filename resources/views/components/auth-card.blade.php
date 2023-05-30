@@ -6,14 +6,20 @@
 
             <div class="d-flex   justify-content-center ">
                 <div class="   text-center">
-                     <p class="font-weight-bold h4 ">Welcome To Fadaeco</p>
+                     <p class="font-weight-bold h4 ">Welcome To Mabebeza</p>
 
              <div class=" ">
-                 <img class="card-img-top border" src="holder.js/100px180/" alt="">
+                  <img
+                    class="card-img-top  "
+                    src="{{ asset('logo.png') }}"
+                    height="300"
+                    alt="mabebeza store logo"
+                    loading="lazy"
+              />
              </div>
               
-                <p class="  h5">Your Data is secured with us</p>
-                <p class="   font-weight-light">Text Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                <i class="  h5 pt-3 text-muted">Your Data is secured with us</i>
+                <p class="   font-weight-light d-none">Text Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Debitis consequatur sint rem facilis totam dolorum aut temporibus. Aliquam dicta optio sint,
                 </p>
               </div>
