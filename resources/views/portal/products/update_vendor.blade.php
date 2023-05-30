@@ -33,8 +33,9 @@
                     @foreach ($suppliers as $supplier)
                         @if ( $supplier->supplierID == $product->supplierID )
                            <option selected value="{{ $supplier->supplierID }}"> {{ $supplier->supplier_name}} {{ $supplier->company_name}}</option>
-                        @endif
-                    <option value="{{ $supplier->supplierID }}"> {{ $supplier->supplier_name}} {{ $supplier->company_name}}</option>
+                           @else
+                           <option value="{{ $supplier->supplierID }}"> {{ $supplier->supplier_name}} {{ $supplier->company_name}}</option>
+                           @endif
                     @endforeach
                    </select>
                 </div> 
@@ -49,8 +50,9 @@
                      @foreach ($sub_categories as $sub_category)
                          @if ( $sub_category->sub_categoryID == $product->sub_categoryID )
                          <option selected value="{{ $sub_category->sub_categoryID}}"> {{ $sub_category->sub_category_name}} {{ $supplier->company_name}}</option>
+                         @else
+                         <option value="{{ $sub_category->sub_categoryID}}"> {{ $sub_category->sub_category_name}} {{ $supplier->company_name}}</option>
                          @endif
-                     <option value="{{ $sub_category->sub_categoryID}}"> {{ $sub_category->sub_category_name}} {{ $supplier->company_name}}</option>
                      @endforeach
                     </select>
                  </div> 
@@ -78,10 +80,10 @@
                    </div>  --}}
            </div>                 
              <div class="col-md-6 p-2">
-                     <div class="form-group">
+                     {{-- <div class="form-group">
                         <label for="">Quantity</label>
                         <input type="text" name="quantity" value="{{ $product->quantity }}" class="form-control" placeholder="Optional"  >
-                     </div>
+                     </div> --}}
              </div>
         </div> 
         <hr>

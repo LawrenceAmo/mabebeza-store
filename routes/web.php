@@ -40,7 +40,7 @@ Route::post('/profile/update', [UsersController::class, 'update'])->name('update
 Route::post('/profile/delete', [UsersController::class, 'create'])->name('delete_profile');
 
 // Store
-Route::get('/my_store', [StoreController::class, 'my_store'])->name('my_store');
+Route::get('/stores', [StoreController::class, 'index'])->name('stores');
 Route::get('/store/create', [StoreController::class, 'create'])->name('create_store');
 Route::post('/store/save', [StoreController::class, 'save'])->name('save_store');
 Route::post('/store/update/{id}', [StoreController::class, 'update'])->name('update_store');

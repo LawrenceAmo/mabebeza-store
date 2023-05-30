@@ -5,30 +5,30 @@
         <div class="col-md-3">
             <div class=" p-3 rounded shadow bg-white   text-center">
                <p class="font-weight-bold h5 ">Total Customers </p>
-               <b>R253345</b>
+               <b>{{$customers}}</b>
+            </div>
+        </div> 
+        <div class="col-md-3">
+            <div class=" p-3 rounded shadow bg-white   text-center">
+               <p class="font-weight-bold h5 ">Total Stock Value </p>
+               <b>R{{$total_stock_value}}</b>
             </div>
         </div>
         <div class="col-md-3">
             <div class=" p-3 rounded shadow bg-white   text-center">
-               <p class="font-weight-bold h5 ">Total Products </p>
-               <b>R253345</b>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class=" p-3 rounded shadow bg-white   text-center">
-               <p class="font-weight-bold h5 ">Total Sales </p>
-               <b>R253345</b>
+               <p class="font-weight-bold h5 ">Total Orders </p>
+               <b>{{$total_orders}}</b>
             </div>
         </div>
         <div class="col-md-3">
             <div class=" p-3 rounded shadow bg-white   text-center">
                <p class="font-weight-bold h5 ">New Orders </p>
-               <b>R253345</b>
+               <b>{{$new_orders}}</b>
             </div>
         </div> 
     </div>
     <hr>
-     
+
     <div class="row">
         <div class="col-md-8 p-1">
             <div class="shadow bg-white rounded p-2  ">

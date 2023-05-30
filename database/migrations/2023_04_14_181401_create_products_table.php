@@ -3,6 +3,8 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\supplier;
+use App\Models\SubCategory;
 
 return new class extends Migration
 {
@@ -12,7 +14,7 @@ return new class extends Migration
      * @return void
                       */
     public function up()
-    {
+    { 
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('productID');
             $table->string('name');
@@ -23,14 +25,15 @@ return new class extends Migration
             $table->string('sale_name')->nullable();
             $table->string('description')->nullable();
             $table->text('product_detail')->nullable();
-            $table->boolean('availability')->default(false);
+            $table->boolean('availability')->default(false);            //
+            $table->boolean('publish')->default(false);                 //
             $table->boolean('physical_product')->default(true);
-            $table->boolean('sale')->default(false); 
-            $table->boolean('vat')->default(true); 
+            $table->boolean('sale')->default(false);                    //
+            $table->boolean('vat')->default(true);                      
             $table->string('weight')->nullable();
             $table->string('shipping_time_period')->nullable();
             $table->string('brand')->nullable();
-            $table->string('sku')->nullable();
+            $table->string('sku')->nullable();  
             $table->string('weight_unit')->nullable();
             $table->string('height')->nullable();
             $table->string('width')->nullable();

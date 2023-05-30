@@ -4,9 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\product_photos;
+use App\Models\supplier;
+use App\Models\Category;
+use App\Models\SubCategory;
+use App\Models\Store_inventory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Support\Facades\Schema;
 
 class ProductController extends Controller
 { 
@@ -16,21 +22,24 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-
+    { 
         $userID = Auth::id();
         $store = DB::table('stores')->where('userID', $userID)->get('storeID');
         $suppliers = DB::table('suppliers')->get();
-        $products = DB::table('products')->get();
         $sub_categories = DB::table('sub_categories')->get();
-         // $test = 1;//DB::table('test')->where('id', '>', 11000)->limit(100)->get();
-        // return $products;
-        // $products = DB::table('products')->where('storeID',$store[0]->storeID)->get();
-       
+ 
+        $products = DB::table('products')
+                            ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                            ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
+                            ->select('products.productID', 'products.name as product_name' , 'stores.name as store_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',// 'products.publish', 'products.publish', 'products.publish',
+                                         DB::raw('SUM(products.cost_price * store_inventories.quantity) as stock_value'))
+                            ->groupBy('products.productID', 'products.name' , 'stores.name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',)
+                            ->get();
+ 
+        // return $products;        
   
        return view('portal.products.index')
-                ->with('num',111)
-                ->with('products',$products)
+                 ->with('products',$products)
                 ->with('suppliers',$suppliers)
                 ->with('sub_categories',$sub_categories); //
     }
@@ -43,21 +52,63 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            'product_name' => 'required|string',
-            'sub_category' => 'required',
-            'supplier' => 'required',                     
+            'code' => 'required',
+            'product_name' => 'required|string',              
          ]); 
-  
+ 
+         $products = DB::table('products')->where('sku', $request->code)->count();
+         $suppliers = DB::table('suppliers')->count();
+         $sub_categories = DB::table('sub_categories')->count();
+         $stores = DB::table('stores')->get();
+
+         if ( $products > 0) {
+            return redirect()->back()->with('error', "Item already exists");            
+         }
+         if ( $suppliers < 1) {
+            $supplier = new supplier();
+            $supplier->supplier_name = "Other";
+            $supplier->company_name = "Other";
+            $supplier->save();
+         }
+
+         if ($sub_categories < 1) {
+
+            $category = new Category();
+            $category->category_name = "Other";
+            $category->save();
+
+            $lastInsertedCategory = Category::latest()->first();
+
+            $category = new SubCategory();
+            $category->sub_category_name = "Other";
+            $category->categoryID = (int)$lastInsertedCategory->categoryID;
+            $category->save();
+
+         }
+
+        $default_sub_category = SubCategory::first()->first();
+
+        $default_supplier = supplier::first()->first();
+
         $product = new Product();
+        $product->sku = $request->code;
         $product->name = $request->product_name;
         $product->price = 0;
-        $product->sub_categoryID = (int)$request->sub_category;
-        $product->supplierID = (int)$request->supplier;
+        $product->sub_categoryID = $default_sub_category->sub_categoryID;
+        $product->supplierID = $default_supplier->supplierID;
         $product->id = Auth::id();
         $product->save();
  
         $lastInsertedProduct = Product::latest()->first();
-  
+
+
+        for ($i=0; $i < count( $stores); $i++) { 
+            $Store_inventory = new Store_inventory();
+            $Store_inventory->storeID = $stores[$i]->storeID;        
+            $Store_inventory->productID = $lastInsertedProduct->productID;        
+            $Store_inventory->save();
+        }
+        
          return redirect()->to(route('product_update_info', [$lastInsertedProduct->productID]));
      }
 
@@ -181,7 +232,7 @@ class ProductController extends Controller
     {
         // return $request;
         $request->validate([
-            'quantity' => 'required',
+            // 'quantity' => 'required',
             // 'price' => 'required',                       
          ]);
           
@@ -191,8 +242,7 @@ class ProductController extends Controller
                 ->update([
                     'supplierID' => (int)$request->supplier,
                     'sub_categoryID' => (int)$request->sub_category,
-                    'quantity' => $request->quantity,                                
-                 ]);
+                  ]);
 
         return redirect()->to(route('product_update_shipping', [(int)$request->productID]));
     }
@@ -254,17 +304,75 @@ class ProductController extends Controller
     public function product_save_media(Request $request)
     {
         $request->validate([
-            'thumnail_title' => 'required',
-            'thumnail' => 'required',                       
-            'main_title' => 'required',                       
-            'main' => 'required',                       
+            // 'thumnail_title' => 'required',
+            // 'thumnail' => 'required',                       
+            // 'main_title' => 'required',                       
+            // 'main' => 'required',                       
           ]);
+ 
+          $images = product_photos::where('productID',(int)$request->productID)->get();
+  
+          try { 
+          
+            if (!$images->firstWhere('thumbnail', true)) {
+                
+                $thumnail = $this->upload_product_image( "thumnail", $request->thumnail);
 
-        return $request;
+                $product_thumnail = new product_photos();
+                $product_thumnail->title = $request->thumnail_title;
+                $product_thumnail->url = $thumnail;
+                $product_thumnail->thumbnail = true;
+                $product_thumnail->main = false;
+                $product_thumnail->productID = (int)$request->productID;
+                $product_thumnail->save();
+            }            
+        } catch (\Throwable $th) {
+            // throw $th;
+        }
+
+        try { 
+          
+            if (!$images->firstWhere('main', true)) {
+                
+            $main = $this->upload_product_image( "main", $request->main);
+
+            $product_main = new product_photos();
+            $product_main->title = $request->main_title;
+            $product_main->url = $main;
+            $product_main->thumbnail = false;
+            $product_main->main = true;
+            $product_main->productID = (int)$request->productID;
+            $product_main->save();
+            }            
+        } catch (\Throwable $th) {
+            // throw $th;
+        }
+
+        try { 
+
+            if (!$images->firstWhere([
+                    'thumbnail'=> false,
+                    'main'=> false,
+                ])) {
+
+                $image = $this->upload_product_image( "image", $request->image);
+
+                $product_image = new product_photos();
+                $product_image->title = $request->image_title;
+                $product_image->url = $image;
+                $product_image->thumbnail = false;
+                $product_image->main = false;
+                $product_image->productID = (int)$request->productID;
+                $product_image->save();
+            }            
+        } catch (\Throwable $th) {
+            // throw $th;
+        }
+        return redirect()->to(route('product_update_publish', [(int)$request->productID]));
     }
 
     public function product_update_publish(Request $request, int $id)
-    {
+     {
         $product = DB::table('products') 
                     ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID' )
                     // ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
@@ -273,9 +381,56 @@ class ProductController extends Controller
                     ->select(['products.name as product_name','products.productID as product_productID','products.*' ])
                     ->get();
 
-        return $product;
+        // return $product;
         return view('portal.products.update_publish') 
                 ->with('product', $product[0]);
+    }
+
+
+    public function product_save_publish(Request $request)
+    {
+        // return $request;
+        // $request->validate([
+        //     // 'quantity' => 'required',
+        //     // 'price' => 'required',                       
+        //  ]);
+
+        $sale = (bool)$request->sale;
+        $availability = (bool)$request->availability;
+        $publish = (bool)$request->publish;
+          
+          DB::table('products')
+                ->where('productID', (int)$request->productID)   
+                ->limit(1)   
+                ->update([
+                    'sale' => $sale,
+                    'availability' => $availability,
+                    'publish' => $publish,                                                   
+                 ]);
+                //  return $request;
+                 
+        return redirect()->to(route('product_update_publish', [(int)$request->productID]))->with('success', '');
+    }
+
+    // /////////////////////////////////////////////////////
+
+    public function upload_product_image( $prefix, $image = null)
+    {
+            if(!$image) return false;      ///// check if file is available
+
+            $filename = $image->getClientOriginalName();
+            $ext = substr($filename,-5);
+           
+            // encripting file so that it can be uniq
+             function uniqFile($filename,$ext){
+                  $file = md5($filename)."".uniqid($filename, true);
+                 return "ba".md5($file)."by".$ext;//.$ext;
+             } 
+
+            $filename = $prefix."-".uniqFile($filename,$ext);           
+            $image->storeAs('products/',"$filename",'public');
+
+        return $filename;
     }
 
 

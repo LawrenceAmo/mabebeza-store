@@ -61,7 +61,7 @@
               <i class="fas fa-user-alt fa-fw mr-3"></i><span>My Profile</span>
             </a>
             <a
-              href="{{ route("my_store")}}"
+              href="{{ route("stores")}}"
               class="list-group-item list-group-item-action py-2 ripple"
             >
               <i class="fas fa-building mr-3"></i>
@@ -77,22 +77,13 @@
             class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span>Categories</span></a
           >
-            <a
-              href="referals.html"
-              class="list-group-item list-group-item-action py-2 ripple"
-            >
-              <i class="fas fa-share-alt mr-3"></i><span>Referrals</span>
-            </a>
+             
               <a
            href="{{ route('explore')}}"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-rocket fa-fw mr-3"></i><span>Explore More</span></a
           >
-          <a
-           href="#"   
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-globe fa-fw mr-3"></i 
-          ><span>Domains</span></a> 
+         
           <a
           href="{{ route('suppliers')}}"   
           class="list-group-item list-group-item-action py-2 ripple"

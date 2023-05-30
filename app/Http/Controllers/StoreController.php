@@ -22,18 +22,19 @@ class StoreController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function my_store()
+    public function index()
     {
-        try {
-            $store = Store::where('userID', '=', $this->userID())->get();
-            $store = $store[0];
-        } catch (\Throwable $th) {
-            return view('portal.store.create')->with('error', "You don't have store. Please create store now.");
-        }
-        // $test = DB::table('test')->where('id','>',10)->limit(1000)->get();
-        $contact = Contacts::where('storeID', '=', $store->storeID)->get();
+    //     try {
+    //         $store = Store::where('userID', '=', $this->userID())->get();
+    //         $store = $store[0];
+    //     } catch (\Throwable $th) {
+    //         return view('portal.store.create')->with('error', "You don't have store. Please create store now.");
+    //     }
+    //     // $test = DB::table('test')->where('id','>',10)->limit(1000)->get();
+    //     $contact = Contacts::where('storeID', '=', $store->storeID)->get();
         // return $contact;
-        return  view('portal.store.store')->with('store', $store)->with('contacts', $contact[0]);
+        // return  view('portal.store.store')->with('store', $store)->with('contacts', $contact[0]);
+        return  view('portal.store.index');
     }
 
     /**
@@ -62,23 +63,23 @@ class StoreController extends Controller
     {
          $request->validate([
                     'store_name' => 'required|string',
-                    'trading_name' => 'required|string',
-                    'slogan' => 'required|string',
-                    'description' => 'required|string',
-                    'terms_and_conditions' => 'required',                     
+                    // 'trading_name' => 'required|string',
+                    // 'slogan' => 'required|string',
+                    // 'description' => 'required|string',
+                    // 'terms_and_conditions' => 'required',                     
                  ]);
 
         $userID = Auth::id();
-        $planID = Plans::where('name', '=', 'trial')->limit(1)->get('planID');
+        // $planID = Plans::where('name', '=', 'trial')->limit(1)->get('planID');
        
         // if($request->terms_and_conditions){
         //     return redirect()->back();
         // } 
-        if(count($planID) > 0){
-             $planID =  $planID[0]-> planID;
-        }else{
-            $planID = 1;
-        } 
+        // if(count($planID) > 0){
+        //      $planID =  $planID[0]-> planID;
+        // }else{
+        //     $planID = 1;
+        // } 
 
         $store = new Store();
         $store->name = $request->store_name;
@@ -86,7 +87,7 @@ class StoreController extends Controller
         $store->slogan = $request->slogan;
         $store->discription = $request->description;
         $store->userID = $userID;
-        $store->planID = $planID;
+        // $store->planID = $planID;
         $store->save();
 
         $contact = new Contacts();

@@ -14,16 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('store_inventories', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('productID');
-            $table->unsignedBigInteger('storeID');
+            $table->bigIncrements('store_inventoryID');
             $table->integer('quantity')->default(0);
-            $table->timestamps();
+            $table->integer('alert')->default(0);
 
             // Add foreign key constraints
-            $table->foreign('productID')->references('productID')->on('products')->onDelete('cascade');
-            $table->foreign('storeID')->references('storeID')->on('stores')->onDelete('cascade');
-        
+            $table->foreignId('storeID')->constrained('stores', 'storeID')->onDelete('cascade');
+            $table->foreignId('productID')->constrained('products', 'productID')->onDelete('cascade');
+            $table->timestamps();
+
         });
     }
 

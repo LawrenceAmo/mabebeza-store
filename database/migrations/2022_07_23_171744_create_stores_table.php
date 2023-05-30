@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('slogan')->nullable();   
             $table->boolean('active')->default(false);    
             $table->longText('discription')->nullable();
-            $table->foreignId('planID')->constrained('plans', 'planID')->onDelete('cascade');
             $table->foreignId('userID')->constrained('users', 'id')->onDelete('cascade');
             $table->timestamps();
         });

@@ -4,67 +4,76 @@
         <div class="card border rounded w-100">
             <div class="d-flex justify-content-between  p-2">
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_info', [$product->product_productID])}}">Info</a></div>
-                 <div class=""><a class="text-dark btn btn-sm btn-outline-grey rounded" href="{{route('product_update_price', [$product->product_productID])}}">pricing</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_price', [$product->product_productID])}}">pricing</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_vendor', [$product->product_productID])}}">Vendor</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_shipping', [$product->product_productID])}}">Shipping</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_media', [$product->product_productID])}}">Media</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded " href="{{route('product_update_publish', [$product->product_productID])}}">Publish</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey" href="{{route('product_update_publish', [$product->product_productID])}}">Publish</a></div>
                 </div>
          </div>
          <hr>
-     <form class=" " action="{{ route('product_save_price')}}" method="POST" >
+     <form class=" " action="{{ route('product_save_publish')}}" method="POST" >
         @csrf
-        
+
     {{-- /////////////// --}}
      <div class="card border rounded p-3 w-100">
-        <div class="d-flex justify-content-center "><p class="font-weight-bold h5">Product Pricing</p></div>
+        <div class="d-flex justify-content-center "><p class="font-weight-bold h5">Product Activation</p></div>
         <div class="row mx-0 animated fadeInDown">
             <div class="col-12 text-center p-0 m-0">
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
             </div>
          </div>
+        
         <div class=" row">
-            <div class="col-md-6 p-2">
-                 <div class="form-group">
-                    <label for="">Cost Price <x-required></x-required> </label>
-                    <input type="number" class="form-control" value="{{ $product->cost_price }}" name="cost_price" placeholder="">
-                </div> 
-            </div>
-             <div class="col-md-6 p-2">
-                <div class="form-group">
-                    <label for="">Normal Selling price</label>
-                    <input type="number" name="price" value="{{ $product->price }}" class="form-control" placeholder=""  >
-                    <i class="text-muted small">Normal price. Customers will only see this price</i>
-                </div> 
-            </div>
-        </div>
-        <div class=" row">
-            <div class="col-md-3 p-2 d-flex flex-column justify-content-center">
-                <div class="form-check ">
+            <div class="col-md-4 p-2 d-flex flex-column justify-content-center">
+                <div class="form-check border-bottom py-3 ">
                     <label class="form-check-label">
-                        @if ($product->vat)
-                        <input type="checkbox" class="form-check-input" name="vat" checked>
+                        @if ($product->sale)
+                        <input type="checkbox" class="form-check-input" name="sale" checked>
                         @else
-                        <input type="checkbox" class="form-check-input" name="vat"  >
+                        <input type="checkbox" class="form-check-input" name="sale"  >
                         @endif
-                        VAT Inclusive 
+                        Activate Sale
+                    </label>
+                  </div> 
+                  <div class="form-check border-bottom  py-3">
+                    <label class="form-check-label">
+                        @if ($product->availability)
+                        <input type="checkbox" class="form-check-input" name="availability" checked>
+                        @else
+                        <input type="checkbox" class="form-check-input" name="availability"  >
+                        @endif
+                        Is Product Available?
+                    </label>
+                  </div> 
+                  <div class="form-check  border-bottom border-left  py-3">
+                    <label class="form-check-label">
+                        @if ($product->publish)
+                        <input type="checkbox" class="form-check-input" name="publish" checked>
+                        @else
+                        <input type="checkbox" class="form-check-input" name="publish"  >
+                        @endif
+                        Publish Product
                     </label>
                   </div> 
             </div>
               
-            <div class="col-md-3 p-2">
-                <div class="form-group">
-                   <label for="">Sale Price</label>
-                   <input type="number"  class="form-control" name="sale_price" value="{{ $product->sale_price }}"   placeholder="Optional">
-                   <i class="text-muted small">Leave blank if no sale</i>
-                   </div> 
+            <div class="col-md-8 float-right border-bottom rounded p-3">
+                <div class="">
+
+                    <strong class="small ">Activate Sale</strong>
+                    <p class="small">Click on the <strong>Activate Sale</strong> button to initiate the process of making your product available for purchase.</p>
+                    
+                    <strong class="small ">Check Availability</strong>
+                    <p class="small">Make sure your product is in stock and ready to be shipped before proceeding. Ensure that you have sufficient inventory.</p>
+                    
+                    <strong class="small ">Publish Product</strong>
+                    <p class="small">Click on the <strong>Publish Product</strong> button to showcase your product to customers.</p>
+                    
+   
+                </div>
            </div>                 
-             <div class="col-md-6 p-2">
-                     <div class="form-group">
-                        <label for="">Sale Description</label>
-                        <input type="text" name="sale_name" value="{{ $product->sale_name }}" class="form-control" placeholder="Optional"  >
-                     </div>
-             </div>
+             
         </div> 
         <hr>
         <div class=" ">
@@ -113,48 +122,6 @@
         }
 
      }).mount("#app");
-
- let selected_files = document.getElementById('selected_files');
-//  files.innerHTML = "AMo amo";
-     let files = document.getElementById('files');
-     let file = document.getElementById('file');
-
-     let all_files = [];
-     file.addEventListener('change', function(e) {  
-        console.log(e.target.files[0]);
-        all_files.push(e.target.files[0])
-        console.log(all_files);
-        files = all_files;
-        selected_files.innerHTML +=   "<li>"+e.target.files[0].name+"</li><br/>";   //  "<li><img src="+e.target.files[0]+"/></li><br/>";     //+"<br/>";
-        setTimeout(() => {
-                file.value = ''
-        }, 1000);
-    });
  
-
-let is_physical_product = document.getElementById('is_physical_product');
-if (!is_physical_product.checked) {
-        //  document.getElementById('shipping').classlist.add('d-none');
-          document.getElementById('weight').disabled = true;
-         document.getElementById('shipping_time_period').disabled = true;
-    } else {
-        //  document.getElementById('shipping').classlist.remove('d-none');
-         document.getElementById('weight').disabled = false;
-         document.getElementById('shipping_time_period').disabled = false;
-    }
-is_physical_product.addEventListener('change', function() {
-    if (!is_physical_product.checked) {
-        //  document.getElementById('shipping').classlist.add('d-none');
-          document.getElementById('weight').disabled = true;
-         document.getElementById('shipping_time_period').disabled = true;
-    } else {
-        //  document.getElementById('shipping').classlist.remove('d-none');
-         document.getElementById('weight').disabled = false;
-         document.getElementById('shipping_time_period').disabled = false;
-    }
-   
-})
-
-
     </script>
 </x-app-layout>

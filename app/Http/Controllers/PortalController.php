@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PortalController extends Controller
 {
@@ -13,73 +14,27 @@ class PortalController extends Controller
      */
     public function index()
     {
-             return view('dashboard')->with("num", 23234);
+        $products = DB::table('products')
+                            ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                            ->select('products.productID', 'products.name as product_name' ,    'products.cost_price', 'products.price', 
+                                         DB::raw('SUM(products.cost_price * store_inventories.quantity) as stock_value'))
+                            ->groupBy('products.productID', 'products.name' , 'products.sku', 'products.cost_price', 'products.price',)
+                            ->get();
+        $totalStockValue = $products->sum('stock_value');
+
+                            // return $totalStockValue;
+        $customers = DB::table('customers')->count();
+         $orders = DB::table('orders')->get();
+        $new_orders =  $orders->where([['paid', true],['status', "proccessing"]])->count();
+ 
+        return view('dashboard')
+             ->with("total_stock_value", $totalStockValue)
+             ->with("customers", $customers)
+             ->with("total_orders", $orders->count())
+             ->with("new_orders", $new_orders)
+             ->with("num", 23234);
 
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+ 
+ 
 }
