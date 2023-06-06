@@ -31,8 +31,7 @@
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->category_short_descript }}</td>
                                  <td>
-                                    <a href=""> <i class="fas fa-eye    "></i> </a> | 
-                                    <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
                                     <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
                                  </td>
                             </tr>
@@ -75,8 +74,7 @@
                                 <td>{{ $sub_category->sub_category_short_descript }}</td>
                                 <td>{{ $sub_category->category_name }}</td>
                                 <td>
-                                    <a href=""> <i class="fas fa-eye    "></i> </a> | 
-                                    <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
                                     <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
                                  </td>
                             </tr>

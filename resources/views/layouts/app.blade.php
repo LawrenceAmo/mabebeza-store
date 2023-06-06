@@ -65,12 +65,12 @@
               class="list-group-item list-group-item-action py-2 ripple"
             >
               <i class="fas fa-building mr-3"></i>
-              <span>My Store</span>
+              <span>Store</span>
             </a>
              <a
               href="{{ route("my_products")}}"
               class="list-group-item list-group-item-action py-2 ripple"
-              ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span>My Products</span></a
+              ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span> Products</span></a
             >
             <a
             href="{{ route("categories")}}"
@@ -78,12 +78,12 @@
             ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span>Categories</span></a
           >
              
-              <a
+              {{-- <a
            href="{{ route('explore')}}"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-rocket fa-fw mr-3"></i><span>Explore More</span></a
-          >
-         
+          > --}}
+          
           <a
           href="{{ route('suppliers')}}"   
           class="list-group-item list-group-item-action py-2 ripple"

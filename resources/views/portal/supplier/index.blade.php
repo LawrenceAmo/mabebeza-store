@@ -39,8 +39,7 @@
                                 <td>{{ $supplier->website }}</td>
                                 {{-- <td>{{ $supplier->description }}</td> --}}
                                  <td>
-                                    <a href=""> <i class="fas fa-eye    "></i> </a> | 
-                                    <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
                                     <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
                                  </td>
                             </tr>

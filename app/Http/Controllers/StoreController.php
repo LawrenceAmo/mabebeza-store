@@ -25,7 +25,7 @@ class StoreController extends Controller
     public function index()
     {
     //     try {
-    //         $store = Store::where('userID', '=', $this->userID())->get();
+            $store = Store::get();
     //         $store = $store[0];
     //     } catch (\Throwable $th) {
     //         return view('portal.store.create')->with('error', "You don't have store. Please create store now.");
@@ -34,7 +34,7 @@ class StoreController extends Controller
     //     $contact = Contacts::where('storeID', '=', $store->storeID)->get();
         // return $contact;
         // return  view('portal.store.store')->with('store', $store)->with('contacts', $contact[0]);
-        return  view('portal.store.index');
+        return  view('portal.store.index')->with('stores', $store);
     }
 
     /**

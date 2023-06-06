@@ -39,7 +39,7 @@ class ProductController extends Controller
         // return $products;        
   
        return view('portal.products.index')
-                 ->with('products',$products)
+                ->with('products',$products)
                 ->with('suppliers',$suppliers)
                 ->with('sub_categories',$sub_categories); //
     }
@@ -297,8 +297,10 @@ class ProductController extends Controller
                     ->select(['products.name as product_name','products.productID as product_productID','products.*','product_photos.*' ])
                     ->get();
 
+                    // return $product;
+
         return view('portal.products.update_media') 
-                ->with('product', $product[0]);
+                ->with('product', $product);
     }
 
     public function product_save_media(Request $request)
@@ -329,7 +331,7 @@ class ProductController extends Controller
         } catch (\Throwable $th) {
             // throw $th;
         }
-
+ 
         try { 
           
             if (!$images->firstWhere('main', true)) {
@@ -416,23 +418,19 @@ class ProductController extends Controller
 
     public function upload_product_image( $prefix, $image = null)
     {
-            if(!$image) return false;      ///// check if file is available
+            if(!$image) return false;      ///// check if file is available if nto do nothing
 
             $filename = $image->getClientOriginalName();
             $ext = substr($filename,-5);
-           
-            // encripting file so that it can be uniq
-             function uniqFile($filename,$ext){
-                  $file = md5($filename)."".uniqid($filename, true);
-                 return "ba".md5($file)."by".$ext;//.$ext;
-             } 
+            
+            $uniqName = md5($filename)."".uniqid($filename, true);
+            $uniqName = "ba".md5($uniqName)."by".$ext;
 
-            $filename = $prefix."-".uniqFile($filename,$ext);           
+            $filename = $prefix."-".$uniqName;           
             $image->storeAs('products/',"$filename",'public');
 
         return $filename;
     }
-
 
     //  product_photoID	url	title	main	thumbnail	productID	
 }

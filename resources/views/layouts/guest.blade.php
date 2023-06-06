@@ -16,6 +16,8 @@
 {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
+         <script src="{{ asset('mdb/js/axios.js') }}"></script>
+
 <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 
  
@@ -37,73 +39,61 @@
    </style>
     </head>
     <body>
-      
-      <nav id="navbar-scroll" class="  navbar navbar-expand-lg navbar-white top-navbar   " style="z-index:1000;">
-      <div class="container">
-        <!-- Brand -->
-        <a class="navbar-brand" href="/">
        
-          <img
-            alt="fadaeco"
-                          height="100"
-            src="{{ asset('logo.png') }}"
-            id="navbar-logo"
-            class="animate fadeInLeft"
-          />
-        </a>
-        <!-- Toggler -->
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarCollapse"
-          aria-controls="navbarCollapse"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Collapse -->
-        <div class="collapse navbar-collapse  d-flex justify-content-end" id="navbarCollapse">
-          <ul class="navbar-nav mt-4 mt-lg-0 ml-auto ">
-            <li class="nav-item dropdown dropdown-animate" data-toggle="hover">
-            
-            </li>
-            {{-- <li class="nav-item">
-              <a class="nav-link" href="index.html#services">Services</a> 
-            </li>    <li class="nav-item">
-              <a class="nav-link" href="index.html#ecommerce">Pricing</a>
-            </li>
-            <li class="nav-item  ">
-              <a class="nav-link" href="{{route('contact-us')}}">Contact</a>
-            </li> --}}
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li> -->
-            
- @if (Route::has('login'))
-                     @auth
-                        <li class="nav-item"><a href="{{ url('/portal') }}" class=" nav-link">My Portal</a> </li>  
-                    @else
-                      <li class="nav-item    ">
-                        <a href="{{ route('login') }}" class="  nav-link">Log in</a>
-                      </li>  
+      <div class="   top-nav row pb-2  ">
+ 
+        <div class="col-md-4 pl-5">
+          <a class="navbar-brand logo  pt-1" href="/">    
+            <img
+              alt="logo"
+              height="60"
+              src="{{ asset('logo.png') }}"
+              id=" "
+              class="animate fadeInLeft"
+            />
+          </a>
+        </div>
 
-                      <li class="nav-item"> 
-                        <a href="{{ route('register') }}" class="nav-link">Register</a>
-                      </li>  
-                     @endauth
-             @endif           
-          </ul>
-          
+        <div class="search col-md-4 d-flex flex-column justify-content-center">
+            <div class="  ">
+              <div class="form-group m-0 p-0">
+                <input type="text"
+                  class="form-control m-0 p-0  border-bottom" style="height: 35px;"  name="" id="" aria-describedby="helpId" placeholder=" Search Here...">
+                </div>
+            </div>
+        </div>
+
+        <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
+
+          <div class="d-flex flex-column justify-content-center">
+            <div class=" d-flex    ">
+              @if (Route::has('login'))
+                @auth 
+                  <a href="{{ url('/portal') }}" class=" nav-link">My Portal</a>  
+                @else
+                  <a href="{{ route('login') }}" class="  nav-link">Log in</a>                       
+                  <a href="{{ route('register') }}" class="nav-link">Register</a>                      
+                @endauth
+              @endif
+              |
+              <a href="" class="text-dark pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>  
+            </div>
+          </div>
         </div>
       </div>
-      </nav>
+
+      <div class="border text-dark py-2 pl-2">
+        <div class="pl-4">
+          <a href="" class="text-dark px-3 font-weight-bold">New In</a>
+          <a href="" class="text-dark px-3 font-weight-bold">Promo</a>
+          <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
+        </div>
+      </div>
         <div class="  text-gray font-weight-normal antialiased">
             {{ $slot }}
         </div>
           <footer class="position-relative" id="footer-main pt-0">
-      <div class="footer pt-lg-7 footer-dark bg-dark">
+      <div class="footer pt-lg-7 footer-dark footer-dark">
         <!-- SVG shape -->
         <div
           class="shape-container shape-line shape-position-top shape-orientation-inverse"
@@ -111,7 +101,7 @@
            
         </div>
         <!-- Footer -->
-        <div class="container pt-4 d-none">
+        <div class="container pt-4 ">
           <div class="row">
             <div class="col-lg-4 mb-5 mb-lg-0">
               <!-- Theme's logo -->
@@ -119,15 +109,15 @@
                 <img
                   class="w-50"
                   alt="Image placeholder"
-                  src="{{ asset('fadaeco-white.png') }}"
+                  src="{{ asset('logo.png') }}"
                   id="footer-logo"
                 />
               </a>
               <!-- Webpixels' mission -->
               <p class="mt-4 text-sm opacity-8 pr-lg-4">
-                Bring your business online and make more sales than before. At
-                Fadaeco we will build and intergrate your business with our top
-                services. From idea to success.
+                We exist to give all babies and their moms the dignity of choice through
+                accessible baby products at reasonable prices and offering real services
+                that make life easier for mom and baby.
               </p>
              
             </div>
@@ -180,19 +170,19 @@
             <div class="col-md-7  d-flex flex-column justify-content-center">
               <div class="d-flex justify-content-between m-0">
                 <div class="px-3">
-                  <img src="{{ asset('fadaeco-white.png') }}" class="" height="25" alt="">
+                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
                 </div>
                 <div class="px-3">
-                  <img src="{{ asset('fadaeco-white.png') }}" class="" height="25" alt="">
+                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
                 </div>
                 <div class="px-3">
-                  <img src="{{ asset('fadaeco-white.png') }}" class="" height="25" alt="">
+                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
                 </div>
                 <div class="px-3">
-                  <img src="{{ asset('fadaeco-white.png') }}" class="" height="25" alt="">
+                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
                 </div>
                 <div class="px-3">
-                  <img src="{{ asset('fadaeco-white.png') }}" class="" height="25" alt="">
+                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
                 </div>
               </div>
             </div>
@@ -205,10 +195,10 @@
               >
                 &copy; 2023
                 <a
-                  href="https://fadaeco.com"
+                  href="https://mabebeza.com"
                   class="font-weight-bold"
                   target="_blank"
-                  >Fadaeco (Pty) Ltd</a
+                  >Mabebeza (Pty) Ltd</a
                 >. All rights reserved
               </div>
             </div>

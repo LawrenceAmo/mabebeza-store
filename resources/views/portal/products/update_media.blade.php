@@ -1,14 +1,14 @@
 <x-app-layout>
 
-    <div class="m-0  shadow rounded p-3  w-100" id="app">
+    <div class="m-0  mb-5 shadow rounded p-3  w-100" id="app">
         <div class="card border rounded w-100">
             <div class="d-flex justify-content-between  p-2">
-                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_info', [$product->product_productID])}}">Info</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_price', [$product->product_productID])}}">pricing</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded  " href="{{route('product_update_vendor', [$product->product_productID])}}">Vendor</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_shipping', [$product->product_productID])}}">Shipping</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey" href="{{route('product_update_media', [$product->product_productID])}}">Media</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded " href="{{route('product_update_publish', [$product->product_productID])}}">Publish</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_info', [$product[0]->product_productID])}}">Info</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_price', [$product[0]->product_productID])}}">pricing</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded  " href="{{route('product_update_vendor', [$product[0]->product_productID])}}">Vendor</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_shipping', [$product[0]->product_productID])}}">Shipping</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey" href="{{route('product_update_media', [$product[0]->product_productID])}}">Media</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded " href="{{route('product_update_publish', [$product[0]->product_productID])}}">Publish</a></div>
             </div>
          </div>
          <hr>
@@ -94,13 +94,85 @@
         <div class=" ">
             <button class="btn btn-sm rounded font-weight-bold w-100 btn-info"> Upload Product Images </button>
         </div>
+
+        <hr>
+        <div class="border rounded p-3">
+            <p class="h5">Uploaded Images</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Image</th>
+                        <th>Title</th>
+                         
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($product as $item)                        
+                    @if ( $item->thumbnail )
+                    {{-- main --}}
+                        <tr>
+                            <td scope="row font-weight-bold">Thumbnail</td>
+                            <td>
+                                <div class="">
+                                    <div class="">
+                                        <img src="{{ asset('storage/products/'.$item->url)  }}" height="50" alt="">
+                                    </div>
+                                    <small class="text-muted">
+                                        {{ $item->url}}
+                                    </small>
+                                </div>
+                            </td>
+                             <td>{{ $item->title}}</td>
+                        </tr>
+                    @endif
+                    @if ( $item->main )
+                        <tr>
+                            <td scope="row font-weight-bold">Main</td>
+                            <td>
+                                <div class="">
+                                    <div class="">
+                                        <img src="{{ asset('storage/products/'.$item->url)  }}" height="50" alt="">
+                                    </div>
+                                    <small class="text-muted">
+                                        {{ $item->url}}
+                                    </small>
+                                </div>
+                            </td>
+                             <td>{{ $item->title}}</td>
+                        </tr>
+                    @endif 
+                    @if ( !$item->main && !$item->thumbnail)
+                        <tr>
+                            <td scope="row font-weight-bold">Supporting</td>
+                            <td>
+                                <div class="">
+                                    <div class="">
+                                        <img src="{{ asset('storage/products/'.$item->url)  }}" height="50" alt="">
+                                    </div>
+                                    <small class="text-muted">
+                                        {{ $item->url}}
+                                    </small>
+                                </div>
+                             <td>{{ $item->title}}</td>
+                        </tr>
+                    @endif      
+                    @endforeach
+
+                </tbody>
+            </table>
+         
+        </div>
     </div>
-    <input type="hidden" class="form-control" name="productID" value="{{ $product->product_productID }}" required placeholder="">
+    <input type="hidden" class="form-control" name="productID" value="{{ $product[0]->product_productID }}" required placeholder="">
 
   
 
          
-</form>
+</form> <hr>
+<div class="my-5">
+
+</div>
      </div>
     <script>
              const { createApp } = Vue;

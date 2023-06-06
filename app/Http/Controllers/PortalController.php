@@ -7,6 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 class PortalController extends Controller
 {
+    public function get_products()
+    {
+        $products = DB::table('products')
+                    // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                    ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID' )
+                    ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'products.sale_price', 'product_photos.url', 'product_photos.title', )
+                    ->where( 'products.availability', '=',  true)
+                    ->where( 'products.publish', '=', true)
+                    ->where( 'products.publish', '=', true)
+                    ->where( 'product_photos.thumbnail', '=', true)
+                    ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'products.price',)
+                    ->get();
+        return $products;
+        return response()->json($products);
+    }
     /**
      * Display a listing of the resource.
      *

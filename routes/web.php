@@ -21,8 +21,8 @@ use Illuminate\Support\Facades\DB;
  */
 
  Route::get('/', function () {  
-    return redirect()->to( route('portal'));  
-    // return view('welcome');  
+    // return redirect()->to( route('portal'));  
+    return view('welcome');  
 });
 
  Route::prefix('pages/' )->group(function ()
@@ -35,7 +35,9 @@ use Illuminate\Support\Facades\DB;
 Route::prefix('portal/' )->middleware(['auth'])->group(function ()
 {
 
-Route::get('/', [PortalController::class, 'index'])->name('portal');
+    // portal
+    Route::get('/', [PortalController::class, 'index'])->name('portal');
+// Route::get('/', [PortalController::class, 'index'])->name('portal');
 
 //  profile
 Route::get('/profile', [UsersController::class, 'index'])->name('profile');

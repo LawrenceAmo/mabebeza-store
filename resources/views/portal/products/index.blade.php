@@ -242,26 +242,21 @@
             console.log(products)
             this.stock_value = stock_value
             this.products = [ ...Object.values(products) ]
-            this.total_stock_units = products.length;
+
+            let filteredArray = products.filter(value => value !== "");
+
+            // Rearrange the remaining values
+            let rearrangedArray = filteredArray.sort();
+            this.total_stock_units = rearrangedArray.length ;
  
+            console.log(rearrangedArray);
         },
-        methods: {
-            margin_type: function(margin_type_v){
-                let margin_value = 0;
-                if (margin_type_v == "percent") {
-                    margin_value = (this.margin / 100) * this.vendor_product_price;
-                }else{
-                margin_value = this.margin; 
-                }
-                // console.log(margin_type_v +" ============ "+ margin_value)
-                 this.margin_value = margin_value;
-            },
+        methods: {           
             productUpdateUrl: function(val){
                 var link = document.getElementById('productUpdateUrl');
                 var href = link.getAttribute('data-href');
                 href = href.replace('productID', val)
-                // link.setAttribute('href', href + '/' + val);
-                 location.href = href
+                location.href = href
             }
         }
 

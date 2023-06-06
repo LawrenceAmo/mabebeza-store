@@ -4,25 +4,25 @@
     <div class="  row bg-white shadow m-0   rounded p-3 w-100">
          
         <div class="col-md-4">
-             <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center">Stock Value <span>R?</span></p>
-             </div>
-        </div>
-        <div class="col-md-4">
-             <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
-             </div>
-        </div>
-        {{-- <div class="col-md-4">
-             <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
-             </div>
-        </div> --}}
-        <div class="col-md-4">
-             <div class="card p-3 border border-success">
-                <p class="font-weight-bold h5 text-center">Total Products <span>{{count($products)}}</span></p>
-             </div>
-        </div>
+            <div class="card p-3 border border-success">
+               <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value}}</span></p>
+            </div>
+       </div>
+       <div class="col-md-4">
+            <div class="card p-3 border border-success">
+               <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
+            </div>
+       </div>
+       {{-- <div class="col-md-4">
+            <div class="card p-3 border border-success">
+               <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
+            </div>
+       </div> --}}
+       <div class="col-md-4">
+            <div class="card p-3 border border-success">
+               <p class="font-weight-bold h5 text-center">Total Products <span>@{{total_stock_units}}</span></p>
+            </div>
+       </div>
 
         
     </div>
@@ -41,48 +41,28 @@
 <table class="table table-striped table-inverse table-responsive" style="height: 400px; ">
     <thead class="thead-inverse">
         <tr>
-            <th>#</th>
-            <th>Item</th>
-            <th>Name</th>
-            <th>Cost Price</th>
-            <th>Price</th>
-            <th>Total Inventory</th>
-            <th>Availability</th>
-            <th>Published</th>
+            <th>Store Name</th>
+            <th>Trading As</th>
+            <th>Active</th>
+            {{-- <th>Price</th>              --}}
             <th>Action</th>
         </tr>
         </thead>
-        {{-- <tbody>            
-            @foreach ($products as $product)
-             <tr>
-                <td scope="row">{{$i}}</td>
-                <td><img src="{{ asset('images/products/img.jpg') }}" alt="" style="height: 60px;"></td>
-                <td>{{$product->name}}</td>
-                <td>R{{$product->cost_price}}</td>
-                <td>R{{$product->price}}</td>
-                <td>R{{$product->quantity}}</td> 
-                <td>
-                    @if ($product->availability)
-                        <span class="">Yes</span>
+        <tbody>
+           @foreach ($stores as $store)
+              <tr>
+                <td>{{ $store->name }}</td>
+                <td>{{ $store->trading_name }}</td>
+                     @if ($store->active )
+                        <td>Yes</td>
                     @else
-                        <span class="">No</span> 
+                        <td>No</td>
                     @endif
-                </td>
-                <td>
-                    @if ($product->publish)
-                        <span class="">Yes</span>
-                    @else
-                        <span class="">No</span> 
-                    @endif
-                    </td>
-                 <td class=" px-0">
-                    <a href="{{ route('product_update_info', [$product->productID]) }}" class="px-1 text-info"><i class="fas fa-pencil-alt    "></i></a> |
-                     <a href="" class="px-1 text-danger"><i class="fas fa-trash-alt    "></i></a>
-                </td>
-            </tr>
-             <?php $i++ ?>
-            @endforeach            
-        </tbody> --}}
+                    <td></td>
+               </tr>
+           @endforeach
+        </tbody>
+         
 </table>
     </div>
 
