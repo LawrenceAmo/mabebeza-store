@@ -30,7 +30,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-8 p-1">
+        <div class="col-md-12 p-1">
             <div class="shadow bg-white rounded p-2  ">
                 <p class="font-weight-bold h4">
                     Recent Orders
@@ -42,7 +42,8 @@
                             <th>Order ID</th>
                             <th>Customer</th>
                             <th>Items Qty</th>
-                            <th>Total Cost</th>
+                            <th>Total Price</th>
+                            <th>Shipphing Store </th>
                             <th>Created At</th>
                             <th>Action</th>
                         </tr>
@@ -52,18 +53,34 @@
                                 <td scope="row"></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
                             </tr>
                             <tr>
                                 <td scope="row"></td>
                                 <td></td>
                                 <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+
                             </tr>
                         </tbody>
                 </table>
             </div>
         </div>
         {{-- Not yet done, I have to config what should I put here... --}}
-        <div class="col-md-4  p-1">
+        
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12  p-1">
             <div class="shadow bg-white rounded p-2 overflow-auto">
                 <p class="">Open Tickets</p>
                 <table class="table">
@@ -81,11 +98,16 @@
                             <td scope="row"></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td scope="row"></td>
                             <td></td>
                             <td></td>
+                            <td></td>
+                            <td></td>
+
                         </tr>
                     </tbody>
                 </table>

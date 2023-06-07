@@ -36,60 +36,69 @@
       z-index: 1;
       background-color: whitesmoke
     }
+    .nav-bar
+    {
+      position: fixed;
+      top: 0px;
+      width: 100%;
+      z-index: 100;
+      background-color: rgb(255, 255, 255)
+    }
    </style>
     </head>
     <body>
        
-      <div class="   top-nav row pb-2  ">
+      <header class="nav-bar">
+        <div class="   top-nav row pb-2  ">
  
-        <div class="col-md-4 pl-5">
-          <a class="navbar-brand logo  pt-1" href="/">    
-            <img
-              alt="logo"
-              height="60"
-              src="{{ asset('logo.png') }}"
-              id=" "
-              class="animate fadeInLeft"
-            />
-          </a>
-        </div>
-
-        <div class="search col-md-4 d-flex flex-column justify-content-center">
-            <div class="  ">
-              <div class="form-group m-0 p-0">
-                <input type="text"
-                  class="form-control m-0 p-0  border-bottom" style="height: 35px;"  name="" id="" aria-describedby="helpId" placeholder=" Search Here...">
-                </div>
-            </div>
-        </div>
-
-        <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
-
-          <div class="d-flex flex-column justify-content-center">
-            <div class=" d-flex    ">
-              @if (Route::has('login'))
-                @auth 
-                  <a href="{{ url('/portal') }}" class=" nav-link">My Portal</a>  
-                @else
-                  <a href="{{ route('login') }}" class="  nav-link">Log in</a>                       
-                  <a href="{{ route('register') }}" class="nav-link">Register</a>                      
-                @endauth
-              @endif
-              |
-              <a href="" class="text-dark pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i></a>  
+          <div class="col-md-4 pl-5">
+            <a class="navbar-brand logo  pt-1" href="/">    
+              <img
+                alt="logo"
+                height="60"
+                src="{{ asset('logo.png') }}"
+                id=" "
+                class="animate fadeInLeft"
+              />
+            </a>
+          </div>
+  
+          <div class="search col-md-4 d-flex flex-column justify-content-center">
+              <div class="  ">
+                <div class="form-group m-0 p-0">
+                  <input type="text"
+                    class="form-control m-0 p-0  border-bottom" style="height: 35px;"  name="" id="" aria-describedby="helpId" placeholder=" Search Here...">
+                  </div>
+              </div>
+          </div>
+  
+          <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
+  
+            <div class="d-flex flex-column justify-content-center">
+              <div class=" d-flex    ">
+                @if (Route::has('login'))
+                  @auth 
+                    <a href="{{ url('/portal') }}" class=" nav-link">My Portal</a>  
+                  @else
+                    <a href="{{ route('login') }}" class="  nav-link">Log in</a>                       
+                    <a href="{{ route('register') }}" class="nav-link">Register</a>                      
+                  @endauth
+                @endif       
+                | <a href="" class="text-success pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a>  
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="border text-dark py-2 pl-2">
-        <div class="pl-4">
-          <a href="" class="text-dark px-3 font-weight-bold">New In</a>
-          <a href="" class="text-dark px-3 font-weight-bold">Promo</a>
-          <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
+  
+        <div class="border text-dark py-2 pl-2">
+          <div class="pl-4">
+            <a href="" class="text-dark px-3 font-weight-bold">New In</a>
+            <a href="" class="text-dark px-3 font-weight-bold">Promo</a>
+            <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
+          </div>
         </div>
-      </div>
-        <div class="  text-gray font-weight-normal antialiased">
+      </header>
+        <div class="  text-gray font-weight-normal antialiased" style="margin-top: 115px;">
             {{ $slot }}
         </div>
           <footer class="position-relative" id="footer-main pt-0">
@@ -143,31 +152,32 @@
                 <li><a href="contact.html#departments">Information</a></li>
                 <li><a href="contact.html#departments">Help center</a></li>
                 <li><a href="contact.html#departments">Support</a></li>
+                <li><a href="contact.html#departments">Cuty of the year</a></li>
               </ul>
             </div>
           </div>
           <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-6">
               <!-- Social -->
               <ul class="nav mt-4  ">
                 <li class="nav-item">
                   <a class="nav-link" href="https://web.whatsapp.com/" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
+                    <i class="fab fa-whatsapp"></i> +27 71 863 2324
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" target="_blank" href="https://www.linkedin.com/in/amomad/" >
-                    <i class="fab fa-linkedin-in"></i>
+                    <i class="fab fa-linkedin-in"></i> MabebezaBaby
                   </a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="https://facebook.com/fadaeco.sa" target="_blank">
-                    <i class="fab fa-facebook"></i>
+                    <i class="fab fa-facebook"></i> MabebezaBaby
                   </a>
                 </li>
               </ul>
             </div>
-            <div class="col-md-7  d-flex flex-column justify-content-center">
+            <div class="col-md-6  d-flex flex-column justify-content-center">
               <div class="d-flex justify-content-between m-0">
                 <div class="px-3">
                   <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
@@ -216,11 +226,16 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  {{-- terms-and-conditions --}}
+                  <a class="nav-link font-italic" href="{{route('privacy-policy')}}">
+                    Delivary Policy
+                  </a>
+                </li>
+                <li class="nav-item">
                   <a class="nav-link font-italic" href="{{route('privacy-policy')}}">
                     Privacy Policy
                   </a>
                 </li>
+                 
                 <!-- <li class="nav-item">
                   <a class="nav-link" href="#"> Cookies </a>
                 </li> -->
@@ -236,5 +251,9 @@
 
     <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
     <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+      cart_qty_display();
+    </script>
     </body>
 </html>

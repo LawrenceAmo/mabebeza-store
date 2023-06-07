@@ -22,3 +22,23 @@
                         )
                         ->groupBy('products.productID', 'products.name', 'stores.name', 'products.publish', 'products.availability', 'products.sku')
                         ->get();
+ 
+
+                        -- Customer Info
+                        -- phone number +27 (all countries)
+                        -- email address
+                        -- full names
+                        -- 
+
+
+
+                        -- add btn for categories Home page
+                        -- make nav bar static
+
+                        -- Page layout
+                        -- categories
+                        -- featured products
+                        -- new products
+                        -- promo products
+                        -- brands
+                        -- footer

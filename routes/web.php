@@ -25,6 +25,9 @@ use Illuminate\Support\Facades\DB;
     return view('welcome');  
 });
 
+// Products
+Route::get('/{name}', [PortalController::class, 'index'])->name('portal');
+
  Route::prefix('pages/' )->group(function ()
     {
         Route::get('/terms-and-conditions', function () {  return view('pages.legal.t&c');  })->name('terms-and-conditions');
@@ -33,10 +36,9 @@ use Illuminate\Support\Facades\DB;
     });
 
 Route::prefix('portal/' )->middleware(['auth'])->group(function ()
-{
-
+{ 
     // portal
-    Route::get('/', [PortalController::class, 'index'])->name('portal');
+Route::get('/', [PortalController::class, 'index'])->name('portal');
 // Route::get('/', [PortalController::class, 'index'])->name('portal');
 
 //  profile
@@ -54,7 +56,7 @@ Route::post('/store/update/{id}', [StoreController::class, 'update'])->name('upd
 Route::get('/products', [ProductController::class, 'index'])->name('my_products');
 Route::POST('/product/create', [ProductController::class, 'create'])->name('create_product');
 Route::POST('/product/save', [ProductController::class, 'save'])->name('save_product');
-
+// manipulate product (CRUD)
 Route::get('/product/update/information/{id}', [ProductController::class, 'product_update_info'])->name('product_update_info');
 Route::post('/product/save/information/{id}', [ProductController::class, 'product_save_info'])->name('product_save_info');
 Route::get('/product/update/price/{id}', [ProductController::class, 'product_update_price'])->name('product_update_price');
@@ -74,12 +76,10 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::POST('/categories/main/create', [CategoryController::class, 'create_main_category'])->name('create_main_category');
 Route::POST('/categories/sub/create', [CategoryController::class, 'create_sub_category'])->name('create_sub_category');
 
-
 //  suppliers
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers');
 Route::POST('/suppliers/create', [SupplierController::class, 'create_supplier'])->name('create_supplier');
 // Route::POST('/categories/sub/create', [CategoryController::class, 'create_sub_category'])->name('create_sub_category');
-
 
 //  Explore more
 Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
