@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PortalController;
+use App\Http\Controllers\GuestProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +37,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/pg/products', [PortalController::class, 'get_products'])->name('get_products');
+Route::get('/pg/products', [GuestProductsController::class, 'get_products'])->name('get_products');
+Route::get('/pg/sub-categories', [GuestProductsController::class, 'get_sub_categories'])->name('get_sub_categories');
+
+

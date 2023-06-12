@@ -48,7 +48,7 @@
     </head>
     <body>
        
-      <header class="nav-bar">
+      <header class="nav-bar" id="guest">
         <div class="   top-nav row pb-2  ">
  
           <div class="col-md-4 pl-5">
@@ -71,7 +71,7 @@
                   </div>
               </div>
           </div>
-  
+   
           <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
   
             <div class="d-flex flex-column justify-content-center">
@@ -84,7 +84,7 @@
                     <a href="{{ route('register') }}" class="nav-link">Register</a>                      
                   @endauth
                 @endif       
-                | <a href="" class="text-success pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a>  
+                | <a href="{{ route('my_cart') }}" class="text-success pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a>  
               </div>
             </div>
           </div>
@@ -92,8 +92,7 @@
   
         <div class="border text-dark py-2 pl-2">
           <div class="pl-4">
-            <a href="" class="text-dark px-3 font-weight-bold">New In</a>
-            <a href="" class="text-dark px-3 font-weight-bold">Promo</a>
+
             <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
           </div>
         </div>
@@ -254,6 +253,19 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
       cart_qty_display();
+ 
+            async function get_sub_categories( ) {
+              // get products from api
+                let sub_categories = await axios.get('{{route("get_sub_categories")}}');
+                sub_categories = await sub_categories.data
+                // console.log(sub_categories)
+
+              //  return sub_categories;
+            }
+            get_sub_categories()
+            // this.products = productsDB
+       
+
     </script>
     </body>
 </html>

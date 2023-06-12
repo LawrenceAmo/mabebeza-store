@@ -26,7 +26,7 @@
     <div class="carousel-inner" role="listbox" style="height: 350px;">
       <div class="carousel-item active">
         <div class="view">
-          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).webp"
+          <img  class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(68).webp"
             alt="First slide">
           <div class="mask rgba-black-light"></div>
         </div>
@@ -38,7 +38,7 @@
       <div class="carousel-item">
         <!--Mask color-->
         <div class="view">
-          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).webp"
+          <img  class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(6).webp"
             alt="Second slide">
           <div class="mask rgba-black-strong"></div>
         </div>
@@ -50,7 +50,7 @@
       <div class="carousel-item">
         <!--Mask color-->
         <div class="view">
-          <img class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).webp"
+          <img  class="d-block w-100" src="https://mdbootstrap.com/img/Photos/Slides/img%20(9).webp"
             alt="Third slide">
           <div class="mask rgba-black-slight"></div>
         </div>
@@ -80,63 +80,76 @@
     </section>
     <section>
         <div class=" p-3 px-5  d-flex justify-content-between">
-          <div class="">
-            <a href="" class="  rounded-circle shadow" >
-                <img height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
-                <p class="h6 font-weight-bold pt-1 text-center">Nappies & Wipes</p>
-            </a>
-         </div>
-         <div class="">
-          <a href="" class="  rounded-circle shadow" >
-            <div class="text-center"> <img height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #99B0DD;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">            </div>
-            <p class="h6 font-weight-bold pt-1 text-center">Baby Formula & Milk Drinks</p>
-          </a>
-       </div>
-       <div class="">
-        <a href="" class="  rounded-circle shadow" >
-            <img height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid  #b0dd99;" src="{{ asset('images/background/images1.jpeg')}}" alt="">
-            <p class="h6 font-weight-bold pt-1 text-center">Food</p>
-          </a>
-      </div>
-      
-      <div class="">
-        <a href="" class="  rounded-circle shadow" >
-            <img height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #302C94;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
-            <p class="h6 font-weight-bold pt-1 text-center">Medicine & Hygiene</p>
-        </a>
-     </div>
-             <div class="">
-                <a href="" class="  rounded-circle shadow" >
-                    <img height="120" width="120" class="  rounded-circle shadow p-1" style="border:3px solid #dd99b0;" src="{{ asset('images/background/images.jpeg')}}" alt="">
+              @foreach ($categories as $category)
+                <div class="   text-center">
+                  <a href="{{ route('guest_view_category', [$category->categoryID, str_replace(' ', '-',$category->category_name)]) }}" class=" text-center shadow" >
+                      <img  height="100" width="100"  class="  rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
+                      <p class="h6 font-weight-bold pt-1  ">{{ $category->category_name}}</p>
+                  </a>
+                </div>
+              @endforeach
+              {{-- <div class="">
+                  <a href="{{ route('guest_view_category', ['Nappies-&-Wipes']) }}" class="  rounded-circle shadow" >
+                    <div class="text-center"> <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">            </div>
+                    <p class="h6 font-weight-bold pt-1 text-center">Nappies & Wipes</p>
+                  </a>
+              </div>
+              <div class="">
+                <a href="{{ route('guest_view_category', ['Baby-Formula-&-Milk-Drinks']) }}" class="  rounded-circle shadow" >
+                  <div class="text-center"> <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #99B0DD;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">            </div>
+                  <p class="h6 font-weight-bold pt-1 text-center">Baby Formula & Milk Drinks</p>
+                </a>
+            </div>
+              <div class="">
+                <a href="{{ route('guest_view_category', ['Food']) }}" class="  rounded-circle shadow" >
+                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid  #b0dd99;" src="{{ asset('images/background/images1.jpeg')}}" alt="">
+                    <p class="h6 font-weight-bold pt-1 text-center">Food</p>
+                  </a>
+              </div>              
+              <div class="">
+                <a href="{{ route('guest_view_category', ['Medicine-&-Hygiene']) }}" class="  rounded-circle shadow" >
+                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #302C94;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
+                    <p class="h6 font-weight-bold pt-1 text-center">Medicine & Hygiene</p>
+                </a>
+              </div>
+              <div class="">
+                <a href="{{ route('guest_view_category', ['Travel-&-safety-gear']) }}" class="  rounded-circle shadow" >
+                    <img  height="120" width="120" class="  rounded-circle shadow p-1" style="border:3px solid #dd99b0;" src="{{ asset('images/background/images.jpeg')}}" alt="">
                     <p class="h6 font-weight-bold pt-1 text-center">Travel & safety gear</p>
                 </a>
-             </div>
-              
+             </div>              
              <div class="">
-                <a href="" class="  rounded-circle shadow" >
-                    <img height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #942C90;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
+                <a href="{{ route('guest_view_category', ['Party-Decor']) }}" class="  rounded-circle shadow" >
+                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #942C90;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
                     <p class="h6 font-weight-bold pt-1 text-center">Party Decor</p>
                 </a>
-             </div>
+             </div> --}}
         </div>
     </section>
     <hr>
     <section class="">
         <div class=" ">
-            <p class=" h3 text-center">Featured Products</p>            
+            <p class=" h3 text-center">Featured Products</p>
         </div>
         <div class="px-3">
             <div class="row " >
 
                 <div class="col-md-2" v-for="product,i in products">
                     <div class="card text-left"   >
-                        <img class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                        <img  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                          <p class="card-text d-flex justify-content-between py-0 my-0  ">
-                            <span class="text-muted text-danger "> <del>@{{ product.sale_price}}</del> </span>
+                          <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                          <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
+                            <span class="text-muted   " >
+                               <del class="text-muted">@{{ product.price}}</del> 
+                            </span>
+                            <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
+                          </p>
+                          <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
+                            <span class=" "> </span>
                             <span class=" font-weight-bold ">@{{ product.price}}</span>
-                        </p>
+                          </p>
+
                           <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
                             <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
                                  <i class="fa fa-heart" aria-hidden="true"></i>
@@ -163,7 +176,7 @@
 
               <div class="col-md-2" v-for="product,i in products">
                 <div class="card text-left"   >
-                    <img class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                    <img  class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                     <div class="card-body   px-2 py-0">
                       <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
                       <p class="card-text d-flex justify-content-between py-0 my-0  ">
@@ -196,7 +209,7 @@
 
             <div class="col-md-2" v-for="product,i in products">
               <div class="card text-left"   >
-                  <img class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                  <img  class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
                     <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
                     <p class="card-text d-flex justify-content-between py-0 my-0  ">
@@ -229,7 +242,7 @@
 
             <div class="col-md-2" v-for="product,i in products">
               <div class="card text-left"   >
-                  <img class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                  <img  class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
                     <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
                     <p class="card-text d-flex justify-content-between py-0 my-0  ">
@@ -260,43 +273,47 @@
       <div class=" p-3 px-5  d-flex justify-content-between">
             <div class="">
                 <a href="" class="  rounded-circle shadow" >
-                    <img height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                    <img  height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
                     <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
                 </a>
             </div>
               <div class="">
                 <a href="" class="  rounded-circle shadow" >
                   <div class="text-center"> 
-                    <img height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">            </div>
+                    <img  height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">            </div>
                   <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
                 </a>
             </div>
             <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img height="80"    class="   "  src="{{ asset('images/background/images1.jpeg')}}" alt="">
+                  <img  height="80"    class="   "  src="{{ asset('images/background/images1.jpeg')}}" alt="">
                   <p class="h6 font-weight-bold pt-1 text-center">Food</p>
                 </a>
             </div>            
             <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img height="80"    class="   " src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
+                  <img  height="80"    class="   " src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
                   <p class="h6 font-weight-bold pt-1 text-center">Medicine & Hygiene</p>
               </a>
           </div>
            <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img height="80"   class="   " src="{{ asset('images/background/images.jpeg')}}" alt="">
+                  <img  height="80"   class="   " src="{{ asset('images/background/images.jpeg')}}" alt="">
                   <p class="h6 font-weight-bold pt-1 text-center">Travel & safety gear</p>
               </a>
            </div>            
            <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img height="80"    class="   " src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
+                  <img  height="80"    class="   " src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
                   <p class="h6 font-weight-bold pt-1 text-center">Party Decor</p>
               </a>
            </div>
       </div>
   </section>
+
+  {{--  --}}
+  <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="view_product_url"></a>
+  {{--  --}}
 </main>
 
 <script>
@@ -344,6 +361,22 @@
             checkLocalStorage: function(key){
                 return localStorage.getItem(key) !== null;
             },
+            view_product: function(item){
+
+                var link = document.getElementById('view_product_url');
+                var href = link.getAttribute('data-href');
+
+                let sub_category_name = item.sub_category_name.replace(/ /g, '-')
+                href = href.replace('category', sub_category_name )
+                let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
+                href = href.replace('product_name', product_name )
+   
+                 location.href = href
+
+              console.log(href);
+              console.log(item);
+
+             },
             disableAddToCart: function(key){  // not yet done
                 // return localStorage.getItem(key) !== null;
             },
@@ -355,12 +388,14 @@
              },
             add_to_cart: function(item){
                 if (!JSON.parse(localStorage.getItem('cart_productIDs')).includes(item.productID)  ) {
-                  item.qty = 1
+                  item.qty = 1;
                   this.cart.push(item)
                   this.cart_productIDs.push(item.productID)
                   this.updateCartLocalStorage();
-                }  
-            }
+                }
+                console.log(item);  
+            },
+            // 
         }
      }).mount("#app");
 

@@ -404,13 +404,13 @@ class ProductController extends Controller
           DB::table('products')
                 ->where('productID', (int)$request->productID)   
                 ->limit(1)   
-                ->update([
+                ->update([ 
                     'sale' => $sale,
                     'availability' => $availability,
                     'publish' => $publish,                                                   
                  ]);
                 //  return $request;
-                 
+        
         return redirect()->to(route('product_update_publish', [(int)$request->productID]))->with('success', '');
     }
 

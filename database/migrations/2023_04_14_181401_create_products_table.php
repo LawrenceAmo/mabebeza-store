@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('sale_price', 8, 2)->nullable();
             $table->integer('quantity')->nullable();
             $table->string('sale_name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->text('product_detail')->nullable();
             $table->boolean('availability')->default(false);            //
             $table->boolean('publish')->default(false);                 //
