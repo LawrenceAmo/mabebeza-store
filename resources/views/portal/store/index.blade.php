@@ -5,7 +5,7 @@
          
         <div class="col-md-4">
             <div class="card p-3 border border-success">
-               <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value}}</span></p>
+               <p class="font-weight-bold h5 text-center">Stock Value <span>R?</span></p>
             </div>
        </div>
        <div class="col-md-4">
@@ -20,7 +20,7 @@
        </div> --}}
        <div class="col-md-4">
             <div class="card p-3 border border-success">
-               <p class="font-weight-bold h5 text-center">Total Products <span>@{{total_stock_units}}</span></p>
+               <p class="font-weight-bold h5 text-center">Total Products <span>?</span></p>
             </div>
        </div>
 
@@ -34,7 +34,7 @@
      </div>
     <div class="card   rounded p-3 w-100" >
 <p class="font-weight-bold h4 d-flex justify-content-between">
-   <span> All Products  </span> <a class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
+   <span> All Stores  </span> <a class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#modelId">add new Store</a>
 </p>
 {{-- href="{{ route('create_product')}}" --}}
 <?php $i = 1 ?>

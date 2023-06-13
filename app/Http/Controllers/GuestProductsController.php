@@ -128,9 +128,9 @@ class GuestProductsController extends Controller
     }
 
      
-    public function update(Request $request, $id)
+    public function checkout()
     {
-        //
+        return view('pages.products.checkout');
     }
 
     /**

@@ -2,7 +2,7 @@
 
     <main id="app">
      <section class="pb-5 pt-3">
-      <a class="pl-3">/<a href="/">Home</a>/Cart</a>
+      <a class="pl-3">/<a href="/">Home</a>/Checkout</a>
          <div class="  p-3">
              
                  <div class=" row">
@@ -11,36 +11,74 @@
                             <p class="h5 text-muted text-center"><span>Your cart is empty...</span><br>
                               <a href="/" class="btn btn-sm btn-outline-info rounded">Go Shopping</a></p>
                           </div>
-                        <div class="w-100 border-bottom" v-for="product,i in cart">                     
-                            <div  class="shadow c-pointer m-0  p-0 row  w-100 rounded">
-                                <div @click="view_product(product)" class="col-md-2">
-                                    <img height="80" :src="productImg(product.url)" alt="">
-                                </div>
-                                <div @click="view_product(product)" class="col-md-5">
-                                    <div class="h5">@{{product.product_name}}</div>
-                                    <small class=" ">/@{{product.sub_category_name}}</small>
-                                </div>
-                                <div @click="view_product(product)" class="col-md-2">
-                                    <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
-                                    <div class="h5" v-else>R@{{product.price}}</div>
-                                    <div class="h5">R@{{product.sale_price}}</div>
-                                </div>
-                                <div class="col-md-2 d-flex  ">
-                                    <div class="form-group">
-                                        <label class="text-center">Qty</label>
-                                       <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
-                                        <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
-                                      </select>
+                          <div class="shadow rounded p-3">
+                               <div class="">
+                                    <p class="h5">Billing to:</p>
+                               </div>
+                               <div class="d-flex py-3 justify-content-between">
+                                    <div class="input-group px-3">
+                                        <label class="input-group">First Name</label> <br>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Last Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                               </div>
+                               <div class="d-flex py-3 justify-content-between">
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Email</label> <br>
+                                        <input type="email" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Phone Number</label>
+                                        <input type="number" name="tel" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                 </div>
-                                <div class="col-md-1   d-flex flex-column justify-content-center">
-
-                                    <a @click="remove_from_cart(product)" class="text-danger c-pointer zoom">
-                                         <i class="fa fa-times" aria-hidden="true"></i>
-                                    </a>
+                                {{-- <div class="d-flex justify-content-between">
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Street</label> <br>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Last Name</label>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                                </div> --}}
+                                <div class=" pt-5">
+                                    <p class="h5">Address:</p>
+                               </div>
+                               <div class="d-flex py-3 justify-content-between">
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Street</label> <br>
+                                        <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Surbub</label>
+                                        <input type="text" name="tel" id="name" class="form-control" placeholder="" aria-describedby="prefixId">
+                                    </div>
+                               </div>
+                               <div class="d-flex py-3 justify-content-between">
+                                <div class="input-group px-3">
+                                    <label class="input-group">Town/City</label> <br>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter Town or City" aria-describedby="prefixId">
                                 </div>
-                            </div>
-                         </div>
+                                <div class="input-group px-3">
+                                    <label class="input-group">Province</label>
+                                    <input type="text" name="tel" value="Gauteng" class="form-control" placeholder="Gauteng" aria-describedby="prefixId">
+                                </div>
+                               </div>
+                                <div class="d-flex py-3 justify-content-between">
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Country</label> <br>
+                                        <input type="text" name="name"  value="South Africa" class="form-control" placeholder="South Africa" aria-describedby="prefixId">
+                                    </div>
+                                    <div class="input-group px-3">
+                                        <label class="input-group">Zip Code</label>
+                                        <input type="number" name="tel"  class="form-control" placeholder="Enter Zip Code" aria-describedby="prefixId">
+                                    </div>
+                                </div>
+                          </div>
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 text-center ">
@@ -63,7 +101,7 @@
                                 <div class="col-md-6">R@{{ order_total }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom">
-                                 <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-info">PROCEED TO CHECKOUT</a>
+                                 <a href="" class="btn btn-sm rounded btn-info"> <i class="fa fa-lock    "></i> Pay Now</a>
                             </div>
                         </div>
                     </div>
@@ -127,6 +165,7 @@
              }
              this.order_total = this.cart_total - this.discount_total
           },
+         //  
          changeImg: function(url){
               this.main_img = url;
           },

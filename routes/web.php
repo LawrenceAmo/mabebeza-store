@@ -100,6 +100,7 @@ require __DIR__.'/auth.php';
  // Products
  Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
  Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
+ Route::get('/checkout',[GuestProductsController::class, 'checkout'])->name('checkout');
  Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
  // return redirect()->to( route('portal'));  
  // return view('pages.products.view');  

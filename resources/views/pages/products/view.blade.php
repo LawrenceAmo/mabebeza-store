@@ -2,6 +2,7 @@
 
    <main id="app">
     <section class="pb-5 pt-3">
+        <a class="pl-3"> / <a href="/">Home</a> / <a href="/" class="">@{{product.sub_category_name}}</a> / @{{product.product_name}}</a> 
         <div class="card p-1">
             <div class="row">
                 <div class="col-md-5">
@@ -25,9 +26,21 @@
                             <span class="text-danger px-5 mx-5  "> Now R@{{product.sale_price}}</span> 
                         </p>
                         <p class="h5" v-else >R@{{product.price}}</p>
-                        <div class=" ">
-                            <a  class="btn btn-sm rounded btn-success" @click="add_to_cart(product)">add to cart</a> &nbsp; &nbsp;
-                            <a  class="btn btn-sm rounded btn-disabled">add to wishlist</a>
+                        <div class=" row  ">
+                            <div class="col-md-6 d-flex flex-column justify-content-center pt-4 m-auto  ">
+                                <div class="p-2"></div>
+                                {{-- inCart --}}
+                                <a v-if="!inCart" class="btn btn-sm rounded btn-success" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
+                                <a v-else class="btn btn-sm rounded btn-success " @disabled(true) @click="add_to_cart(product)" >Add</a> &nbsp; &nbsp;
+                            </div>
+                            {{-- <a  class="btn btn-sm rounded btn-disabled">add to wishlist</a> --}}
+                            <div class="col-md-6 form-group px-5">
+                                <label class="text-center font-weight-bold">Qty</label>
+                                {{-- v-model="product.qty" --}}
+                               <select class="form-control form-control-sm" v-model="product.qty"  @change="addCartQty(product)">   
+                                <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
+                              </select>
+                            </div>
                         </div>
 
                         <div class="d-flex     pt-3">
@@ -102,6 +115,8 @@
          cart_productIDs: [],
          cart_qty: 0,
          main_img: '',
+         product_qty: 0,
+         inCart: false,
         };
      },
      async created(){ 
@@ -113,7 +128,6 @@
             product[0].images.push({title: product[i].title , url: product[i].url })            
         }
         this.product = product[0];
-        console.log(product[0])
         this.main_img = product[0].images[0]['url']
  
        // if no cart then create new empty cat
@@ -124,8 +138,18 @@
          // always update the UI with data from local storage
          this.cart = JSON.parse(localStorage.getItem('cart'))
          this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
-
-          
+         
+         if (this.cart_productIDs.includes(product[0].productID)) {
+            for (let i = 0; i < this.cart.length; i++) {
+                    if (this.cart[i].productID === product[0].productID) {
+                        this.product.qty = this.cart[i].qty
+                     }
+            }
+            this.inCart = true;
+         }else{
+            this.product.qty = 1;
+         }
+console.log(this.product)
      }, 
      methods: {           
          productUpdateUrl: function(val){
@@ -140,6 +164,20 @@
         //  
         changeImg: function(url){
              this.main_img = url;
+         },
+         addCartQty: function(item){ 
+              this.add_to_cart(item, item.qty );
+
+              console.log(item)
+            //  check if this product is in cart, if yes then update it's qty
+             if (this.cart_productIDs.includes(item.productID)) {
+                for (let i = 0; i < this.cart.length; i++) {
+                    if (this.cart[i].productID === item.productID) {
+                        this.cart[i].qty = item.qty
+                     }
+                 }
+             }            
+             this.updateCartLocalStorage();
          },
          checkLocalStorage: function(key){
              return localStorage.getItem(key) !== null;
@@ -159,24 +197,30 @@
            console.log(href);
            console.log(item);
 
-          },
-         disableAddToCart: function(key){  // not yet done
-             // return localStorage.getItem(key) !== null;
-         },
+          }, 
          updateCartLocalStorage: function(){
              localStorage.setItem('cart', JSON.stringify(this.cart));                
              localStorage.setItem('cart_productIDs', JSON.stringify(this.cart_productIDs));
              this.cart_qty = JSON.parse(localStorage.getItem('cart')).length
              cart_qty_display(); 
           },
-         add_to_cart: function(item){
-            console.log(item)
+         add_to_cart: function(item, qty = 1){
              if (!JSON.parse(localStorage.getItem('cart_productIDs')).includes(item.productID)  ) {
-               item.qty = 1
+               item.qty = qty
                this.cart.push(item)
                this.cart_productIDs.push(item.productID)
-               this.updateCartLocalStorage();
-             }  
+             }else{
+                for (let i = 0; i <  this.cart.length; i++) {
+                    if ( this.cart[i].productID === item.productID) {
+                        this.cart[i].qty++;
+                        this.product.qty = this.cart[i].qty
+                        this.inCart = true;
+                        break;
+                    }                    
+                }
+             } 
+             this.updateCartLocalStorage();
+ 
          },
          // 
      }

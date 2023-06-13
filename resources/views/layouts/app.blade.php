@@ -65,7 +65,7 @@
               class="list-group-item list-group-item-action py-2 ripple"
             >
               <i class="fas fa-building mr-3"></i>
-              <span>Store</span>
+              <span>Stores</span>
             </a>
              <a
               href="{{ route("my_products")}}"
