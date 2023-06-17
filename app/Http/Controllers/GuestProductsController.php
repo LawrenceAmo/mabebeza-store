@@ -126,13 +126,7 @@ class GuestProductsController extends Controller
     {
         return view('pages.products.cart');
     }
-
-     
-    public function checkout()
-    {
-        return view('pages.products.checkout');
-    }
-
+  
     /**
      * Remove the specified resource from storage.
      *

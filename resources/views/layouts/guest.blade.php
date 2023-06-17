@@ -75,25 +75,28 @@
           <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
   
             <div class="d-flex flex-column justify-content-center">
-              <div class=" d-flex    ">
+              <div class=" d-flex     ">
                 @if (Route::has('login'))
                   @auth 
-                    <a href="{{ url('/portal') }}" class=" nav-link">My Portal</a>  
+                     <a href="{{ url('/accounts') }}" class=" nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> My Account</a>  
                   @else
                     <a href="{{ route('login') }}" class="  nav-link">Log in</a>                       
                     <a href="{{ route('register') }}" class="nav-link">Register</a>                      
                   @endauth
                 @endif       
-                | <a href="{{ route('my_cart') }}" class="text-success pr-5 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a>  
+                | 
+                <div class="  d-flex">
+                  <a href="{{ route('my_cart') }}" class="text-success pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
+                <a href="{{ route('my_cart') }}" class="text-danger pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
+                </div>
               </div>
             </div>
           </div>
         </div>
-  
-        <div class="border text-dark py-2 pl-2">
-          <div class="pl-4">
-
+         <div class="border text-dark py-2 pl-2">
+          <div class="pl-4 ">
             <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
+            <a href="" class="text-dark px-3 font-weight-bold">Cutie of the Year</a>
           </div>
         </div>
       </header>

@@ -1,6 +1,9 @@
 -- // DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 -- // DB::statement('DROP TABLE IF EXISTS stores');
 -- // DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+-- // DB::statement('SET FOREIGN_KEY_CHECKS=0');
+--         // DB::statement('DROP TABLE IF EXISTS orders');
+--         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
 
 --  $products = DB::table('products')
 --                         ->leftJoin('(

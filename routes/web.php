@@ -10,8 +10,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\GuestProductsController;
+use App\Http\Controllers\CustomersController;
+use App\Http\Controllers\CheckoutController;
 
-// GuestProductsController
+// CustomersController
 use Illuminate\Support\Facades\DB;
 
 /* 
@@ -33,10 +35,17 @@ Route::get('/', [GuestProductsController::class, 'welcome'])->name('welcome');
 // why did i get maried
 // morgan freeman, madea movies
 Route::prefix('portal/' )->middleware(['auth'])->group(function ()
-{ 
-        // portal
+{
+    // portal
     Route::get('/', [PortalController::class, 'index'])->name('portal');
-    
+
+    //  checkout
+    // Route::get('/checkout/billing', [CheckoutController::class, 'guest_billing'])->name('guest_billing');
+    Route::post('/checkout/billing/save', [CheckoutController::class, 'save_billing'])->name('save_billing');
+    Route::get('/checkout/shipping', [CheckoutController::class, 'guest_shipping'])->name('guest_shipping');
+    Route::post('/checkout/shipping/save', [CheckoutController::class, 'save_guest_shipping'])->name('save_guest_shipping');
+    Route::get('/checkout/review-pay', [CheckoutController::class, 'review_payment'])->name('review_payment');
+
     //  profile
     Route::get('/profile', [UsersController::class, 'index'])->name('profile');
     Route::post('/profile/update', [UsersController::class, 'update'])->name('update_profile');
@@ -75,8 +84,13 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     //  suppliers
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers');
     Route::POST('/suppliers/create', [SupplierController::class, 'create_supplier'])->name('create_supplier');
-    // Route::POST('/categories/sub/create', [CategoryController::class, 'create_sub_category'])->name('create_sub_category');
+ 
 
+     //  Customers
+     Route::get('/customers', [CustomersController::class, 'view_customers'])->name('customers');
+     Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
+ 
+     
     //  Explore more
     Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
     // Route::get('/product/create', [ProductController::class, 'create'])->name('create_product');
@@ -84,6 +98,13 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
 
 });
  
+Route::prefix('accounts/' )->middleware(['auth'])->group(function ()
+{
+    // 
+    Route::get('/', [CustomersController::class, 'index'])->name('customers');
+    Route::get('/profile', [CustomersController::class, 'guest_customer_profile'])->name('guest_customer_profile');
+    Route::post('/profile/save', [CustomersController::class, 'guest_customer_profile_save'])->name('guest_customer_profile_save');
+});
  
 require __DIR__.'/auth.php';
 
@@ -100,7 +121,8 @@ require __DIR__.'/auth.php';
  // Products
  Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
  Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
- Route::get('/checkout',[GuestProductsController::class, 'checkout'])->name('checkout');
+ Route::get('/checkout/billing',[CheckoutController::class, 'checkout'])->name('checkout');
+ Route::get('/checkout/auth-error',[CheckoutController::class, 'checkout_auth_error'])->name('checkout_auth_error');
  Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
  // return redirect()->to( route('portal'));  
  // return view('pages.products.view');  

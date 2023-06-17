@@ -24,14 +24,20 @@ class PortalController extends Controller
         $totalStockValue = $products->sum('stock_value');
 
                             // return $totalStockValue;
-        $customers = DB::table('customers')->count();
-        $orders = DB::table('orders')->get();
-        $new_orders =  $orders->where([['paid', true],['status', "proccessing"]])->count();
+        $customers = DB::table('users')->where('customer', true)->count();
+        $orders = DB::table('orders')
+                ->leftJoin('users', 'users.id', '=', 'orders.userID' )
+                ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                // ->select('users.*', 'orders.*', 'shipping_addresses.street as street_address', )
+                ->get();
+                    // return $orders;
+        $new_orders =  $orders->count();
+        // $new_orders =  $orders->where([['paid', true],['status', "proccessing"]])->count();
  
         return view('dashboard')
              ->with("total_stock_value", $totalStockValue)
              ->with("customers", $customers)
-             ->with("total_orders", $orders->count())
+             ->with("orders", $orders)
              ->with("new_orders", $new_orders)
              ->with("num", 23234);
 

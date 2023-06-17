@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -38,6 +39,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/pg/products', [GuestProductsController::class, 'get_products'])->name('get_products');
+Route::post('/pg/cart/update', [CheckoutController::class, 'guest_update_cart'])->name('guest_update_cart');
+Route::post('/pg/order/update', [CheckoutController::class, 'guest_update_order'])->name('guest_update_order');
 Route::get('/pg/sub-categories', [GuestProductsController::class, 'get_sub_categories'])->name('get_sub_categories');
 
 

@@ -13,17 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('billing_addresses', function (Blueprint $table) {
-            $table->bigIncrements('billing_addressID');
+        Schema::create('shipping_addresses', function (Blueprint $table) {
+            $table->bigIncrements('shipping_addressID');
             $table->json('geo_codes')->nullable();
-            $table->string('address')->nullable();
-            $table->string('address_line1');
-            $table->string('address_line2')->nullable();
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('street');
+            $table->string('suburb')->nullable();
             $table->string('city');
             $table->string('state');
             $table->string('postal_code');
             $table->string('country');
-            $table->foreignId('customerID')->constrained('customers', 'customerID')->onDelete('cascade');
+            $table->foreignId('userID')->constrained('users', 'id')->onDelete('cascade');
             $table->foreignId('orderID')->constrained('orders', 'orderID')->onDelete('cascade');
              $table->timestamps();
         });
@@ -36,6 +39,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('billing_addresses');
+        Schema::dropIfExists('shipping_addresses');
     }
 };

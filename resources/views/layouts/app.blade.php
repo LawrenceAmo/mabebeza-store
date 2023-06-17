@@ -78,6 +78,11 @@
               ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span> Products</span></a
             >
             <a
+              href="{{ route("customers")}}"
+              class="list-group-item list-group-item-action py-2 ripple"
+              ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span> Customers</span></a
+            >
+            <a
             href="{{ route("categories")}}"
             class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span>Categories</span></a
@@ -142,7 +147,7 @@
               alt="mabebeza store logo"
               loading="lazy"
             /> --}}
-            <span class=" h5 font-weight-bold">Amo Madiba</span>
+            <span class=" h5 font-weight-bold">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
           </a>
 
           <!-- Right links -->

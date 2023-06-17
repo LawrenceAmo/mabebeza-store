@@ -23,9 +23,9 @@
                                 <div @click="view_product(product)" class="col-md-2">
                                     <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
                                     <div class="h5" v-else>R@{{product.price}}</div>
-                                    <div class="h5">R@{{product.sale_price}}</div>
+                                    <div class="h5" v-if="product.sale_price">R@{{product.sale_price}}</div>
                                 </div>
-                                <div class="col-md-2 d-flex  ">
+                                <div class="col-md-2 d-flex">
                                     <div class="form-group">
                                         <label class="text-center">Qty</label>
                                        <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
@@ -56,6 +56,10 @@
                             <div class="row w-100 py-2 h6 border-bottom">
                                 <div class="col-md-6">Discount</div>
                                 <div class="col-md-6">-R@{{ discount_total }}</div>
+                            </div>
+                            <div class="row w-100 py-2 h6 border-bottom">
+                                <div class="col-md-6">Delivery Fee</div>
+                                <div class="col-md-6">R@{{ shipping_fee }}</div>
                             </div>
                             {{-- discount_total --}}
                             <div class="row py-2 w-100 h5 border-bottom">
@@ -88,6 +92,7 @@
           order_total: 0,
           main_img: '',
           category: '',
+          shipping_fee: 35,
          };
       },
       async created(){ 
@@ -125,7 +130,7 @@
                     console.log(this.cart[i].sale_price)
                 }  
              }
-             this.order_total = this.cart_total - this.discount_total
+             this.order_total = (this.cart_total - this.discount_total) + this.shipping_fee;
           },
          changeImg: function(url){
               this.main_img = url;
