@@ -12,7 +12,8 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\GuestProductsController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CheckoutController;
-
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\StaffController;
 // CustomersController
 use Illuminate\Support\Facades\DB;
 
@@ -38,14 +39,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
 {
     // portal
     Route::get('/', [PortalController::class, 'index'])->name('portal');
-
-    //  checkout
-    // Route::get('/checkout/billing', [CheckoutController::class, 'guest_billing'])->name('guest_billing');
-    Route::post('/checkout/billing/save', [CheckoutController::class, 'save_billing'])->name('save_billing');
-    Route::get('/checkout/shipping', [CheckoutController::class, 'guest_shipping'])->name('guest_shipping');
-    Route::post('/checkout/shipping/save', [CheckoutController::class, 'save_guest_shipping'])->name('save_guest_shipping');
-    Route::get('/checkout/review-pay', [CheckoutController::class, 'review_payment'])->name('review_payment');
-
+ 
     //  profile
     Route::get('/profile', [UsersController::class, 'index'])->name('profile');
     Route::post('/profile/update', [UsersController::class, 'update'])->name('update_profile');
@@ -87,9 +81,21 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
  
 
      //  Customers
-     Route::get('/customers', [CustomersController::class, 'view_customers'])->name('customers');
+     Route::get('/customers', [CustomersController::class, 'view_customers'])->name('view_customers');
      Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
  
+
+       //  Staff Members
+       Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+       Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
+   
+       //  Orders
+      Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
+      Route::get('/orders/{id}', [OrdersController::class, 'order'])->name('order');
+      Route::post('/orders/approve', [OrdersController::class, 'approve_order'])->name('approve_order');
+    //   Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
+ 
+      
      
     //  Explore more
     Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
@@ -100,8 +106,21 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
  
 Route::prefix('accounts/' )->middleware(['auth'])->group(function ()
 {
-    // 
+     //  checkout
+    // Route::get('/checkout/billing', [CheckoutController::class, 'guest_billing'])->name('guest_billing');
+    Route::post('/checkout/billing/save', [CheckoutController::class, 'save_billing'])->name('save_billing');
+    Route::get('/checkout/shipping', [CheckoutController::class, 'guest_shipping'])->name('guest_shipping');
+    Route::post('/checkout/shipping/save', [CheckoutController::class, 'save_guest_shipping'])->name('save_guest_shipping');
+    Route::get('/checkout/review-pay', [CheckoutController::class, 'review_payment'])->name('review_payment');
+    Route::get('/checkout/payment-success', [CheckoutController::class, 'payment_success'])->name('payment_success');
+    Route::get('/checkout/payment-failed', [CheckoutController::class, 'payment_failed'])->name('payment_failed');
+
+    // Orders
+    Route::get('/orders/{id}', [OrdersController::class, 'guest_order'])->name('guest_order');
+
+    // payment_success
     Route::get('/', [CustomersController::class, 'index'])->name('customers');
+    Route::get('/profile', [CustomersController::class, 'guest_customer_profile'])->name('guest_customer_profile');
     Route::get('/profile', [CustomersController::class, 'guest_customer_profile'])->name('guest_customer_profile');
     Route::post('/profile/save', [CustomersController::class, 'guest_customer_profile_save'])->name('guest_customer_profile_save');
 });

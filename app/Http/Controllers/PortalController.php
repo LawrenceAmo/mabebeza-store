@@ -25,10 +25,10 @@ class PortalController extends Controller
 
                             // return $totalStockValue;
         $customers = DB::table('users')->where('customer', true)->count();
+
         $orders = DB::table('orders')
                 ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                 ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
-                // ->select('users.*', 'orders.*', 'shipping_addresses.street as street_address', )
                 ->get();
                     // return $orders;
         $new_orders =  $orders->count();

@@ -276,8 +276,7 @@ class CheckoutController extends Controller
 
     public function guest_update_order(Request $request)
     { 
-
-        // $order = 
+ 
         DB::table('orders')
                     ->where('order_number',  $request->order_number)
                     ->update([
@@ -294,13 +293,67 @@ class CheckoutController extends Controller
        return $request;
     } 
       
-    public function destroy($id)
+    public function payment_success()
     {
-        //
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $lastURL = $_SERVER['HTTP_REFERER'];
+            if (strpos($lastURL, 'payfast.co.za') !== false) {
+               
+                $userID = (int)Auth::id();
+
+                $order = DB::table('orders')
+                        ->where('userID', $userID) 
+                        ->latest()->first();
+
+                        DB::table('orders')
+                            ->where('order_number',  $order->order_number)
+                            ->update([
+                                'paid' => true,                                 
+                                'payment' => $order->total_amount,                                 
+                            ]);
+        
+                return view('pages.checkout.payment_success')->with('order', $order);
+
+            } else {
+                return redirect()->back();
+            }
+          } else {
+            return redirect()->back();
+          }
+ 
+    }
+
+    public function payment_failed()
+    {
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $lastURL = $_SERVER['HTTP_REFERER'];
+            if (strpos($lastURL, 'payfast.co.za') !== false) {
+               
+                $userID = (int)Auth::id();
+
+                $order = DB::table('orders')
+                        ->where('userID', $userID) 
+                        ->latest()->first();
+
+                        // update order
+        
+                        DB::table('orders')
+                            ->where('order_number',  $order->order_number)
+                            ->update([
+                                'status' => 'cancelled',                                 
+                            ]); 
+
+                return view('pages.checkout.payment_failed')->with('order', $order);
+
+            } else {
+                return redirect()->back();
+            }
+          } else {
+            return redirect()->back();
+          }
+ 
     }
 }
-
- 
 
 
 //  // $email = 'madibaamohelang@gmail.com';

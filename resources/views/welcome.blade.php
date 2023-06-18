@@ -31,8 +31,8 @@
           <div class="mask rgba-black-light"></div>
         </div>
         <div class="carousel-caption">
-          <h3 class="h3-responsive">Light mask</h3>
-          <p>First text</p>
+          {{-- <h3 class="h3-responsive">Light mask</h3>
+          <p>First text</p> --}}
         </div>
       </div>
       <div class="carousel-item">
@@ -43,8 +43,8 @@
           <div class="mask rgba-black-strong"></div>
         </div>
         <div class="carousel-caption">
-          <h3 class="h3-responsive">Strong mask</h3>
-          <p>Secondary text</p>
+          {{-- <h3 class="h3-responsive">Strong mask</h3>
+          <p>Secondary text</p> --}}
         </div>
       </div>
       <div class="carousel-item">
@@ -55,8 +55,8 @@
           <div class="mask rgba-black-slight"></div>
         </div>
         <div class="carousel-caption">
-          <h3 class="h3-responsive">Slight mask</h3>
-          <p>Third text</p>
+          {{-- <h3 class="h3-responsive">Slight mask</h3>
+          <p>Third text</p> --}}
         </div>
       </div>
     </div>
@@ -77,10 +77,10 @@
 
             {{-- </div> --}}
         </div>
-        <div class="border bg-info pb-2">
+        <div class="border bg-blue pb-2">
           <div class="">
             <div class="text-center">
-              <span class="font-weight-bold">Where do you want to ship to?</span>
+              <span class="font-weight-bold text-light">Where do you want to ship to?</span>
             </div>
             <div class="px-3">
               <input type="text" class="form-control form-control-sm rounded" placeholder="Enter Address" >

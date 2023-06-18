@@ -15,6 +15,7 @@ class CustomersController extends Controller
      */
     public function view_customers()
     {
+        // return 1;
         $customers = DB::table('users')->where('customer', true)->get();
         return view('portal.customers.index')->with('customers', $customers);
     }
