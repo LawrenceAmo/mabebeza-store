@@ -94,6 +94,7 @@ class ProductController extends Controller
         $product->sku = $request->code;
         $product->name = $request->product_name;
         $product->price = 0;
+        $product->cost_price = 0;
         $product->sub_categoryID = $default_sub_category->sub_categoryID;
         $product->supplierID = $default_supplier->supplierID;
         $product->id = Auth::id();
@@ -415,7 +416,7 @@ class ProductController extends Controller
     }
 
     // /////////////////////////////////////////////////////
-
+ 
     public function upload_product_image( $prefix, $image = null)
     {
             if(!$image) return false;      ///// check if file is available if nto do nothing
