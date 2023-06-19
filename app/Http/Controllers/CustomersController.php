@@ -8,12 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CustomersController extends Controller
 {
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function view_customers()
     {
         $customers = DB::table('users')->where('customer', true)->get();
@@ -24,7 +19,7 @@ class CustomersController extends Controller
     {
         $user = Auth::user();
         if (!$user->customer) {
-           return redirect( route('portal') );
+        //    return redirect( route('portal') );
         }
         $orders = DB::table('orders')
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
