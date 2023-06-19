@@ -102,17 +102,17 @@
     <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
-      cart_qty_display();
+      // cart_qty_display();
  
-            async function get_sub_categories( ) {
-              // get products from api
-                let sub_categories = await axios.get('{{route("get_sub_categories")}}');
-                sub_categories = await sub_categories.data
-                // console.log(sub_categories)
+            // async function get_sub_categories( ) {
+            //   // get products from api
+            //     let sub_categories = await axios.get('{{route("get_sub_categories")}}');
+            //     sub_categories = await sub_categories.data
+            //     // console.log(sub_categories)
 
-              //  return sub_categories;
-            }
-            get_sub_categories()
+            //   //  return sub_categories;
+            // }
+            // get_sub_categories()
             // this.products = productsDB
        
 
