@@ -14,11 +14,11 @@
 <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
 <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
 {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
-<link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
          <script src="{{ asset('mdb/js/axios.js') }}"></script>
 
 <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
 
  
         <!-- Fonts -->
@@ -34,7 +34,8 @@
       width: 100%;
       margin: 0px;
       z-index: 1;
-      background-color: whitesmoke
+      display: flex;
+      background-color: whitesmoke;
     }
     .nav-bar
     {
@@ -42,17 +43,17 @@
       top: 0px;
       width: 100%;
       z-index: 100;
-      background-color: rgb(255, 255, 255)
+      background-color: rgb(255, 255, 255);
     }
+    
    </style>
     </head>
     <body>
        
       <header class="nav-bar" id="guest">
-        <div class="   top-nav row pb-2  ">
+        <div class="   top-nav p-2   d-flex justify-content-between ">
  
-          <div class="col-md-4 pl-5">
-            <a class="navbar-brand logo  pt-1" href="/">    
+             <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
               <img
                 alt="logo"
                 height="60"
@@ -61,9 +62,8 @@
                 class="animate fadeInLeft"
               />
             </a>
-          </div>
-  
-          <div class="search col-md-4 d-flex flex-column justify-content-center">
+   
+          <div class="search-container d-xs-none d-flex flex-column justify-content-center">
               <div class="  ">
                 <div class="form-group m-0 p-0">
                   <input type="text"
@@ -72,7 +72,7 @@
               </div>
           </div>
    
-          <div class="auth col-md-4 d-flex justify-content-end px-3 float-end">
+          <div class="auth-btn-container   d-flex flex-column justify-content-center">
   
             <div class="d-flex flex-column justify-content-center">
               <div class=" d-flex     ">
@@ -87,7 +87,7 @@
                 | 
                 <div class="  d-flex">
                   <a href="{{ route('my_cart') }}" class="text-success pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
-                <a href="{{ route('my_cart') }}" class="text-danger pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
+                <a href="{{ route('my_cart') }}" class="text-danger d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
                 </div>
               </div>
             </div>
@@ -95,8 +95,8 @@
         </div>
          <div class="border text-dark py-2 pl-2">
           <div class="pl-4 ">
-            <a href="" class="text-dark px-3 font-weight-bold">Shop By Category</a>
-            <a href="" class="text-dark px-3 font-weight-bold">Cutie of the Year</a>
+            <a href="" class="text-dark px-md-3 font-weight-bold"><i class="fa fa-bars    "></i>  Shop By Category</a>
+            <a href="" class="text-dark px-3 d-none font-weight-bold"> <i class="fa fa-user    "></i> Cutie of the Year</a>
           </div>
         </div>
       </header>

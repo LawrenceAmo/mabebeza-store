@@ -7,3 +7,10 @@
 .footer-dark{
   background-color: #642c94 !important;
 }
+
+@media (max-width: 575.98px) {
+  .d-xs-none {
+    display: none !important;
+  }
+}
+

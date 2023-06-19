@@ -6,6 +6,27 @@
         .card:hover .add-to-cart-container{
             display: flex !important;
         }
+        .carousel {
+          max-height: 400px; /* Adjust the value as needed */
+          overflow: hidden;
+        }
+        .carousel .carousel-inner {
+    max-height: 100%;
+  }
+
+  .carousel .carousel-item {
+    height: 100%;
+  }
+
+  .carousel .carousel-item img {
+    max-height: 100%;
+    width: auto;
+  }
+  .main-category-img{
+    width: 100px;
+    height: 100px;
+    overflow: scroll !important;
+  }
     </style>
 <main id="app">
     <section class="  border-bottom pb-2">
@@ -23,7 +44,7 @@
 
     <!--/.Indicators-->
     <!-- Slides -->
-    <div class="carousel-inner" role="listbox" style="height: 350px;">
+    <div class="carousel-inner max-vh-30" role="listbox"  >
       <div class="carousel-item active">
         <div class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner1.jpeg')}}"
@@ -83,59 +104,22 @@
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
             </div>
             <div class="px-3">
-              <input type="text" class="form-control form-control-sm rounded" placeholder="Enter Address" >
+              <input type="text" class="form-control form-control-sm rounded " placeholder="Enter Address" >
             </div>
           </div>
         </div>
     </section>
-    <section>
-        <div class=" p-3 px-5  d-flex justify-content-between">
-              @foreach ($categories as $category)
+    <section class=" px-3 d-flex justify-content-between">
+               @foreach ($categories as $category)
                 <div class="   text-center">
                   <a href="{{ route('guest_view_category', [$category->categoryID, str_replace(' ', '-',$category->category_name)]) }}" class=" text-center shadow" >
-                      <img loading="lazy"  height="100" width="100"  class="  rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
+                      <img loading="lazy"  class="  main-category-img rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
                       <p class="h6 font-weight-bold pt-1  ">{{ $category->category_name}}</p>
                   </a>
                 </div>
               @endforeach
-              {{-- <div class="">
-                  <a href="{{ route('guest_view_category', ['Nappies-&-Wipes']) }}" class="  rounded-circle shadow" >
-                    <div class="text-center"> <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">            </div>
-                    <p class="h6 font-weight-bold pt-1 text-center">Nappies & Wipes</p>
-                  </a>
-              </div>
-              <div class="">
-                <a href="{{ route('guest_view_category', ['Baby-Formula-&-Milk-Drinks']) }}" class="  rounded-circle shadow" >
-                  <div class="text-center"> <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #99B0DD;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">            </div>
-                  <p class="h6 font-weight-bold pt-1 text-center">Baby Formula & Milk Drinks</p>
-                </a>
-            </div>
-              <div class="">
-                <a href="{{ route('guest_view_category', ['Food']) }}" class="  rounded-circle shadow" >
-                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid  #b0dd99;" src="{{ asset('images/background/images1.jpeg')}}" alt="">
-                    <p class="h6 font-weight-bold pt-1 text-center">Food</p>
-                  </a>
-              </div>              
-              <div class="">
-                <a href="{{ route('guest_view_category', ['Medicine-&-Hygiene']) }}" class="  rounded-circle shadow" >
-                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #302C94;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
-                    <p class="h6 font-weight-bold pt-1 text-center">Medicine & Hygiene</p>
-                </a>
-              </div>
-              <div class="">
-                <a href="{{ route('guest_view_category', ['Travel-&-safety-gear']) }}" class="  rounded-circle shadow" >
-                    <img  height="120" width="120" class="  rounded-circle shadow p-1" style="border:3px solid #dd99b0;" src="{{ asset('images/background/images.jpeg')}}" alt="">
-                    <p class="h6 font-weight-bold pt-1 text-center">Travel & safety gear</p>
-                </a>
-             </div>              
-             <div class="">
-                <a href="{{ route('guest_view_category', ['Party-Decor']) }}" class="  rounded-circle shadow" >
-                    <img  height="120" width="120"  class="  rounded-circle shadow p-1" style="border:3px solid #942C90;" src="{{ asset('storage/products/image-ba232811dc285292182ded1ff2b0f8fa4cbym.jpg')}}" alt="">
-                    <p class="h6 font-weight-bold pt-1 text-center">Party Decor</p>
-                </a>
-             </div> --}}
-        </div>
-    </section>
+              
+     </section>
     <hr>
     <section class="">
         <div class=" ">

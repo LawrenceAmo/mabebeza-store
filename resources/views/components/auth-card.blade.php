@@ -1,11 +1,11 @@
   
-<div class="m-md-5 pt-2 px-md-5">
-   <div class="card mt-5">
+<div class="m-md-5  pt-1 px-md-5">
+   <div class="card mt-3">
      <div class="row p-3">
         <div class="col-md-6   " style="border-right: 1px solid grey">
 
-            <div class="d-flex   justify-content-center ">
-                <div class="   text-center">
+            <div class="d-flex    justify-content-center ">
+                <div class="   d-xs-none    text-center">
                      <p class="font-weight-bold h4 ">Welcome To Mabebeza</p>
 
              <div class=" ">
@@ -28,7 +28,7 @@
         </div>
          <div class="col-md-6  ">
 
-            <div class=" d-flex   border-danger p-0  justify-content-center">
+            <div class=" d-flex   border-danger p-1  justify-content-center">
                  <div class="   w-75 ">
                     <h4 class=" ">{{ $logo }}</h4>
                     <p class="  ">
