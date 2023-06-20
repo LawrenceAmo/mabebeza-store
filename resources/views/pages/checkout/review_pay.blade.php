@@ -91,21 +91,21 @@
                                         </div>
                                  </div>
                                  <div class="row w-100 py-2 h6 border-bottom">
-                                    <div class="col-md-6">Cart</div>
-                                    <div class="col-md-6">R@{{ cart_total }}</div>
+                                    <div class="col-6 ">Cart</div>
+                                    <div class="col-6 ">R@{{ cart_total }}</div>
                                 </div>
                                 <div class="row w-100 py-2 h6 border-bottom">
-                                    <div class="col-md-6">Discount</div>
-                                    <div class="col-md-6">-R@{{ discount_total }}</div>
+                                    <div class="col-6 ">Discount</div>
+                                    <div class="col-6 ">-R@{{ discount_total }}</div>
                                 </div>
                                 <div class="row w-100 py-2 h6 border-bottom">
-                                    <div class="col-md-6">Delivery Fee</div>
-                                    <div class="col-md-6">R@{{ shipping_fee }}</div>
+                                    <div class="col-6 ">Delivery Fee</div>
+                                    <div class="col-6 ">R@{{ shipping_fee }}</div>
                                 </div>
                                 {{-- discount_total --}}
                                 <div class="row py-2 w-100 h5 border-bottom">
-                                    <div class="col-md-6">Order Total</div>
-                                    <div class="col-md-6">R@{{ order_total }}</div>
+                                    <div class="col-6 ">Order Total</div>
+                                    <div class="col-6 ">R@{{ order_total }}</div>
                                 </div>
                                 <div class="row py-2 w-100 h5 border-bottom">
                                     <button type="submit" class="btn btn-sm rounded btn-info">
@@ -116,10 +116,9 @@
                             {{-- <form name="PayFastPayNowForm" action="https://www.payfast.co.za/eng/process" method="post"> --}}
                             <input required type="hidden" name="cmd" value="_paynow">
                             <input required type="hidden" name="receiver" pattern="[0-9]" value="22693275">
-                            <input type="hidden" name="return_url" value="https://www.mabebeza.com/payments/success">
-                            <input type="hidden" name="cancel_url" value="https://www.mabebeza.com/payments/cancel">
+                            <input type="hidden" name="return_url" value="https://mabebeza.com/checkout/payment/success">
+                            <input type="hidden" name="cancel_url" value="https://mabebeza.com/checkout/payment/failed">
                             <input required type="hidden" name="amount" id="payfast_order_total" v-model="order_total">
-                            {{-- <input required type="hidden" name="username"   value="amo@amomad.com"> --}}
                             <input required type="hidden" name="item_name" maxlength="255" id="payfast_order_number" v-model="payfast_order_number">
                             <input type="hidden" name="item_description" maxlength="255" value="Pampers S1 min">
                             <table>

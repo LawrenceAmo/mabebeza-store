@@ -13,24 +13,24 @@
                           </div>
                         <div class="w-100 border-bottom" v-for="product,i in cart">                     
                             <div  class="shadow c-pointer m-0  p-0 row  w-100 rounded">
-                                <div @click="view_product(product)" class="col-md-2">
+                                <div @click="view_product(product)" class="col-2">
                                     <img height="80" :src="productImg(product.url)" alt="">
                                 </div>
-                                <div @click="view_product(product)" class="col-md-5">
+                                <div @click="view_product(product)" class="col-5">
                                     <div class="h5">@{{product.product_name}}</div>
                                     <small class=" ">/@{{product.sub_category_name}}</small>
                                 </div>
-                                <div @click="view_product(product)" class="col-md-2">
+                                <div @click="view_product(product)" class="col-2">
                                     <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
                                     <div class="h5" v-else>R@{{product.price}}</div>
                                     <div class="h5" v-if="product.sale_price">R@{{product.sale_price}}</div>
                                 </div>
-                                <div class="col-md-2 d-flex">
+                                <div class="col-2 d-flex">
                                     <div class="form-group">
                                         <label class="text-center">Qty</label>
                                        <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
-                                        <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
-                                      </select>
+                                         <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
+                                       </select>
                                     </div>
                                 </div>
                                 <div class="col-md-1   d-flex flex-column justify-content-center">
@@ -50,21 +50,21 @@
                                     </div>
                              </div>
                              <div class="row w-100 py-2 h6 border-bottom">
-                                <div class="col-md-6">Cart</div>
-                                <div class="col-md-6">R@{{ cart_total }}</div>
+                                <div class="  col-6  ">Cart</div>
+                                <div class="  col-6  ">R@{{ cart_total }}</div>
                             </div>
                             <div class="row w-100 py-2 h6 border-bottom">
-                                <div class="col-md-6">Discount</div>
-                                <div class="col-md-6">-R@{{ discount_total }}</div>
+                                <div class="col-6 ">Discount</div>
+                                <div class="col-6 ">-R@{{ discount_total }}</div>
                             </div>
                             <div class="row w-100 py-2 h6 border-bottom">
-                                <div class="col-md-6">Delivery Fee</div>
-                                <div class="col-md-6">R@{{ shipping_fee }}</div>
+                                <div class="col-6 ">Delivery Fee</div>
+                                <div class="col-6 ">R@{{ shipping_fee }}</div>
                             </div>
                             {{-- discount_total --}}
                             <div class="row py-2 w-100 h5 border-bottom">
-                                <div class="col-md-6">Order Total</div>
-                                <div class="col-md-6">R@{{ order_total }}</div>
+                                <div class="col-6 ">Order Total</div>
+                                <div class="col-6 ">R@{{ order_total }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom">
                                  <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-info">PROCEED TO CHECKOUT</a>

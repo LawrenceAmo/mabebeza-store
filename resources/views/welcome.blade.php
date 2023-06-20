@@ -1,16 +1,16 @@
 <x-guest-layout>
     <style>
-        .add-to-cart-container{
-            display: none !important;
-        }
-        .card:hover .add-to-cart-container{
-            display: flex !important;
-        }
-        .carousel {
-          max-height: 400px; /* Adjust the value as needed */
-          overflow: hidden;
-        }
-        .carousel .carousel-inner {
+  .add-to-cart-container{
+      display: none !important;
+  }
+  .card:hover .add-to-cart-container{
+      display: flex !important;
+  }
+  .carousel {
+    max-height: 400px; /* Adjust the value as needed */
+    overflow: hidden;
+  }
+  .carousel .carousel-inner {
     max-height: 100%;
   }
 
@@ -34,7 +34,7 @@
             {{-- <div class="border p-5 bg-black" style="height: 350px;"> --}}
                 
                 <!--Carousel Wrapper-->
-  <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" >
+    <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" >
     <!--Indicators-->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
@@ -81,23 +81,10 @@
         </div>
       </div>
     </div>
-    <!--/.Slides-->
-    <!--Controls-->
-    {{-- <a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a> --}}
-    <!--/.Controls-->
+
   </div>
   <!--/.Carousel Wrapper-->
-
-
-            {{-- </div> --}}
-        </div>
+      </div>
         <div class="border bg-blue pb-2">
           <div class="">
             <div class="text-center">
@@ -117,8 +104,7 @@
                       <p class="h6 font-weight-bold pt-1  ">{{ $category->category_name}}</p>
                   </a>
                 </div>
-              @endforeach
-              
+              @endforeach 
      </section>
     <hr>
     <section class="">
@@ -221,10 +207,8 @@
                   </div>
                 </div>
           </div>
-
           </div>
       </div>
-
   </section>   
     <hr>
     <section>
@@ -272,13 +256,11 @@
       </div>
   </section>
 
-  {{--  --}}
-  <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="view_product_url"></a>
-  {{--  --}}
-</main>
+ <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="view_product_url"></a>
+ </main>
 
 <script>
-           const { createApp } = Vue;
+  const { createApp } = Vue;
       createApp({
         data() {
           return {
@@ -307,9 +289,9 @@
             // get products from api
             let productsDB = await axios.get('{{route("get_products")}}');  
                 productsDB = await productsDB.data
-            this.products = productsDB
-        }, 
-        methods: {           
+             this.products = productsDB
+        },
+        methods: {
             productUpdateUrl: function(val){
                 var link = document.getElementById('productUpdateUrl');
                 var href = link.getAttribute('data-href');
@@ -330,17 +312,9 @@
                 let sub_category_name = item.sub_category_name.replace(/ /g, '-')
                 href = href.replace('category', sub_category_name )
                 let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
-                href = href.replace('product_name', product_name )
-   
-                 location.href = href
-
-              console.log(href);
-              console.log(item);
-
-             },
-            disableAddToCart: function(key){  // not yet done
-                // return localStorage.getItem(key) !== null;
-            },
+                href = href.replace('product_name', product_name )   
+                location.href = href  
+             }, 
             updateCartLocalStorage: function(){
                 localStorage.setItem('cart', JSON.stringify(this.cart));                
                 localStorage.setItem('cart_productIDs', JSON.stringify(this.cart_productIDs));
@@ -354,10 +328,8 @@
                   this.cart_productIDs.push(item.productID)
                   this.updateCartLocalStorage();
                 }
-                console.log(item);  
             },
-            // 
-        }
+         }
      }).mount("#app");
 
 </script>

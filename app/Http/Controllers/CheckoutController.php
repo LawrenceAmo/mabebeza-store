@@ -335,8 +335,7 @@ class CheckoutController extends Controller
                         ->where('userID', $userID) 
                         ->latest()->first();
 
-                        // update order
-        
+                        // update order        
                         DB::table('orders')
                             ->where('order_number',  $order->order_number)
                             ->update([
