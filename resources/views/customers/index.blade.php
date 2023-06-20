@@ -51,7 +51,7 @@
                                  <td> <a target="_blank" href=" ">
                                     {{$order->suburb}}</a></td>
                                 <td>{{$order->created_at}}</td>
-                                <td> <a href="{{ url('/portal/order', [ 'id' => $order->orderID]) }}" class=""><i class="fas fa-eye  text-info  "></i></a> </td>
+                                <td> <a href="{{ url('guest_order', [ 'id' => $order->orderID]) }}" class=""><i class="fas fa-eye  text-info  "></i></a> </td>
                                   
                             </tr>
                             @endforeach
