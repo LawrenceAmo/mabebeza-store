@@ -74,7 +74,7 @@
                                         @else
                                         <span class="text-danger"> No</span>
                                         @endif
-                                    </td>
+                                    </td> 
                                     <td> 
                                        {{$order->status}}
                                     </td>

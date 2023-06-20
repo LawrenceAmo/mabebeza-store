@@ -42,7 +42,7 @@ class StaffController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'customer' => false,
+            'customer' => true,
             'password' => Hash::make($request->password),
         ]); 
          Contacts::create([ 'userID' => $user->id, ]);

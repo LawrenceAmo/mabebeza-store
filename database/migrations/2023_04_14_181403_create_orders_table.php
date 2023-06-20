@@ -33,15 +33,16 @@ return new class extends Migration
             $table->boolean('is_guest')->default(false); 
             $table->boolean('paid')->default(false); 
             $table->boolean('paid_all')->default(false); 
-            $table->decimal('payment')->nullable(); 
+            $table->decimal('payment')->nullable();  
+            $table->string('approved_by')->nullable();   
+            $table->date('approved_at')->nullable();   
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->foreignId('userID')->constrained('users', 'id')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes(); 
-
         });
     }
-
+  
     /**
      * Reverse the migrations.
      *
