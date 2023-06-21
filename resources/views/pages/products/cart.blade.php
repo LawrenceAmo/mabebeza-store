@@ -17,17 +17,17 @@
                                     <img height="80" :src="productImg(product.url)" alt="">
                                 </div>
                                 <div @click="view_product(product)" class="col-5">
-                                    <div class="h5">@{{product.product_name}}</div>
+                                    <div class="h5 font-Raleway">@{{product.product_name}}</div>
                                     <small class=" ">/@{{product.sub_category_name}}</small>
                                 </div>
-                                <div @click="view_product(product)" class="col-2">
+                                <div @click="view_product(product)" class="col-2 font-Raleway">
                                     <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
                                     <div class="h5" v-else>R@{{product.price}}</div>
                                     <div class="h5" v-if="product.sale_price">R@{{product.sale_price}}</div>
                                 </div>
                                 <div class="col-2 d-flex">
                                     <div class="form-group">
-                                        <label class="text-center">Qty</label>
+                                        <label class="text-center font-Raleway">Qty</label>
                                        <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
                                          <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
                                        </select>
@@ -45,7 +45,7 @@
                     <div class="col-md-4">
                         <div class="shadow p-3 text-center ">
                             <div class=" row  pb-3  border-bottom">
-                                    <div class="col-12 h5">
+                                    <div class="col-12 h5 font-Raleway">
                                         Order Summary
                                     </div>
                              </div>
@@ -67,7 +67,7 @@
                                 <div class="col-6 ">R@{{ order_total }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom">
-                                 <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-info">PROCEED TO CHECKOUT</a>
+                                 <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-purple">PROCEED TO CHECKOUT</a>
                             </div>
                         </div>
                     </div>

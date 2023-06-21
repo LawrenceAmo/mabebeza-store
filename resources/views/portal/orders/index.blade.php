@@ -10,7 +10,7 @@
                 <div class=" w-100 overflow-auto rounded">
                     <table class="table table-striped table-inverse table-responsive">
                         <thead class="thead-inverse">
-                            <tr class="bg-dark text-light">
+                            <tr class="bg-purple text-light">
                                 <th>#</th>
                                 <th>Order Number</th>
                                 <th>Customer</th>
@@ -78,7 +78,7 @@
                 <div class=" w-100 overflow-auto rounded">
                     <table class="table table-striped table-inverse table-responsive">
                         <thead class="thead-inverse">
-                            <tr class="bg-dark text-light">
+                            <tr class="bg-purple text-light">
                                 <th>#</th>
                                 <th>Order Number</th>
                                 <th>Customer</th>

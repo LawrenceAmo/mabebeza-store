@@ -11,12 +11,12 @@
             
             <div class="d-flex justify-content-between border-bottom pb-3">
                 <p class="h5">Main Categories</p>
-                <a class="btn btn-sm btn-primary rounded"  data-toggle="modal" data-target="#create_category">Create New main category</a>
+                <a class="btn btn-sm btn-purple rounded"  data-toggle="modal" data-target="#create_category">Create New main category</a>
             </div>
             <div class="">
                 <table class="table table-striped table-inverse table-responsive">
                     <thead class="thead-inverse">
-                        <tr>
+                        <tr class="bg-purple">
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
@@ -53,12 +53,12 @@
             
             <div class="d-flex justify-content-between border-bottom pb-3">
                 <p class="h5">Sub Categories</p>
-                <a class="btn btn-sm btn-primary rounded"  data-toggle="modal" data-target="#create_sub_category">Create New sub category</a>
+                <a class="btn btn-sm btn-purple rounded"  data-toggle="modal" data-target="#create_sub_category">Create New sub category</a>
             </div>
             <div class="">
                 <table class="table table-striped table-inverse table-responsive">
                     <thead class="thead-inverse">
-                        <tr>
+                        <tr class="bg-purple">
                             <th>#</th>
                             <th>Name</th>
                             <th>Description</th>
@@ -119,7 +119,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm rounded btn-primary">create main category</button>
+                        <button type="submit" class="btn btn-sm rounded btn-purple">create main category</button>
                     </div>
                 </form>
             </div>
@@ -161,7 +161,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm rounded btn-primary">create main category</button>
+                        <button type="submit" class="btn btn-sm rounded btn-purple">create main category</button>
                     </div>
                 </form>
             </div>

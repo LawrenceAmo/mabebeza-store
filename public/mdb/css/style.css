@@ -1,6 +1,15 @@
  body{
     margin: 0px;
+    background-color: #ebe7e8 !important;
+    font-family: 'Libre Franklin', sans-serif !important; 
+
  }
+ .font-libre{
+  font-family: 'Libre Franklin', sans-serif;
+}
+.font-Raleway{
+  font-family: 'Raleway', sans-serif !important;
+}
  .c-pointer{
    cursor: pointer;
  }
@@ -12,5 +21,51 @@
   .d-xs-none {
     display: none !important;
   }
+}
+hr{
+  background-color: #ebe7e8 !important;
+  height: 0px !important;
+   margin: 15px !important;
+}
+/*  */
+.text-blue{
+  color: #94d2ec !important;
+}
+.text-light{
+  color: #ebe7e8 !important;
+}
+.text-purple{
+  color: #642c94 !important;
+}
+.text-pink{
+  color: #dd99b0 !important;
+}
+.bg-purple{
+  background-color: #642c94 !important;
+  color: #ffffff !important;
+ }
+ .bg-pink{
+  background-color: #dd99b0 !important;
+  color: #ffffff !important;
+ }
+.btn-purple{
+  background-color: #642c94 !important;
+  color: #ffffff !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+.btn-pink{
+  background-color: #dd99b0 !important;
+  color: #ffffff !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+.btn-outline-purple{
+  /* background-color: #ebe7e8 !important; */
+  color: #642c94 !important;
+  border: #642c94 solid 2px !important;
+ }
+
+/* dd99b0 */
+a{
+  color: #94d2ec !important;
 }
 

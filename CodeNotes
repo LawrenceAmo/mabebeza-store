@@ -26,15 +26,12 @@
 --                         ->groupBy('products.productID', 'products.name', 'stores.name', 'products.publish', 'products.availability', 'products.sku')
 --                         ->get();
  
-
                         -- Customer Info
                         -- phone number +27 (all countries)
                         -- email address
                         -- full names
                         -- 
-
-
-
+ 
                         -- add btn for categories Home page
                         -- make nav bar static
 
@@ -54,15 +51,15 @@
 -- Travel & safety gear
 -- Party Decor
  
-
 -- me befor you
 -- life in a year // top 1 
 -- the fault in our stars
 -- everything everything 
 
-
-
-
 -- view products by category
--- view cart 
+-- view cart    
+
+-- Shipping functions
+-- restrict the area
+-- send mails
 

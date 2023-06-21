@@ -18,8 +18,10 @@ body {
 }
 #sidebarMenu, #sidebarMenu div,#sidebarMenu div a  {
   z-index: 100;
-  background-color:rgb(31,41,55);
-  color: aliceblue;
+  background-color:#642c94 !important;
+  color: #ebe7e8 !important;
+  font-family: 'Raleway', sans-serif !important;
+
 }
 #sidebarMenu i{
   margin-right: 20px;

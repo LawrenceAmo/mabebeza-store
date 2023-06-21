@@ -14,24 +14,24 @@
                             <div class="  rounded" v-for="images in product.images ">
                                 <img height="100" @click="changeImg(images.url)" :src="productImg(images.url)" class="rounded" :alt="images.title">
                             </div>                            
-                        </div>
+                        </div> 
                     </div>
                 </div>
                 <div class="col-md-7">
                     <div class="pl-3 pt-5 ">
-                        <p class="h4 font-weight-bold">@{{product.product_name}}</p>
+                        <p class="h4 font-weight-bold font-Raleway">@{{product.product_name}}</p>
                         {{-- product_name price--}}
-                        <p class="h5    " v-if="product.sale_price">
+                        <p class="h5   font-Raleway " v-if="product.sale_price">
                             <span class="text-muted">Was <del class="">R@{{product.price}}</del></span>
                             <span class="text-danger px-5 mx-5  "> Now R@{{product.sale_price}}</span> 
                         </p>
-                        <p class="h5" v-else >R@{{product.price}}</p>
+                        <p class="h5 font-Raleway" v-else >R@{{product.price}}</p>
                         <div class=" row  ">
                             <div class="col-md-6 d-flex flex-column justify-content-center pt-4 m-auto  ">
                                 <div class="p-2"></div>
                                 {{-- inCart --}}
                                 <a v-if="!inCart" class="btn btn-sm rounded btn-success" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
-                                <a v-else class="btn btn-sm rounded btn-success " @disabled(true) @click="add_to_cart(product)" >Add</a> &nbsp; &nbsp;
+                                <a v-else class="btn btn-sm rounded btn-purple " @disabled(true) @click="add_to_cart(product)" >Add</a> &nbsp; &nbsp;
                             </div>
                             {{-- <a  class="btn btn-sm rounded btn-disabled">add to wishlist</a> --}}
                             <div class="col-md-6 form-group px-5">
@@ -51,13 +51,13 @@
                                 </div>
                              </div>
                              <div class="px-2   d-flex flex-column justify-content-center">
-                                <a href="" class="">See more reviews</a>
+                                <a href="" class="font-libre">See more reviews</a>
                              </div>
                         </div>
                         <hr>
                         <div class="">
-                            <p class="h5">Delivary Details</p>
-                            <p> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum sint,
+                            <p class="h5 font-Raleway">Delivery Details</p>
+                            <p class="font-libre"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum sint,
                                 repellat quidem soluta nam incidunt reiciendis laudantium, alias molestias molestiae minima 
                                 consequuntur. Doloribus, recusandae ab. Provident dolores pariatur voluptas harum!</p>
                         </div>

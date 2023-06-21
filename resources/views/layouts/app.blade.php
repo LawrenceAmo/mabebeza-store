@@ -16,10 +16,10 @@
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
 
         <!-- Fonts -->
-        {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
-  
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
+   
     </head>
-    <body class="font-sans antialiased dashboard-container bg-light">
+    <body class="font-sans antialiased dashboard-container  ">
             <!-- Page Heading -->
            
             <header>
@@ -43,7 +43,7 @@
                 loading="lazy"
               /> 
           </a>
-          <i class="small text-muted"> {{ date('d-M-Y H:i') }} </i>
+          <i class="small text-pink"> {{ date('d-M-Y H:i') }} </i>
 
           </div>
             <a
@@ -111,7 +111,7 @@
               ><i class="fas fa-info-circle mr-3"></i><span>Find Help</span></a
             >
             <form action="{{ route('logout') }}" method="POST"
-               class="list-group-item  btn-outline-dark rounded font-weight-bold list-group-item-action py-2 ripple"
+               class="list-group-item  btn-outline-dark text-pink rounded font-weight-bold list-group-item-action py-2 ripple"
               >
               @csrf
               <label for="logout" class="c-pointer text-danger"><i class="fas fa-door-open mr-3"></i><span>Log out</span></label>
@@ -182,8 +182,8 @@
 
             <!-- Page Content -->
             
-            <main class="mt-5 pt-3 "  style="">
-                <section class="m-0 px-md-3 w-100">
+            <main class="mt-5 pt-3 bg-light "  style="">
+                <section class="m-0 px-md-3 w-100 bg-light">
                   {{ $slot }}
                 </section>
             </main>

@@ -2,7 +2,7 @@
     <x-auth-card>
         <x-slot name="logo">
             <a >
-                <div class="">Create New Account</div> 
+                <div class="font-Raleway text-purple">Create New Account</div> 
                 {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
             </a>
         </x-slot>
@@ -53,7 +53,7 @@
             </div>
 
             <div class="  mt-4">
-                <x-button class="ml-4 btn btn-sm btn-info rounded form-control">
+                <x-button class="ml-4 btn btn-sm btn-purple rounded form-control">
                     {{ __('Register') }}
                 </x-button>
                 <a class="underline text-sm text-gray-600 hover:text-gray-900 small text-dark" href="{{ route('login') }}">

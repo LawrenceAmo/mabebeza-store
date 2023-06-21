@@ -85,7 +85,7 @@
   </div>
   <!--/.Carousel Wrapper-->
       </div>
-        <div class="border bg-blue pb-2">
+        <div class="border bg-purple pb-2">
           <div class="">
             <div class="text-center">
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
@@ -109,7 +109,7 @@
     <hr>
     <section class="">
         <div class=" ">
-            <p class=" h3 text-center">Featured Products</p>
+            <p class=" h3 text-center font-Raleway text-purple">Featured Products</p>
         </div>
         <div class="px-3">
             <div class="row " >
@@ -118,28 +118,28 @@
                     <div class="card text-left"   >
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                          <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
+                          <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                          <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                             <span class="text-muted   " >
                                <del class="text-muted">@{{ product.price}}</del> 
                             </span>
                             <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
                           </p>
-                          <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
+                          <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
                             <span class=" "> </span>
                             <span class=" font-weight-bold ">@{{ product.price}}</span>
                           </p>
 
                           <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                            <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
+                            <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3">
                                  <i class="fa fa-heart" aria-hidden="true"></i>
                             </span>
-                            <span class="add-cart btn btn-sm rounded btn-success py-0 px-3" @click="add_to_cart(product)">                                
+                            <span class="add-cart btn btn-sm rounded btn-purple py-0 px-3" @click="add_to_cart(product)">                                
                                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
                             </span>
                           </p>
                         </div>
-                      </div>
+                     </div>
                 </div>
 
             </div>
@@ -149,53 +149,27 @@
     <hr>
     <section class="">
         <div class=" ">
-            <p class=" h3 text-center">Best Sellers</p>            
+            <p class=" h3 text-center font-Raleway text-purple">Best Sellers</p>            
         </div>
         <div class="px-3">
             <div class="row " >
 
               <div class="col-md-2" v-for="product,i in products">
                 <div class="card text-left"   >
-                    <img loading="lazy"  class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
-                    <div class="card-body   px-2 py-0">
-                      <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                      <p class="card-text d-flex justify-content-between py-0 my-0  ">
-                        <span class="text-muted text-danger "> <del>@{{ product.sale_price}}</del> </span>
-                        <span class=" font-weight-bold ">@{{ product.price}}</span>
-                    </p>
-                      <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                        <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
-                             <i class="fa fa-heart" aria-hidden="true"></i>
-                        </span>
-                        <span class="add-cart btn btn-sm rounded btn-success py-0 px-3" @click="add_to_cart(product)">                                
-                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-            </div>
-
-            </div>
-        </div>
-
-    </section>
-    <hr>
-    <section class="">
-      <div class=" ">
-          <p class=" h3 text-center"> Sale</p>            
-      </div>
-      <div class="px-3">
-          <div class="row " >
-
-            <div class="col-md-2" v-for="product,i in products">
-              <div class="card text-left"   >
-                  <img loading="lazy"  class="card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                  <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
-                    <a class="card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                    <p class="card-text d-flex justify-content-between py-0 my-0  ">
-                      <span class="text-muted text-danger "> <del>@{{ product.sale_price}}</del> </span>
+                    <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                    <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
+                      <span class="text-muted   " >
+                         <del class="text-muted">@{{ product.price}}</del> 
+                      </span>
+                      <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
+                    </p>
+                    <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
+                      <span class=" "> </span>
                       <span class=" font-weight-bold ">@{{ product.price}}</span>
-                  </p>
+                    </p>
+
                     <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
                       <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
                            <i class="fa fa-heart" aria-hidden="true"></i>
@@ -205,7 +179,47 @@
                       </span>
                     </p>
                   </div>
-                </div>
+               </div>
+            </div>
+
+            </div>
+        </div>
+
+    </section>
+    <hr>
+    <section class="">
+      <div class=" ">
+          <p class=" h3 text-center font-Raleway text-purple"> Sale</p>            
+      </div>
+      <div class="px-3">
+          <div class="row " >
+
+            <div class="col-md-2" v-for="product,i in products">
+              <div class="card text-left"   >
+                <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                <div class="card-body   px-2 py-0">
+                  <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                  <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
+                    <span class="text-muted   " >
+                       <del class="text-muted">@{{ product.price}}</del> 
+                    </span>
+                    <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
+                  </p>
+                  <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
+                    <span class=" "> </span>
+                    <span class=" font-weight-bold ">@{{ product.price}}</span>
+                  </p>
+
+                  <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
+                    <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
+                         <i class="fa fa-heart" aria-hidden="true"></i>
+                    </span>
+                    <span class="add-cart btn btn-sm rounded btn-success py-0 px-3" @click="add_to_cart(product)">                                
+                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                    </span>
+                  </p>
+                </div> 
+             </div> 
           </div>
           </div>
       </div>
@@ -213,7 +227,7 @@
     <hr>
     <section>
       <div class=" ">
-        <p class=" h3 text-center">Our Partners</p>            
+        <p class=" h3 text-center font-Raleway text-purple">Our Partners</p>            
     </div>
       <div class=" p-3 px-5  d-flex justify-content-between">
             <div class="">

@@ -9,7 +9,8 @@
                 <br>
                   <a href="/" class="btn btn-sm btn-outline-info rounded">Go back home</a></p>
               </div>
-                 <div class="d-flex  " v-for="product,i in products">                     
+                 <div class="row">
+                  <div class="col-md-2 d-flex  " v-for="product,i in products">                     
                     <div class="card text-left"   >
                         <img @click="view_product(product)" class="card-img-top zoom c-pointer" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
@@ -26,16 +27,17 @@
                           </p>
 
                           <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                            <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
+                            <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3">
                                  <i class="fa fa-heart" aria-hidden="true"></i>
                             </span>
-                            <span class="add-cart btn btn-sm rounded btn-success py-0 c-pointer px-3" @click="add_to_cart(product)">                                
+                            <span class="add-cart btn btn-sm rounded btn-purple py-0 c-pointer px-3" @click="add_to_cart(product)">                                
                                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
                             </span>
                           </p>
                         </div>
                     </div>
-                 </div>                
+                 </div>   
+                </div>               
           </div>
      </section>
      <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="view_product_url"></a>

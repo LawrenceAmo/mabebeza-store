@@ -6,7 +6,7 @@
 
             <div class="d-flex    justify-content-center ">
                 <div class="   d-xs-none    text-center">
-                     <p class="font-weight-bold h4 ">Welcome To Mabebeza</p>
+                     <p class="font-weight-bold h4 font-Raleway text-purple">Welcome To Mabebeza</p>
 
              <div class=" ">
                   <img

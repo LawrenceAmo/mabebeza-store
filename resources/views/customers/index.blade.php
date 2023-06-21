@@ -11,7 +11,7 @@
             <div class=" w-100 overflow-auto rounded">
                 <table class="table w-100 rounded table-striped table-inverse table-responsive">
                     <thead class="thead-inverse">
-                        <tr class="bg-dark text-light">
+                        <tr class="bg-purple text-light">
                             <th>#</th>
                             <th>Order Number</th>
                              <th>Items Qty</th>
@@ -51,11 +51,11 @@
                                  <td> <a target="_blank" href=" ">
                                     {{$order->suburb}}</a></td>
                                 <td>{{$order->created_at}}</td>
-                                <td> <a href="{{ url('guest_order', [ 'id' => $order->orderID]) }}" class=""><i class="fas fa-eye  text-info  "></i></a> </td>
+                                <td> <a href="/accounts/orders/{{$order->orderID }}" class=""><i class="fas fa-eye  text-info  "></i></a> </td>
                                   
-                            </tr>
+                            </tr> 
                             @endforeach
-                        </tbody>
+                        </tbody> 
                 </table>
                 @if (count($orders) == 0)
                     <p class="h5 text-muted text-center"><i>You have no Orders</i></p>

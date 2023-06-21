@@ -22,8 +22,7 @@
 
  
         <!-- Fonts -->
-        {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
- 
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
    <style>
       body {
                 font-family: 'Nunito', sans-serif;
@@ -50,7 +49,7 @@
     </head>
     <body>
        
-      <header class="nav-bar" id="guest">
+      <header class="nav-bar bg-purple " id="guest">
         <div class="   top-nav p-2   d-flex justify-content-between ">
  
              <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
@@ -80,14 +79,14 @@
                   @auth 
                      <a href="{{ url('/accounts') }}" class=" nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> My Account</a>  
                   @else
-                    <a href="{{ route('login') }}" class="  nav-link">Log in</a>                       
-                    <a href="{{ route('register') }}" class="nav-link">Register</a>                      
+                    <a href="{{ route('login') }}" class=" text-light nav-link">Log in</a>                       
+                    <a href="{{ route('register') }}" class=" text-light nav-link">Register</a>                      
                   @endauth
                 @endif       
                 | 
                 <div class="  d-flex">
-                  <a href="{{ route('my_cart') }}" class="text-success pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
-                <a href="{{ route('my_cart') }}" class="text-danger d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
+                  <a href="{{ route('my_cart') }}" class="text-blue pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
+                <a href="{{ route('my_cart') }}" class="text-pink d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
                 </div>
               </div>
             </div>
@@ -95,8 +94,8 @@
         </div>
          <div class="border text-dark py-2 pl-2">
           <div class="pl-4 ">
-            <a href="" class="text-dark px-md-3 font-weight-bold"><i class="fa fa-bars    "></i>  Shop By Category</a>
-            <a href="" class="text-dark px-3 d-none font-weight-bold"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+            <a href="" class="text-light px-md-3 font-weight-bold font-Raleway"><i class="fa fa-bars    "></i>  Shop By Category</a>
+            <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
           </div>
         </div>
       </header>
@@ -180,23 +179,23 @@
               </ul>
             </div>
             <div class="col-md-6  d-flex flex-column justify-content-center">
-              <div class="d-flex justify-content-between m-0">
-                <div class="px-3">
-                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
+              <div class="d-flex justify-content-around"> 
+                <div class="px-2">
+                    <img height="20" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="">
                 </div>
-                <div class="px-3">
-                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
+                <div class="px-2">
+                    <img height="20" src="https://www.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="">
+                </div> 
+                <div class="px-2">
+                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/InstantEFT@2x.png" alt="">
                 </div>
-                <div class="px-3">
-                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
+                <div class="px-2">
+                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/MobiCred@2x.png" alt="">
                 </div>
-                <div class="px-3">
-                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
+                <div class="px-2">
+                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/RCS@2x.png" alt="">
                 </div>
-                <div class="px-3">
-                  <img src="{{ asset('logo.png') }}" class="" height="25" alt="">
-                </div>
-              </div>
+            </div>
             </div>
           </div>
           <hr class="divider divider-fade divider-dark my-4" />

@@ -11,12 +11,12 @@
             
             <div class="d-flex justify-content-between border-bottom pb-3">
                 <p class="h5">Suppliers</p>
-                <a class="btn btn-sm btn-primary rounded"  data-toggle="modal" data-target="#create_supplier">Create New Supplier</a>
+                <a class="btn btn-sm btn-purple rounded"  data-toggle="modal" data-target="#create_supplier">Create New Supplier</a>
             </div>
             <div class=" w-100 overflow-auto">
                 <table class="table table-striped table-inverse table-responsive w-100">
                     <thead class="thead-inverse">
-                        <tr class="bg-dark text-light font-weight-bold">
+                        <tr class="bg-purple text-light font-weight-bold">
                             <th>#</th>
                             <th>Company name</th>
                             <th>Supply With</th>
@@ -126,7 +126,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm rounded btn-primary">create main category</button>
+                        <button type="submit" class="btn btn-sm rounded btn-purple">create main category</button>
                     </div>
                 </form>
             </div>

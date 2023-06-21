@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-9 ">
            <div class=" ">
-            <a  class="btn btn-sm   btn-outline-info rounded">1 Billing</a><span class="step-arrow"></span>
+            <a  class="btn btn-sm   btn-outline-purple rounded">1 Billing</a><span class="step-arrow"></span>
             <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="step-arrow"></span>
             <a  class="btn btn-sm   btn-outline-light rounded">3 Review & Pay</a>
            </div>
@@ -130,7 +130,7 @@
                                 <div class="col-6 ">R@{{ order_total }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom">
-                                 <button type="submit" class="btn btn-sm rounded btn-info"> <i class="fa fa-lock"></i> Save Billing</button>
+                                 <button type="submit" class="btn btn-sm rounded btn-purple"> <i class="fa fa-lock"></i> Save Billing</button>
                             </div>
   
                         </div>

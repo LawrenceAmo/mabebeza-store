@@ -11,12 +11,12 @@
             
             <div class="d-flex justify-content-between border-bottom pb-3">
                 <p class="h5">All Staff</p>
-                <a class="btn btn-sm btn-info rounded"  data-toggle="modal" data-target="#create_supplier">Create New Staff Member</a>
+                <a class="btn btn-sm btn-purple rounded"  data-toggle="modal" data-target="#create_supplier">Create New Staff Member</a>
             </div>
             <div class=" w-100 overflow-auto">
                 <table class="table table-striped table-inverse table-responsive w-100">
                     <thead class="thead-inverse">
-                        <tr class="bg-dark text-light font-weight-bold">
+                        <tr class="bg-purple text-light font-weight-bold">
                             <th>#</th>
                             <th>First Name</th>
                             <th>Last Name</th>
@@ -122,7 +122,7 @@
                     </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-sm rounded btn-info">create New Staff member</button>
+                        <button type="submit" class="btn btn-sm rounded btn-purple">create New Staff member</button>
                     </div>
                 </form>
             </div>

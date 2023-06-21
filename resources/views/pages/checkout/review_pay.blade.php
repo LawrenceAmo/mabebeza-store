@@ -19,7 +19,7 @@
                <div class=" ">
                 <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="step-arrow"></span>
                 <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="step-arrow"></span>
-                <a  class="btn btn-sm   btn-outline-info rounded">3 Review & Pay</a>
+                <a  class="btn btn-sm   btn-outline-purple rounded">3 Review & Pay</a>
                </div>
             </div>
             </div>
@@ -30,7 +30,7 @@
                         <div class="col-md-8">
                             <div class="w-100 m-0 pt-3  w-100 rounded border-bottom shadow py-5" v-if="cart.length < 1">
                                 <p class="h5 text-muted text-center"><span>Your cart is empty...</span><br>
-                                  <a href="/" class="btn btn-sm btn-outline-info rounded">Go Shopping</a></p>
+                                  <a href="/" class="btn btn-sm btn-outline-purple rounded">Go Shopping</a></p>
                               </div>
                               <div class="shadow rounded p-3">
                                    <div class="d-flex justify-content-between">
@@ -108,8 +108,30 @@
                                     <div class="col-6 ">R@{{ order_total }}</div>
                                 </div>
                                 <div class="row py-2 w-100 h5 border-bottom">
-                                    <button type="submit" class="btn btn-sm rounded btn-info">
-                                        <i class="fa fa-lock"></i> Pay with payfast</button>
+                                    <button type="submit" class="btn btn-sm rounded btn-purple">
+                                        <i class="fa fa-lock"></i> Pay now </button>
+                                </div>
+                                <div class="row py-1 w-100 h6 border-bottom">
+                                    <p>Secured and powered by <span class="">Payfast</span> </p>
+                                </div>
+                                <div class="row py-1 w-100 h6 border-bottom">
+                                    <div class="d-flex justify-content-around"> 
+                                        <div class="px-2">
+                                            <img height="15" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="">
+                                        </div>
+                                        <div class="px-2">
+                                            <img height="15" src="https://www.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="">
+                                        </div> 
+                                        <div class="px-2">
+                                            <img height="15" src="https://www.payfast.co.za/eng/images/payment_methods/logo/InstantEFT@2x.png" alt="">
+                                        </div>
+                                        <div class="px-2">
+                                            <img height="15" src="https://www.payfast.co.za/eng/images/payment_methods/logo/MobiCred@2x.png" alt="">
+                                        </div>
+                                        <div class="px-2">
+                                            <img height="15" src="https://www.payfast.co.za/eng/images/payment_methods/logo/RCS@2x.png" alt="">
+                                        </div>
+                                    </div>
                                 </div>
       
                     {{--  --}}

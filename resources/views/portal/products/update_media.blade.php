@@ -92,7 +92,7 @@
          
         <hr>
         <div class=" ">
-            <button class="btn btn-sm rounded font-weight-bold w-100 btn-info"> Upload Product Images </button>
+            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Upload Product Images </button>
         </div>
 
         <hr>

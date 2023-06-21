@@ -88,7 +88,7 @@
         </div> 
         <hr>
         <div class=" ">
-            <button class="btn btn-sm rounded font-weight-bold w-100 btn-info"> Save Product Pricing </button>
+            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Save Product Vendor </button>
         </div>
     </div>
     <input type="hidden" class="form-control" name="productID" value="{{ $product->product_productID }}" required placeholder="">

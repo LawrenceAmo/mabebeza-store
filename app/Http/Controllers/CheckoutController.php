@@ -295,6 +295,8 @@ class CheckoutController extends Controller
       
     public function payment_success()
     {
+
+        return 1;
         if (isset($_SERVER['HTTP_REFERER'])) {
             $lastURL = $_SERVER['HTTP_REFERER'];
             if (strpos($lastURL, 'payfast.co.za') !== false) {
@@ -325,31 +327,33 @@ class CheckoutController extends Controller
 
     public function payment_failed()
     {
-        if (isset($_SERVER['HTTP_REFERER'])) {
-            $lastURL = $_SERVER['HTTP_REFERER'];
-            if (strpos($lastURL, 'payfast.co.za') !== false) {
+        return 1;
+
+        // if (isset($_SERVER['HTTP_REFERER'])) {
+        //     $lastURL = $_SERVER['HTTP_REFERER'];
+        //     if (strpos($lastURL, 'payfast.co.za') !== false) {
                
-                $userID = (int)Auth::id();
+                // $userID = (int)Auth::id();
 
-                $order = DB::table('orders')
-                        ->where('userID', $userID) 
-                        ->latest()->first();
+                // $order = DB::table('orders')
+                //         ->where('userID', $userID) 
+                //         ->latest()->first();
 
-                        // update order        
-                        DB::table('orders')
-                            ->where('order_number',  $order->order_number)
-                            ->update([
-                                'status' => 'cancelled',                                 
-                            ]); 
+                //         // update order        
+                //         DB::table('orders')
+                //             ->where('order_number',  $order->order_number)
+                //             ->update([
+                //                 'status' => 'cancelled',                                 
+                //             ]); 
 
-                return view('pages.checkout.payment_failed')->with('order', $order);
+                return view('pages.checkout.payment_failed');//->with('order', $order);
 
-            } else {
-                return redirect()->back();
-            }
-          } else {
-            return redirect()->back();
-          }
+        //     } else {
+        //         return redirect()->back();
+        //     }
+        //   } else {
+        //     return redirect()->back();
+        //   }
  
     }
 }

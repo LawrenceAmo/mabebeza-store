@@ -4,22 +4,22 @@
     <div class="  row bg-white shadow m-0   rounded p-3 w-100">
          
         <div class="col-md-4">
-            <div class="card p-3 border border-success">
+            <div class="card p-3 border ">
                <p class="font-weight-bold h5 text-center">Stock Value <span>R?</span></p>
             </div>
        </div>
        <div class="col-md-4">
-            <div class="card p-3 border border-success">
+            <div class="card p-3 border ">
                <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
             </div>
        </div>
        {{-- <div class="col-md-4">
-            <div class="card p-3 border border-success">
+            <div class="card p-3 border ">
                <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
             </div>
        </div> --}}
        <div class="col-md-4">
-            <div class="card p-3 border border-success">
+            <div class="card p-3 border ">
                <p class="font-weight-bold h5 text-center">Total Products <span>?</span></p>
             </div>
        </div>
@@ -34,13 +34,13 @@
      </div>
     <div class="card   rounded p-3 w-100" >
 <p class="font-weight-bold h4 d-flex justify-content-between">
-   <span> All Stores  </span> <a class="btn btn-primary rounded btn-sm" data-toggle="modal" data-target="#modelId">add new Store</a>
+   <span> All Stores  </span> <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new Store</a>
 </p>
 {{-- href="{{ route('create_product')}}" --}}
 <?php $i = 1 ?>
 <table class="table table-striped table-inverse table-responsive" style="height: 400px; ">
     <thead class="thead-inverse">
-        <tr>
+        <tr class="bg-purple">
             <th>Store Name</th>
             <th>Trading As</th>
             <th>Active</th>

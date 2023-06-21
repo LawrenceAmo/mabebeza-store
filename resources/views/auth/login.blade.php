@@ -4,7 +4,7 @@
     <x-auth-card>
        <x-slot name="logo">
             <a >
-                <div class="font-weight-bold">Log In</div>
+                <div class="font-weight-bold text-purple font-Raleway">Log In</div>
                 {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
             </a>
         </x-slot>
@@ -44,7 +44,7 @@
             </div>
 
             <div class="       mt-4">
-                 <button class="btn btn-sm btn-info ml-3 form-control">
+                 <button class="btn btn-sm btn-purple ml-3 form-control">
                     {{ __('Log In') }}
                 </button>  <br>
               <div class="d-flex justify-content-between">

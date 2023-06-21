@@ -38,7 +38,7 @@
                 <div class=" w-100 overflow-auto rounded">
                     <table class="table table-striped table-inverse table-responsive">
                         <thead class="thead-inverse">
-                            <tr class="bg-dark text-light">
+                            <tr class="bg-purple text-light">
                                 <th>#</th>
                                 <th>Order Number</th>
                                 <th>Customer</th>
@@ -99,7 +99,7 @@
                 <p class="">Open Tickets</p>
                 <table class="table">
                     <thead>
-                        <tr>
+                        <tr class="bg-purple">
                             <th>#</th>
                             <th>Ticket Number</th>
                             <th>Status</th>

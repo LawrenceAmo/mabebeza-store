@@ -22,22 +22,22 @@
     <div class="  row bg-white shadow m-0   rounded p-3 w-100">
          
         <div class="col-md-4">
-             <div class="card p-3 border border-success">
+             <div class="card p-3 border border-light">
                 <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value}}</span></p>
              </div>
         </div>
         <div class="col-md-4">
-             <div class="card p-3 border border-success">
+             <div class="card p-3 border border-light">
                 <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
              </div>
         </div>
         {{-- <div class="col-md-4">
-             <div class="card p-3 border border-success">
+             <div class="card p-3 border border-light">
                 <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
              </div>
         </div> --}}
         <div class="col-md-4">
-             <div class="card p-3 border border-success">
+             <div class="card p-3 border border-light">
                 <p class="font-weight-bold h5 text-center">Total Products <span>@{{total_stock_units}}</span></p>
              </div>
         </div>
@@ -52,13 +52,13 @@
      </div>
     <div class="card   rounded p-3 w-100" >
 <p class="font-weight-bold h4 d-flex justify-content-between">
-   <span> All Products  </span> <a class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
+   <span> All Products  </span> <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
 </p>
 {{-- href="{{ route('create_product')}}" --}}
  <div class="tableFixHead" style="height: 500px;">
     <table class="table table-striped table-inverse table-responsive" >
-        <thead class="thead-inverse">
-            <tr class="border font-weight-bold shadow bg-dark text-light rounded ">
+        <thead class="thead-inverse  ">
+            <tr class="bg-purple text-light">
                 <th>#</th>
                 <th>Code</th>
                 <th>Name</th>

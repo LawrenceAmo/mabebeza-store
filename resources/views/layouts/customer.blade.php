@@ -39,7 +39,7 @@
     </head>
     <body>
        
-      <header class="nav-bar" id="guest">
+      <header class="nav-bar  bg-purple" id="guest">
         <div class="   top-nav row pb-2 border-bottom ">
  
           <div class="col-6   pl-md-5  ">
@@ -61,14 +61,14 @@
                 @if (Route::has('login'))
                   @auth 
                     <div class=" d-flex pr-3">
-                        <a href="/" class="text-success"><i class="fas fa-shopping-cart    "></i></a>
-                        <a href="{{ route('guest_customer_profile') }}" class=" nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> Hi {{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>  
+                        <a href="/" class="text-blue"><i class="fas fa-shopping-cart    "></i></a>
+                        <a href="{{ route('guest_customer_profile') }}" class="text-blue nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> Hi {{Auth::user()->first_name}} {{Auth::user()->last_name}}</a>  
  
                             <form action="{{ route('logout') }}" method="POST"
                                 class=" "
                                 >
                                 @csrf
-                                <label for="logout" class="c-pointer  text-danger"><i class="fas fa-door-open"></i> </label>
+                                <label for="logout" class="c-pointer  text-pink"><i class="fas fa-door-open"></i> </label>
                                 <input type="submit" name="" id="logout" class="d-none" >
                             </form>
                      </div>

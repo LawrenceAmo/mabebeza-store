@@ -18,7 +18,7 @@
             <div class="col-md-9 ">
                <div class=" ">
                 <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="step-arrow"></span>
-                <a  class="btn btn-sm   btn-outline-info rounded">2 Shipping</a><span class="step-arrow"></span>
+                <a  class="btn btn-sm   btn-outline-purple rounded">2 Shipping</a><span class="step-arrow"></span>
                 <a  class="btn btn-sm   btn-outline-light rounded">3 Review & Pay</a>
                </div>
             </div>
@@ -33,8 +33,17 @@
                                   <a href="/" class="btn btn-sm btn-outline-info rounded">Go Shopping</a></p>
                               </div>
                               <div class="shadow rounded p-3">
-                                   <div class="">
-                                        <p class="h5">Shipping Address:</p>
+                                   <div class="d-flex justify-content-between border-bottom">
+                                        <p class="h5">Shipping Address:</p> 
+                                        <div class=""> 
+                                            <div class=" font-weight-bold font-Raleway text-purple"  >
+                                                <label class="  p-3 active">
+                                                    <span class="p-3 ">Same as Billing</span>
+                                                {{-- <label class="  p-3 active"> --}}
+                                                    <input type="checkbox" name="" class="p-3 " id="" checked autocomplete="off">
+                                                </label> 
+                                            </div>
+                                        </div>
                                    </div>
                                    <div class="row mx-0 animated fadeInDown">
                                     <div class="col-12 text-center p-0 m-0">
@@ -44,8 +53,9 @@
                                 <div class="d-flex py-3 justify-content-between">
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient First Name</label> <br>
-                                        <input type="text" name="first_name" value="{{$user->first_name}}" class="form-control" placeholder="">
+                                        <input type="text" name="first_name"  value="{{$user->first_name}}" class="form-control" placeholder="">
                                     </div>
+                                    {{-- v-model="cart_qty" --}}
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient Last Name</label>
                                         <input type="text" name="last_name"value="{{$user->last_name}}" class="form-control" placeholder="">
@@ -122,7 +132,7 @@
                                     <div class="col-6 ">R@{{ order_total }}</div>
                                 </div>
                                 <div class="row py-2 w-100 h5 border-bottom">
-                                    <button type="submit" class="btn btn-sm rounded btn-info"> <i class="fa fa-lock"></i> Save Shipping</button>
+                                    <button type="submit" class="btn btn-sm rounded btn-purple"> <i class="fa fa-lock"></i> Save Shipping</button>
                                 </div>
       
                             </div>
