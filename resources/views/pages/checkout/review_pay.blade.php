@@ -34,7 +34,7 @@
                               </div>
                               <div class="shadow rounded p-3">
                                    <div class="d-flex justify-content-between">
-                                        <p class="h5">Billing Info:</p>    <div class=""> <a href="{{ route('checkout') }}" class="text-info"><i class="fas fa-pencil-alt    "></i></a></div>
+                                        <p class="h5">Billing Info:</p>    <div class="text-purple"> <a href="{{ route('checkout') }}" class="text-purple"><i class="fas fa-pencil-alt    "></i></a></div>
                                    </div>
                                    <div class="row mx-0 animated fadeInDown">
                                     <div class="col-12 text-center p-0 m-0">
@@ -56,7 +56,7 @@
                                     </table>
                                 </div>
                                  <div class="d-flex justify-content-between">
-                                    <p class="h5">Shipping To: </p>   <div class=""><a href="{{ route('guest_shipping') }}" class="text-info"><i class="fas fa-pencil-alt    "></i></a></div>
+                                    <p class="h5">Shipping To: </p>   <div class="text-purple"><a href="{{ route('guest_shipping') }}" class="text-purple"><i class="fas fa-pencil-alt    "></i></a></div>
                                </div>
                                 <div class="">
                                     <table class="table">                                         
@@ -111,7 +111,7 @@
                                     <button type="submit" class="btn btn-sm rounded btn-purple">
                                         <i class="fa fa-lock"></i> Pay now </button>
                                 </div>
-                                <div class="row py-1 w-100 h6 border-bottom">
+                                <div class="row pt-1 w-100 h6 border-bottom">
                                     <p>Secured and powered by <span class="">Payfast</span> </p>
                                 </div>
                                 <div class="row py-1 w-100 h6 border-bottom">
@@ -157,8 +157,7 @@
                             </div>
                         </div>
                      </div>
-                     @{{items_qty}}
-              </div> 
+               </div> 
          </section>
          <input type="hidden" value='{{ $order->order_number }}' id="order_number">
 

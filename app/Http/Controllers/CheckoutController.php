@@ -150,9 +150,15 @@ class CheckoutController extends Controller
                     ->where('orderID',  $order->orderID)
                     ->where('userID', $userID)
                     ->get();
+        $billing_info = DB::table('users')
+                    ->leftJoin('contacts', 'users.id', '=', 'contacts.userID')
+                    ->select('users.first_name', 'users.last_name', 'users.email', 'users.phone as mobile_phone',    'contacts.phone as alt_phone',  'contacts.*')
+                    ->where('users.id', $userID)
+                    ->limit(1)
+                    ->first(); 
 
         if (count($shipping) < 1) {
-            $user = (object)[
+            $shipping_info = (object)[
                 'first_name' => '',
                 'last_name' => '',
                 'email' => '',
@@ -164,11 +170,11 @@ class CheckoutController extends Controller
                 'postal_code' => '',
             ];
         }else{
-            $user = $shipping[0];
+            $shipping_info = $shipping[0];
         }
                     
   
-        return view('pages.checkout.shipping')->with('user', $user);
+        return view('pages.checkout.shipping')->with('billing_info', $billing_info)->with('shipping_info', $shipping_info);
     }
 
 

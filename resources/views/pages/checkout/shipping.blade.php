@@ -40,7 +40,7 @@
                                                 <label class="  p-3 active">
                                                     <span class="p-3 ">Same as Billing</span>
                                                 {{-- <label class="  p-3 active"> --}}
-                                                    <input type="checkbox" name="" class="p-3 " id="" checked autocomplete="off">
+                                                    <input type="checkbox" @click="same_as_billing" v-model="billing" class="p-3 " id="" checked autocomplete="off">
                                                 </label> 
                                             </div>
                                         </div>
@@ -53,52 +53,52 @@
                                 <div class="d-flex py-3 justify-content-between">
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient First Name</label> <br>
-                                        <input type="text" name="first_name"  value="{{$user->first_name}}" class="form-control" placeholder="">
+                                        <input type="text" name="first_name"  v-model="shipping_info.first_name" class="form-control" placeholder="">
                                     </div>
                                     {{-- v-model="cart_qty" --}}
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient Last Name</label>
-                                        <input type="text" name="last_name"value="{{$user->last_name}}" class="form-control" placeholder="">
+                                        <input type="text" name="last_name"v-model="shipping_info.last_name" class="form-control" placeholder="">
                                     </div>
                                </div>
                                 <div class="d-flex py-3 justify-content-between">
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient email</label> <br>
-                                        <input type="email" name="email"value="{{$user->email}}" class="form-control" placeholder="">
+                                        <input type="email" name="email"v-model="shipping_info.email" class="form-control" placeholder="">
                                     </div>
                                     <div class="input-group px-3">
                                         <label class="input-group">Recipient Mobile Number</label>
-                                        <input type="text" name="phone" value="{{$user->phone}}" class="form-control" placeholder="">
+                                        <input type="text" name="phone" v-model="shipping_info.phone" class="form-control" placeholder="">
                                     </div>
                                 </div>     
                                 <div class="d-flex py-3 justify-content-between">
                                     <div class="input-group px-3">
                                         <label class="input-group">Street</label> <br>
-                                        <input type="text" name="street"value="{{$user->street}}" class="form-control" placeholder="" aria-describedby="prefixId">
+                                        <input type="text" name="street"v-model="shipping_info.street" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                     <div class="input-group px-3">
                                         <label class="input-group">Suburb</label>
-                                        <input type="text" name="suburb"value="{{$user->suburb}}" class="form-control" placeholder="" aria-describedby="prefixId">
+                                        <input type="text" name="suburb"v-model="shipping_info.suburb" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                </div>
                                <div class="d-flex py-3 justify-content-between">
                                 <div class="input-group px-3">
                                     <label class="input-group">Town/City</label> <br>
-                                    <input type="text" name="city" value="{{$user->city}}" class="form-control" placeholder="Enter Town or City" aria-describedby="prefixId">
+                                    <input type="text" name="city" v-model="shipping_info.city" class="form-control" placeholder="Enter Town or City" aria-describedby="prefixId">
                                 </div>
                                 <div class="input-group px-3">
                                     <label class="input-group">Province</label>
-                                    <input type="text" name="state"  value="{{$user->state ?? "Gauteng"}}" class="form-control" placeholder="Gauteng" aria-describedby="prefixId">
+                                    <input type="text" name="state"  v-model="shipping_info.state" class="form-control" placeholder="Gauteng" aria-describedby="prefixId">
                                 </div>
                                </div>
                                <div class="d-flex py-3 justify-content-between">
                                 <div class="input-group px-3">
                                     <label class="input-group">Country</label> <br>
-                                    <input type="text" name="country"  value="{{$user->country ?? "South Africa" }}" class="form-control" placeholder="South Africa" aria-describedby="prefixId">
+                                    <input type="text" name="country"  v-model="shipping_info.country" class="form-control" placeholder="South Africa" aria-describedby="prefixId">
                                 </div>
                                 <div class="input-group px-3">
                                     <label class="input-group">Zip Code</label>
-                                    <input type="number" name="zip_code" value="{{$user->postal_code}}" class="form-control" placeholder="Enter Zip Code" aria-describedby="prefixId">
+                                    <input type="number" name="zip_code" v-model="shipping_info.postal_code" class="form-control" placeholder="Enter Zip Code" aria-describedby="prefixId">
                                 </div>
                             </div>
                             <hr>
@@ -159,23 +159,41 @@
               main_img: '',
               category: '',
               shipping_fee: 35,
+              billing: false,
+              shipping_info: [],
+              shipping_infoDB: [],
+              billing_info: [],
              };
           },
           async created(){ 
      
              let product = [];
+
+             let shipping_info = @json($shipping_info);
+             this.shipping_info =  shipping_info;
+
+             this.shipping_infoDB =  shipping_info;
+
+             let billing_info = @json($billing_info);
+             billing_info.postal_code = billing_info.zip_code
+             this.billing_info =  billing_info;
+
+             console.log(billing_info)
+             console.log("shipping_info")
+             console.log(shipping_info)
            
             // if no cart then create new empty cat
               if (!this.checkLocalStorage('cart')) {
                   localStorage.setItem('cart', JSON.stringify([]));                
                   localStorage.setItem('cart_productIDs', JSON.stringify([]));                
               }
+
               // always update the UI with data from local storage
               this.cart = JSON.parse(localStorage.getItem('cart'))
               this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
      
               this.updateCartSummary();
-              console.log( this.cart)
+            //   console.log( this.cart)
                
           }, 
           methods: {           
@@ -198,14 +216,23 @@
                  }
                  this.order_total = (this.cart_total - this.discount_total) + this.shipping_fee;
               },
-             //  
              changeImg: function(url){
                   this.main_img = url;
               },
-              checkLocalStorage: function(key){
+             checkLocalStorage: function(key){
                   return localStorage.getItem(key) !== null;
               },
-              remove_from_cart: function(product){
+             same_as_billing: function( ){
+
+                if (!this.billing) {
+                    this.shipping_info = [];
+                    this.shipping_info = this.billing_info;
+                } else {
+                    this.shipping_info = [];
+                    this.shipping_info = this.shipping_infoDB;
+                }
+              },
+             remove_from_cart: function(product){
            
                 this.cart = this.cart.filter(item => item.productID !== product.productID);
                 this.cart_productIDs = this.cart_productIDs.filter(id => id !== product.productID);
