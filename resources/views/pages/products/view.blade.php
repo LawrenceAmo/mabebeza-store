@@ -30,7 +30,7 @@
                             <div class="col-md-6 d-flex flex-column justify-content-center pt-4 m-auto  ">
                                 <div class="p-2"></div>
                                 {{-- inCart --}}
-                                <a v-if="!inCart" class="btn btn-sm rounded btn-success" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
+                                <a v-if="!inCart" class="btn btn-sm rounded text-white btn-success" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
                                 <a v-else class="btn btn-sm rounded btn-purple " @disabled(true) @click="add_to_cart(product)" >Add</a> &nbsp; &nbsp;
                             </div>
                             {{-- <a  class="btn btn-sm rounded btn-disabled">add to wishlist</a> --}}
@@ -43,7 +43,7 @@
                             </div>
                         </div>
 
-                        <div class="d-flex     pt-3">
+                        <div class="d-flex pt-3">
                              <div class="d-flex flex-column px-2">
                                 <small>Rate this product</small>
                                 <div class="  ">

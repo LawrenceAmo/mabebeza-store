@@ -172,8 +172,7 @@ class CheckoutController extends Controller
         }else{
             $shipping_info = $shipping[0];
         }
-                    
-  
+            
         return view('pages.checkout.shipping')->with('billing_info', $billing_info)->with('shipping_info', $shipping_info);
     }
 
@@ -211,6 +210,7 @@ class CheckoutController extends Controller
             $address->last_name = $request->last_name;
             $address->email = $request->email;
             $address->phone = $request->phone;
+            $address->shipping_comments = $request->shipping_comments;
             $address->street = $request->street;
             $address->suburb = $request->suburb;
             $address->city = $request->city;
@@ -224,11 +224,12 @@ class CheckoutController extends Controller
             DB::table('shipping_addresses')
                     ->where('orderID',  $order->orderID)
                     ->where('userID', $userID)
-                    ->update([
+                    ->update([ 
                         'first_name' => $request->first_name,
                         'last_name' => $request->last_name,
                         'email' => $request->email,
                         'phone' => $request->phone,
+                        'shipping_comments' => $request->shipping_comments,
                         'street' => $request->street,
                         'suburb' => $request->suburb,
                         'city' => $request->city,

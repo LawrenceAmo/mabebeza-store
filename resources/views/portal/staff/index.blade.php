@@ -22,6 +22,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone</th> 
+                            <th>Driver</th> 
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -35,6 +36,11 @@
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
+                                <td>@if ($user->driver)
+                                    Yes
+                                @else
+                                    No
+                                @endif</td>
                                 {{-- <td>{{ $user->website }}</td> --}}
                                 <td>
                                      <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
@@ -84,8 +90,8 @@
                             <div class="form-group py-2">
                                 <label for="">Phone Number</label>
                                 <input type="text" name="phone"  class="form-control" placeholder="Enter Phone Number"  >
-                            </div>
-                            
+                            </div> 
+
                               {{-- <div class="form-group py-2">
                                 <label for="">Street</label>
                                 <input type="text" name="street"  class="form-control" placeholder="Enter Street"  >
@@ -118,7 +124,12 @@
                                 <small class="text-muted"><i> All password are encrypted, once you forget it, you'll have to create a new one.</i></small>
                             </div>
                             
-                            
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" name="driver" id="" value="">
+                                  Driver?
+                                </label>
+                            </div>  
                     </div>
                     </div>
                     <div class="modal-footer">

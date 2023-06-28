@@ -68,7 +68,7 @@
                                     <tbody>
                                         <tr>
                                              <td>First Name</td>
-                                            <td>{{ $order->first_name}}  </td>
+                                            <td>{{ $order->first_name}}</td>
                                             <td>Street Address</td>
                                             <td>{{ $order->street}}  </td>
                                         </tr>
@@ -104,6 +104,10 @@
                                         </tr>
                                     </tbody>
                             </table>
+                        </div>
+                        <div class="">
+                            <p class="h5 font-weight-bold font-Raleway">Shipping Instructions</p>
+                            <p class="border rounded p-3"> {{ $order->shipping_comments}} </p>
                         </div>
                      </div>
                      <hr>
@@ -156,11 +160,18 @@
                                         <td>Shipping Method</td>
                                         <td>{{$order->shipping_method}}</td>
                                         <td>Shipphing Status</td>
-                                        <td> {{ $order->status}} </td>
+                                        <td>
+                                            @if ($deliveries)
+                                            {{ $deliveries->status}} 
+                                            @else
+                                            Pending 
+                                            @endif
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                      
                      </div>
                      <hr>
                      <div class="shadow shadow bg-white rounded   p-2">
@@ -178,17 +189,16 @@
                                         <small class=" ">{{$item->sub_category_name}}</small>
                                     </div>
                                     <div   class="col-md-2">
+                                        <div class="">
+                                            <p class=""><b class="">Price</b></p>
+                                        </div>
                                         @if ($item->sale_price)
                                         <div class="h6 text-muted"  ><del>R{{$item->price}}</del></div>
                                         <div class="h5"  >R{{$item->sale_price}}</div>
 
                                         @else
                                         <div class="h5" v-else>R{{$item->price}}</div>  
-                                        @endif
-                                        {{-- @if ($item->sale_price)
-                                        <div class="h5" v-if="product.sale_price">R@{{product.sale_price}}</div>
-                                        @endif --}}
-                                        
+                                        @endif  
                                     </div>
                                     <div class="col-md-2  ">
                                          <div class="">
@@ -215,7 +225,7 @@
                             <div class="col-md-4">
                                 @if (!$order->paid_all)
                                 <div class="">Order Not Approved</div>
-                                <div class=""><a data-toggle="modal" data-target="#approve_order" class="btn btn-sm rounded btn-info">Approve this order</a></div> 
+                                <div class=""><a data-toggle="modal" data-target="#approve_order" class="btn btn-sm rounded btn-purple">Approve this order</a></div> 
                                 @else
                                 <div class="text-success">Order Approved</div>
                                 <div class="">
@@ -223,10 +233,10 @@
                                         <tbody>
                                             <tr>
                                                  <td>Approved By</td>
-                                                <td></td>
+                                                <td>{{ $approved_by->first_name}} {{ $approved_by->last_name}}</td> 
                                             </tr>
                                             <tr>
-                                                 <td>Approved At</td>
+                                                <td>Approved At</td>
                                                 <td>{{ $order->approved_at }}</td>
                                             </tr>
                                         </tbody>
@@ -235,8 +245,48 @@
                                 {{-- <div class=""><a class="btn btn-sm rounded btn-info">Approve this order</a></div>  --}}
                                 @endif    
                             </div>
-                            <div class="col-md-4">
-                                {{-- <div class="">Order Not Approved</div><div class=""><a href="" class="btn btn-sm rounded btn-info">Approve this order</a></div> --}}
+                            <div class="col-md-4  ">
+                                <p class="font-weight-bold pb-0 mb-0">Update Shipping:</p> 
+                                @if (!$deliveries)
+                                <div class="">
+                                    @if ($order->paid_all)
+                                    <a data-toggle="modal" data-target="#update_shipping_status" class="btn btn-sm rounded btn-purple"> Update Shipping Status </a>
+                                    @else
+                                    <a data-toggle="modal"   class="btn btn-sm rounded btn-purple"> Update Shipping Status </a> <br>
+                                    <small class="text-danger"><i>Approve Order First</i></small>
+                                    @endif
+                                </div> 
+                                @else
+                                 <div class=" border rounded p-2">
+                                    <table class="table">                                         
+                                        <tbody>
+                                            <tr>
+                                                 <td>Driver</td>
+                                                <td>{{ $deliveries->first_name}} {{ $deliveries->last_name}}</td> 
+                                            </tr>
+                                            <tr>
+                                                <td>Items Qty Delivered  </td>
+                                                <td>{{ $deliveries->qty }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Status </td>
+                                                <td>{{ $deliveries->status }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Delivered At</td>
+                                                <td>{{ $deliveries->created_at }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- <div class=""><a class="btn btn-sm rounded btn-info">Approve this order</a></div>  --}}
+                                @endif  
+                            </div>
+                            <div class="col-md-4  ">
+                                <p class="font-weight-bold pb-0 mb-0">Update Order:</p> 
+                                <div class="">
+                                    <a data-toggle="modal" data-target="#update_order" class="btn btn-sm rounded btn-purple"> Update Order Status </a>
+                                </div> 
                             </div>
                         </div>
                      </div>
@@ -281,13 +331,105 @@
             </div>
         </div>
      </div>
+
+     <!-- Modal -->
+     <div class="modal fade" id="update_shipping_status" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <form action="{{ route('update_shipping') }}" method="POST"  class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Update Shipping Status  For - <span class="font-weight-bold">{{$order->order_number}}</span></h5>
+                        <button type="button" class="close bg-white border-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="">
+                            {{-- <p class="">To Approve this order, Please note that:</p> --}}
+                            {{-- <p class="">Driver Info</p> --}}
+                            <div class="row">
+                                <div class="col-6">select Driver</div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                     <select class="form-control"   name="driver" id="" > 
+                                        <option disabled selected > Select Driver</option>                                           
+                                        @foreach ($drivers as $driver)
+                                        <option  value="{{  $driver->id }}" > {{  $driver->first_name }} {{  $driver->last_name }}</option>                                           
+                                        @endforeach  
+                                      </select>
+                                    </div>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="col-6">Final Delivery Items Qty</div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label class=" ">
+                                          <input type="number" class="form-control" name="qty" id=""    >
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row d-none">
+                                <div class="col-6">select Driver</div>
+                                <div class="col-6">
+                                    <div class="form-check">
+                                        <label class="form-check-label">
+                                          <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue" checked>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                         @csrf
+                        <input type="hidden" name="orderID" value="{{ $order->orderID }}">
+                        <button type="submit" class="btn btn-purple">Update Shipping</button>
+                 </div> 
+            </form>
+        </div>
+     </div>
+
+      <!-- Modal -->
+      <div class="modal fade" id="update_order" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                    <div class="modal-header">
+                            <h5 class="modal-title">Update Order Number - {{$order->order_number}}</h5>
+                                <button type="button" class="close bg-white border-0" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                        </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="">
+                            <p class="">To Approve this order, Please note that:</p>
+                            <ul>
+                                <li>This <span class="text-danger"> ({{$order->order_number}})</span> Order Number is available on Payfast Transactions</li>
+                                <li>Paid must be <span class="text-success">Yes</span> NOT <span class="text-danger">No</span></li>
+                                <li>Total amount paid, should be <span class="text-success">R{{$order->total_amount}}</span> Even on PayFast</li>
+                                <li class="text-danger">This Action is irevesable</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                     <form action="{{ route('approve_order')}}" method="post">
+                        @csrf
+                        <input type="hidden" name="order_number" value="{{ $order->order_number }}">
+                        <button type="submit" class="btn btn-purple">Approve anyway</button>
+                     </form>
+                </div>
+            </div>
+        </div>
+     </div>
      
      <script>
         $('#exampleModal').on('show.bs.modal', event => {
             var button = $(event.relatedTarget);
-            var modal = $(this);
-            // Use above variables to manipulate the DOM
-            
+            var modal = $(this);            
         });
      </script>
     </main>

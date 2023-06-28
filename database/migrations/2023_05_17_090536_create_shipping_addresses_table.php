@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('email')->nullable();
-            $table->string('phone')->nullable();
+            $table->string('phone')->nullable();  //
+            $table->text('shipping_comments')->nullable();
             $table->string('street');
             $table->string('suburb')->nullable();
             $table->string('city');

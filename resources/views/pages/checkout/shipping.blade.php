@@ -70,7 +70,15 @@
                                         <label class="input-group">Recipient Mobile Number</label>
                                         <input type="text" name="phone" v-model="shipping_info.phone" class="form-control" placeholder="">
                                     </div>
-                                </div>     
+                                </div> 
+                                    {{--  --}}
+                                    <div class="d-flex p-3 justify-content-between border-bottom">
+                                         <div class="form-group w-100">
+                                           <label for="">Special Shipping Comments</label>
+                                           <textarea class="form-control" name="shipping_comments" v-model="shipping_info.shipping_comments" placeholder="Enter Any Special Comments..." rows="3"></textarea>
+                                         </div>
+                                    </div>
+                                    {{--  --}}
                                 <div class="d-flex py-3 justify-content-between">
                                     <div class="input-group px-3">
                                         <label class="input-group">Street</label> <br>

@@ -93,7 +93,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
       Route::get('/orders/{id}', [OrdersController::class, 'order'])->name('order');
       Route::post('/orders/approve', [OrdersController::class, 'approve_order'])->name('approve_order');
-    //   Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
+      Route::POST('/orders/shipping/update', [OrdersController::class, 'update_shipping'])->name('update_shipping');
  
       
      

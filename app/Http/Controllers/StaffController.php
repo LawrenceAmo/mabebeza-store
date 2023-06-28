@@ -37,12 +37,19 @@ class StaffController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required',  Rules\Password::defaults()],
         ]);
-
+       
+        if ($request->driver) {
+            $driver = true;
+        } else {
+            $driver = false;
+        }
+        
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,
-            'customer' => true,
+            'customer' => false,
+            'driver' => $driver,
             'password' => Hash::make($request->password),
         ]); 
          Contacts::create([ 'userID' => $user->id, ]);

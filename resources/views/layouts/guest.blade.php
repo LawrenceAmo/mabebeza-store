@@ -52,7 +52,7 @@
       <header class="nav-bar bg-purple " id="guest">
         <div class="   top-nav p-2   d-flex justify-content-between ">
  
-             <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
+            <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
               <img
                 alt="logo"
                 height="60"
@@ -62,17 +62,16 @@
               />
             </a>
    
-          <div class="search-container d-xs-none d-flex flex-column justify-content-center">
+          <div class="search-container w-50   d-xs-none d-flex flex-column justify-content-center">
               <div class="  ">
                 <div class="form-group m-0 p-0">
                   <input type="text"
-                    class="form-control m-0 p-0  border-bottom" style="height: 35px;"  name="" id="" aria-describedby="helpId" placeholder=" Search Here...">
+                    class="form-control m-0 p-2 bg-light  border-bottom" style="height: 35px; background-color:rgb(107, 107, 107);"  name="" id="" aria-describedby="helpId" placeholder=" Search Any Product Here...">
                   </div>
               </div>
           </div>
    
-          <div class="auth-btn-container   d-flex flex-column justify-content-center">
-  
+          <div class="auth-btn-container   d-flex flex-column justify-content-center">  
             <div class="d-flex flex-column justify-content-center">
               <div class=" d-flex     ">
                 @if (Route::has('login'))
