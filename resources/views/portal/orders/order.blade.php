@@ -283,9 +283,43 @@
                                 @endif  
                             </div>
                             <div class="col-md-4  ">
-                                <p class="font-weight-bold pb-0 mb-0">Update Order:</p> 
+                                <p class="font-weight-bold pb-0 mb-0">Order Completion:</p> 
                                 <div class="">
-                                    <a data-toggle="modal" data-target="#update_order" class="btn btn-sm rounded btn-purple"> Update Order Status </a>
+                                    @if (!$order->updated_by)
+                                        @if ($deliveries)
+                                             <a data-toggle="modal" data-target="#update_order" class="btn btn-sm rounded btn-purple"> Update Order Status </a>
+                                        @else
+                                            <a data-toggle="modal"   class="btn btn-sm rounded btn-purple"> Update Order Status </a>
+                                            <br>
+                                            <small class="text-danger"><i>Deliver Order First</i></small>
+                                        @endif
+                                    @else
+                                        <div class="">
+                                            <table class="table">                                         
+                                                <tbody>
+                                                    {{-- <tr>
+                                                        <td>Order Completed By</td>
+                                                        <td> </td>
+                                                    </tr> --}}
+                                                    <tr>
+                                                        <td>Order Completed At </td>
+                                                        <td>{{ $order->updated_at }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>Status </td>
+                                                        <td>{{ $order->status }}</td>
+                                                    </tr>
+                                                     
+                                                </tbody>
+                                            </table>
+                                            <div class="">
+                                                <p class="h6">Comments:</p>
+                                                <p class="border rounded p-2">
+                                                    {{ $order->comments }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div> 
                             </div>
                         </div>
@@ -395,34 +429,47 @@
       <!-- Modal -->
       <div class="modal fade" id="update_order" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <form action="{{ route('update_order') }}" method="POST"  class="modal-content">
                     <div class="modal-header">
-                            <h5 class="modal-title">Update Order Number - {{$order->order_number}}</h5>
-                                <button type="button" class="close bg-white border-0" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                        </div>
+                        <h5 class="modal-title">Update Shipping Status  For - <span class="font-weight-bold">{{$order->order_number}}</span></h5>
+                        <button type="button" class="close bg-white border-0" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 <div class="modal-body">
                     <div class="container-fluid">
                         <div class="">
-                            <p class="">To Approve this order, Please note that:</p>
-                            <ul>
-                                <li>This <span class="text-danger"> ({{$order->order_number}})</span> Order Number is available on Payfast Transactions</li>
-                                <li>Paid must be <span class="text-success">Yes</span> NOT <span class="text-danger">No</span></li>
-                                <li>Total amount paid, should be <span class="text-success">R{{$order->total_amount}}</span> Even on PayFast</li>
-                                <li class="text-danger">This Action is irevesable</li>
-                            </ul>
-                        </div>
+                            {{-- <p class="">To Approve this order, Please note that:</p> --}}
+                            {{-- <p class="">Driver Info</p> --}}
+                            <div class="row">
+                                <div class="col-6"> Select Order Status </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                     <select class="form-control" name="order_status"> 
+                                        <option disabled selected > Select Order Status</option>                                           
+                                        <option class=" success text"  value="completed" ><b class="">Order Completed</b></option>                                           
+                                        <option class=" danger text"  value="cancelled" ><b class="">Order Cancelled</b></option>                                           
+                                    </select>
+                                    </div>
+                                </div>
+                            </div> <br>
+                            <div class="row">
+                                <div class="">
+                                    <div class="form-group">
+                                      <label for="">Comments </label>
+                                      <textarea class="form-control" name="comments" placeholder="" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div> 
+                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                     <form action="{{ route('approve_order')}}" method="post">
                         @csrf
-                        <input type="hidden" name="order_number" value="{{ $order->order_number }}">
-                        <button type="submit" class="btn btn-purple">Approve anyway</button>
-                     </form>
-                </div>
-            </div>
+                    <input type="hidden" name="orderID" value="{{ $order->orderID }}">
+                    <button type="submit" class="btn btn-purple">Update Order</button>
+                </div> 
+            </form>
         </div>
      </div>
      
@@ -431,6 +478,25 @@
             var button = $(event.relatedTarget);
             var modal = $(this);            
         });
+
+        // const { createApp } = Vue;
+    //     createApp({
+    //       data() {
+    //         return {
+    //           total_stock_units: 0, 
+    //          };
+    //       },
+    //       async created(){ 
+       
+               
+    //       }, 
+    //       methods: {           
+    //           productUpdateUrl: function(val){
+    //               console.log("amo")
+    //           },  
+    //         }
+    //    }).mount("#app");
+
      </script>
     </main>
 </x-app-layout>

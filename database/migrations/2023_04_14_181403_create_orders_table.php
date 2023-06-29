@@ -34,7 +34,9 @@ return new class extends Migration
             $table->boolean('paid')->default(false); 
             $table->boolean('paid_all')->default(false); 
             $table->decimal('payment')->nullable();  
-            $table->string('approved_by')->nullable();   
+            $table->bigInteger('approved_by')->nullable();   
+            $table->bigInteger('updated_by')->nullable();   
+            // $table->date('approved_at')->nullable();   
             $table->date('approved_at')->nullable();   
             $table->enum('status', ['pending', 'processing', 'completed', 'cancelled'])->default('pending');
             $table->foreignId('userID')->constrained('users', 'id')->onDelete('cascade');

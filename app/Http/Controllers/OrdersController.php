@@ -58,7 +58,7 @@ class OrdersController extends Controller
                         ->where('deliveries.orderID', (int)$order->orderID)
                         ->first();
                 
-        // return $deliveries;
+        // return $order;
 
         return view('portal.orders.order')
                 ->with("deliveries", $deliveries)
@@ -90,8 +90,12 @@ class OrdersController extends Controller
 
      
     public function update_shipping(Request $request)
-    {
-                 
+    {         
+        $request->validate([
+            'driver' => 'required',  
+            'qty' => 'required',                  
+       ]);
+
         $userID = (int)Auth::id();
 
        $order = DB::table('orders')
@@ -113,28 +117,42 @@ class OrdersController extends Controller
         return redirect()->back()->with('success', 'Shipping Updated');  //Update Shipping:
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+   
+    public function update_order(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'comments' => 'required',  
+            'order_status' => 'required',                  
+       ]);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $userID = (int)Auth::id();
+
+        $order = DB::table('deliveries')
+                 ->where('orderID',  $request->orderID)
+                 ->first();
+
+        if (!$order) {
+             return redirect()->back()->with('error', 'Please Deliver Order First');
+        } 
+
+         DB::table('orders')
+            ->where('orderID',  (int)$request->orderID) 
+            ->update([
+                'comments' => $request->comments,                                 
+                'status' => $request->order_status,                                 
+                'updated_at' => now(),                                 
+                'updated_by' => $userID,                                 
+            ]);
+            
+            DB::table('deliveries')
+                ->where('orderID',  $request->orderID) 
+                ->update([
+                    'status' => 'delivered',                                 
+                    'updated_at' => now(),                                 
+                 ]); 
+
+            return redirect()->back()->with('success', ' Order was '.$request->order_status.' Successfully!!!');
+        }
 
     /**
      * Remove the specified resource from storage.

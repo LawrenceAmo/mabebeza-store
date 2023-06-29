@@ -232,38 +232,38 @@
       <div class=" p-3 px-5  d-flex justify-content-between">
             <div class="">
                 <a href="" class="  rounded-circle shadow" >
-                    <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                    <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
                     <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
                 </a>
             </div>
               <div class="">
                 <a href="" class="  rounded-circle shadow" >
                   <div class="text-center"> 
-                    <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">            </div>
+                    <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">            </div>
                   <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
                 </a>
             </div>
             <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                  <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
                   <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
               </a>
           </div>            
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
                 <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
                 <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="   " src="{{ asset('images/brands/pampersLogo.png')}}" alt="">
+                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
                 <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
             </a>
           </div>

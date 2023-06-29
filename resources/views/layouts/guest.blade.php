@@ -6,19 +6,19 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Fadaeco') }}</title>
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}"> --}}
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
-
-
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
-<link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
-<link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}"> --}}
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
+        
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
          <script src="{{ asset('mdb/js/axios.js') }}"></script>
 
-<link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
+         {{-- <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}"> --}}
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
 
  
         <!-- Fonts -->
@@ -44,14 +44,22 @@
       z-index: 100;
       background-color: rgb(255, 255, 255);
     }
-    
+    .searchSuggestions{
+      z-index: 100;
+      position:absolute;
+      top: 60px;
+      width: 50%;
+    }
+    .searchSuggestions li{
+      list-style: none;
+    }
    </style>
     </head>
     <body>
        
-      <header class="nav-bar bg-purple " id="guest">
+      <header class="nav-bar bg-purple " id="guestApp">
         <div class="   top-nav p-2   d-flex justify-content-between ">
- 
+           
             <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
               <img
                 alt="logo"
@@ -62,12 +70,24 @@
               />
             </a>
    
-          <div class="search-container w-50   d-xs-none d-flex flex-column justify-content-center">
+          <div class="search-container w-50   d-xs-none d-flex flex-column justify-content-center" id="">
               <div class="  ">
                 <div class="form-group m-0 p-0">
-                  <input type="text"
-                    class="form-control m-0 p-2 bg-light  border-bottom" style="height: 35px; background-color:rgb(107, 107, 107);"  name="" id="" aria-describedby="helpId" placeholder=" Search Any Product Here...">
+                  <input type="text" v-model="searchProductsText" v-on:keyup="guestSearchProducts($event)"
+                    class="form-control m-0 p-2 bg-light  border-bottom" style="height: 35px; background-color:rgb(107, 107, 107);"  placeholder=" Search Any Product Here...">
                   </div>
+              </div>
+              <div class=" bg-white border rounded searchSuggestions" v-if="searchedProducts.length">
+                <ul>
+                  <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
+                    @{{ item.product_name }} @{{ item.product_name }}
+                  </li>                   
+                </ul>              
+              </div>
+              <div class=" bg-white border rounded searchSuggestions" v-if="(!searchedProducts.length && (searchProductsText.length > 1))">
+                <ul>
+                  <li class="text-dark border-bottom py-2 "  ><i class="">No Items Found</i></li>                   
+                </ul>              
               </div>
           </div>
    
@@ -232,7 +252,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link font-italic" href="{{route('privacy-policy')}}">
-                    Privacy Policy
+                    Privacy Policy 
                   </a>
                 </li>
                  
@@ -263,10 +283,47 @@
 
               //  return sub_categories;
             }
-            get_sub_categories()
-            // this.products = productsDB
-       
+            get_sub_categories() 
 
+            const guestApp = createApp({
+              data() {
+                return {
+                  allProductsDB: [],
+                  searchedProducts: [],
+                  searchProductsText: '',
+                }
+              },
+              async created(){ 
+                let allProductsDB = await axios.get('{{route("get_products")}}');  
+                this.allProductsDB = await allProductsDB.data
+                console.log(this.allProductsDB);
+              },
+              methods: {
+                guestSearchProducts: function(event){
+                    const allProductsDB =  this.allProductsDB
+                    let search = this.searchProductsText.toLowerCase()
+                    
+                    this.searchedProducts = [];
+
+                    if (search.length < 1) {
+
+                      return false
+                    }
+
+                    console.log(allProductsDB)
+
+                    for (let i = 0; i < allProductsDB.length; i++) {
+                      let productName = allProductsDB[i].product_name.toLowerCase()
+                        if ( productName.includes(search)) {
+                          this.searchedProducts.push(allProductsDB[i])
+                        } 
+                    } 
+        
+                  },
+              }
+            });
+            guestApp.mount('#guestApp')
+        
     </script>
     </body>
 </html>

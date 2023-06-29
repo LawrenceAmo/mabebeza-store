@@ -29,7 +29,7 @@ class PortalController extends Controller
         $orders = DB::table('orders')
                 ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                 ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
-                // ->where('orders.orderID', 22)    // Just for testing
+                ->where('orders.status', 'pending')    // Just for testing
                 ->get();
                     // return $orders;
         $new_orders =  $orders->count();

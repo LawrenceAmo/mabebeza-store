@@ -45,7 +45,7 @@
 
                         <div class="d-flex pt-3">
                              <div class="d-flex flex-column px-2">
-                                <small>Rate this product</small>
+                                <small>Rate this product</small> 
                                 <div class="  ">
                                     <span v-for="i in 5"><i class="far fa-star px-1" aria-hidden="true"></i></span>
                                 </div>
@@ -166,7 +166,6 @@ console.log(this.product)
              this.main_img = url;
          },
          addCartQty: function(item){ 
-              this.add_to_cart(item, item.qty );
 
               console.log(item)
             //  check if this product is in cart, if yes then update it's qty
@@ -176,7 +175,10 @@ console.log(this.product)
                         this.cart[i].qty = item.qty
                      }
                  }
-             }            
+             }
+              else{
+                 this.add_to_cart(item, item.qty );
+             }           
              this.updateCartLocalStorage();
          },
          checkLocalStorage: function(key){
