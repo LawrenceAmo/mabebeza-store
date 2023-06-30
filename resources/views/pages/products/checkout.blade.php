@@ -143,8 +143,8 @@
     </main>
  
      <script>
-         const { createApp } = Vue;
-    createApp({
+              let { createApp } = Vue;
+     createApp({
       data() {
         return {
           total_stock_units: 0,

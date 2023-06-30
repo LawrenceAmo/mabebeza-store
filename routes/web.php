@@ -55,6 +55,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     Route::get('/products', [ProductController::class, 'index'])->name('my_products');
     Route::POST('/product/create', [ProductController::class, 'create'])->name('create_product');
     Route::POST('/product/save', [ProductController::class, 'save'])->name('save_product');
+
     // manipulate product (CRUD)
     Route::get('/product/update/information/{id}', [ProductController::class, 'product_update_info'])->name('product_update_info');
     Route::post('/product/save/information/{id}', [ProductController::class, 'product_save_info'])->name('product_save_info');
@@ -85,9 +86,10 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
      Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
  
 
-       //  Staff Members
-       Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-       Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
+    //  Staff Members
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+    Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
+    Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
    
        //  Orders
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');

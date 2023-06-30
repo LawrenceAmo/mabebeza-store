@@ -28,18 +28,17 @@
                         <tbody>
                             <?php $i=1; ?>
                            @foreach ($customers as $customer)
-                            <tr>
-                                 
+                            <tr> 
                                 <td scope="row">{{$i}}</td>
                                 <td>{{ $customer->first_name }}</td>
                                 <td>{{ $customer->last_name }}</td>
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->phone }}</td>
-                                {{-- <td>{{ $customer->website }}</td> --}}
                                 <td>
-                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
-                                    <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
-                                 </td>
+                                    <a href="{{ route('edit_customer_to_staff', [$customer->id]) }}"> <i class="fas fa-pencil-alt    "></i> </a> |
+                                    <a href=""> <i class="fas fa-eye    "></i> </a>                                      
+                                    {{-- <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a> --}}
+                                </td> 
                             </tr>
                             <?php $i++; ?>
                            @endforeach                           
@@ -49,7 +48,7 @@
                     <p class="h5 text-muted text-center"><i>No Data To Display</i></p>
                 @endif
             </div>
-        </div>
+        </div> 
  
  
 {{-- ///////////////////////////////////////////////// --}}

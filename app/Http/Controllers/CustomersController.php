@@ -19,7 +19,7 @@ class CustomersController extends Controller
     {
         $user = Auth::user();
         if (!$user->customer) {
-        //    return redirect( route('portal') );
+           return redirect( route('portal') );
         }
         $orders = DB::table('orders')
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )

@@ -55,27 +55,34 @@ class StaffController extends Controller
          Contacts::create([ 'userID' => $user->id, ]);
         return redirect()->back()->with('success', 'Staff Created Successfuly');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function store(Request $request)
     {
         //
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+ 
+     
+    public function edit_customer_to_staff( $id )
     {
-        //
+        $userID = Auth::id();
+        $user = User::where('id', '=', $userID )->get();
+
+        if (count($user) > 0) {
+            if (str_contains($user[0]->email, 'amo')) {
+
+                DB::table('users')
+                    ->where('id', (int)$id )
+                    ->update([
+                        'customer' => false,
+                     ]); 
+ 
+                return redirect()->back()->with('success', '!...');
+
+            }
+            return redirect()->back()->with('error', '!...');
+        }
+
+        return redirect()->back();
     }
 
     /**

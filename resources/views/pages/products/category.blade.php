@@ -44,8 +44,8 @@
     </main>
  
      <script>
-         const { createApp } = Vue;
-    createApp({
+            let { createApp } = Vue;
+     createApp({
       data() {
         return {
           vendor_product_price: '',

@@ -113,8 +113,22 @@
         </div>
          <div class="border text-dark py-2 pl-2">
           <div class="pl-4 ">
-            <a href="" class="text-light px-md-3 font-weight-bold font-Raleway"><i class="fa fa-bars    "></i>  Shop By Category</a>
-            <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+ 
+            <div class="dropdown">
+              <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                  aria-expanded="false">
+                  <i class="fa fa-bars "></i>  Shop By Category
+              </button>
+              <div class="dropdown-menu" aria-labelledby="triggerId" >
+                <div class="" v-for="category,i in sub_categories">
+                  <a href="" class="dropdown-header text-purple" >@{{category.sub_category_name}}</a>  
+                  <div class="dropdown-divider"></div>
+                </div>
+                {{-- <div class="dropdown-divider"></div> --}}
+              </div>
+            </div>
+
+             <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
           </div>
         </div>
       </header>
@@ -265,15 +279,16 @@
         </div>
       </div>
     </footer>
+    <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
+
     <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
     <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
-
-    <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
     <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
+
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
-      cart_qty_display();
+      cart_qty_display(); 
  
             async function get_sub_categories( ) {
               // get products from api
@@ -285,18 +300,33 @@
             }
             get_sub_categories() 
 
+             
+
+            try {
+              createApp ; // Accessing the variable
+               
+             } catch (error) {
+              // if (error instanceof ReferenceError) {
+                const { createApp } = Vue;
+              // }
+            } 
+
             const guestApp = createApp({
               data() {
                 return {
                   allProductsDB: [],
+                  sub_categories: [],
                   searchedProducts: [],
                   searchProductsText: '',
                 }
               },
               async created(){ 
+                let sub_categories = await axios.get('{{route("get_sub_categories")}}'); 
+                this.sub_categories = await sub_categories.data
+
                 let allProductsDB = await axios.get('{{route("get_products")}}');  
                 this.allProductsDB = await allProductsDB.data
-                console.log(this.allProductsDB);
+                console.log(this.sub_categories);
               },
               methods: {
                 guestSearchProducts: function(event){

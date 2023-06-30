@@ -78,7 +78,7 @@
               ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span> Products</span></a
             >
             <a
-              href="{{ route("view_customers")}}"
+              href="{{ route("view_customers")}}" 
               class="list-group-item list-group-item-action py-2 ripple"
               ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span> Customers</span></a
             >
