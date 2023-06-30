@@ -22,7 +22,7 @@
                             <th>Last Name</th>
                             <th>Email</th>
                             <th>Phone</th> 
-                            <th>Driver</th> 
+                            {{-- <th>Driver</th>  --}}
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -36,11 +36,11 @@
                                 <td>{{ $user->last_name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
-                                <td>@if ($user->driver)
+                                {{-- <td>@if ($user->driver)
                                     Yes
                                 @else
                                     No
-                                @endif</td>
+                                @endif</td> --}}
                                 {{-- <td>{{ $user->website }}</td> --}}
                                 <td>
                                      <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
