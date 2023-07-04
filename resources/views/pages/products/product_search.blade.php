@@ -1,6 +1,6 @@
 <x-guest-layout>
 
-    <main id="app"> 
+    <main id="app">
      <section class="pb-5 pt-3">
       <a class="pl-3">/<a href="/">Home</a>/Categories/@{{category}}</a>
          <div class="card p-3">

@@ -86,11 +86,11 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
      Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
  
 
-    //  Staff Members
-    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-    Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
-    Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
-   
+        //  Staff Members
+        Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+        Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
+        Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
+    
        //  Orders
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
       Route::get('/orders/{id}', [OrdersController::class, 'order'])->name('order');
@@ -144,10 +144,10 @@ require __DIR__.'/auth.php';
  Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
  Route::get('/checkout/billing',[CheckoutController::class, 'checkout'])->name('checkout');
  Route::get('/checkout/auth-error',[CheckoutController::class, 'checkout_auth_error'])->name('checkout_auth_error');
+ Route::get('/search/{name}',[GuestProductsController::class, 'guest_search_product'])->name('guest_search_product');
  Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
  // return redirect()->to( route('portal'));  
  // return view('pages.products.view');  
 // }); //[PortalController::class, 'index'])->name('portal');
-
 
 

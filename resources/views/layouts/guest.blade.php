@@ -80,9 +80,16 @@
               <div class=" bg-white border rounded searchSuggestions" v-if="searchedProducts.length">
                 <ul>
                   <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
-                    @{{ item.product_name }} @{{ item.product_name }}
+                    <a   class=" row text-purple font-Raleway c-pointer" @click="view_product(item)">
+                       <div class="col-3">
+                         <img class="" height="50" :src="productImg(item.url)" alt="">
+                       </div>  
+                       <span class="col-6">@{{ item.product_name }}  </span>
+                       <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
+                    </a>
                   </li>                   
-                </ul>              
+                </ul> 
+                <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="search_product_url"></a>             
               </div>
               <div class=" bg-white border rounded searchSuggestions" v-if="(!searchedProducts.length && (searchProductsText.length > 1))">
                 <ul>
@@ -298,7 +305,7 @@
 
               //  return sub_categories;
             }
-            get_sub_categories() 
+             get_sub_categories() 
 
              
 
@@ -329,16 +336,29 @@
                 console.log(this.sub_categories);
               },
               methods: {
+                view_product: function(item){
+ 
+                      var link = document.getElementById('search_product_url');
+                      var href = link.getAttribute('data-href');
+                      let sub_category_name = item.sub_category_name.replace(/ /g, '-')
+                      console.log(href)
+
+                      href = href.replace('category', sub_category_name )
+                      let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
+                      href = href.replace('product_name', product_name )
+
+                      location.href = href 
+                  },
+                productImg: function(val){
+                  return `{{ asset('storage/products/${val}')}}`;
+                },
                 guestSearchProducts: function(event){
                     const allProductsDB =  this.allProductsDB
                     let search = this.searchProductsText.toLowerCase()
                     
                     this.searchedProducts = [];
 
-                    if (search.length < 1) {
-
-                      return false
-                    }
+                    if (search.length < 1) {    return false       }
 
                     console.log(allProductsDB)
 
@@ -350,7 +370,8 @@
                     } 
         
                   },
-              }
+              },
+              
             });
             guestApp.mount('#guestApp')
         
