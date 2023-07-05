@@ -114,7 +114,7 @@
         <div class="px-3">
             <div class="row " >
 
-                <div class="col-md-2" v-for="product,i in products">
+                <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
                     <div class="card text-left"   >
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
@@ -296,6 +296,7 @@
                 localStorage.setItem('cart', JSON.stringify([]));                
                 localStorage.setItem('cart_productIDs', JSON.stringify([]));                
             }
+
             // always update the UI with data from local storage
             this.cart = JSON.parse(localStorage.getItem('cart'))
             this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
@@ -304,6 +305,7 @@
             let productsDB = await axios.get('{{route("get_products")}}');  
                 productsDB = await productsDB.data
              this.products = productsDB
+
         },
         methods: {
             productUpdateUrl: function(val){

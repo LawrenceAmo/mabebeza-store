@@ -10,11 +10,19 @@
         {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
         
         {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
-        <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}"> --}}
+       
+        <!-- MDB -->
+        <link
+            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
+            rel="stylesheet"
+            />
         <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
         {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
-         <script src="{{ asset('mdb/js/vue.js') }}"></script>
-         <script src="{{ asset('mdb/js/axios.js') }}"></script>
+         {{-- <script src="{{ asset('mdb/js/vue.js') }}"></script> --}}
+         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+         {{-- <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
          {{-- <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}"> --}}
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -286,13 +294,21 @@
         </div>
       </div>
     </footer>
-    <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
+    {{-- <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
 
     <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
-    <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('mdb/js/mdb.min.js') }}"></script> --}}
+    {{-- <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script> --}}
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- MDB -->
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
+></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
       cart_qty_display(); 

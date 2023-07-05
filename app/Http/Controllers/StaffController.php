@@ -20,7 +20,9 @@ class StaffController extends Controller
     public function index()
     {
         $users = DB::table('users')->where('customer', false)->get();
-        return view('portal.staff.index')->with('users', $users);
+        $stores = DB::table('stores')->get();
+        // return $stores;
+        return view('portal.staff.index')->with('stores', $stores)->with('users', $users);
     }
  
     /**
@@ -37,7 +39,7 @@ class StaffController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required',  Rules\Password::defaults()],
         ]);
-       
+
         if ($request->driver) {
             $driver = true;
         } else {
@@ -50,18 +52,14 @@ class StaffController extends Controller
             'email' => $request->email,
             'customer' => false,
             'driver' => $driver,
+            'storeID' => $request->storeID,
             'password' => Hash::make($request->password),
-        ]); 
+        ]);
+
          Contacts::create([ 'userID' => $user->id, ]);
         return redirect()->back()->with('success', 'Staff Created Successfuly');
     }
- 
-    public function store(Request $request)
-    {
-        //
-    }
- 
-     
+  
     public function edit_customer_to_staff( $id )
     {
         $userID = Auth::id();
@@ -70,7 +68,7 @@ class StaffController extends Controller
         if (count($user) > 0) {
             if (str_contains($user[0]->email, 'amo')) {
 
-                DB::table('users')
+                DB::table('users') 
                     ->where('id', (int)$id )
                     ->update([
                         'customer' => false,

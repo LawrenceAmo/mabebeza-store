@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+// use header
+use Illuminate\Support\Facades\Cache;
 
 
 use Illuminate\Http\Request;
@@ -13,6 +15,14 @@ class GuestProductsController extends Controller
 {
     public function get_products()
     {
+        $cacheKey = 'api-guest_get_products';
+
+        // Check if the cached response exists
+        if (Cache::has($cacheKey)) {
+            // If the cached response exists, return it
+            return Cache::get($cacheKey);
+        }
+
         // sub_categories.sub_category_name
         $products = DB::table('products')
                     ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
@@ -24,15 +34,29 @@ class GuestProductsController extends Controller
                     ->where( 'product_photos.thumbnail', '=', true)
                     ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price',)
                     ->get();
-        return $products;
+        // return $products;
+        // Cache the response for 5 minutes
+        Cache::put($cacheKey, $products, 300);
+
+        // return $responseData;
         return response()->json($products);
     }
 
     public function welcome()
     {
+        if (Cache::has('guest-welcome')) {
+            // If the cached view exists, return it
+            return Cache::get('guest-welcome');
+        }
+
         $categories = DB::table('categories')->get();
 
-        return view('welcome')->with("categories", $categories);
+        $view = view('welcome')->with("categories", $categories)->render();
+
+        return $view;
+        Cache::put('guest-welcome', $view, 3600);
+
+        // ->header('Cache-Control', 'max-age=3600');
     }
 
     /**
@@ -117,8 +141,21 @@ class GuestProductsController extends Controller
      */
     public function get_sub_categories()
     {
-        $sub_categories = DB::table('sub_categories')->get();
-        return $sub_categories;
+        $cacheKey = 'api-guest_get_sub_categories';
+
+        // Check if the cached response exists
+        if (Cache::has($cacheKey)) {
+            // If the cached response exists, return it
+            return Cache::get($cacheKey);
+        }
+
+        // If the cached response doesn't exist, retrieve the data from the API
+        $sub_categories = DB::table('sub_categories')->get();// Fetch data from your API
+
+        // Cache the response for 5 minutes
+        Cache::put($cacheKey, $sub_categories, 300);
+
+         return $sub_categories;
     }
 
     

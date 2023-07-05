@@ -25,7 +25,7 @@
                             {{-- <th>Driver</th>  --}}
                             <th>Action</th>
                         </tr>
-                        </thead>
+                        </thead> 
                         <tbody>
                             <?php $i=1; ?>
                            @foreach ($users as $user)
@@ -90,40 +90,24 @@
                             <div class="form-group py-2">
                                 <label for="">Phone Number</label>
                                 <input type="text" name="phone"  class="form-control" placeholder="Enter Phone Number"  >
-                            </div> 
-
-                              {{-- <div class="form-group py-2">
-                                <label for="">Street</label>
-                                <input type="text" name="street"  class="form-control" placeholder="Enter Street"  >
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="">City</label>
-                                <input type="text" name="city"  class="form-control" placeholder="Enter City"  >
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="">suburb</label>
-                                <input type="text" name="suburb"  class="form-control" placeholder="Enter suburb"  >
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="">State</label>
-                                <input type="text" name="state"  class="form-control" placeholder="Enter City"  >
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="">Country</label>
-                                <input type="text" name="country"  class="form-control" placeholder="Enter Country"  >
-                            </div>
-                            <div class="form-group py-2">
-                                <label for="">Costal Code</label>
-                                <input type="text" name="postal_code"  class="form-control" placeholder="Enter postal code"  >
-                            </div>
-                             --}}
-                            <hr>
+                            </div>  
                             <div class="form-group py-2">
                                 <label for="">Staff Password</label>
                                 <input type="text" name="password"  class="form-control" placeholder="Enter a temporary password"  >
-                                <small class="text-muted"><i> All password are encrypted, once you forget it, you'll have to create a new one.</i></small>
+                                <small class="text-muted"><i>All passwords are encrypted using industry-standard encryption algorithms to ensure the highest level of security.</i></small>
                             </div>
-                            
+
+                            <div class="form-group">
+                              <label for="">Belong to which Store?</label>
+                              <select class="form-control" name="store" id="">
+                                <option selected disabled>Select Store</option>
+                                @foreach ($stores as $store)
+                                    <option value="{{ $store->storeID}}">{{ $store->name}} </option>
+                                @endforeach
+                                <option value="">All Stores </option>
+                               </select>
+                            </div>
+
                             <div class="form-check">
                                 <label class="form-check-label">
                                   <input type="checkbox" class="form-check-input" name="driver" id="" value="">
