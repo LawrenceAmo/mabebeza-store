@@ -332,8 +332,7 @@
                return sub_categories;
             }
              get_sub_categories() 
-
-             
+ 
 
             try {
               createApp ; // Accessing the variable

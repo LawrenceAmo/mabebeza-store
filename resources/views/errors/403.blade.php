@@ -6,4 +6,8 @@
             <p>We apologize for the inconvenience. Our team has been notified and will work to fix the issue as soon as possible.</p>
         </div>
     </div>
+
+    <script>
+        const { createApp } = Vue;
+    </script>
 </x-guest-layout> 

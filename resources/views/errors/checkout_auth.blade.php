@@ -6,5 +6,9 @@
             <a href="{{ route('login')}}" class="btn btn-sm rounded btn-purple">Log in</a>
         </div>
     </div>
+
+    <script>
+        const { createApp } = Vue;
+    </script>
 </x-guest-layout>
  
