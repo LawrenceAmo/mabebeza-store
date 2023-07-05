@@ -122,7 +122,7 @@
                 | 
                 <div class="  d-flex">
                   <a href="{{ route('my_cart') }}" class="text-blue pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
-                <a href="{{ route('my_cart') }}" class="text-pink d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="cart_qty_display">0</span></a>  
+                <a href="{{ route('my_wish_list') }}" class="text-pink d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="wish_list_qty_display">0</span></a>  
                 </div>
               </div>
             </div>
@@ -137,8 +137,9 @@
                   <i class="fa fa-bars "></i>  Shop By Category
               </button>
               <div class="dropdown-menu" aria-labelledby="triggerId" >
-                <div class="" v-for="category,i in sub_categories">
-                  <a href="" class="dropdown-header text-purple" >@{{category.sub_category_name}}</a>  
+                <div class="" v-for="category,i in sub_categories"> 
+                  {{-- guest_view_sub_category --}}
+                  <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" >@{{category.sub_category_name}}</a>  
                   <div class="dropdown-divider"></div>
                 </div>
                 {{-- <div class="dropdown-divider"></div> --}}
@@ -295,6 +296,8 @@
           </div>
         </div>
       </div>
+      <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
+
     </footer>
     {{-- <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
 
@@ -314,7 +317,32 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
       cart_qty_display(); 
+      wish_list_qty_display();
+
+    
+      // update the wish list
+        function add_to_wish_list(item) {
+
+              let wish_list = JSON.parse(localStorage.getItem('wish_list'));
+              let wish_list_productIDs = JSON.parse(localStorage.getItem('wish_list_productIDs'));
+
+              if (!wish_list_productIDs.includes(item.productID)) {
+
+                wish_list.push(item)
+                wish_list_productIDs.push(item.productID)
  
+              }else{
+                 
+                wish_list = wish_list.filter(product => product.productID != item.productID);
+                wish_list_productIDs = wish_list_productIDs.filter(productID => productID != item.productID);
+
+              } 
+              localStorage.setItem('wish_list', JSON.stringify(wish_list));                
+              localStorage.setItem('wish_list_productIDs', JSON.stringify(wish_list_productIDs));
+
+              wish_list_qty_display();  
+          }
+
             async function get_sub_categories( ) {
               // get products from api
               function checkLocalStorage(key){
@@ -383,6 +411,20 @@
 
                       location.href = href 
                   },
+                  view_sub_category: function(item){
+ 
+                    var link = document.getElementById('guest_view_sub_category');
+                    var href = link.getAttribute('data-href');
+                    let sub_category_name = item.sub_category_name.replace(/ /g, '-')
+                     
+                    href = href.replace('sub_category_name', sub_category_name )
+                    // let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
+                    // href = href.replace('product_name', product_name )
+
+                    location.href = href 
+                    console.log(sub_category_name)
+                    console.log(href)
+                },
                 productImg: function(val){
                   return `{{ asset('storage/products/${val}')}}`;
                 },

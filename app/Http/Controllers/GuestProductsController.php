@@ -134,8 +134,31 @@ class GuestProductsController extends Controller
         return view('pages.products.category')->with('products', $products);
      }
 
-    
-
+     public function view_sub_category($sub_category_name)
+     {
+         $sub_category_name = str_replace('-', ' ', $sub_category_name );
+        //   explode(' ',  $category);//str_replace('-', ' ', $category );
+ 
+         $categories = DB::table('sub_categories')
+                          ->where('sub_category_name', '=', $sub_category_name)
+                         ->pluck('sub_categoryID' )                        
+                         ->toArray();
+  
+         $products =  DB::table('products')
+                         ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID')
+                         ->leftJoin('product_photos', function ($join) {
+                             $join->on('product_photos.productID', '=', 'products.productID')
+                                 ->whereRaw('product_photos.product_photoID = (SELECT MIN(product_photoID) FROM product_photos WHERE productID = products.productID)');
+                         })
+                         ->select('products.productID', 'products.name as product_name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.price', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'sub_categories.sub_category_name')
+                         ->whereIn('products.sub_categoryID', $categories)
+                         ->groupBy('products.productID', 'products.name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.sale_price', 'products.price', 'product_photos.url', 'product_photos.title', 'sub_categories.sub_category_name')
+                         ->get();
+ 
+                        //  return $categories; 
+                        //  return $products; 
+        return view('pages.products.sub_category')->with('products', $products);
+      }
     /**
      * API
      */
@@ -163,15 +186,10 @@ class GuestProductsController extends Controller
     {
         return view('pages.products.cart');
     }
-  
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function my_wish_list()
     {
-        //
+        return view('pages.products.wish_list');
     }
+   
 }

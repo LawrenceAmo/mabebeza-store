@@ -141,7 +141,9 @@ require __DIR__.'/auth.php';
     // GuestProductsController
  // Products
  Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
+ Route::get('/sub-categories/{id}/{category?}',[GuestProductsController::class, 'view_sub_category'])->name('guest_view_sub_category');
  Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
+ Route::get('/my-wish-list',[GuestProductsController::class, 'my_wish_list'])->name('my_wish_list');
  Route::get('/checkout/billing',[CheckoutController::class, 'checkout'])->name('checkout');
  Route::get('/checkout/auth-error',[CheckoutController::class, 'checkout_auth_error'])->name('checkout_auth_error');
  Route::get('/search/{name}',[GuestProductsController::class, 'guest_search_product'])->name('guest_search_product');

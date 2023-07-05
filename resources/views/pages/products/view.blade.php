@@ -26,14 +26,20 @@
                             <span class="text-danger px-5 mx-5  "> Now R@{{product.sale_price}}</span> 
                         </p>
                         <p class="h5 font-Raleway" v-else >R@{{product.price}}</p>
-                        <div class=" row  ">
+                        <div class=" row   pr-1 ">
                             <div class="col-md-6 d-flex flex-column justify-content-center pt-4 m-auto  ">
                                 <div class="p-2"></div>
                                 {{-- inCart --}}
-                                <a v-if="!inCart" class="btn btn-sm rounded text-white btn-success" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
+                                <a v-if="!inCart" class="btn btn-sm rounded text-white btn-purple" @click="add_to_cart(product)" >add to cart</a> &nbsp; &nbsp;
                                 <a v-else class="btn btn-sm rounded btn-purple " @disabled(true) @click="add_to_cart(product)" >Add</a> &nbsp; &nbsp;
                             </div>
-                            {{-- <a  class="btn btn-sm rounded btn-disabled">add to wishlist</a> --}}
+                            <div class="col-md-5 d-flex flex-column justify-content-center pt-4 m-auto  ">
+                                <div class="p-2"></div>
+                                {{-- inCart --}}
+                                <a  class="btn btn-sm rounded text-white btn-pink"  @click="add_to_wish_list(product)" >add to wish list</a> &nbsp; &nbsp;
+                             </div>                            
+                        </div>
+                        <div class="row">
                             <div class="col-md-6 form-group px-5">
                                 <label class="text-center font-weight-bold">Qty</label>
                                 {{-- v-model="product.qty" --}}
@@ -221,9 +227,11 @@ console.log(this.product)
                     }                    
                 }
              } 
-             this.updateCartLocalStorage();
- 
+             this.updateCartLocalStorage(); 
          },
+         add_to_wish_list: function(item){
+              add_to_wish_list(item) 
+            },
          // 
      }
   }).mount("#app");

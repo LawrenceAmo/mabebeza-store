@@ -40,12 +40,9 @@ class StaffController extends Controller
             'password' => ['required',  Rules\Password::defaults()],
         ]);
 
-        if ($request->driver) {
-            $driver = true;
-        } else {
-            $driver = false;
-        }
-        
+        if ($request->driver) {  $driver = true; } 
+        else {  $driver = false;  }
+
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -72,7 +69,7 @@ class StaffController extends Controller
                     ->where('id', (int)$id )
                     ->update([
                         'customer' => false,
-                     ]); 
+                    ]); 
  
                 return redirect()->back()->with('success', '!...');
 

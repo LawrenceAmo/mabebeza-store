@@ -131,9 +131,9 @@
                           </p>
 
                           <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                            <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3">
+                            <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3"   @click="add_to_wish_list(product)">
                                  <i class="fa fa-heart" aria-hidden="true"></i>
-                            </span>
+                            </span> 
                             <span class="add-cart btn btn-sm rounded btn-purple py-0 px-3" @click="add_to_cart(product)">                                
                                 <i class="fa fa-cart-plus" aria-hidden="true"></i>
                             </span>
@@ -154,32 +154,32 @@
         <div class="px-3">
             <div class="row " >
 
-              <div class="col-md-2" v-for="product,i in products">
+              <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
                 <div class="card text-left"   >
-                  <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
-                  <div class="card-body   px-2 py-0">
-                    <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                    <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
-                      <span class="text-muted   " >
-                         <del class="text-muted">@{{ product.price}}</del> 
-                      </span>
-                      <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
-                    </p>
-                    <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
-                      <span class=" "> </span>
-                      <span class=" font-weight-bold ">@{{ product.price}}</span>
-                    </p>
+                    <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                    <div class="card-body   px-2 py-0">
+                      <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                      <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
+                        <span class="text-muted   " >
+                           <del class="text-muted">@{{ product.price}}</del> 
+                        </span>
+                        <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
+                      </p>
+                      <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
+                        <span class=" "> </span>
+                        <span class=" font-weight-bold ">@{{ product.price}}</span>
+                      </p>
 
-                    <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                      <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
-                           <i class="fa fa-heart" aria-hidden="true"></i>
-                      </span>
-                      <span class="add-cart btn btn-sm rounded btn-success py-0 px-3" @click="add_to_cart(product)">                                
-                          <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                      </span>
-                    </p>
-                  </div>
-               </div>
+                      <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
+                        <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3"   @click="add_to_wish_list(product)">
+                             <i class="fa fa-heart" aria-hidden="true"></i>
+                        </span> 
+                        <span class="add-cart btn btn-sm rounded btn-purple py-0 px-3" @click="add_to_cart(product)">                                
+                            <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                        </span>
+                      </p>
+                    </div>
+                 </div>
             </div>
 
             </div>
@@ -194,32 +194,32 @@
       <div class="px-3">
           <div class="row " >
 
-            <div class="col-md-2" v-for="product,i in products">
+            <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
               <div class="card text-left"   >
-                <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
-                <div class="card-body   px-2 py-0">
-                  <a @click="view_product(product)" class="c-pointer card-title font-weight-light py-0 my-0  text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
-                  <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-if="product.sale_price">
-                    <span class="text-muted   " >
-                       <del class="text-muted">@{{ product.price}}</del> 
-                    </span>
-                    <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
-                  </p>
-                  <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0" v-else>
-                    <span class=" "> </span>
-                    <span class=" font-weight-bold ">@{{ product.price}}</span>
-                  </p>
+                  <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                  <div class="card-body   px-2 py-0">
+                    <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                    <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
+                      <span class="text-muted   " >
+                         <del class="text-muted">@{{ product.price}}</del> 
+                      </span>
+                      <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
+                    </p>
+                    <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
+                      <span class=" "> </span>
+                      <span class=" font-weight-bold ">@{{ product.price}}</span>
+                    </p>
 
-                  <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
-                    <span class="add-wishlist btn btn-sm rounded btn-danger py-0 px-3">
-                         <i class="fa fa-heart" aria-hidden="true"></i>
-                    </span>
-                    <span class="add-cart btn btn-sm rounded btn-success py-0 px-3" @click="add_to_cart(product)">                                
-                        <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                    </span>
-                  </p>
-                </div> 
-             </div> 
+                    <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
+                      <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3"   @click="add_to_wish_list(product)">
+                           <i class="fa fa-heart" aria-hidden="true"></i>
+                      </span> 
+                      <span class="add-cart btn btn-sm rounded btn-purple py-0 px-3" @click="add_to_cart(product)">                                
+                          <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                      </span>
+                    </p>
+                  </div>
+               </div>
           </div>
           </div>
       </div>
@@ -297,6 +297,11 @@
                 localStorage.setItem('cart_productIDs', JSON.stringify([]));                
             }
 
+            if (!this.checkLocalStorage('wish_list')) {
+                localStorage.setItem('wish_list', JSON.stringify([]));                
+                localStorage.setItem('wish_list_productIDs', JSON.stringify([]));                
+            }
+
             // always update the UI with data from local storage
             this.cart = JSON.parse(localStorage.getItem('cart'))
             this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
@@ -346,6 +351,9 @@
                   this.cart_productIDs.push(item.productID)
                   this.updateCartLocalStorage();
                 }
+            },
+            add_to_wish_list: function(item){
+              add_to_wish_list(item) 
             },
          }
      }).mount("#app");
