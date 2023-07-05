@@ -302,9 +302,11 @@
             this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
 
             // get products from api
-            let productsDB = await axios.get('{{route("get_products")}}');  
-                productsDB = await productsDB.data
-             this.products = productsDB
+            this.products = JSON.parse(localStorage.getItem('all_products'))
+
+            // let productsDB = await axios.get('{{route("get_products")}}');  
+            //     productsDB = await productsDB.data
+            //  this.products = productsDB
 
         },
         methods: {

@@ -20,8 +20,10 @@
         <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
         {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
          {{-- <script src="{{ asset('mdb/js/vue.js') }}"></script> --}}
-         <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-         {{-- <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
+         <script src="
+         https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js
+         "></script>
+          {{-- <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
          {{-- <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}"> --}}
@@ -315,11 +317,19 @@
  
             async function get_sub_categories( ) {
               // get products from api
-                let sub_categories = await axios.get('{{route("get_sub_categories")}}');
-                sub_categories = await sub_categories.data
-                // console.log(sub_categories)
+              function checkLocalStorage(key){
+                return localStorage.getItem(key) !== null;
+                }
+ 
+                if (!checkLocalStorage('all_sub_categories')) {
+                  let all_sub_categories = await axios.get('{{route("get_sub_categories")}}'); 
+                      all_sub_categories = await all_sub_categories.data
+                  localStorage.setItem('all_sub_categories', JSON.stringify(all_sub_categories));                
+                }
 
-              //  return sub_categories;
+                let sub_categories = JSON.parse(localStorage.getItem('all_sub_categories'))
+
+               return sub_categories;
             }
              get_sub_categories() 
 
@@ -344,14 +354,23 @@
                 }
               },
               async created(){ 
-                let sub_categories = await axios.get('{{route("get_sub_categories")}}'); 
-                this.sub_categories = await sub_categories.data
+ 
+                 this.sub_categories = JSON.parse(localStorage.getItem('all_sub_categories'))
+  
+                 if (!this.checkLocalStorage('all_products')) {
+                  let allProductsDB = await axios.get('{{route("get_products")}}');  
+                      allProductsDB = await allProductsDB.data
+                  localStorage.setItem('all_products', JSON.stringify(allProductsDB));                
+                 }
 
-                let allProductsDB = await axios.get('{{route("get_products")}}');  
-                this.allProductsDB = await allProductsDB.data
-                console.log(this.sub_categories);
+                 this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))
+ 
+                // console.log(this.sub_categories);
               },
               methods: {
+                checkLocalStorage: function(key){
+                return localStorage.getItem(key) !== null;
+                }, 
                 view_product: function(item){
  
                       var link = document.getElementById('search_product_url');
