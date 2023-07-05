@@ -317,6 +317,12 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
       cart_qty_display(); 
+
+      function wish_list_qty_display() {
+          let qty = JSON.parse(localStorage.getItem('wish_list')).length
+          document.getElementById('wish_list_qty_display').innerHTML = qty;
+      }
+      
       wish_list_qty_display();
 
     
