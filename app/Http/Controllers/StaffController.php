@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\customer_order_confirmation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,8 @@ use App\Models\Contacts;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Mail\MyMail;
+use Illuminate\Support\Facades\Mail;
 
 class StaffController extends Controller
 {
@@ -20,8 +23,8 @@ class StaffController extends Controller
     public function index()
     {
         $users = DB::table('users')->where('customer', false)->get();
-        $stores = DB::table('stores')->get();
-        // return $stores;
+        $stores = DB::table('stores')->get(); 
+
         return view('portal.staff.index')->with('stores', $stores)->with('users', $users);
     }
  

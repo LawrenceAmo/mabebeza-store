@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendOrderConfirmation;
 use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\Shipping_address;
 use App\Models\Order;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\customer_order_confirmation;
 class CheckoutController extends Controller
 {
 
@@ -281,6 +283,8 @@ class CheckoutController extends Controller
        ->get();
     }
 
+
+    
     public function guest_update_order(Request $request)
     { 
  
@@ -300,33 +304,50 @@ class CheckoutController extends Controller
        return $request;
     } 
       
+    // send mail if order paid successfully
     public function payment_success()
     {
-
-        return 1;
         if (isset($_SERVER['HTTP_REFERER'])) {
             $lastURL = $_SERVER['HTTP_REFERER'];
             if (strpos($lastURL, 'payfast.co.za') !== false) {
                
                 $userID = (int)Auth::id();
 
-                $order = DB::table('orders')
-                        ->where('userID', $userID) 
-                        ->latest()->first();
-
-                        DB::table('orders')
-                            ->where('order_number',  $order->order_number)
+                $order = DB::table('users')
+                            ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
+                            ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                            ->select('users.first_name as user_name',
+                                    'users.last_name as user_surname',
+                                    'users.email as user_email',
+                                    'users.phone as user_phone',
+                                    'shipping_addresses.street as user_street',
+                                    'shipping_addresses.suburb as user_suburb',
+                                    'shipping_addresses.city as user_city',
+                                    'shipping_addresses.state as user_state',
+                                    'shipping_addresses.country as user_country',
+                                    'shipping_addresses.postal_code as user_postal_code', 
+                                    'shipping_addresses.*','orders.*',
+                                    )
+                            ->where([ ['users.id', $userID], ['orders.paid', false]])
+                            ->first();
+ 
+                    DB::table('orders')
+                            ->where('orderID',  $order->orderID)
                             ->update([
-                                'paid' => true,                                 
+                                'paid' => true,                                  
                                 'payment' => $order->total_amount,                                 
                             ]);
-        
+
+                    $order_status = true;   // payment successful
+                    dispatch(new SendOrderConfirmation($order, $order_status));
+ 
                 return view('pages.checkout.payment_success')->with('order', $order);
 
             } else {
                 return redirect()->back();
             }
           } else {
+
             return redirect()->back();
           }
  
@@ -334,26 +355,42 @@ class CheckoutController extends Controller
 
     public function payment_failed()
     {
-        return 1;
-
+ 
         // if (isset($_SERVER['HTTP_REFERER'])) {
         //     $lastURL = $_SERVER['HTTP_REFERER'];
         //     if (strpos($lastURL, 'payfast.co.za') !== false) {
                
-                // $userID = (int)Auth::id();
+                $userID = (int)Auth::id();
 
-                // $order = DB::table('orders')
-                //         ->where('userID', $userID) 
-                //         ->latest()->first();
+                $order = DB::table('users')
+                            ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
+                            ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                            ->select('users.first_name as user_name',
+                                    'users.last_name as user_surname',
+                                    'users.email as user_email',
+                                    'users.phone as user_phone',
+                                    'shipping_addresses.street as user_street',
+                                    'shipping_addresses.suburb as user_suburb',
+                                    'shipping_addresses.city as user_city',
+                                    'shipping_addresses.state as user_state',
+                                    'shipping_addresses.country as user_country',
+                                    'shipping_addresses.postal_code as user_postal_code', 
+                                    'shipping_addresses.*','orders.*',
+                                    )
+                            ->where([ ['users.id', $userID], ['orders.paid', false]])
+                            ->first();
 
                 //         // update order        
-                //         DB::table('orders')
-                //             ->where('order_number',  $order->order_number)
-                //             ->update([
-                //                 'status' => 'cancelled',                                 
-                //             ]); 
+                        DB::table('orders')
+                            ->where('order_number',  $order->order_number)
+                            ->update([
+                                'status' => 'cancelled',                                 
+                            ]); 
 
-                return view('pages.checkout.payment_failed');//->with('order', $order);
+                $order_status = false;   // payment successful
+                dispatch(new SendOrderConfirmation($order, $order_status));
+
+                return view('pages.checkout.payment_failed')->with('order', $order);
 
         //     } else {
         //         return redirect()->back();
@@ -364,30 +401,3 @@ class CheckoutController extends Controller
  
     }
 }
-
-
-//  // $email = 'madibaamohelang@gmail.com';
-//  $email = 'amo@amomad.com';
-//  $login = [
-//      'email' =>  $email,
-//      'password' => 'a.l.madiba',
-//  ];
-
-//  // DB::table('customers')->where('customerID', 1)->update([ 'password' => Hash::make('a.l.madiba') ]);
-
-//  $user = Auth::guard('customer')->user();
-//  // return $user;
-//  // return Auth::guard('web')->attempt($login);
-
-//  if (Auth::guard('customer')->attempt($login)) {
-//      // Auth::guard('customer')->login(Auth::guard('customer')->user());
-
-//      $user = Auth::guard('customer')->user();
-//      // Auth::guard('customer')->login($user);
-
-//      //guard('customer')->attempt($login)) {
-//      // $login->session()->regenerate();
-//      return $user;
-//  } else {
-//      return 2;
-//  }

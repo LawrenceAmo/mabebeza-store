@@ -138,8 +138,8 @@
                             {{-- <form name="PayFastPayNowForm" action="https://www.payfast.co.za/eng/process" method="post"> --}}
                             <input required type="hidden" name="cmd" value="_paynow">
                             <input required type="hidden" name="receiver" pattern="[0-9]" value="22693275">
-                            <input type="hidden" name="return_url" value="https://mabebeza.com/checkout/payment/success">
-                            <input type="hidden" name="cancel_url" value="https://mabebeza.com/checkout/payment/failed">
+                            <input type="hidden" name="return_url" value="https://mabebeza.com/accounts/checkout/payment/success">
+                            <input type="hidden" name="cancel_url" value="https://mabebeza.com/accounts/checkout/payment/failed">
                             <input required type="hidden" name="amount" id="payfast_order_total" v-model="order_total">
                             <input required type="hidden" name="item_name" maxlength="255" id="payfast_order_number" v-model="payfast_order_number">
                             <input type="hidden" name="item_description" maxlength="255" value="Pampers S1 min">

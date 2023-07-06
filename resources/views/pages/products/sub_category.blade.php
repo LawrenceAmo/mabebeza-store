@@ -139,12 +139,10 @@
           },
           add_to_wish_list: function(item){
               add_to_wish_list(item) 
-            },
+          },
           // 
       }
    }).mount("#app");
  
  </script>
- 
- 
  </x-guest-layout>

@@ -14,6 +14,7 @@ use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\TestController;
 // CustomersController
 use Illuminate\Support\Facades\DB;
 
@@ -138,6 +139,7 @@ require __DIR__.'/auth.php';
  
     });
 
+    Route::get('/mail',[TestController::class, 'mail'])->name('mail');
     // GuestProductsController
  // Products
  Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');

@@ -31,5 +31,7 @@
              
         </div>
     </div>
-
+<script>
+    const { createApp } = Vue;
+</script>
 </x-customer-layout>

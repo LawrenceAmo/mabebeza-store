@@ -322,10 +322,9 @@
           let qty = JSON.parse(localStorage.getItem('wish_list')).length
           document.getElementById('wish_list_qty_display').innerHTML = qty;
       }
-      
+
       wish_list_qty_display();
 
-    
       // update the wish list
         function add_to_wish_list(item) {
 
