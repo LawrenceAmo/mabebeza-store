@@ -63,6 +63,12 @@
     .searchSuggestions li{
       list-style: none;
     }
+    .product_name{
+    height: 50px !important;
+    white-space:pre-wrap;  
+    overflow: hidden; /* Hide any overflowing content */
+    text-overflow: ellipsis;
+   }
    </style>
     </head>
     <body>
@@ -90,13 +96,13 @@
               <div class=" bg-white border rounded searchSuggestions" v-if="searchedProducts.length">
                 <ul>
                   <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
-                    <a   class=" row text-purple font-Raleway c-pointer" @click="view_product(item)">
+                    <div   class=" row text-purple font-Raleway c-pointer product_name" @click="view_product(item)">
                        <div class="col-3">
-                         <img class="" height="50" :src="productImg(item.url)" alt="">
+                         <img class="" height="50" :src="productImg(productUrl(item.photo_urls))" alt="">
                        </div>  
                        <span class="col-6">@{{ item.product_name }}  </span>
                        <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
-                    </a>
+                    </div>
                   </li>                   
                 </ul> 
                 <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="search_product_url"></a>             
@@ -128,9 +134,8 @@
             </div>
           </div>
         </div>
-         <div class="border text-dark py-2 pl-2">
-          <div class="pl-4 ">
- 
+         <div class="border d-flex justify-content-between text-dark py-2 pl-2">
+          <div class="pl-4  "> 
             <div class="dropdown">
               <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false">
@@ -147,6 +152,9 @@
             </div>
 
              <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+          </div>
+          <div class="text-light pr-3 small   font-Raleway ">
+            Ship To: <span class="font-weight-bold" id="location_display"></span>
           </div>
         </div>
       </header>
@@ -323,6 +331,17 @@
           document.getElementById('wish_list_qty_display').innerHTML = qty;
       }
 
+      function set_location(location){
+          localStorage.setItem('ship_location', ''+location); 
+          // localStorage.setItem('ship_location', ''+location); 
+           set_location_display() 
+      }
+       function set_location_display(){
+             let ship_location =  localStorage.getItem('ship_location')
+            document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
+       }
+       set_location_display();
+
       wish_list_qty_display();
 
       // update the wish list
@@ -380,7 +399,7 @@
               data() {
                 return {
                   allProductsDB: [],
-                  sub_categories: [],
+                  sub_categories: [], 
                   searchedProducts: [],
                   searchProductsText: '',
                 }
@@ -392,12 +411,23 @@
                  if (!this.checkLocalStorage('all_products')) {
                   let allProductsDB = await axios.get('{{route("get_products")}}');  
                       allProductsDB = await allProductsDB.data
-                  localStorage.setItem('all_products', JSON.stringify(allProductsDB));                
+                      // allProductsDB = await 
+                      // this.get_products(allProductsDB)                        
+                      localStorage.setItem('all_products', JSON.stringify(   allProductsDB));                
                  }
 
+                 setTimeout(async () => {
+                    let allProductsDB = await axios.get('{{route("get_products")}}');  
+                        allProductsDB = await allProductsDB.data
+                         allProductsDB = await this.get_products(allProductsDB)                        
+                        localStorage.setItem('all_products',   JSON.stringify(   allProductsDB));
+  
+                 }, 3000);
+
                  this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))
- 
-                // console.log(this.sub_categories);
+                  //  get_products
+                  // console.log(this.allProductsDB);
+                  // console.log(this.get_products(this.allProductsDB));
               },
               methods: {
                 checkLocalStorage: function(key){
@@ -433,24 +463,55 @@
                 productImg: function(val){
                   return `{{ asset('storage/products/${val}')}}`;
                 },
+                productUrl: function(val){
+                  if (val) {
+                    let url = val.split(',') 
+                    return url[0];
+                  } 
+                },
                 guestSearchProducts: function(event){
                     const allProductsDB =  this.allProductsDB
                     let search = this.searchProductsText.toLowerCase()
                     
                     this.searchedProducts = [];
-
-                    if (search.length < 1) {    return false       }
-
-                    console.log(allProductsDB)
+                    if (search.length < 1) {    return false       } 
 
                     for (let i = 0; i < allProductsDB.length; i++) {
                       let productName = allProductsDB[i].product_name.toLowerCase()
                         if ( productName.includes(search)) {
                           this.searchedProducts.push(allProductsDB[i])
                         } 
-                    } 
-        
+                    }        
                   },
+                  // /////////////////
+                get_products: async function(products){
+                
+                        let productsDB = []; let productIDs = [];  
+                          for (let y = 0; y < products.length; y++) {
+             
+                            let productID = products[y].productID; 
+                            if (!productIDs.includes(productID)) {
+                              // productsDB[ productID ] = [];   // add array of sales for this code
+                              productIDs.push(productID);
+                              productsDB.push(products[y]);
+                              // productsDB[ productID ]['images'] = [];  
+                              // productsDB[ productID ]['item'] = [];  
+                              // productsDB[ productID ]['item'].push( products[y]);  
+                            }
+                            // productsDB[ productID ]['images'].push( products[y].url);
+                          }
+
+                          productsDB = productsDB.filter(value => value !== '');
+
+                          this.allProductsDB = await productsDB   
+                          
+                          localStorage.setItem('all_products', JSON.stringify( await productsDB )); 
+
+                          // console.log(   productsDB )            
+                          // console.log(   productsDB )            
+
+                           return  productsDB;
+                },
               },
               
             });

@@ -20,7 +20,7 @@ class GuestProductsController extends Controller
         // Check if the cached response exists
         if (Cache::has($cacheKey)) {
             // If the cached response exists, return it
-            return Cache::get($cacheKey);
+            // return Cache::get($cacheKey);
         }
 
         // sub_categories.sub_category_name
@@ -30,13 +30,12 @@ class GuestProductsController extends Controller
                     ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', )
                     ->where( 'products.availability', '=',  true)
                     ->where( 'products.publish', '=', true)
-                    ->where( 'products.publish', '=', true)
-                    ->where( 'product_photos.thumbnail', '=', true)
+                    // ->where( 'product_photos.thumbnail', '=', true)
                     ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price',)
                     ->get();
         // return $products;
         // Cache the response for 5 minutes
-        Cache::put($cacheKey, $products, 300);
+        // Cache::put($cacheKey, $products, 300);
 
         // return $responseData;
         return response()->json($products);
@@ -53,6 +52,7 @@ class GuestProductsController extends Controller
 
         $view = view('welcome')->with("categories", $categories)->render();
 
+        // return $this->get_products();  //$view;
         return $view;
         Cache::put('guest-welcome', $view, 3600);
 

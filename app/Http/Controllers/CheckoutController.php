@@ -40,9 +40,7 @@ class CheckoutController extends Controller
     public function checkout()
     { 
         $userID = (int)Auth::id();
-        if (!$userID) {
-            return redirect( route('checkout_auth_error'));
-        }
+        if (!$userID) { return redirect( route('checkout_auth_error'));   }     // check if the user is logged in
  
         $user = DB::table('users')
                 ->leftJoin('contacts', 'users.id', '=', 'contacts.userID')
@@ -56,7 +54,7 @@ class CheckoutController extends Controller
             ->exists();
  
         if (!$userCart) {
-        
+            //first time a user makes an order
             // create new order
             $order = new Order();
             $order->order_number = $this->generate_order_number();
@@ -80,7 +78,7 @@ class CheckoutController extends Controller
                 $order->order_number = $this->generate_order_number();
                 $order->userID = $userID;
                 $order->save();
-            }
+            } 
            
          }
  
@@ -100,9 +98,7 @@ class CheckoutController extends Controller
             'first_name' => 'required',                  
             'last_name' => 'required',                  
             'email' => 'required',                  
-            // 'alt_email' => 'required',                  
             'phone' => 'required',                  
-            // 'alt_phone' => 'required',                  
             'street' => 'required',                  
             'suburb' => 'required',                  
             'city' => 'required',                  
@@ -114,7 +110,7 @@ class CheckoutController extends Controller
        $userID = (int)Auth::id();
 
        DB::table('users')
-            ->where('id', $userID)  // find your user by their email
+            ->where('id', $userID)  // find your user by their userID
             ->limit(1)   
             ->update([
                 'phone' => $request->phone,                                        
@@ -248,19 +244,20 @@ class CheckoutController extends Controller
      
     public function review_payment()
     {
-        $userID = (int)Auth::id();
+        $user  =  Auth::user();
+        $userID = (int)$user->id;
  
          // get the latest order for this user
          $order = DB::table('orders')
-         ->where('userID', $userID) 
-         ->latest()->first();
+                    ->where('userID', $userID) 
+                    ->latest()->first();
 
         $shipping_addresses = DB::table('shipping_addresses')
-                    ->where('orderID',  $order->orderID)
-                    ->where('userID', $userID)
-                    ->get();
+                                ->where('orderID',  $order->orderID)
+                                ->where('userID', $userID)
+                                ->get();
 
-        $user = Auth::user();
+        // $user = Auth::user();
 
         return view('pages.checkout.review_pay')->with('user', $user)->with('order', $order)->with('shipping_addresses', $shipping_addresses[0]);
     }
@@ -284,7 +281,7 @@ class CheckoutController extends Controller
     }
 
 
-    
+
     public function guest_update_order(Request $request)
     { 
  
@@ -299,17 +296,19 @@ class CheckoutController extends Controller
                         'sub_total' => $request->sub_total,
                         'qty' => $request->qty,
                         'is_guest' => true,
+                        'created_at' => now(),
+                        'updated_at' => now(),
                      ]); 
- 
+
        return $request;
     } 
-      
+
     // send mail if order paid successfully
     public function payment_success()
     {
-        if (isset($_SERVER['HTTP_REFERER'])) {
-            $lastURL = $_SERVER['HTTP_REFERER'];
-            if (strpos($lastURL, 'payfast.co.za') !== false) {
+        // if (isset($_SERVER['HTTP_REFERER'])) {
+        //     $lastURL = $_SERVER['HTTP_REFERER'];
+        //     if (strpos($lastURL, 'payfast.co.za') !== false) {
                
                 $userID = (int)Auth::id();
 
@@ -339,17 +338,18 @@ class CheckoutController extends Controller
                             ]);
 
                     $order_status = true;   // payment successful
+                    
                     dispatch(new SendOrderConfirmation($order, $order_status));
  
                 return view('pages.checkout.payment_success')->with('order', $order);
 
-            } else {
-                return redirect()->back();
-            }
-          } else {
+            // } else {
+            //     return redirect()->back();
+            // }
+        //   } else {
 
-            return redirect()->back();
-          }
+        //     return redirect()->back();
+        //   }
  
     }
 

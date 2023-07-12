@@ -61,12 +61,7 @@
                              </div>
                         </div>
                         <hr>
-                        <div class="">
-                            <p class="h5 font-Raleway">Delivery Details</p>
-                            <p class="font-libre"> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum sint,
-                                repellat quidem soluta nam incidunt reiciendis laudantium, alias molestias molestiae minima 
-                                consequuntur. Doloribus, recusandae ab. Provident dolores pariatur voluptas harum!</p>
-                        </div>
+                         
 
                     </div>
                 </div>
@@ -77,23 +72,32 @@
                 <div class="col-12">
                     <ul class="nav nav-tabs mb-3 pl-5" id="ex-with-icons" role="tablist">
                         <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#ex-with-icons-tabs-1" role="tab"
+                        <a class="nav-link text-purple active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#description" role="tab"
                             aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-file fa-fw me-2"></i>Product Description</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#ex-with-icons-tabs-2" role="tab"
+                        <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#product_details" role="tab"
                             aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-info-circle fa-fw me-2"></i>More Info</a>
                         </li> 
+                        <li class="nav-item" role="presentation">
+                            <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#delivery" role="tab"
+                                aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-car fa-fw me-2"></i>Delivery Details</a>
+                            </li> 
                     </ul>
                     <!-- Tabs navs -->
                     
                     <!-- Tabs content -->
-                    <div class="tab-content pl-5" id="ex-with-icons-content">
+                    <div class="tab-content pl-5" id="description">
                         <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
                             @{{ product.description}}
                         </div>
-                        <div class="tab-pane fade" id="ex-with-icons-tabs-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+                        <div class="tab-pane fade" id="product_details" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
                             @{{ product.product_detail}}
+                        </div>
+                        <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum sint,
+                                repellat quidem soluta nam incidunt reiciendis laudantium, alias molestias molestiae minima 
+                                consequuntur. Doloribus, recusandae ab. Provident dolores pariatur voluptas harum! 
                         </div>
                        
                     </div>

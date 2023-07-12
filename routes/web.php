@@ -140,6 +140,7 @@ require __DIR__.'/auth.php';
     });
 
     Route::get('/mail',[TestController::class, 'mail'])->name('mail');
+    Route::get('/map-test',[TestController::class, 'map_test'])->name('map_test');
     // GuestProductsController
  // Products
  Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');

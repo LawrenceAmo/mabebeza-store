@@ -359,7 +359,7 @@
                      <form action="{{ route('approve_order')}}" method="post">
                         @csrf
                         <input type="hidden" name="order_number" value="{{ $order->order_number }}">
-                        <button type="submit" class="btn btn-purple">Approve anyway</button>
+                        <button type="submit" class="btn btn-purple">Approve  </button>
                      </form>
                 </div>
             </div>
@@ -483,7 +483,7 @@
     //     createApp({
     //       data() {
     //         return {
-    //           total_stock_units: 0, 
+    //           total_stock_units: 0,  
     //          };
     //       },
     //       async created(){ 

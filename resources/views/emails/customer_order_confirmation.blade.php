@@ -79,7 +79,7 @@ Subtotal: R180 --}}
                     <td>
                        <span class="p-3">Estimated Shipping Time:</span>
                     </td>
-                   <td><b class=""><span>48 hr</span></b></td>
+                   <td><b class=""><span>12 - 24 hr</span></b></td>
                 </tr>
                  
             </tbody>
@@ -120,19 +120,18 @@ Subtotal: R180 --}}
             </p>
         </div>
         <p class="">
-            
+
             <p>
                 If you have any questions or need further assistance,
-             please feel free to contact us at <a class="" href="mailto:info@mabebeza.com">info@mabebeza.com</a>. <br>
-              Our dedicated team is ready to help you.
+                please feel free to contact us at <a class="" href="mailto:careline@mabebeza.com">careline@mabebeza.com</a>. <br>
+                Our dedicated team is ready to help you.
             </p>
 
             <p class="">
                 Thank you once again for choosing Mabebeza Baby Store. <br>
-             We look forward to serving you again in the future.
+                We look forward to serving you again in the future.
             </p>
-
-
+ 
             </p>  
         <p>Best regards,</p>
         <p>The Mabebeza Team</p> <br>

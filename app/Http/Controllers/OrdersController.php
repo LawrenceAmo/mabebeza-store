@@ -6,6 +6,9 @@ use App\Models\deliveries;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\customer_order_shipping;
+use App\Jobs\SendOrderConfirmation;
 
 class OrdersController extends Controller
 {
@@ -105,6 +108,7 @@ class OrdersController extends Controller
          if (!$order->paid_all) {
              return redirect()->back()->with('error', 'Please Approve Order First');
         } 
+        return $order;
 
         $del = new deliveries();
         $del->qty = $request->qty;
@@ -112,7 +116,10 @@ class OrdersController extends Controller
         $del->driverID = (int)$request->driver;
         $del->userID = $userID;
         $del->orderID = $request->orderID;
-        $del->save();
+        // $del->save();
+
+        // dispatch(new SendOrderConfirmation($order, $order_status));
+        Mail::to($mail_to)->send(new customer_order_confirmation($this->order)); 
 
         return redirect()->back()->with('success', 'Shipping Updated');  //Update Shipping:
     }
@@ -160,7 +167,7 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function guest_order($id)
+    public function guest_order($id)    // for customers on their dashboard
     {        
         $order = DB::table('orders')
                 ->leftJoin('users', 'users.id', '=', 'orders.userID' )

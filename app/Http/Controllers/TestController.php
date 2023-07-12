@@ -10,9 +10,8 @@ class TestController extends Controller
 {
    
     public function mail() {
-        $name = "Amo";
-
-        $user = Auth::user();
+ 
+        // $user = Auth::user();
         $userID = (int)Auth::id();
         $data = DB::table('users')
                     ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
@@ -28,12 +27,55 @@ class TestController extends Controller
                             'shipping_addresses.country as user_country',
                             'shipping_addresses.postal_code as user_postal_code', 
                             'shipping_addresses.*','orders.*',
-                            )
-                    ->where([ ['users.id', $userID], ['orders.paid', false]])
+                            ) 
+                    ->where([ ['users.id', $userID], ['orders.paid', false]]) // 
                     ->first();
 
         // return $data;
-        return view('emails.customer_order_confirmation')->with('order', $data);
+        return view('emails.customer_order_shipping')->with('order', $data);
     }
-    
+
+   public function map_test()  {
+    return view('pages.map_test');
+    }
+
 }
+
+
+
+
+
+// <?php
+// function pfValidServerConfirmation( $pfParamString, $pfHost = 'sandbox.payfast.co.za', $pfProxy = null ) {
+//     // Use cURL (if available)
+//     if( in_array( 'curl', get_loaded_extensions(), true ) ) {
+//         // Variable initialization
+//         $url = 'https://'. $pfHost .'/eng/query/validate';
+
+//         // Create default cURL object
+//         $ch = curl_init();
+    
+//         // Set cURL options - Use curl_setopt for greater PHP compatibility
+//         // Base settings
+//         curl_setopt( $ch, CURLOPT_USERAGENT, NULL );  // Set user agent
+//         curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );      // Return output as string rather than outputting it
+//         curl_setopt( $ch, CURLOPT_HEADER, false );             // Don't include header in output
+//         curl_setopt( $ch, CURLOPT_SSL_VERIFYHOST, 2 );
+//         curl_setopt( $ch, CURLOPT_SSL_VERIFYPEER, true );
+        
+//         // Standard settings
+//         curl_setopt( $ch, CURLOPT_URL, $url );
+//         curl_setopt( $ch, CURLOPT_POST, true );
+//         curl_setopt( $ch, CURLOPT_POSTFIELDS, $pfParamString );
+//         if( !empty( $pfProxy ) )
+//             curl_setopt( $ch, CURLOPT_PROXY, $pfProxy );
+    
+//         // Execute cURL
+//         $response = curl_exec( $ch );
+//         curl_close( $ch );
+//         if ($response === 'VALID') {
+//             return true;
+//         }
+//     }
+//     return false;
+// }

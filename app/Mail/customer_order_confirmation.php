@@ -32,12 +32,11 @@ class customer_order_confirmation extends Mailable
      */
     public function build()
     {
-        return $this  //->from('info@effectivewing.com')
+        return $this->from('no-reply@mabebeza.com')
                 ->subject('Thank you for choosing Mabebeza Baby Store')
                 ->view('emails.customer_order_confirmation')
                 ->with([
                     'order' => $this->order,
-                    // other variables you want to pass to the email view
                 ]);
     }
 }

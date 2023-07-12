@@ -7,7 +7,7 @@
       display: flex !important;
   }
   .carousel {
-    max-height: 400px; /* Adjust the value as needed */
+    max-height: 300px; /* Adjust the value as needed */
     overflow: hidden;
   }
   .carousel .carousel-inner {
@@ -27,7 +27,57 @@
     height: 100px;
     overflow: scroll !important;
   }
+  .product_name{
+    height: 50px !important;
+    white-space:pre-wrap;  
+    overflow: hidden; /* Hide any overflowing content */
+    text-overflow: ellipsis;
+   }
     </style>
+    <script>
+      function initMap() {
+       
+       const getFormInputElement = (component) => document.getElementById(component + '-input');
+      
+       const autocompleteInput = getFormInputElement('location');
+       const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+         fields: ["address_components", "geometry", "name"],
+         types: ["address"],
+       });
+       autocomplete.addListener('place_changed', function () {
+          const place = autocomplete.getPlace();
+         if (!place.geometry) {
+           // User entered the name of a Place that was not suggested and
+           // pressed the Enter key, or the Place Details request failed.
+           window.alert('No details available for input: \'' + place.name + '\'');
+           return;
+         }
+          fillInAddress(place);
+       });
+ 
+       function fillInAddress(place) {  // optional parameter
+         const addressNameFormat = {
+           'street_number': 'short_name',
+           'route': 'long_name',
+           'locality': 'long_name',
+           'administrative_area_level_1': 'short_name',
+           'country': 'long_name',
+           'postal_code': 'short_name',
+         };
+         const getAddressComp = function (type) {
+           for (const component of place.address_components) {
+             if (component.types[0] === type) {
+               return component[addressNameFormat[type]];
+             }
+           }
+           return '';
+         };
+         getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
+                  //  console.log(getAddressComp('street_number')+', '+getAddressComp('route')+', '+getAddressComp('locality'))
+                   set_location(getAddressComp('locality')) 
+       } 
+     }
+    </script>
 <main id="app">
     <section class="  border-bottom pb-2">
         <div class="">
@@ -91,7 +141,7 @@
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
             </div>
             <div class="px-3">
-              <input type="text" class="form-control form-control-sm rounded " placeholder="Enter Address" >
+              <input type="text" class="form-control form-control-sm rounded " placeholder="Enter Address"  id="location-input" >
             </div>
           </div>
         </div>
@@ -118,7 +168,7 @@
                     <div class="card text-left"   >
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                          <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
                           <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                             <span class="text-muted   " >
                                <del class="text-muted">@{{ product.price}}</del> 
@@ -156,9 +206,9 @@
 
               <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
                 <div class="card text-left"   >
-                    <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
+                    <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg( product.url )" alt="">
                     <div class="card-body   px-2 py-0">
-                      <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                      <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
                       <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                         <span class="text-muted   " >
                            <del class="text-muted">@{{ product.price}}</del> 
@@ -184,7 +234,7 @@
 
             </div>
         </div>
-
+ 
     </section>
     <hr>
     <section class="">
@@ -198,9 +248,9 @@
               <div class="card text-left"   >
                   <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
-                    <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                    <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
                     <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
-                      <span class="text-muted   " >
+                      <span class="text-muted" >
                          <del class="text-muted">@{{ product.price}}</del> 
                       </span>
                       <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
@@ -289,7 +339,7 @@
             cart_qty: 0,
            };
         },
-        async created(){ 
+        async created(){  
 
           // if no cart then create new empty cat
             if (!this.checkLocalStorage('cart')) {
@@ -323,6 +373,12 @@
             },  
             productImg: function(val){
               return `{{ asset('storage/products/${val}')}}`;
+            },
+            productUrl: function(val){
+              if (val) {
+                let url = val.split(',') 
+                 return url[0];
+              } 
             },
             checkLocalStorage: function(key){
                 return localStorage.getItem(key) !== null;
@@ -358,8 +414,10 @@
          }
      }).mount("#app");
 
+     
 </script>
 
-  
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+
 </x-guest-layout>  
  

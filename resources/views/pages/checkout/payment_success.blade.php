@@ -14,7 +14,7 @@
                 <div class=""> Order Number: <span class="font-weight-bold text-danger">{{$order->order_number}}</span></div>
                 <div class=""> Items qty Ordered:: <span class="font-weight-bold ">{{$order->qty}}</span></div>
                 <div class=""> Total Amount: <span class="font-weight-bold ">R{{$order->total_amount}}</span></div>
-                <div class=""> Estimated Shipping Time: <span class="font-weight-bold ">48 hr</span></div>
+                <div class=""> Estimated Shipping Time: <span class="font-weight-bold ">12 - 24 hr</span></div>
                 <br>
                <p class="h5">Shipping Information:</p>
                

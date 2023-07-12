@@ -1,75 +1,3 @@
--- // DB::statement('SET FOREIGN_KEY_CHECKS = 0');
--- // DB::statement('DROP TABLE IF EXISTS stores');
--- // DB::statement('SET FOREIGN_KEY_CHECKS = 1');
--- // DB::statement('SET FOREIGN_KEY_CHECKS=0');
---         // DB::statement('DROP TABLE IF EXISTS orders');
---         // DB::statement('SET FOREIGN_KEY_CHECKS=1');
-
---  $products = DB::table('products')
---                         ->leftJoin('(
---                             SELECT store_inventories.productID, store_inventories.storeID, SUM(products.cost_price * store_inventories.quantity) AS stock_value
---                             FROM store_inventories
---                             GROUP BY store_inventories.productID, store_inventories.storeID
---                         ) AS inventory', function ($join) {
---                             $join->on('inventory.productID', '=', 'products.productID')
---                                 ->on('inventory.storeID', '=', 'store_inventories.storeID');
---                         })
---                         ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID')
---                         ->select(
---                             'products.productID',
---                             'products.name as product_name',
---                             'products.publish',
---                             'products.availability',
---                             'products.sku',
---                             'inventory.stock_value'
---                         )
---                         ->groupBy('products.productID', 'products.name', 'stores.name', 'products.publish', 'products.availability', 'products.sku')
---                         ->get();
- 
-                        -- Customer Info
-                        -- phone number +27 (all countries)
-                        -- email address
-                        -- full names
-                        -- 
- 
-                        -- add btn for categories Home page
-                        -- make nav bar static
-
-                        -- Page layout
-                        -- categories
-                        -- featured products
-                        -- new products
-                        -- promo products
-                        -- brands
-                        -- footer
-                        -- 
-    -- MAIN CATEGORIES
--- Nappies & Wipes
--- Baby Formula & Milk Drinks
--- Food
--- Medicine & Hygiene
--- Travel & safety gear
--- Party Decor
- 
--- me befor you
--- life in a year // top 1 
--- the fault in our stars
--- everything everything 
-
--- view products by category
--- view cart    
-
--- Shipping functions
--- restrict the area
--- send mails
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-
 <!DOCTYPE html>
   <html>
     <head>
@@ -159,19 +87,19 @@
       "use strict";
   
       function initMap() {
-        const CONFIGURATION = {
-          "ctaTitle": "address",
-          "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":true,"zoom":12,"zoomControl":true,"maxZoom":22,"mapId":""},
-          "mapsApiKey": "AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA",
-          "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":true,"ctaControl":true}
-        };
-        const componentForm = [
-          'location',
-          'locality',
-          'administrative_area_level_1',
-          'country',
-          'postal_code',
-        ];
+        // const CONFIGURATION = {
+        //   "ctaTitle": "address",
+        //   "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":true,"zoom":12,"zoomControl":true,"maxZoom":22,"mapId":""},
+        //   "mapsApiKey": "AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA",
+        //   "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":true,"ctaControl":true}
+        // };
+        // const componentForm = [
+        //   'location',
+        //   'locality',
+        //   'administrative_area_level_1',
+        //   'country',
+        //   'postal_code',
+        // ];
   
         const getFormInputElement = (component) => document.getElementById(component + '-input');
         // const map = new google.maps.Map(document.getElementById("gmp-map"), {
@@ -218,15 +146,14 @@
             }
             return '';
           };
-          getFormInputElement('location').value = getAddressComp('street_number') + ' '
-                    + getAddressComp('route');
+          getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
                     console.log(getAddressComp('locality'))
-          for (const component of componentForm) {
-            // Location field is handled separately above as it has different logic.
-            if (component !== 'location') {
-              getFormInputElement(component).value = getAddressComp(component);
-            }
-          }
+        //   for (const component of componentForm) {
+        //     // Location field is handled separately above as it has different logic.
+        //     if (component !== 'location') {
+        //       getFormInputElement(component).value = getAddressComp(component);
+        //     }
+        //   }
         }
   
         // function renderAddress(place) {
@@ -245,18 +172,17 @@
             <span class="sb-title">Address Selection</span>
           </div>
           <input type="text" placeholder="Address" id="location-input"/>
-          <input type="text" placeholder="Apt, Suite, etc (optional)"/>
-          <input type="text" placeholder="City" id="locality-input"/>
-          <div class="half-input-container">
+          {{-- <input type="text" placeholder="Apt, Suite, etc (optional)"/>
+          <input type="text" placeholder="City" id="locality-input"/> --}}
+          {{-- <div class="half-input-container">
             <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
             <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
-          </div>
-          <input type="text" placeholder="Country" id="country-input"/>
-          <button class="button-cta">address</button>
+          </div> --}}
+          {{-- <input type="text" placeholder="Country" id="country-input"/>
+          <button class="button-cta">address</button> --}}
         </div>
         {{-- <div class="map" id="gmp-map"></div> --}}
       </div>
       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
     </body>
   </html>
-
