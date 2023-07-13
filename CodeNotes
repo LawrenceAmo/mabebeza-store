@@ -67,7 +67,7 @@
 
 
 
-////////////////////////////////////////////////////////////////////////////////
+-- ////////////////////////////////////////////////////////////////////////////////
 
 
 <!DOCTYPE html>
@@ -260,3 +260,27 @@
     </body>
   </html>
 
+
+
+
+
+
+-- ///////////////////////////////////////////////////
+-- function checkAddress() {
+-- //   var address = event.target.elements["address"].value;
+-- //   let address = { latitude: -26.9813,  longitude:28.4617 }
+-- //   var areaCoordinates = "[-26.0093, 28.2181]"// event.target.elements["areaCoordinates"].value;
+
+-- //   var containsLocation = checkIfAddressIsInArea(address, areaCoordinates);
+
+-- var point = new google.maps.LatLng(-26.0093, 28.2181);
+-- var gautengBounds = new google.maps.LatLngBounds(
+--   new google.maps.LatLng(-26.6160, 27.9058),
+--   new google.maps.LatLng(-25.5094, 28.4090)
+-- );
+
+-- var containsLocation = gautengBounds.contains(point);
+
+-- console.log(containsLocation)
+ 
+-- }

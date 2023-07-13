@@ -191,5 +191,11 @@ class GuestProductsController extends Controller
     {
         return view('pages.products.wish_list');
     }
+    public function where_we_deliver()
+    {
+        return view('pages.deliveries.where_we_deliver');
+    }
    
+
+    // 
 }

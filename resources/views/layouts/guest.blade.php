@@ -327,9 +327,7 @@
         </div>
       </div>
     </div>
-
-
-
+ 
     {{-- <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
 
     <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
@@ -360,8 +358,9 @@
       }
 
       function areas(area = null) {
-        let locations = [ 'tembisa', 'midrand' ];
-        area = area.toLowerCase();
+        let locations = [ "Tembisa", "Midrand", "Fourways", "Sunninghill", "Waterfall city", "Farmall", "Diepsloot", "Olieven", "Randjespark", "Noordwyk", "Olifants", "Clayville" ];
+          locations = locations.map(function(string) {  return string.toLowerCase();   }); // convert all areas toLowerCase
+          area = area.toLowerCase();
 
         if (!locations.includes(area)) {
           document.getElementById("ship_to_modal_msg").innerHTML = "Sorry we don't deliver to: "+area+" <br> Please see all areas we deliver to";
@@ -369,7 +368,6 @@
           localStorage.setItem('cart_productIDs', JSON.stringify([]));
           localStorage.setItem('cart', JSON.stringify([]));
         }  
-        // cart_qty_display();       
       }
 
       // display location to the user
