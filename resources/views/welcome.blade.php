@@ -73,7 +73,14 @@
            return '';
          };
          getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
-                  //  console.log(getAddressComp('street_number')+', '+getAddressComp('route')+', '+getAddressComp('locality'))
+                  //  console.log(
+                  //   getAddressComp('street_number')+', '+
+                  //   getAddressComp('route')+', '+
+                  //   getAddressComp('locality')+', '+
+                  //   getAddressComp('administrative_area_level_1')+', '+
+                  //   getAddressComp('country')+', '+
+                  //   getAddressComp('postal_code'))
+                    // if locality = to my suburbs and county = gp then enable shop
                    set_location(getAddressComp('locality')) 
        } 
      }

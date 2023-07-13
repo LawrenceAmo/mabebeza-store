@@ -307,6 +307,29 @@
       <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
 
     </footer>
+
+
+   
+    <!-- Modal -->
+    <div class="modal fade" id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title font-weight-bold text-danger">Oooppss!!!</h3>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <p class="h5" id="ship_to_modal_msg"></p>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+
+
     {{-- <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
 
     <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
@@ -333,13 +356,34 @@
 
       function set_location(location){
           localStorage.setItem('ship_location', ''+location); 
-          // localStorage.setItem('ship_location', ''+location); 
-           set_location_display() 
+          set_location_display() 
       }
+
+      function areas(area = null) {
+        let locations = [ 'tembisa', 'midrand' ];
+        area = area.toLowerCase();
+
+        if (!locations.includes(area)) {
+          document.getElementById("ship_to_modal_msg").innerHTML = "Sorry we don't deliver to: "+area+" <br> Please see all areas we deliver to";
+          $('#ship_to_modal').modal('show');
+          localStorage.setItem('cart_productIDs', JSON.stringify([]));
+          localStorage.setItem('cart', JSON.stringify([]));
+        }  
+        // cart_qty_display();       
+      }
+
+      // display location to the user
        function set_location_display(){
-             let ship_location =  localStorage.getItem('ship_location')
-            document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
+          let ship_location =  localStorage.getItem('ship_location')
+          document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
+          if (!ship_location) {
+              document.getElementById("ship_to_modal_msg").innerHTML = 'Please enter address where you want to ship to, to continue shopping';
+              $('#ship_to_modal').modal('show');
+              return true;
+          }
+        areas(ship_location)
        }
+
        set_location_display();
 
       wish_list_qty_display();

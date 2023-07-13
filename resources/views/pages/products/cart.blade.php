@@ -66,9 +66,12 @@
                                 <div class="col-6 ">Order Total</div>
                                 <div class="col-6 ">R@{{ order_total }}</div>
                             </div>
-                            <div class="row py-2 w-100 h5 border-bottom">
+                            <div class="row py-2 w-100 h5 border-bottom" v-if="cart_total > 0">
                                  <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-purple">PROCEED TO CHECKOUT</a>
                             </div>
+                            <div class="row py-2 w-100 h5 border-bottom" v-else>
+                                <a class="btn btn-sm rounded btn-purple">Your cart is empty</a>
+                           </div>
                         </div>
                     </div>
                  </div>
@@ -109,8 +112,7 @@
           this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
  
           this.updateCartSummary();
-          console.log( this.cart)
-           
+          console.log( this.cart) 
       }, 
       methods: {           
           productUpdateUrl: function(val){
@@ -130,7 +132,11 @@
                     console.log(this.cart[i].sale_price)
                 }  
              }
+             if (this.cart_total < 1) {
+                 this.shipping_fee = 0;
+            }
              this.order_total = (this.cart_total - this.discount_total) + this.shipping_fee;
+             
           },
          changeImg: function(url){
               this.main_img = url;
