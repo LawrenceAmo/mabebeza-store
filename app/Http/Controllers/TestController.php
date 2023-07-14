@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\customer_order_confirmation;   //customer_order_shipping
+use App\Mail\customer_order_shipping;   //
 class TestController extends Controller
 {
    
@@ -31,7 +33,10 @@ class TestController extends Controller
                     ->where([ ['users.id', $userID], ['orders.paid', false]]) // 
                     ->first();
 
-        // return $data;
+                    $mail_to = 'kgapholathloriso@gmail.com';
+                    Mail::to($mail_to)->send(new customer_order_shipping($data)); 
+
+        // return $data;    customer_order_shipping
         return view('emails.customer_order_shipping')->with('order', $data);
     }
 

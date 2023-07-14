@@ -11,16 +11,19 @@ class customer_order_shipping extends Mailable
 {
     use Queueable, SerializesModels;
 
+    // protected $user;
+    protected $order;
+    // protected $shipping;
+
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $order)
     {
-        //
-    }
-
+        $this->order = $order;
+     }
     /**
      * Build the message.
      *
@@ -28,6 +31,12 @@ class customer_order_shipping extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('no-reply@mabebeza.com')
+                ->subject('Thank you for choosing Mabebeza Baby Store')
+                ->view('emails.customer_order_shipping')
+                ->with([
+                    'order' => $this->order,
+                ]);
     }
 }
+ 

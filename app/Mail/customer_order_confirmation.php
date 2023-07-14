@@ -5,9 +5,9 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue; 
 use Illuminate\Mail\Mailable;
-use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\SerializesModels; 
 
-class customer_order_confirmation extends Mailable
+class customer_order_confirmation extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 

@@ -363,7 +363,7 @@
           area = area.toLowerCase();
 
         if (!locations.includes(area)) {
-          document.getElementById("ship_to_modal_msg").innerHTML = "Sorry we don't deliver to: "+area+" <br> Please see all areas we deliver to";
+          document.getElementById("ship_to_modal_msg").innerHTML = "Sorry we don't deliver to: "+area+" <br>Please see all areas we deliver to <br> <a href='{{ route('where_we_deliver')}}' >Where we deliver</a>";
           $('#ship_to_modal').modal('show');
           localStorage.setItem('cart_productIDs', JSON.stringify([]));
           localStorage.setItem('cart', JSON.stringify([]));
@@ -467,9 +467,7 @@
                  }, 3000);
 
                  this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))
-                  //  get_products
-                  // console.log(this.allProductsDB);
-                  // console.log(this.get_products(this.allProductsDB));
+                  
               },
               methods: {
                 checkLocalStorage: function(key){
