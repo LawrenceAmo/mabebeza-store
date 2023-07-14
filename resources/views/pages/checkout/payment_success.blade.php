@@ -43,6 +43,10 @@
         </div>
     </div>
     <script>
+
+        setTimeout(() => {
+            location.href = '/'
+        }, 20000);
         const { createApp } = Vue;
     </script>
 </x-guest-layout>

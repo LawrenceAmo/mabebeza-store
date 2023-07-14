@@ -315,7 +315,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title font-weight-bold text-danger">Oooppss!!!</h3>
+            <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -363,7 +363,7 @@
           area = area.toLowerCase();
 
         if (!locations.includes(area)) {
-          document.getElementById("ship_to_modal_msg").innerHTML = "Sorry we don't deliver to: "+area+" <br>Please see all areas we deliver to <br> <a href='{{ route('where_we_deliver')}}' >Where we deliver</a>";
+          document.getElementById("ship_to_modal_msg").innerHTML = "We don't deliver to: "+area+" <br>   <a href='{{ route('where_we_deliver')}}' >Please see places we deliver to:</a>";
           $('#ship_to_modal').modal('show');
           localStorage.setItem('cart_productIDs', JSON.stringify([]));
           localStorage.setItem('cart', JSON.stringify([]));

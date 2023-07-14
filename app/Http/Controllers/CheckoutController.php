@@ -329,17 +329,42 @@ class CheckoutController extends Controller
                                     )
                             ->where([ ['users.id', $userID], ['orders.paid', false]])
                             ->first();
+  
+                    // /////////////////////////////////////////////////
+
+                  Mail::to($order->user_email)->send(new customer_order_confirmation($order));
+
+
+                   $store = 'tembisa';
+
+                    $tembisa = [ "tembisa", "midrand", "sunninghill", "waterfall city", "randjespark", "noordwyk", "olifantsfontein", "clayville" ];
+                    $doc = [ "fourways", "sunninghill", "farmall", "diepsloot", "olievenhoutbosch" ];
  
+                    if (in_array(strtolower($order->suburb), $tembisa) || in_array(strtolower($order->city), $tembisa)) {
+                        $store = 'tembisa';
+                        $sent_to_store = 'madibaamohelang@gmail.com';
+                    }
+                    
+                    if (in_array(strtolower($order->suburb), $doc) || in_array(strtolower($order->city), $doc)) {
+                        $store = 'doc';
+                        $sent_to_store = 'amo@amomad.com';
+                    }
+
+                    if (!in_array(strtolower($order->suburb), $doc) || !in_array(strtolower($order->city), $doc) || !in_array(strtolower($order->suburb), $tembisa) || !in_array(strtolower($order->city), $tembisa)) {
+                        $store = 'tembisa';
+                        $sent_to_store = 'info@fadaeco.com';
+                    }
+
+                    Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
+
                     DB::table('orders')
                             ->where('orderID',  $order->orderID)
                             ->update([
+                                'store' => $store,                                  
                                 'paid' => true,                                  
                                 'payment' => $order->total_amount,                                 
                             ]);
-
-                    $order_status = true;   // payment successful
-                    
-                    dispatch(new SendOrderConfirmation($order, $order_status));
+                    //////////////////////////////////////////////////
  
                 return view('pages.checkout.payment_success')->with('order', $order);
 
@@ -387,8 +412,10 @@ class CheckoutController extends Controller
                                 'status' => 'cancelled',                                 
                             ]); 
 
+
                 $order_status = false;   // payment successful
-                dispatch(new SendOrderConfirmation($order, $order_status));
+                // dispatch(new SendOrderConfirmation($order, $order_status));
+                // Mail::to($mail_to)->send(new customer_order_confirmation($order));
 
                 return view('pages.checkout.payment_failed')->with('order', $order);
 

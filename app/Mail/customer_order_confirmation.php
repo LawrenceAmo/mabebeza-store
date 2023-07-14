@@ -23,7 +23,7 @@ class customer_order_confirmation extends Mailable implements ShouldQueue
     public function __construct( $order)
     {
         $this->order = $order;
-     }
+    }
 
     /**
      * Build the message.

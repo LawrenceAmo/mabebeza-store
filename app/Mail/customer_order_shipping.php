@@ -39,4 +39,3 @@ class customer_order_shipping extends Mailable
                 ]);
     }
 }
- 

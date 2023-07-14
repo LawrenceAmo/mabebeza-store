@@ -13,7 +13,6 @@ return new class extends Migration
             $table->text('shipping_comments')->nullable();
         });
     }
-
      
     public function down()
     {
