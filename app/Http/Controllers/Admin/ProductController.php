@@ -398,6 +398,8 @@ class ProductController extends Controller
         //     // 'price' => 'required',                       
         //  ]);
 
+        // return $request;
+
         $sale = (bool)$request->sale;
         $availability = (bool)$request->availability;
         $publish = (bool)$request->publish;
@@ -406,11 +408,12 @@ class ProductController extends Controller
                 ->where('productID', (int)$request->productID)   
                 ->limit(1)   
                 ->update([ 
+                    'type' => $request->product_type,
                     'sale' => $sale,
                     'availability' => $availability,
                     'publish' => $publish,                                                   
                  ]);
-                //  return $request;
+                //  
         
         return redirect()->to(route('product_update_publish', [(int)$request->productID]))->with('success', '');
     }

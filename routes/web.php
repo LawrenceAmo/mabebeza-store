@@ -86,12 +86,12 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
      Route::get('/customers', [CustomersController::class, 'view_customers'])->name('view_customers');
      Route::POST('/customers/create', [CustomersController::class, 'create_customer'])->name('create_customer');
  
+    //  Staff Members
+    Route::get('/staff', [StaffController::class, 'index'])->name('staff');
+    Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
+    Route::get('/staff/update/{id}', [StaffController::class, 'update_staff'])->name('update_staff');
+    Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
 
-        //  Staff Members
-        Route::get('/staff', [StaffController::class, 'index'])->name('staff');
-        Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
-        Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
-    
        //  Orders
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');
       Route::get('/orders/{id}', [OrdersController::class, 'order'])->name('order');
@@ -101,9 +101,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
   
      
     //  Explore more
-    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
-    // Route::get('/product/create', [ProductController::class, 'create'])->name('create_product');
-    // Route::get('/product', [StoreController::class, 'index'])->name('save_store');
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore'); 
 
 });
  
@@ -141,19 +139,17 @@ require __DIR__.'/auth.php';
 
     Route::get('/mail',[TestController::class, 'mail'])->name('mail');
     Route::get('/map-test',[TestController::class, 'map_test'])->name('map_test');
-    // GuestProductsController
- // Products
- Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
- Route::get('/sub-categories/{id}/{category?}',[GuestProductsController::class, 'view_sub_category'])->name('guest_view_sub_category');
- Route::get('/where-we-deliver',[GuestProductsController::class, 'where_we_deliver'])->name('where_we_deliver');
- Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
- Route::get('/my-wish-list',[GuestProductsController::class, 'my_wish_list'])->name('my_wish_list');
- Route::get('/checkout/billing',[CheckoutController::class, 'checkout'])->name('checkout');
- Route::get('/checkout/auth-error',[CheckoutController::class, 'checkout_auth_error'])->name('checkout_auth_error');
- Route::get('/search/{name}',[GuestProductsController::class, 'guest_search_product'])->name('guest_search_product');
- Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
- // return redirect()->to( route('portal'));  
- // return view('pages.products.view');  
-// }); //[PortalController::class, 'index'])->name('portal');
+ 
+        // Products
+    Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
+    Route::get('/sub-categories/{id}/{category?}',[GuestProductsController::class, 'view_sub_category'])->name('guest_view_sub_category');
+    Route::get('/where-we-deliver',[GuestProductsController::class, 'where_we_deliver'])->name('where_we_deliver');
+    Route::get('/my-cart',[GuestProductsController::class, 'my_cart'])->name('my_cart');
+    Route::get('/my-wish-list',[GuestProductsController::class, 'my_wish_list'])->name('my_wish_list');
+    Route::get('/checkout/billing',[CheckoutController::class, 'checkout'])->name('checkout');
+    Route::get('/checkout/auth-error',[CheckoutController::class, 'checkout_auth_error'])->name('checkout_auth_error');
+    Route::get('/search/{name}',[GuestProductsController::class, 'guest_search_product'])->name('guest_search_product');
+    Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
+ 
 
 

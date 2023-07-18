@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\customer_order_shipping;
 use App\Jobs\SendOrderConfirmation;
-
+use App\Mail\customer_order_confirmation;
 class OrdersController extends Controller
 {
     /**
@@ -19,10 +19,22 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = DB::table('orders')
-                ->leftJoin('users', 'users.id', '=', 'orders.userID' )
-                ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
-                ->get();
+        $user = Auth::user();
+        if ( $user->store ) {
+            $orders = DB::table('orders')
+                    ->leftJoin('users', 'users.id', '=', 'orders.userID' )
+                    ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                    ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name',)
+                    ->where('orders.store', '=', $user->store)
+                    ->get();
+        } else {
+            $orders = DB::table('orders')
+                    ->leftJoin('users', 'users.id', '=', 'orders.userID' )
+                    ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                    ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name')
+                    ->get();
+        }
+        // return $orders;
 
         return view('portal.orders.index')
                 ->with("orders", $orders);
@@ -101,14 +113,31 @@ class OrdersController extends Controller
 
         $userID = (int)Auth::id();
 
-       $order = DB::table('orders')
-                 ->where('orderID',  $request->orderID)
-                 ->first();
+       $order = DB::table('users')
+                    ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
+                    ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                    ->select('users.first_name as user_name',
+                            'users.last_name as user_surname',
+                            'users.email as user_email',
+                            'users.phone as user_phone',
+                            'shipping_addresses.street as user_street',
+                            'shipping_addresses.suburb as user_suburb',
+                            'shipping_addresses.city as user_city',
+                            'shipping_addresses.state as user_state',
+                            'shipping_addresses.country as user_country',
+                            'shipping_addresses.postal_code as user_postal_code', 
+                            'shipping_addresses.*','orders.*',
+                            )
+                    ->where('orders.orderID',  $request->orderID)
+                    ->first();
 
          if (!$order->paid_all) {
              return redirect()->back()->with('error', 'Please Approve Order First');
+        }
+        if ($order->qty < $request->qty) {
+                return redirect()->back()->with('error', "You can't deliver ".$request->qty." items, You must deliver only ".$order->qty." items");
         } 
-        return $order;
+        // return $order;
 
         $del = new deliveries();
         $del->qty = $request->qty;
@@ -118,8 +147,7 @@ class OrdersController extends Controller
         $del->orderID = $request->orderID;
         // $del->save();
 
-        // dispatch(new SendOrderConfirmation($order, $order_status));
-        Mail::to($mail_to)->send(new customer_order_confirmation($this->order)); 
+         Mail::to($order->email)->send(new customer_order_shipping($order)); 
 
         return redirect()->back()->with('success', 'Shipping Updated');  //Update Shipping:
     }
@@ -130,21 +158,33 @@ class OrdersController extends Controller
         $request->validate([
             'comments' => 'required',  
             'order_status' => 'required',                  
+            'invoice' => 'required',                  
        ]);
 
         $userID = (int)Auth::id();
 
-        $order = DB::table('deliveries')
+        $deliveries = DB::table('deliveries')
                  ->where('orderID',  $request->orderID)
                  ->first();
-
-        if (!$order) {
+               
+        $order = DB::table('orders')
+                 ->where('orderID',  (int)$request->orderID)
+                 ->first();
+ 
+        if (!$deliveries) {
              return redirect()->back()->with('error', 'Please Deliver Order First');
         } 
 
-         DB::table('orders')
+        //  uploud invoice
+        $filename = $request->invoice->getClientOriginalName();
+        $ext = substr($filename,-5);            
+        $filename = "inv-".$order->order_number."".$ext;
+        $request->invoice->storeAs('invoices/',"$filename",'public');
+
+        DB::table('orders')
             ->where('orderID',  (int)$request->orderID) 
             ->update([
+                'invoice' => $filename,
                 'comments' => $request->comments,                                 
                 'status' => $request->order_status,                                 
                 'updated_at' => now(),                                 

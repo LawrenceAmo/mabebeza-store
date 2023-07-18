@@ -9,7 +9,7 @@
             <hr>
 
             <p class="">Thank You for Your Purchase! </p>
-  
+
                 <p class="h5">Order Details:</p>
                 <div class=""> Order Number: <span class="font-weight-bold text-danger">{{$order->order_number}}</span></div>
                 <div class=""> Items qty Ordered:: <span class="font-weight-bold ">{{$order->qty}}</span></div>
@@ -42,8 +42,7 @@
              
         </div>
     </div>
-    <script>
-
+    <script> 
         setTimeout(() => {
             location.href = '/'
         }, 20000);

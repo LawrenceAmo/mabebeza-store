@@ -43,7 +43,7 @@
                                 @endif</td> --}}
                                 {{-- <td>{{ $user->website }}</td> --}}
                                 <td>
-                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href="{{ route('update_staff', [$user->id] )  }}"> <i class="fas fa-pencil-alt    "></i> </a> | 
                                     <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
                                  </td>
                             </tr>

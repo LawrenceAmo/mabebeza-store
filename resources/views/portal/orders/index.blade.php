@@ -43,14 +43,14 @@
                                         <span class="text-danger"> No</span>
                                         @endif
                                     </td>
-                                    <td> 
+                                    <td>
                                         @if ($order->paid_all)
                                            <span class="text-success"> Yes</span>
                                         @else
-                                        <span class="text-danger"> No</span>
+                                            <span class="text-danger"> No</span>
                                         @endif
                                     </td>
-                                    <td> 
+                                    <td>
                                        {{$order->status}}
                                     </td>
                                     <td> <a target="_blank" href="https://www.google.com/maps/place/cameroun+St,+Tswelopele,+Tembisa,+1666/@-25.9638082,28.208273,17z/data=!3m1!4b1!4m6!3m5!1s0x1e9569341a096b43:0x139e8577727bc31d!8m2!3d-25.9638082!4d28.2108479!16s%2Fg%2F1pxqddty2?entry=ttu">
@@ -66,11 +66,11 @@
                                 @endforeach
                             </tbody>
                     </table>
-                    @if ( !($order->status == 'pending' || $order->status == 'processing') )
+                    {{-- @if ( !($order->status == 'pending' || $order->status == 'processing') )
                         <div class="text-center ">
                             <p class="h5 font-weight-bold  font-Raleway ">No New Orders</p>
                         </div>
-                    @endif
+                    @endif --}}
                 </div>
             </div>
         </div>
@@ -104,7 +104,8 @@
                             </thead>
                             <tbody>
                                 @foreach ($orders as $order)
-                                @if (($order->status == 'completed' || $order->status == 'cancelled')  )
+                                
+                                @if ( in_array($order->status, [ 'completed', 'cancelled'])   )
                                      <tr >
                                         <td scope="row"></td>
                                         <td>{{$order->order_number}}</td>

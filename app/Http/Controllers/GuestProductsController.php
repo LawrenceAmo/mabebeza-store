@@ -27,11 +27,11 @@ class GuestProductsController extends Controller
         $products = DB::table('products')
                     ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
                     ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID' )
-                    ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', )
+                    ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type' )
                     ->where( 'products.availability', '=',  true)
                     ->where( 'products.publish', '=', true)
                     // ->where( 'product_photos.thumbnail', '=', true)
-                    ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price',)
+                    ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price', 'products.type')
                     ->get();
         // return $products;
         // Cache the response for 5 minutes

@@ -312,6 +312,12 @@
                                                      
                                                 </tbody>
                                             </table>
+                                            <div class="py-1">
+                                                <div class=" border-bottom pb-3">
+                                                    <div class="">Download Invoice:</div>
+                                                    <a target="blank" href="{{ asset('storage/invoices/'.$order->invoice) }}">{{ $order->invoice }}</a>
+                                                </div>
+                                            </div>
                                             <div class="">
                                                 <p class="h6">Comments:</p>
                                                 <p class="border rounded p-2">
@@ -429,7 +435,7 @@
       <!-- Modal -->
       <div class="modal fade" id="update_order" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="{{ route('update_order') }}" method="POST"  class="modal-content">
+            <form action="{{ route('update_order') }}" method="POST"  class="modal-content" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h5 class="modal-title">Update Shipping Status  For - <span class="font-weight-bold">{{$order->order_number}}</span></h5>
                         <button type="button" class="close bg-white border-0" data-dismiss="modal" aria-label="Close">
@@ -453,6 +459,12 @@
                                     </div>
                                 </div>
                             </div> <br>
+                            <div class="form-group">
+                              <label for="">Upload Customer Invoice</label>
+                              <input type="file" class="form-control-file" name="invoice" id="" placeholder="" aria-describedby="fileHelpId">
+                              {{-- <small id="fileHelpId" class="form-text text-muted">Help text</small> --}}
+                            </div>
+                             <br>
                             <div class="row">
                                 <div class="">
                                     <div class="form-group">

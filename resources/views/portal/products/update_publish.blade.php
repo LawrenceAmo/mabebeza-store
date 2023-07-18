@@ -23,6 +23,75 @@
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
             </div>
          </div>
+
+         <div class=" d-flex justify-content-between   rounded">
+            @if ($product->type == 'featured')                 
+                <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="product_type" id="" value="featured" checked >
+                        Featured Products
+                    </label>
+                </div>                
+            @else
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="product_type" id="" value="featured"   >
+                    Featured Products
+                  </label>
+                </div>
+            @endif
+            {{--  --}}
+
+            @if ($product->type == 'new')                 
+                <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="product_type" id="" value="new" checked >
+                        New Products
+                    </label>
+                </div>                
+            @else
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="product_type" id="" value="new"   >
+                    New Products
+                  </label>
+                </div>
+            @endif
+           {{-- /////// --}}
+           @if ($product->type == 'sale')                 
+                <div class="form-check">
+                        <label class="form-check-label">
+                        <input type="radio" class="form-check-input" name="product_type" id="" value="sale" checked >
+                        Sales Products
+                    </label>
+                </div>                
+            @else
+                <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="product_type" id="" value="sale"   >
+                    Sales Products
+                    </label>
+                </div>
+            @endif
+{{-- ////// --}}
+
+            @if ($product->type == 'other')                 
+            <div class="form-check">
+                    <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="product_type" id="" value="other" checked >
+                    Other Products
+                </label>
+            </div>                
+            @else
+            <div class="form-check">
+                <label class="form-check-label">
+                <input type="radio" class="form-check-input" name="product_type" id="" value="other"   >
+                Other Products
+                </label>
+            </div>
+            @endif
+ 
+         </div>
         
         <div class=" row">
             <div class="col-md-4 p-2 d-flex flex-column justify-content-center">
@@ -77,7 +146,7 @@
         </div> 
         <hr>
         <div class=" ">
-            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Save Product Pricing </button>
+            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Publish Product   </button>
         </div>
     </div>
     <input type="hidden" class="form-control" name="productID" value="{{ $product->product_productID }}" required placeholder="">

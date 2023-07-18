@@ -10,10 +10,8 @@ use App\Mail\customer_order_confirmation;   //customer_order_shipping
 use App\Mail\customer_order_shipping;   //
 class TestController extends Controller
 {
-   
     public function mail() {
- 
-        // $user = Auth::user();
+
         $userID = (int)Auth::id();
         $data = DB::table('users')
                     ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
@@ -30,18 +28,18 @@ class TestController extends Controller
                             'shipping_addresses.postal_code as user_postal_code', 
                             'shipping_addresses.*','orders.*',
                             ) 
-                    ->where([ ['users.id', $userID], ['orders.paid', false]]) // 
+                    ->where([ ['users.id', $userID], ['orders.paid', false]]) // , ['orders.paid', false]
                     ->first();
 
-                    $mail_to = 'kgapholathloriso@gmail.com';
-                    Mail::to($mail_to)->send(new customer_order_shipping($data)); 
+                    // $mail_to = 'kgapholathloriso@gmail.com';
+                    // Mail::to($mail_to)->send(new customer_order_shipping($data)); customer_order_shipping
 
-        // return $data;    customer_order_shipping
-        return view('emails.customer_order_shipping')->with('order', $data);
+        // return $data;    
+        return view('emails.store_order_confirmation')->with('order', $data);
     }
 
    public function map_test()  {
-    return view('pages.map_test');
+        return view('pages.map_test');
     }
 
 }

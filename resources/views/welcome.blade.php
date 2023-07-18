@@ -171,8 +171,8 @@
         <div class="px-3">
             <div class="row " >
 
-                <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
-                    <div class="card text-left"   >
+                <div class=" col-6 col-xl-2 col-lg-2 col-md-3   col-sm-4" v-for="product,i in featured_products" >
+                    <div class="card text-left"  >
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
                           <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
@@ -206,13 +206,13 @@
     <hr>
     <section class="">
         <div class=" ">
-            <p class=" h3 text-center font-Raleway text-purple">Best Sellers</p>            
+            <p class=" h3 text-center font-Raleway text-purple">New Items</p>            
         </div>
         <div class="px-3">
             <div class="row " >
 
-              <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
-                <div class="card text-left"   >
+              <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in new_products">
+                <div class="card text-left" >
                     <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg( product.url )" alt="">
                     <div class="card-body   px-2 py-0">
                       <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
@@ -251,8 +251,8 @@
       <div class="px-3">
           <div class="row " >
 
-            <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">
-              <div class="card text-left"   >
+            <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in sale_products">
+              <div class="card text-left" >
                   <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
                     <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
@@ -338,6 +338,9 @@
             vendor_product_price: '',
             product_price: '',
             products: [],
+            featured_products: [],
+            new_products: [],
+            sale_products: [],
             margin: '',
             stock_value: 0,
             total_stock_units: 0,
@@ -364,8 +367,28 @@
             this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
 
             // get products from api
-            this.products = JSON.parse(localStorage.getItem('all_products'))
+            let products = JSON.parse(localStorage.getItem('all_products'))
 
+            // console.log(this.products)
+
+            // let featured_products = [];  let new_products = [];  let sale_products = [];
+            for (let i = 0; i < products.length; i++) {
+              if (products[i].type == 'featured') {
+                this.featured_products.push(products[i])
+              }
+              if (products[i].type == 'new') {
+                this.new_products.push(products[i])
+              }
+              if (products[i].type == 'sale') {
+                this.sale_products.push(products[i])
+              }              
+            }
+
+            console.log(this.featured_products)
+ 
+            // this.sale_products = [ ...sale_products];
+            // this.new_products = [ ...new_products];
+            // this.featured_products = featured_products;
             // let productsDB = await axios.get('{{route("get_products")}}');  
             //     productsDB = await productsDB.data
             //  this.products = productsDB

@@ -330,29 +330,26 @@ class CheckoutController extends Controller
                             ->where([ ['users.id', $userID], ['orders.paid', false]])
                             ->first();
   
-                    // /////////////////////////////////////////////////
+                    // //////////////////////////////////
 
                   Mail::to($order->user_email)->send(new customer_order_confirmation($order));
 
-
-                   $store = 'tembisa';
+                    $store = 'tembisa';
+                    $sent_to_store = 'info@mabebeza.com';
 
                     $tembisa = [ "tembisa", "midrand", "sunninghill", "waterfall city", "randjespark", "noordwyk", "olifantsfontein", "clayville" ];
                     $doc = [ "fourways", "sunninghill", "farmall", "diepsloot", "olievenhoutbosch" ];
  
                     if (in_array(strtolower($order->suburb), $tembisa) || in_array(strtolower($order->city), $tembisa)) {
-                        $store = 'tembisa';
-                        $sent_to_store = 'madibaamohelang@gmail.com';
+                        $store = 'tembisa'; 
                     }
-                    
+
                     if (in_array(strtolower($order->suburb), $doc) || in_array(strtolower($order->city), $doc)) {
-                        $store = 'doc';
-                        $sent_to_store = 'amo@amomad.com';
+                        $store = 'bambanani'; 
                     }
 
                     if (!in_array(strtolower($order->suburb), $doc) || !in_array(strtolower($order->city), $doc) || !in_array(strtolower($order->suburb), $tembisa) || !in_array(strtolower($order->city), $tembisa)) {
-                        $store = 'tembisa';
-                        $sent_to_store = 'info@fadaeco.com';
+                        $store = 'tembisa'; 
                     }
 
                     Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
