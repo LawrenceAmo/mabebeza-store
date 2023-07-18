@@ -83,28 +83,37 @@ class StaffController extends Controller
 
         return redirect()->back();
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+     
     public function update_staff($id)
     {
-        return view('portal.staff.update');
+        $staff =  DB::table('users') 
+                    ->where('id', (int)$id )
+                    ->first(); 
+        
+        $stores =  DB::table('stores') 
+                     ->get(); 
+        // return $stores;
+        
+        return view('portal.staff.update')->with('staff', $staff)->with('stores', $stores);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
-    {
-        //
+    {       
+        $request->validate([
+            'store' => ['required'],
+            'driver' => ['required'],
+        ]);
+
+        $driver = (bool)$request->store;
+
+        DB::table('users') 
+            ->where('id', (int)$request->id )
+            ->update([
+                'store' => $request->store,
+                'driver' => $driver,
+            ]);
+
+        return redirect()->back();
     }
 
     /**

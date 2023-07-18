@@ -171,7 +171,7 @@
         <div class="px-3">
             <div class="row " >
 
-                <div class=" col-6 col-xl-2 col-lg-2 col-md-3   col-sm-4" v-for="product,i in featured_products" >
+                <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in featured_products" >
                     <div class="card text-left"  >
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
@@ -289,39 +289,40 @@
       <div class=" p-3 px-5  d-flex justify-content-between">
             <div class="">
                 <a href="" class="  rounded-circle shadow" >
-                    <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
-                    <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
+                    <img loading="lazy" height="100" class=" p-1 rounded " src="{{ asset('images/brands/picture1.png') }}" alt="">
+                    {{-- <p class="h6 font-weight-bold pt-1 text-center">Pampers</p> --}}
                 </a>
             </div>
               <div class="">
                 <a href="" class="  rounded-circle shadow" >
                   <div class="text-center"> 
-                    <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">            </div>
-                  <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
-                </a>
+                    <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture2.png') }}" alt="">
+                  </div>
+                 </a>
             </div>
             <div class="">
               <a href="" class="  rounded-circle shadow" >
-                  <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
-                  <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
+              <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture3.png') }}" alt="">
               </a>
-          </div>            
+          </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
-                <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
+            <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture4.png') }}" alt="">
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
-                <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture5.png') }}" alt="">
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-                <img loading="lazy" height="80"    class="  bg-dark p-1 rounded " src="https://images.ctfassets.net/9wtva4vhlgxb/7jkYyii10bNnsldUFDkTzC/2b714b229ea20ab5bd68f5da8fc5a0ca/White__1_.svg" alt="">
-                <p class="h6 font-weight-bold pt-1 text-center">Pampers</p>
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture6.png') }}" alt="">
+            </a>
+          </div>
+          <div class="">
+            <a href="" class="  rounded-circle shadow" >
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture7.png') }}" alt="">
             </a>
           </div>
       </div>
