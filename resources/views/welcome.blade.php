@@ -307,40 +307,40 @@
       <div class=" p-3 px-5  d-flex justify-content-between">
             <div class="">
                 <a href="" class="  rounded-circle shadow" >
-                    <img loading="lazy" height="100" class=" p-1 rounded " src="{{ asset('images/brands/picture1.png') }}" alt="">
+                    <img loading="lazy" height="100" class=" p-1 rounded " src="{{ asset('/images/brands/Picture1.png') }}" alt="">
                     {{-- <p class="h6 font-weight-bold pt-1 text-center">Pampers</p> --}}
                 </a>
             </div>
               <div class="">
                 <a href="" class="  rounded-circle shadow" >
                   <div class="text-center"> 
-                    <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture2.png') }}" alt="">
+                    <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/Picture2.png') }}" alt="">
                   </div>
                  </a>
             </div>
             <div class="">
               <a href="" class="  rounded-circle shadow" >
-              <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture3.png') }}" alt="">
+              <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/Picture3.png') }}" alt="">
               </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-            <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/picture4.png') }}" alt="">
+            <img loading="lazy" height="80" class=" p-1 rounded " src="{{ asset('images/brands/Picture4.png') }}" alt="">
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture5.png') }}" alt="">
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/Picture5.png') }}" alt="">
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture6.png') }}" alt="">
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/Picture6.png') }}" alt="">
             </a>
           </div>
           <div class="">
             <a href="" class="  rounded-circle shadow" >
-            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/picture7.png') }}" alt="">
+            <img loading="lazy" height="80"    class="    p-1 rounded " src="{{ asset('images/brands/Picture7.png') }}" alt="">
             </a>
           </div>
       </div>
