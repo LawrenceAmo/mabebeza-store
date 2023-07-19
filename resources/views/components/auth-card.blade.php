@@ -18,7 +18,7 @@
               />
              </div>
               
-                <i class="  h5 pt-3 text-muted">Your Data is secured with us</i>
+                <i class="  h5 pt-3 text-muted">Your Data is secure with us</i>
                 <p class="   font-weight-light d-none">Text Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                     Debitis consequatur sint rem facilis totam dolorum aut temporibus. Aliquam dicta optio sint,
                 </p>

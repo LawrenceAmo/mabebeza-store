@@ -5,7 +5,7 @@
             <div class="d-flex justify-content-between  p-2">
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_info', [$product->product_productID])}}">Info</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_price', [$product->product_productID])}}">pricing</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey " href="{{route('product_update_vendor', [$product->product_productID])}}">Vendor</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey " href="{{route('product_update_vendor', [$product->product_productID])}}">Category</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_shipping', [$product->product_productID])}}">Shipping</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_media', [$product->product_productID])}}">Media</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded " href="{{route('product_update_publish', [$product->product_productID])}}">Publish</a></div>
@@ -16,7 +16,7 @@
         @csrf
     {{-- /////////////// --}} 
      <div class="card border rounded p-3 w-100">
-        <div class="d-flex justify-content-center "><p class="font-weight-bold h5">Product Vendor</p></div>
+        <div class="d-flex justify-content-center "><p class="font-weight-bold h5">Product Category</p></div>
         <div class="row mx-0 animated fadeInDown">
             <div class="col-12 text-center p-0 m-0">
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
@@ -88,7 +88,7 @@
         </div> 
         <hr>
         <div class=" ">
-            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Save Product Vendor </button>
+            <button class="btn btn-sm rounded font-weight-bold w-100 btn-purple"> Save Product Category </button>
         </div>
     </div>
     <input type="hidden" class="form-control" name="productID" value="{{ $product->product_productID }}" required placeholder="">

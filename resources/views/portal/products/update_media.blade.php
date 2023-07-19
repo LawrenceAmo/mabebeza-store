@@ -5,7 +5,7 @@
             <div class="d-flex justify-content-between  p-2">
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_info', [$product[0]->product_productID])}}">Info</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_price', [$product[0]->product_productID])}}">pricing</a></div>
-                 <div class=""><a class="text-dark btn btn-sm rounded  " href="{{route('product_update_vendor', [$product[0]->product_productID])}}">Vendor</a></div>
+                 <div class=""><a class="text-dark btn btn-sm rounded  " href="{{route('product_update_vendor', [$product[0]->product_productID])}}">Category</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded" href="{{route('product_update_shipping', [$product[0]->product_productID])}}">Shipping</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded btn-outline-grey" href="{{route('product_update_media', [$product[0]->product_productID])}}">Media</a></div>
                  <div class=""><a class="text-dark btn btn-sm rounded " href="{{route('product_update_publish', [$product[0]->product_productID])}}">Publish</a></div>

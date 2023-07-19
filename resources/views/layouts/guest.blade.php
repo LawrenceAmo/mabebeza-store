@@ -222,12 +222,12 @@
               <ul class="nav mt-4  ">
                 <li class="nav-item">
                   <a class="nav-link" href="https://web.whatsapp.com/" target="_blank">
-                    <i class="fab fa-whatsapp"></i> +27 71 863 2324
+                    <i class="fab fa-whatsapp"></i> +27 61	589 5114
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" target="_blank" href="https://www.linkedin.com/in/amomad/" >
-                    <i class="fab fa-linkedin-in"></i> MabebezaBaby
+                  <a class="nav-link" target="_blank" href="https://instagram.com/mabebezababy?igshid=YmMyMTA2M2Y=" >
+                    <i class="fab fa-instagram"></i> MabebezaBaby
                   </a>
                 </li>
                 <li class="nav-item">

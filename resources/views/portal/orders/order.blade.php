@@ -286,13 +286,13 @@
                                 <p class="font-weight-bold pb-0 mb-0">Order Completion:</p> 
                                 <div class="">
                                     @if (!$order->updated_by)
-                                        @if ($deliveries)
+                                        {{-- @if ($deliveries) --}}
                                              <a data-toggle="modal" data-target="#update_order" class="btn btn-sm rounded btn-purple"> Update Order Status </a>
-                                        @else
+                                        {{-- @else
                                             <a data-toggle="modal"   class="btn btn-sm rounded btn-purple"> Update Order Status </a>
                                             <br>
                                             <small class="text-danger"><i>Deliver Order First</i></small>
-                                        @endif
+                                        @endif --}}
                                     @else
                                         <div class="">
                                             <table class="table">                                         
@@ -314,7 +314,7 @@
                                             </table>
                                             <div class="py-1">
                                                 <div class=" border-bottom pb-3">
-                                                    <div class="">Download Invoice:</div>
+                                                    <div class="">View Delivery Note:</div>
                                                     <a target="blank" href="{{ asset('storage/invoices/'.$order->invoice) }}">{{ $order->invoice }}</a>
                                                 </div>
                                             </div>

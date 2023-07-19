@@ -101,6 +101,9 @@ Subtotal: R180 --}}
                     
                 </tbody>
             </table>
+            <div class=""> <br>
+                <small>All prices are inclusive of VAT at 15% except for ZERO rated goods</small>
+            </div>
         </div>
  <br> <hr>
         <div class="">
@@ -147,12 +150,12 @@ Subtotal: R180 --}}
                     <div class="col-6  " style="padding-left: 3%;">
                         
                         <div class="row   py-2 h6 ">
-                            <div class="col-6 ">careline</div>
-                            <div class="col-6 "><a href="tel:+s7824723283">082 472 3283</a></div>
+                            <div class="col-6 ">Careline</div>
+                            <div class="col-6 "><a href="tel:+s7824723283">+27 61 589 5114</a></div>
                         </div>
                         <div class="row w-100 py-2 h6 ">
                             <div class="col-6 ">WhatsApp</div>
-                            <div class="col-6 ">082 472 3283</div>
+                            <div class="col-6 ">+27 61 589 5114</div>
                         </div>
                         <div class="row w-100 py-2 h6 ">
                             <div class="col-6 ">Email</div>
@@ -173,12 +176,15 @@ Subtotal: R180 --}}
             <p>
                 If you have any questions or need further assistance,
                 please feel free to contact us at <a class="" href="mailto:careline@mabebeza.com">careline@mabebeza.com</a>. <br>
-                Our dedicated team is ready to help you.
+                Should your goods be damaged or incorrect on delivery please return them with our driver and we will resolve within 24hours. 
             </p>
 
             <p class="">
                 Thank you once again for choosing Mabebeza Baby Store. <br>
                 We look forward to serving you again in the future.
+            </p>
+            <p class="">
+
             </p>
  
             </p>  

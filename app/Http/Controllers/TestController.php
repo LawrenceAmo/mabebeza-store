@@ -35,7 +35,7 @@ class TestController extends Controller
                     // Mail::to($mail_to)->send(new customer_order_shipping($data)); customer_order_shipping
 
         // return $data;    
-        return view('emails.store_order_confirmation')->with('order', $data);
+        return view('emails.customer_order_shipping')->with('order', $data);
     }
 
    public function map_test()  {

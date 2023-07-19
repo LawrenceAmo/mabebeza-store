@@ -33,6 +33,16 @@
     overflow: hidden; /* Hide any overflowing content */
     text-overflow: ellipsis;
    }
+   .tag-new{
+    /* border: red solid 3px !important; */
+    position:absolute !important;
+   }
+   .tag-sale{
+    /* border: red solid 3px !important; */
+    position:absolute !important;
+    /* top: 13px; */
+    right: 0px;
+   }
     </style>
     <script>
       function initMap() {
@@ -155,12 +165,14 @@
     </section>
     <section class=" px-3 d-flex justify-content-between">
                @foreach ($categories as $category)
+                @if ($category->category_name != 'Other')
                 <div class="   text-center">
                   <a href="{{ route('guest_view_category', [$category->categoryID, str_replace(' ', '-',$category->category_name)]) }}" class=" text-center shadow" >
                       <img loading="lazy"  class="  main-category-img rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
                       <p class="h6 font-weight-bold pt-1  ">{{ $category->category_name}}</p>
                   </a>
                 </div>
+                @endif
               @endforeach 
      </section>
     <hr>
@@ -173,6 +185,9 @@
 
                 <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in featured_products" >
                     <div class="card text-left"  >
+                      <div class="tag-sale" v-if="product.sale_price">
+                        <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
+                      </div>
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
                           <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
@@ -213,6 +228,9 @@
 
               <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in new_products">
                 <div class="card text-left" >
+                  <div class="tag-new">
+                    <span class="bg-purple rounded p-1 font-weight-bold">New</span>
+                  </div>
                     <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg( product.url )" alt="">
                     <div class="card-body   px-2 py-0">
                       <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
