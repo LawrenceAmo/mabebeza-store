@@ -502,7 +502,7 @@
                 },
                 productImg: function(val){
                   return `{{ asset('storage/products/${val}')}}`;
-                },
+                }, 
                 productUrl: function(val){
                   if (val) {
                     let url = val.split(',') 
@@ -528,15 +528,19 @@
                 
                         let productsDB = []; let productIDs = [];  
                           for (let y = 0; y < products.length; y++) {
-             
+            //  
                             let productID = products[y].productID; 
                             if (!productIDs.includes(productID)) {
+                              if (parseInt(products[y].price) > 0) {
+                                  
                               // productsDB[ productID ] = [];   // add array of sales for this code
-                              productIDs.push(productID);
-                              productsDB.push(products[y]);
+                                productIDs.push(productID);
+                                productsDB.push(products[y]);
+
                               // productsDB[ productID ]['images'] = [];  
                               // productsDB[ productID ]['item'] = [];  
-                              // productsDB[ productID ]['item'].push( products[y]);  
+                              // productsDB[ productID ]['item'].push( products[y]); 
+                              } 
                             }
                             // productsDB[ productID ]['images'].push( products[y].url);
                           }
