@@ -31,8 +31,8 @@ class GuestProductsController extends Controller
                     ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type', 'store_inventories.quantity' , 'stores.name as store_name' )
                     ->where( 'products.availability', '=',  true)
                     ->where( 'products.publish', '=', true)
-                    ->where( 'stores.name', 'LIKE', '%ega%')
-                    ->orWhere( 'stores.name', 'LIKE', '%embisa%')
+                    // ->where( 'stores.name', 'LIKE', '%ega%')
+                    // ->orWhere( 'stores.name', 'LIKE', '%embisa%')
                     ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price', 'products.type', 'store_inventories.quantity', 'stores.name')
                     ->get();
         // return $products;
