@@ -18,7 +18,8 @@
                     </div>
                 </div>
                 <div class="col-md-7">
-                    <div class="pl-3 pt-5 ">
+                    <div class="pl-3 pt-3 ">
+                        <b class=" small text-white bg-pink rounded p-1   " v-if="product.quantity <= 1" >Out Of Stock</b>
                         <p class="h4 font-weight-bold font-Raleway">@{{product.product_name}}</p>
                         {{-- product_name price--}}
                         <p class="h5   font-Raleway " v-if="product.sale_price">
@@ -72,6 +73,7 @@
                 <div class="col-12">
                     <ul class="nav nav-tabs mb-3 pl-5" id="ex-with-icons" role="tablist">
                         <li class="nav-item" role="presentation">
+                            
                         <a class="nav-link text-purple active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#description" role="tab"
                             aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-file fa-fw me-2"></i>Product Description</a>
                         </li>

@@ -51,11 +51,11 @@
                              </div>
                              <div class="row w-100 py-2 h6 border-bottom">
                                 <div class="  col-6  ">Cart</div>
-                                <div class="  col-6  ">R@{{ cart_total }}</div>
+                                <div class="  col-6  ">R@{{ cart_total.toFixed(2) }}</div>
                             </div>
                             <div class="row w-100 py-2 h6 border-bottom">
                                 <div class="col-6 ">Discount</div>
-                                <div class="col-6 ">-R@{{ discount_total }}</div>
+                                <div class="col-6 ">-R@{{ discount_total.toFixed(2) }}</div>
                             </div>
                             <div class="row w-100 py-2 h6 border-bottom">
                                 <div class="col-6 ">Delivery Fee</div>
@@ -64,7 +64,7 @@
                             {{-- discount_total --}}
                             <div class="row py-2 w-100 h5 border-bottom">
                                 <div class="col-6 ">Order Total</div>
-                                <div class="col-6 ">R@{{ order_total }}</div>
+                                <div class="col-6 ">R@{{ order_total.toFixed(2) }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom" v-if="cart_total > 0">
                                  <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-purple">PROCEED TO CHECKOUT</a>
@@ -108,7 +108,13 @@
               localStorage.setItem('cart_productIDs', JSON.stringify([]));                
           }
           // always update the UI with data from local storage
-          this.cart = JSON.parse(localStorage.getItem('cart'))
+          let cart = JSON.parse(localStorage.getItem('cart'))
+          for (let i = 0; i < cart.length; i++) {
+            if (cart[i].quantity > 1) {
+                this.cart.push(cart[i]) 
+            }           
+          }
+        //   this.cart = cart;
           this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
  
           this.updateCartSummary();

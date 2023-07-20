@@ -7,13 +7,14 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
+{{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}} 
 <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
 {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.dark.min.css') }}"> --}}
 <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
 <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}">
 <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 

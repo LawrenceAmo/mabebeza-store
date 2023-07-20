@@ -28,7 +28,7 @@
         </div>
         <div class="col-md-4">
              <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center"> Out of Stock  <span>R?</span></p>
+                <p class="font-weight-bold h5 text-center"> Total Products <span>@{{total_stock_units}}</span></p>
              </div>
         </div>
         {{-- <div class="col-md-4">
@@ -37,8 +37,9 @@
              </div>
         </div> --}}
         <div class="col-md-4">
-             <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center">Total Products <span>@{{total_stock_units}}</span></p>
+             <div class="card p-2 border border-light btn btn-purple" @click="update_stock()">
+                <p class="font-weight-bold h5 text-center  ">Update Stock</p>
+                <i class=""><small>last update: 2023-07-18 15:13:05</small></i>
              </div>
         </div>
 
@@ -251,13 +252,22 @@
  
             console.log(rearrangedArray);
         },
-        methods: {           
+        methods: {
             productUpdateUrl: function(val){
                 var link = document.getElementById('productUpdateUrl');
                 var href = link.getAttribute('data-href');
                 href = href.replace('productID', val)
                 location.href = href
-            }
+            },
+            update_stock: async function(){
+                let stock = await axios.get('https://stokkafela.com/api/mabebeza/products');  
+                    stock = await stock.data
+ 
+                let data = await axios.post('{{route("update_stock")}}', stock );  
+                    data = await data.data
+
+                console.log(data);
+            },
         }
 
      }).mount("#app");

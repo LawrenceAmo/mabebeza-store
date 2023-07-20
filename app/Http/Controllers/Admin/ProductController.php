@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Schema;
-
+use Illuminate\Support\Collection;
 class ProductController extends Controller
 { 
     /**
@@ -418,6 +418,66 @@ class ProductController extends Controller
         return redirect()->to(route('product_update_publish', [(int)$request->productID]))->with('success', '');
     }
 
+    public function update_stock(Request $request) {
+        
+        $products = DB::table('products')
+                    ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                    ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
+                    ->get();
+
+        $tembisa = collect($request->tembisa);
+        $bambanani = collect($request->bambanani);
+        
+        // // Get the common products by matching 'sku' from $array1 with 'barcode' from $array2
+        $products->each(function ($item) use ($tembisa) {
+            $matchingProduct = $tembisa->firstWhere('barcode', $item->sku);
+            if ($matchingProduct) {
+                if ( strpos($item->name, 'embisa') || strpos($item->name, 'ega') ) {
+                    $item->quantity = (int)$matchingProduct['onhand'];
+                    $item->cost_price = $matchingProduct['avrgcost'];
+                    $item->price = $matchingProduct['sellpinc1'];
+                  }
+            }
+        });
+
+        // for Bambanani     
+        $products->each(function ($item) use ($bambanani) {
+            $matchingProduct = $bambanani->firstWhere('barcode', $item->sku);
+            if ($matchingProduct) {
+                if ( strpos($item->name, 'mbanani') || strpos( strtolower($item->name), 'doc') ) {
+                    $item->quantity = (int)$matchingProduct['onhand'];
+                    // $item->cost_price = $matchingProduct['avrgcost'];
+                    // $item->price = $matchingProduct['sellpinc1'];
+                  }
+            }
+        });
+
+        for ($i=0; $i < count($products) ; $i++) { 
+            
+            DB::table('store_inventories')
+                ->where('productID', (int)$products[$i]->productID)   
+                ->where('storeID', (int)$products[$i]->storeID)   
+                ->limit(1)   
+                ->update([
+                    'quantity' => $products[$i]->quantity,                                                              
+                ]);
+
+            if ( strpos($products[$i]->name, 'embisa') || strpos($products[$i]->name, 'ega') ) {
+                DB::table('products')
+                    ->where('productID', (int)$products[$i]->productID)   
+                    ->limit(1)   
+                    ->update([
+                        'cost_price' => $products[$i]->cost_price,                                                            
+                        'price' => $products[$i]->price,                                                             
+                    ]);
+            }
+        }
+
+        // $tembisaProducts = $products->values()->all();
+ 
+        // return response()->json($tembisa);
+        return response()->json($products);
+    }
     // /////////////////////////////////////////////////////
  
     public function upload_product_image( $prefix, $image = null)

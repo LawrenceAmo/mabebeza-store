@@ -35,7 +35,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
    <style>
       body {
-                font-family: 'Nunito', sans-serif;
+                font-family: 'Libre Franklin' !important;
             }
     .top-navbar{
       position: fixed;
@@ -471,8 +471,8 @@
               },
               methods: {
                 checkLocalStorage: function(key){
-                return localStorage.getItem(key) !== null;
-                }, 
+                 return localStorage.getItem(key) !== null;
+                },
                 view_product: function(item){
  
                       var link = document.getElementById('search_product_url');

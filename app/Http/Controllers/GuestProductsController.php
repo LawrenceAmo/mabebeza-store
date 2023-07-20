@@ -23,21 +23,23 @@ class GuestProductsController extends Controller
             // return Cache::get($cacheKey);
         }
 
-        // sub_categories.sub_category_name
         $products = DB::table('products')
+                    ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                    ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
                     ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
                     ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID' )
-                    ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type' )
+                    ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type', 'store_inventories.quantity' , 'stores.name as store_name' )
                     ->where( 'products.availability', '=',  true)
                     ->where( 'products.publish', '=', true)
-                    // ->where( 'product_photos.thumbnail', '=', true)
-                    ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price', 'products.type')
+                    ->where( 'stores.name', 'LIKE', '%ega%')
+                    ->orWhere( 'stores.name', 'LIKE', '%embisa%')
+                    ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'sub_categories.sub_category_name', 'products.price', 'products.type', 'store_inventories.quantity', 'stores.name')
                     ->get();
         // return $products;
         // Cache the response for 5 minutes
         // Cache::put($cacheKey, $products, 300);
 
-        // return $responseData;
+        // return $products;
         return response()->json($products);
     }
 
@@ -52,7 +54,7 @@ class GuestProductsController extends Controller
 
         $view = view('welcome')->with("categories", $categories)->render();
 
-        // return $this->get_products();  //$view;
+        // return $this->get_products();  //$view;/
         return $view;
         Cache::put('guest-welcome', $view, 3600);
 
@@ -71,12 +73,16 @@ class GuestProductsController extends Controller
         $productID = (int)end($name);
 
         $products = DB::table('products')
+                    ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                    ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
                     ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID')
                     ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID')
-                    ->select('products.productID', 'products.name as product_name' , 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title', )
+                    ->select('products.productID', 'products.name as product_name' , 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title',  'store_inventories.quantity' , 'stores.name as store_name'  )
                     ->where('products.productID', '=', $productID)
-                    ->orWhere('products.name', 'LIKE', '%' . $name[0] . '%')
-                    ->groupBy('products.productID', 'products.name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.sale_price', 'sub_categories.sub_category_name', 'products.price','product_photos.url', 'product_photos.title',)
+                    ->orWhere('products.name', 'LIKE', '%' . $name[0] . '%')                    
+                    ->where( 'stores.name', 'LIKE', '%ega%')
+                    ->orWhere( 'stores.name', 'LIKE', '%embisa%')
+                    ->groupBy('products.productID', 'products.name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.sale_price', 'sub_categories.sub_category_name', 'products.price','product_photos.url', 'product_photos.title',  'store_inventories.quantity' , 'stores.name' )
                     ->limit(4) // Limit the number of records to 4
                     ->get();
                     // description
