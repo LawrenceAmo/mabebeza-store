@@ -61,42 +61,29 @@ class StoreController extends Controller
      */
     public function save(Request $request)
     {
-         $request->validate([
-                    'store_name' => 'required|string',
-                    // 'trading_name' => 'required|string',
-                    // 'slogan' => 'required|string',
-                    // 'description' => 'required|string',
-                    // 'terms_and_conditions' => 'required',                     
-                 ]);
+        $request->validate([
+            'name' => 'required|string',
+            'trading_name' => 'required|string',                    
+            ]);
 
-        $userID = Auth::id();
-        // $planID = Plans::where('name', '=', 'trial')->limit(1)->get('planID');
-       
-        // if($request->terms_and_conditions){
-        //     return redirect()->back();
-        // } 
-        // if(count($planID) > 0){
-        //      $planID =  $planID[0]-> planID;
-        // }else{
-        //     $planID = 1;
-        // } 
+    $store = DB::table('stores')
+        ->where([ ['name', $request->name ], ['trading_name', $request->trading_name ] ])
+        ->exists();
 
-        $store = new Store();
-        $store->name = $request->store_name;
-        $store->trading_name = $request->trading_name;
-        $store->slogan = $request->slogan;
-        $store->discription = $request->description;
-        $store->userID = $userID;
-        // $store->planID = $planID;
-        $store->save();
+     if ($store) {
+        return redirect()->back()->with("error", "The store ".$request->trading_name." already exists!!!");
+    }
 
-        $contact = new Contacts();
-        $contact->storeID = $store->id;
-        $contact->userID = $this->userID();
-        $contact->store = true;
-        $contact->save();
-       
-        return redirect()->to('/portal/my_store');
+     // Create new store
+    $store = new Store();
+    $store->name = $request->name;
+    $store->trading_name = $request->trading_name;
+    $store->slogan = $request->slogan;
+    $store->discription = $request->description;
+    $store->userID = Auth::id();
+    $store->save();
+
+    return redirect()->back()->with("success", "The store was created successfully!!!");
     }
 
     /**

@@ -493,7 +493,8 @@ class ProductController extends Controller
                         } 
                 }
             } 
-                
+            // "SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'storeID' cannot be null (SQL: insert into `store_inventories` (`storeID`, `productID`, `quantity`, `created_at`, `updated_at`)
+            //  values (?, 1, 0, 2023-07-22 09:44:41, 2023-07-22 09:44:41))"
                 $qty = 0;
                 if ($products[$i]->quantity) {
                     $qty = $products[$i]->quantity;

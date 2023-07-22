@@ -48,9 +48,12 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
 
     // Store
     Route::get('/stores', [StoreController::class, 'index'])->name('stores');
+    Route::get('/store/{id?}', [StoreController::class, 'show'])->name('store');
     Route::get('/store/create', [StoreController::class, 'create'])->name('create_store');
     Route::post('/store/save', [StoreController::class, 'save'])->name('save_store');
-    Route::post('/store/update/{id}', [StoreController::class, 'update'])->name('update_store');
+    Route::get('/store/edit/{id}', [StoreController::class, 'edit'])->name('edit_store');
+    Route::post('/store/update', [StoreController::class, 'update'])->name('update_store');
+    Route::get('/store/delete/{id}', [StoreController::class, 'destroy'])->name('delete_store');
 
     //  Products
     Route::get('/products', [ProductController::class, 'index'])->name('my_products');
