@@ -485,10 +485,10 @@ class ProductController extends Controller
             if (!$products[$i]->storeID) {
                 for ($x=0; $x <count($stores) ; $x++){
                     $storeName = strtolower($stores[$x]->name);                    
-                        if (strpos($storeName, 'ega') !== false || strpos($storeName, 'embisa') !== false) {
+                        if (strpos(strtolower($storeName), 'tembisa')  !== false || strpos(strtolower($storeName), 'mega') !== false) {
                             $products[$i]->storeID = $stores[$x]->storeID;
                         }
-                        if (strpos($storeName, 'doc') !== false || strpos($storeName, 'ambanani') !== false) {
+                        if (strpos(strtolower($storeName), 'doc') !== false || strpos(strtolower($storeName), 'bambanani') !== false) {
                             $products[$i]->storeID = $stores[$x]->storeID;
                         } 
                 }
