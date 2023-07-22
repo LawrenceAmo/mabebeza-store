@@ -203,6 +203,7 @@
 
                           <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
                             <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
+                            <span v-else></span>
                             <b class=" font-weight-bold ">R@{{ product.price}}</b>
                           </p>
 
@@ -249,6 +250,7 @@
 
                       <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
                         <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
+                        <span v-else></span>
                         <b class=" font-weight-bold ">R@{{ product.price}}</b>
                       </p>
 
@@ -292,6 +294,7 @@
 
                     <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
                       <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
+                      <span v-else></span>
                       <b class=" font-weight-bold ">R@{{ product.price}}</b>
                     </p>
 

@@ -425,7 +425,7 @@ class ProductController extends Controller
         $products = DB::table('products')
                     ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
                     ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
-                    ->select( 'stores.*', 'products.*', 'store_inventories.quantity', 'store_inventories.storeID',	'store_inventories.productID as pID')
+                    ->select( 'stores.name as store_name' , 'products.*', 'store_inventories.quantity', 'store_inventories.storeID',	'store_inventories.productID as pID')
                     ->get();
                     
         $stores = DB::table('stores')->get();
@@ -435,9 +435,9 @@ class ProductController extends Controller
         
         // // Get the common products by matching 'sku' from $array1 with 'barcode' from $array2
         $products->each(function ($item) use ($tembisa) {
-            $matchingProduct = $tembisa->firstWhere('barcode', $item->sku);
+            $matchingProduct = $tembisa->firstWhere('barcode', (string)$item->sku);
             if ($matchingProduct) {
-                if ( strpos($item->name, 'embisa') || strpos($item->name, 'ega') ) {
+                if ( strpos(strtolower($item->store_name), 'tembisa') || strpos(strtolower($item->store_name), 'mega') ) {
                     $item->quantity = (int)$matchingProduct['onhand'];
                     $item->cost_price = $matchingProduct['avrgcost'];
                     $item->price = $matchingProduct['sellpinc1'];
@@ -445,28 +445,33 @@ class ProductController extends Controller
             }
         });
 
+        // return response()->json($products);
+
+    
         // for Bambanani     
         $products->each(function ($item) use ($bambanani) {
             $matchingProduct = $bambanani->firstWhere('barcode', $item->sku);
             if ($matchingProduct) {
-                if ( strpos($item->name, 'mbanani') || strpos( strtolower($item->name), 'doc') ) {
-                    $item->quantity = (int)$matchingProduct['onhand']; 
+                if ( strpos(strtolower($item->store_name), 'bambanani') || strpos( strtolower($item->store_name), 'doc') ) {
+                    $item->quantity = (int)$matchingProduct['onhand'];
+                    $item->cost_price = $matchingProduct['avrgcost'];
+                    $item->price = $matchingProduct['sellpinc1'];
                   }
             }
         });
 
         for ($i=0; $i < count($products) ; $i++) { 
             
-            DB::table('store_inventories')
-                ->where('productID', (int)$products[$i]->productID)   
-                ->where('storeID', (int)$products[$i]->storeID)   
-                ->limit(1)   
-                ->update([
-                    'quantity' => $products[$i]->quantity,                                                              
-                ]);
+            // DB::table('store_inventories')
+            //     ->where('productID', (int)$products[$i]->productID)   
+            //     ->where('storeID', (int)$products[$i]->storeID)   
+            //     ->limit(1)   
+            //     ->update([
+            //         'quantity' => $products[$i]->quantity,                                                              
+            //     ]);
                 
 
-            if ( strpos($products[$i]->name, 'embisa') || strpos($products[$i]->name, 'ega') ) {
+            if ( strpos(strtolower($products[$i]->store_name), 'tembisa') || strpos(strtolower($products[$i]->store_name), 'mega') ) {
                 DB::table('products')
                     ->where('productID', (int)$products[$i]->productID)   
                     ->limit(1)   
@@ -489,7 +494,10 @@ class ProductController extends Controller
                 }
             } 
                 
-                $qty = $products[$i]->quantity || 0;
+                $qty = 0;
+                if ($products[$i]->quantity) {
+                    $qty = $products[$i]->quantity;
+                }
 
                 $data = [
                     'quantity' => $qty,
