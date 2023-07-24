@@ -168,7 +168,7 @@
                 @if ($category->category_name != 'Other')
                 <div class="   text-center">
                   <a href="{{ route('guest_view_category', [$category->categoryID, str_replace(' ', '-',$category->category_name)]) }}" class=" text-center shadow" >
-                      <img loading="lazy"  class="  main-category-img rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('images/background/imagesa.jpeg')}}" alt="">
+                      <img loading="lazy"  class="  main-category-img rounded-circle shadow p-1" style="border:3px solid #94d2ec;" src="{{ asset('storage/images/background/'.$category->category_short_descript)}}" alt="">
                       <p class="h6 font-weight-bold pt-1  ">{{ $category->category_name}}</p>
                   </a>
                 </div>
@@ -469,6 +469,7 @@
                   this.cart_productIDs.push(item.productID)
                   this.updateCartLocalStorage();
                 }
+                console.log(item)
             },
             add_to_wish_list: function(item){
               add_to_wish_list(item) 

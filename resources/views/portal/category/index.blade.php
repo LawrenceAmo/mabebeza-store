@@ -31,8 +31,8 @@
                                 <td>{{ $category->category_name }}</td>
                                 <td>{{ $category->category_short_descript }}</td>
                                  <td>
-                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
-                                    <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
+                                     <a href="{{ route('update_main_category', [$category->categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                    {{-- <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a> --}}
                                  </td>
                             </tr>
                             <?php $i++; ?>
@@ -116,7 +116,7 @@
                             <textarea class="form-control" name="description" id="" rows="3"></textarea>
                             </div> 
 
-                    </div>
+                    </div> 
                     </div>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-sm rounded btn-purple">create main category</button>

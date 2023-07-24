@@ -78,6 +78,8 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     //  Categories
     Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
     Route::POST('/categories/main/create', [CategoryController::class, 'create_main_category'])->name('create_main_category');
+    Route::POST('/categories/main/save', [CategoryController::class, 'save_main_category'])->name('save_main_category');
+    Route::get('/categories/main/update/{id}', [CategoryController::class, 'update_main_category'])->name('update_main_category');
     Route::POST('/categories/sub/create', [CategoryController::class, 'create_sub_category'])->name('create_sub_category');
 
     //  suppliers

@@ -244,7 +244,7 @@ $signature = generateSignature($data, $passphrase);
               order_total: 0,
               main_img: '',
               category: '',
-              shipping_fee: 35,
+              shipping_fee: 0,
               order_number: '',
               payfast_order_total: '',
              };
@@ -259,6 +259,7 @@ $signature = generateSignature($data, $passphrase);
                   localStorage.setItem('cart_productIDs', JSON.stringify([]));                
               }
               // always update the UI with data from local storage
+              this.shipping_fee = JSON.parse(localStorage.getItem('shipping_fee'));
               this.cart = JSON.parse(localStorage.getItem('cart'))
               this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
      

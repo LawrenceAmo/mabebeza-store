@@ -45,6 +45,40 @@ class CategoryController extends Controller
         return redirect()->back()->with('success', 'Main Category was created successfully!!!');
     }
 
+    public function update_main_category(int $id) {
+
+        $category = DB::table('categories')
+                        ->where('categoryID', $id)
+                        ->first();
+ 
+        return view('portal.category.main_category')->with('category', $category);
+    }
+
+    public function save_main_category(Request $request) {
+
+        $request->validate([
+            // 'name' => 'required',                  
+            // 'image' => 'required',                  
+          ]);
+     
+             $category_image_name = $this->upload_category_image($request->image);
+
+              DB::table('categories')
+                    ->where('categoryID', (int)$request->categoryID)
+                    ->update([
+                        'category_name' => $request->name,
+                        'category_descript' => $request->description,
+                        'category_short_descript' => $category_image_name,
+                        'updated_at' => now(),
+                     ]); 
+
+        // it doesn't work yet
+        // return  $request;
+        // return [$category_image_name, $request];
+
+        return redirect()->back()->with('success', 'Main Category was created successfully!!!');
+    }
+
     // 
     public function create_sub_category(Request $request)
     {
@@ -109,14 +143,18 @@ class CategoryController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function upload_category_image( $image = null)
     {
-        //
+            if(!$image) return false;      ///// check if file is available if nto do nothing
+
+            $filename = $image->getClientOriginalName();
+            $ext = substr($filename,-5);
+            
+            $uniqName = md5($filename)."".uniqid($filename, true);
+            $filename = "cat".md5($uniqName)."ry".$ext;
+
+             $image->storeAs('images/background/',"$filename",'public');
+
+        return $filename;
     }
 }

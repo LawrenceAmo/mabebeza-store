@@ -46,7 +46,8 @@
                         <div class="shadow p-3 text-center ">
                             <div class=" row  pb-3  border-bottom">
                                     <div class="col-12 h5 font-Raleway">
-                                        Order Summary
+                                        <div class="small"> Delivery Fee is set to <b class="text-purple"><u>ZERO</u></b> only for testing </div>
+                                        <div class="">Order Summary</div>
                                     </div>
                              </div>
                              <div class="row w-100 py-2 h6 border-bottom">

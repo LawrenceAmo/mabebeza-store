@@ -166,7 +166,7 @@
               order_total: 0,
               main_img: '',
               category: '',
-              shipping_fee: 35,
+              shipping_fee: 0,
               billing: false,
               shipping_info: [],
               shipping_infoDB: [],
