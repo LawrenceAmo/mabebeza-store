@@ -96,7 +96,7 @@
           order_total: 0,
           main_img: '',
           category: '',
-          shipping_fee: 35,
+          shipping_fee: 0,
          };
       },
       async created(){ 
@@ -108,7 +108,11 @@
               localStorage.setItem('cart', JSON.stringify([]));                
               localStorage.setItem('cart_productIDs', JSON.stringify([]));                
           }
+
           // always update the UI with data from local storage
+          localStorage.setItem('shipping_fee', '0');                
+
+          this.shipping_fee = JSON.parse(localStorage.getItem('shipping_fee'));
           let cart = JSON.parse(localStorage.getItem('cart'))
           for (let i = 0; i < cart.length; i++) {
             if (cart[i].quantity > 1) {
