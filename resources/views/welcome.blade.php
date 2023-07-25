@@ -190,7 +190,7 @@
                       </div>
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
+                          <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name) }}</p>
 
                           <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                             <span class="text-muted   " >
@@ -238,7 +238,7 @@
                   </div>
                     <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg( product.url )" alt="">
                     <div class="card-body   px-2 py-0">
-                      <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
+                      <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name)}}</p>
                       <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                         <span class="text-muted   " >
                           <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
@@ -282,7 +282,7 @@
               <div class="card text-left" >
                   <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                   <div class="card-body   px-2 py-0">
-                    <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</p>
+                    <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name) }}</p>
                     <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                       <span class="text-muted   " >
                         <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
@@ -474,6 +474,11 @@
             add_to_wish_list: function(item){
               add_to_wish_list(item) 
             },
+            StringToLowerCase: function(string){
+              let lowerCaseString = string.toLowerCase();              
+              // Capitalize the first letter
+              return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
+            }
          }
      }).mount("#app");
 

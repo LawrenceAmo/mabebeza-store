@@ -20,7 +20,7 @@
                 <div class="col-md-7">
                     <div class="pl-3 pt-3 ">
                         <b class=" small text-white bg-pink rounded p-1   " v-if="product.quantity <= 1" >Out Of Stock</b>
-                        <p class="h4 font-weight-bold font-Raleway">@{{product.product_name}}</p>
+                        <p class="h4 font-weight-bold font-Raleway">@{{ StringToLowerCase(product.product_name) }}</p>
                         {{-- product_name price--}}
                         <p class="h5   font-Raleway " v-if="product.sale_price">
                             <span class="text-muted">Was <del class="">R@{{product.price}}</del></span>
@@ -237,7 +237,12 @@ console.log(this.product)
          },
          add_to_wish_list: function(item){
               add_to_wish_list(item) 
-            },
+        },
+        StringToLowerCase: function(string){
+            let lowerCaseString = string.toLowerCase();              
+            // Capitalize the first letter
+            return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
+        }
          // 
      }
   }).mount("#app");

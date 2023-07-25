@@ -17,7 +17,7 @@
                                     <img height="80" :src="productImg(product.url)" alt="">
                                 </div>
                                 <div @click="view_product(product)" class="col-5">
-                                    <div class="h5 font-Raleway">@{{product.product_name}}</div>
+                                    <div class="h5 font-Raleway">@{{ StringToLowerCase(product.product_name) }}</div>
                                     <small class=" ">/@{{product.sub_category_name}}</small>
                                 </div>
                                 <div @click="view_product(product)" class="col-2 font-Raleway">
@@ -202,6 +202,11 @@
                 this.updateCartLocalStorage();
               }  
           },
+            StringToLowerCase: function(string){
+              let lowerCaseString = string.toLowerCase();              
+              // Capitalize the first letter
+              return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
+            }
           // 
       }
    }).mount("#app");
