@@ -13,6 +13,7 @@ use App\Models\Order;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\customer_order_confirmation;
+use App\Mail\store_order_confirmation;
 class CheckoutController extends Controller
 {
 
@@ -306,9 +307,9 @@ class CheckoutController extends Controller
     // send mail if order paid successfully
     public function payment_success()
     {
-        // if (isset($_SERVER['HTTP_REFERER'])) {
-        //     $lastURL = $_SERVER['HTTP_REFERER'];
-        //     if (strpos($lastURL, 'payfast.co.za') !== false) {
+        if (isset($_SERVER['HTTP_REFERER'])) {
+            $lastURL = $_SERVER['HTTP_REFERER'];
+            if (strpos($lastURL, 'payfast.co.za') !== false) {
                
                 $userID = (int)Auth::id();
 
@@ -332,7 +333,7 @@ class CheckoutController extends Controller
   
                     // //////////////////////////////////
 
-                  Mail::to($order->user_email)->send(new customer_order_confirmation($order));
+                //   Mail::to($order->user_email)->send(new customer_order_confirmation($order));
 
                     $store = 'tembisa';
                     $sent_to_store = 'info@mabebeza.com';
@@ -353,6 +354,7 @@ class CheckoutController extends Controller
                     }
 
                     Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
+                    Mail::to($sent_to_store)->send(new store_order_confirmation($order, $store));   
 
                     DB::table('orders')
                             ->where('orderID',  $order->orderID)
@@ -365,13 +367,13 @@ class CheckoutController extends Controller
  
                 return view('pages.checkout.payment_success')->with('order', $order);
 
-            // } else {
-            //     return redirect()->back();
-            // }
-        //   } else {
+            } else {
+                return redirect()->back();
+            }
+          } else {
 
-        //     return redirect()->back();
-        //   }
+            return redirect()->back();
+          }
  
     }
 

@@ -98,7 +98,7 @@
                   <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
                     <div   class=" row text-purple font-Raleway c-pointer product_name" @click="view_product(item)">
                        <div class="col-3">
-                         <img class="" height="50" :src="productImg(productUrl(item.photo_urls))" alt="">
+                         <img class="" height="50" :src="productImg(productUrl(item.url))" alt="">
                        </div>  
                        <span class="col-6">@{{ item.product_name }}  </span>
                        <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
@@ -510,7 +510,7 @@
                 guestSearchProducts: function(event){
                     const allProductsDB =  this.allProductsDB
                     let search = this.searchProductsText.toLowerCase()
-                    
+
                     this.searchedProducts = [];
                     if (search.length < 1) {    return false       } 
 
@@ -518,6 +518,7 @@
                       let productName = allProductsDB[i].product_name.toLowerCase()
                         if ( productName.includes(search)) {
                           this.searchedProducts.push(allProductsDB[i])
+                          console.log(allProductsDB[i])
                         } 
                     }        
                   },
@@ -558,7 +559,7 @@
               
             });
             guestApp.mount('#guestApp')
-        
+  
     </script>
     </body>
 </html>

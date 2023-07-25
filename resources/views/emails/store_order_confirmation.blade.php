@@ -48,7 +48,7 @@
 <body>
     <div class="mail-conatiner">
         <p class="">Dear <b class="font-weight-bold">{{$order->user_name}} {{$order->user_surname}}</b>,</p>
-        <p>There's a new order at Mabebeza {{$order->store}}. Visit your admin panel at <a href="https://www.mabebeza.co.za/portal">https://www.mabebeza.co.za/portal</a> to view. <br></p>
+        <p>There's a new order at Mabebeza {{$store}}. Visit your admin panel at <a href="https://www.mabebeza.co.za/portal">https://www.mabebeza.co.za/portal</a> to view. <br></p>
         <div class="">
             <center><h3 class="">Order Information</h3></center>
         </div>
@@ -86,7 +86,7 @@
                 <tr>
                     <td>
                        <span class="p-3">Sub-Total:</span>
-                    </td>
+                    </td> 
                    <td><b class="">R <span>{{$order->sub_total}}</span></b></td>
                 </tr>
                 <tr>
