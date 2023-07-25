@@ -193,26 +193,24 @@
             <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0  ">
               <h6 class="heading mb-3">Account</h6>
               <ul class="list-unstyled">
-                <li><a href="admin/profile.html">Profile</a></li>
-                <li><a href="admin/company.html">Settings</a></li>
-                <li><a href="admin/plans.html">My Plan</a></li>
-              </ul>
+                <li><a href="admin/profile.html">My Account</a></li>
+                <li><a href="admin/company.html">My Cart</a></li>
+                <li><a href="admin/company.html">My Wish List</a></li>
+               </ul>
             </div>
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
               <h6 class="heading mb-3">About</h6>
               <ul class="list-unstyled">
-                <li><a href="index.html#ecommerce">Services</a></li>
-                <li><a href="index.html#ecommerce">Pricing</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html">About Us</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
               </ul>
             </div>
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
               <h6 class="heading mb-3">Company</h6>
               <ul class="list-unstyled">
-                <li><a href="contact.html#departments">Information</a></li>
-                <li><a href="contact.html#departments">Help center</a></li>
-                <li><a href="contact.html#departments">Support</a></li>
-                <li><a href="contact.html#departments">Cuty of the year</a></li>
+                {{-- <li><a href="contact.html#departments">Information</a></li> --}}
+                <li><a href="contact.html#departments">Help Center</a></li>
+                 <li><a href="contact.html#departments">Cutie of The Year</a></li>
               </ul>
             </div>
           </div>
@@ -287,7 +285,7 @@
                 </li>
                 <li class="nav-item">
                   <a class="nav-link font-italic" href="{{route('privacy-policy')}}">
-                    Delivary Policy
+                    Delivery Policy
                   </a>
                 </li>
                 <li class="nav-item">

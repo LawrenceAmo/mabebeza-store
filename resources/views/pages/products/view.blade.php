@@ -69,7 +69,7 @@
             </div>
             <hr>
             <div class="row">
-                 
+
                 <div class="col-12">
                     <ul class="nav nav-tabs mb-3 pl-5" id="ex-with-icons" role="tablist">
                         <li class="nav-item" role="presentation">
