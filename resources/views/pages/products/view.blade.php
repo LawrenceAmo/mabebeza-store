@@ -2,7 +2,7 @@
 
    <main id="app">
     <section class="pb-5 pt-3">
-        <a class="pl-3"> / <a href="/">Home</a> / <a href="/" class="">@{{product.sub_category_name}}</a> / @{{product.product_name}}</a> 
+        <a class="pl-3"> / <a href="/">Home</a> / <a href="/" class="">@{{product.sub_category_name}}</a> / @{{ StringToLowerCase(product.product_name)}}</a> 
         <div class="card p-1">
             <div class="row">
                 <div class="col-md-5">
@@ -81,10 +81,10 @@
                         <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#product_details" role="tab"
                             aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-info-circle fa-fw me-2"></i>More Info</a>
                         </li> 
-                        <li class="nav-item" role="presentation">
+                        {{-- <li class="nav-item" role="presentation">
                             <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#delivery" role="tab"
                                 aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-car fa-fw me-2"></i>Delivery Details</a>
-                            </li> 
+                        </li>  --}}
                     </ul>
                     <!-- Tabs navs -->
                     
