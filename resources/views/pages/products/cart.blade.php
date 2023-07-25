@@ -119,6 +119,7 @@
                 this.cart.push(cart[i]) 
             }           
           }
+
         //   this.cart = cart;
           this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
  

@@ -72,18 +72,20 @@ class GuestProductsController extends Controller
         $name = explode('-', $name);
         $productID = (int)end($name);
 
+        // return $productID;
+
         $products = DB::table('products')
                     ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
                     ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
                     ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.productID')
                     ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID')
                     ->select('products.productID', 'products.name as product_name' , 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.price', 'sub_categories.sub_category_name', 'products.sale_price', 'product_photos.url', 'product_photos.title',  'store_inventories.quantity' , 'stores.name as store_name'  )
-                    ->where('products.productID', '=', $productID)
-                    ->orWhere('products.name', 'LIKE', '%' . $name[0] . '%')                    
-                    ->where( 'stores.name', 'LIKE', '%ega%')
-                    ->orWhere( 'stores.name', 'LIKE', '%embisa%')
+                    ->where('products.productID', '=', (int)$productID)
+                    // ->orWhere('products.name', 'LIKE', '%' . $name[0] . '%')                    
+                    // ->where( 'stores.name', 'LIKE', '%ega%')
+                    // ->orWhere( 'stores.name', 'LIKE', '%embisa%')
                     ->groupBy('products.productID', 'products.name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.sale_price', 'sub_categories.sub_category_name', 'products.price','product_photos.url', 'product_photos.title',  'store_inventories.quantity' , 'stores.name' )
-                    ->limit(4) // Limit the number of records to 4
+                    ->limit(1) // Limit the number of records to 4
                     ->get();
                     // description
 
