@@ -26,12 +26,21 @@ class OrdersController extends Controller
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
                     ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name',)
                     ->where('orders.store', '=', $user->store)
+                    ->where('orders.paid', true)  
+                    ->get();
+        }else if (strpos($user->email, 'amo') !== false) { // only for Amo
+            $orders = DB::table('orders')
+                    ->leftJoin('users', 'users.id', '=', 'orders.userID' )
+                    ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                    ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name')
+                    // ->where('orders.paid', true)  
                     ->get();
         } else {
             $orders = DB::table('orders')
                     ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
                     ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name')
+                    ->where('orders.paid', true)  
                     ->get();
         }
         // return $orders;
