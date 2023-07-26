@@ -207,9 +207,9 @@ $signature = generateSignature($data, $passphrase);
                             <input type="hidden" name="email_address" value="{{$user->email}}">
                             <input type="hidden" name="signature" value="{{$signature}}">
                             <input type="hidden" name="cell_number" value="0823456789">
-                            <input type="hidden" name="return_url" value="https://mabebeza.com/accounts/checkout/payment/success">
-                            <input type="hidden" name="cancel_url" value="https://mabebeza.com/accounts/checkout/payment/failed">
-                            <input type="hidden" name="notify_url" value="https://www.example.com/notify">
+                            <input type="hidden" name="return_url" value="https://mabebeza.co.za/accounts/checkout/payment/success">
+                            <input type="hidden" name="cancel_url" value="https://mabebeza.co.za/accounts/checkout/payment/failed">
+                            <input type="hidden" name="notify_url" value="https://www.example.co.za/notify">
                             <input required type="hidden" name="amount" id="payfast_order_total" v-model="order_total">
                             <input required type="hidden" name="item_name" maxlength="255" id="payfast_order_number" v-model="payfast_order_number">
                             <input type="hidden" name="item_description" maxlength="255" value="Pampers S1 min">
@@ -254,7 +254,7 @@ $signature = generateSignature($data, $passphrase);
              let product = [];
            
             // if no cart then create new empty cat
-              if (!this.checkLocalStorage('cart')) {
+              if (!this.checkLocalStorage('cart')) { 
                   localStorage.setItem('cart', JSON.stringify([]));                
                   localStorage.setItem('cart_productIDs', JSON.stringify([]));                
               }

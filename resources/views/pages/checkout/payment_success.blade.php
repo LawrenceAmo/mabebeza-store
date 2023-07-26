@@ -43,6 +43,12 @@
         </div>
     </div>
     <script> 
+    // clear cart and order number
+
+    localStorage.setItem('cart', JSON.stringify([]));                
+    localStorage.setItem('cart_productIDs', JSON.stringify([]));  
+    localStorage.setItem('orderID', JSON.stringify([]));  
+    // orderID
         setTimeout(() => {
             location.href = '/'
         }, 20000);
