@@ -161,7 +161,6 @@ class OrdersController extends Controller
         return redirect()->back()->with('success', 'Shipping Updated');  //Update Shipping:
     }
 
-   
     public function update_order(Request $request)
     {
         $request->validate([

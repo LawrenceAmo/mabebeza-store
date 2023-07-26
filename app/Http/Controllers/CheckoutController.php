@@ -333,7 +333,6 @@ class CheckoutController extends Controller
   
                     // //////////////////////////////////
 
-                //   Mail::to($order->user_email)->send(new customer_order_confirmation($order));
 
                     $store = 'tembisa';
                     $sent_to_store = 'info@mabebeza.com';
@@ -353,7 +352,8 @@ class CheckoutController extends Controller
                         $store = 'tembisa'; 
                     }
 
-                    Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
+                    // Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
+                    Mail::to($order->user_email)->send(new customer_order_confirmation($order));
                     Mail::to($sent_to_store)->send(new store_order_confirmation($order, $store));   
 
                     DB::table('orders')

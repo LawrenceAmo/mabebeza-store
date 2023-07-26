@@ -71,40 +71,30 @@
             <div class="row">
 
                 <div class="col-12">
+                    <!-- Tabs navs -->
                     <ul class="nav nav-tabs mb-3 pl-5" id="ex-with-icons" role="tablist">
                         <li class="nav-item" role="presentation">
-                            
-                        <a class="nav-link text-purple active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#description" role="tab"
-                            aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i class="fas fa-file fa-fw me-2"></i>Product Description</a>
+                            <a class="nav-link text-purple active" id="ex-with-icons-tab-1" data-mdb-toggle="tab" href="#description" role="tab"
+                                aria-controls="description" aria-selected="true"><i class="fas fa-file fa-fw me-2"></i>Product Description</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                        <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#product_details" role="tab"
-                            aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-info-circle fa-fw me-2"></i>More Info</a>
-                        </li> 
-                        {{-- <li class="nav-item" role="presentation">
-                            <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#delivery" role="tab"
-                                aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i class="fas fa-car fa-fw me-2"></i>Delivery Details</a>
-                        </li>  --}}
+                            <a class="nav-link text-purple" id="ex-with-icons-tab-2" data-mdb-toggle="tab" href="#product_details" role="tab"
+                                aria-controls="product_details" aria-selected="false"><i class="fas fa-info-circle fa-fw me-2"></i>More Info</a>
+                        </li>
                     </ul>
-                    <!-- Tabs navs -->
-                    
+                
                     <!-- Tabs content -->
-                    <div class="tab-content pl-5" id="description">
-                        <div class="tab-pane fade show active" id="ex-with-icons-tabs-1" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
-                            @{{ product.description}}
+                    <div class="tab-content pl-5" id="ex-with-icons">
+                        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
+                            @{{ product.description }}
                         </div>
                         <div class="tab-pane fade" id="product_details" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
-                            @{{ product.product_detail}}
+                            @{{ product.product_detail }}
                         </div>
-                        <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
-                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum sint,
-                                repellat quidem soluta nam incidunt reiciendis laudantium, alias molestias molestiae minima 
-                                consequuntur. Doloribus, recusandae ab. Provident dolores pariatur voluptas harum! 
-                        </div>
-                       
                     </div>
                     <!-- Tabs content -->
                 </div>
+                
 
             </div>
         </div>
@@ -239,9 +229,11 @@ console.log(this.product)
               add_to_wish_list(item) 
         },
         StringToLowerCase: function(string){
-            let lowerCaseString = string.toLowerCase();              
-            // Capitalize the first letter
-            return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
+            let lowerCaseString = string.toLowerCase(); 
+            let wordsArray = lowerCaseString.split(' '); 
+            // Capitalize the first letter of each word
+            let capitalizedArray = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+            return capitalizedArray.join(' ');      
         }
          // 
      }

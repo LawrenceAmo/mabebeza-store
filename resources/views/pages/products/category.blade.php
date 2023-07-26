@@ -10,7 +10,7 @@
                   <a href="/" class="btn btn-sm btn-outline-info rounded">Go back home</a></p>
               </div> 
                  <div class="row">
-                     <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in featured_products" >
+                     <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products" >
                       <div class="card text-left"  >
                         <div class="tag-sale" v-if="product.sale_price">
                           <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
@@ -148,11 +148,13 @@
           add_to_wish_list: function(item){
               add_to_wish_list(item) 
           },
-            StringToLowerCase: function(string){
-              let lowerCaseString = string.toLowerCase();              
-              // Capitalize the first letter
-              return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
-            }
+          StringToLowerCase: function(string){
+            let lowerCaseString = string.toLowerCase(); 
+            let wordsArray = lowerCaseString.split(' '); 
+            // Capitalize the first letter of each word
+            let capitalizedArray = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+            return capitalizedArray.join(' ');      
+        }
           // 
       }
    }).mount("#app");

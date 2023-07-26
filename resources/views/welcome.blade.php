@@ -475,10 +475,12 @@
               add_to_wish_list(item) 
             },
             StringToLowerCase: function(string){
-              let lowerCaseString = string.toLowerCase();              
-              // Capitalize the first letter
-              return lowerCaseString.charAt(0).toUpperCase() + lowerCaseString.slice(1);
-            }
+            let lowerCaseString = string.toLowerCase(); 
+            let wordsArray = lowerCaseString.split(' '); 
+            // Capitalize the first letter of each word
+            let capitalizedArray = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+            return capitalizedArray.join(' ');      
+        }
          }
      }).mount("#app");
 
