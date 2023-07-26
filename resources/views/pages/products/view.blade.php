@@ -89,6 +89,7 @@
                             @{{ product.description }}
                         </div>
                         <div class="tab-pane fade" id="product_details" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+                            @{{ product.sku }} <br>
                             @{{ product.product_detail }}
                         </div>
                     </div>
