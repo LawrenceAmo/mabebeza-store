@@ -76,7 +76,7 @@ class OrdersController extends Controller
                 ->first();
 
                 // return $order;
-                return $order;
+                // return $order;
 
         $approved_by = DB::table('users')->where('id', (int)$order->approved_by)->first();
         $drivers = DB::table('users')->where('driver', true)->get();
