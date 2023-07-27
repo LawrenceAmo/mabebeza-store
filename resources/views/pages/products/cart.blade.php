@@ -124,6 +124,7 @@
           this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
  
           this.updateCartSummary();
+          this.updateCartLocalStorage();
           console.log( this.cart) 
       }, 
       methods: {           

@@ -107,7 +107,7 @@
                                     <div class="col-6 ">Order Total</div>
                                     <div class="col-6 ">R@{{ order_total }}</div>
                                 </div>
-                                <div class="row py-2 w-100 h5 border-bottom">
+                                <div class="row py-2 w-100 h5 border-bottom" v-if="!loading">
                                     <button type="submit" class="btn btn-sm rounded btn-purple">
                                         <i class="fa fa-lock"></i> Pay now </button>
                                 </div>
@@ -233,6 +233,7 @@ $signature = generateSignature($data, $passphrase);
         createApp({
           data() {
             return {
+                loading: true,
               total_stock_units: 0,
               cart: [],
               cart_productIDs: [],
@@ -278,8 +279,18 @@ $signature = generateSignature($data, $passphrase);
                 sub_total: this.cart_total,
                 qty: this.items_qty,
                 };
-            let order = await axios.post("{{ route('guest_update_order') }}", data);
-            console.log( order.data)
+
+                try {
+                    let order = await axios.post("{{ route('guest_update_order') }}", data);
+                    order = order.data;
+                } catch (error) {
+                    console.error(error);
+                } finally {
+                    this.loading = false;
+                }
+
+            
+            // console.log( order.data)
                
           }, 
           methods: {           
