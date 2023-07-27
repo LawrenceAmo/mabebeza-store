@@ -18,7 +18,7 @@
                                 </div>
                                 <div @click="view_product(product)" class="col-5">
                                     <div class="h5 font-Raleway">@{{ StringToLowerCase(product.product_name) }}</div>
-                                    <small class=" ">/@{{product.sub_category_name}}</small>
+                                    {{-- <small class=" ">/@{{product.sub_category_name}}</small> --}}
                                 </div>
                                 <div @click="view_product(product)" class="col-2 font-Raleway">
                                     <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>

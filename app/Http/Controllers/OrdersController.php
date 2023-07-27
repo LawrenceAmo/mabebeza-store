@@ -84,7 +84,7 @@ class OrdersController extends Controller
                         ->leftJoin('users', 'users.id', '=', 'deliveries.driverID' )
                         ->where('deliveries.orderID', (int)$order->orderID)
                         ->first();
-                
+
         // return $order;
 
         return view('portal.orders.order')

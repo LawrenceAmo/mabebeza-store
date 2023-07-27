@@ -138,11 +138,8 @@
               }  
           },
           StringToLowerCase: function(string){
-            let lowerCaseString = string.toLowerCase(); 
-            let wordsArray = lowerCaseString.split(' '); 
-            // Capitalize the first letter of each word
-            let capitalizedArray = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-            return capitalizedArray.join(' ');      
+            string = string.toLowerCase();              
+           return string.charAt(0).toUpperCase() + string.slice(1);        
         }
           // 
       }

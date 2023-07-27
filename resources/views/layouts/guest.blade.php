@@ -203,6 +203,8 @@
               <ul class="list-unstyled">
                 <li><a href="contact.html">About Us</a></li>
                 <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
+                {{--  --}}
               </ul>
             </div>
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
@@ -313,7 +315,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3>
+            {{-- <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3> --}}
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -343,12 +345,15 @@
 ></script>
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
+    
       cart_qty_display(); 
 
       function wish_list_qty_display() {
           let qty = JSON.parse(localStorage.getItem('wish_list')).length
           document.getElementById('wish_list_qty_display').innerHTML = qty;
       }
+
+      
 
       function set_location(location){
           localStorage.setItem('ship_location', ''+location); 
@@ -361,7 +366,7 @@
           area = area.toLowerCase();
 
         if (!locations.includes(area)) {
-          document.getElementById("ship_to_modal_msg").innerHTML = "We don't deliver to: "+area+" <br>   <a href='{{ route('where_we_deliver')}}' >Please see places we deliver to:</a>";
+          document.getElementById("ship_to_modal_msg").innerHTML = " Unfortunately we do not deliver to: "+area+" <br>   <a href='{{ route('where_we_deliver')}}' >Please see places we deliver to:</a>";
           $('#ship_to_modal').modal('show');
           localStorage.setItem('cart_productIDs', JSON.stringify([]));
           localStorage.setItem('cart', JSON.stringify([]));
@@ -373,7 +378,7 @@
           let ship_location =  localStorage.getItem('ship_location')
           document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
           if (!ship_location) {
-              document.getElementById("ship_to_modal_msg").innerHTML = 'Please enter address where you want to ship to, to continue shopping';
+              document.getElementById("ship_to_modal_msg").innerHTML = 'To continue shopping, Please enter address where you want to ship to.';
               $('#ship_to_modal').modal('show');
               return true;
           }
@@ -462,7 +467,7 @@
                          allProductsDB = await this.get_products(allProductsDB)                        
                         localStorage.setItem('all_products',   JSON.stringify(   allProductsDB));
   
-                 }, 3000);
+                 }, 3000); 
 
                  this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))
                   
