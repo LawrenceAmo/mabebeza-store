@@ -107,6 +107,7 @@
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-example-2" data-slide-to="1"></li>
       <li data-target="#carousel-example-2" data-slide-to="2"></li>
+      <li data-target="#carousel-example-2" data-slide-to="3"></li>
     </ol>
 
     <!--/.Indicators-->
@@ -114,7 +115,7 @@
     <div class="carousel-inner max-vh-30" role="listbox"  >
       <div class="carousel-item active">
         <div class="view">
-          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner1.jpeg')}}"
+          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner1.jpg')}}"
             alt="First slide">
           <div class="mask rgba-black-light"></div>
         </div>
@@ -126,7 +127,7 @@
       <div class="carousel-item">
         <!--Mask color-->
         <div class="view">
-          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner2.jpeg')}}"
+          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner2.jpg')}}"
             alt="Second slide">
           <div class="mask rgba-black-strong"></div>
         </div>
@@ -138,7 +139,19 @@
       <div class="carousel-item">
         <!--Mask color-->
         <div class="view">
-          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner3.jpeg')}}"
+          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner3.jpg')}}"
+            alt="Third slide">
+          <div class="mask rgba-black-slight"></div>
+        </div>
+        <div class="carousel-caption">
+          {{-- <h3 class="h3-responsive">Slight mask</h3>
+          <p>Third text</p> --}}
+        </div>
+      </div>
+      <div class="carousel-item">
+        <!--Mask color-->
+        <div class="view">
+          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner4.jpg')}}"
             alt="Third slide">
           <div class="mask rgba-black-slight"></div>
         </div>

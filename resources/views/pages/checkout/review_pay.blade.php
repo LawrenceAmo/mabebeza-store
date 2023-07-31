@@ -289,9 +289,6 @@ $signature = generateSignature($data, $passphrase);
                     this.loading = false;
                 }
 
-            
-            // console.log( order.data)
-               
           }, 
           methods: {           
               productUpdateUrl: function(val){
