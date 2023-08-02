@@ -70,10 +70,10 @@ class CheckoutController extends Controller
         }else{
             // get the latest order for this user
             $order = DB::table('orders')
-                    ->where('userID', $userID) 
-                    ->latest()->first();
+                        ->where('userID', $userID) 
+                        ->latest()->first();
 
-            if ($order->paid && $order->payment && $order->paid_all) {  
+            if ($order->paid != null && $order->payment && $order->paid_all) {  
                // create new order
                 $order = new Order();
                 $order->order_number = $this->generate_order_number();

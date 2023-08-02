@@ -38,6 +38,7 @@ class PortalController extends Controller
                     ->where('orders.store', '=', $user->store)
                     ->get();
         } else {
+            
             $orders = DB::table('orders')
                     ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )

@@ -99,7 +99,7 @@
     <section class="  border-bottom pb-2">
         <div class="">
             {{-- <div class="border p-5 bg-black" style="height: 350px;"> --}}
-                
+
                 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" >
     <!--Indicators-->
@@ -413,31 +413,15 @@
 
             // get products from api
             let products = JSON.parse(localStorage.getItem('all_products'))
+            setTimeout(() => {
+              let products = JSON.parse(localStorage.getItem('all_products'))
+              this.sort_products(products);
+            }, 5000);
 
             // console.log(this.products)
+            this.sort_products(products);
 
-            // let featured_products = [];  let new_products = [];  let sale_products = [];
-            for (let i = 0; i < products.length; i++) {
-              if (products[i].type == 'featured') {
-                this.featured_products.push(products[i])
-              }
-              if (products[i].type == 'new') {
-                this.new_products.push(products[i])
-              }
-              if (products[i].type == 'sale') {
-                this.sale_products.push(products[i])
-              }              
-            }
-
-            console.log(this.featured_products)
- 
-            // this.sale_products = [ ...sale_products];
-            // this.new_products = [ ...new_products];
-            // this.featured_products = featured_products;
-            // let productsDB = await axios.get('{{route("get_products")}}');  
-            //     productsDB = await productsDB.data
-            //  this.products = productsDB
-
+            console.log(this.featured_products) 
         },
         methods: {
             productUpdateUrl: function(val){
@@ -445,7 +429,23 @@
                 var href = link.getAttribute('data-href');
                 href = href.replace('productID', val)
                 location.href = href
-            },  
+            },
+            sort_products: function(products){
+              this.featured_products =[];
+              this.new_products =[];
+              this.sale_products =[];
+                for (let i = 0; i < products.length; i++) {
+                  if (products[i].type == 'featured') {
+                    this.featured_products.push(products[i])
+                  }
+                  if (products[i].type == 'new') {
+                    this.new_products.push(products[i])
+                  }
+                  if (products[i].type == 'sale') {
+                    this.sale_products.push(products[i])
+                  }              
+              }
+            }, 
             productImg: function(val){
               return `{{ asset('storage/products/${val}')}}`;
             },
@@ -488,8 +488,14 @@
               add_to_wish_list(item) 
             },
             StringToLowerCase: function(string){
-              string = string.toLowerCase();              
-            return string.charAt(0).toUpperCase() + string.slice(1); 
+              let words = string.split(' '); 
+              
+              for (let i = 0; i < words.length; i++) {
+                if (i === 0 || !['and', 'of'].includes(words[i])) {
+                  words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+              }
+              return words.join(' ');
          }
          }
      }).mount("#app");

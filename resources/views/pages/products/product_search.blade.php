@@ -138,8 +138,14 @@
               }  
           },
           StringToLowerCase: function(string){
-            string = string.toLowerCase();              
-           return string.charAt(0).toUpperCase() + string.slice(1);        
+            let words = string.split(' '); 
+              
+              for (let i = 0; i < words.length; i++) {
+                if (i === 0 || !['and', 'of'].includes(words[i])) {
+                  words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+              }
+              return words.join(' ');       
         }
           // 
       }

@@ -144,7 +144,7 @@
               <div class="dropdown-menu" aria-labelledby="triggerId" >
                 <div class="" v-for="category,i in sub_categories"> 
                   {{-- guest_view_sub_category --}}
-                  <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" >@{{category.sub_category_name}}</a>  
+                  <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name != Other" >@{{category.sub_category_name}}</a>  
                   <div class="dropdown-divider"></div>
                 </div>
                 {{-- <div class="dropdown-divider"></div> --}}
@@ -455,18 +455,17 @@
   
                  if (!this.checkLocalStorage('all_products')) {
                   let allProductsDB = await axios.get('{{route("get_products")}}');  
-                      allProductsDB = await allProductsDB.data
-                      // allProductsDB = await 
-                      // this.get_products(allProductsDB)                        
-                      localStorage.setItem('all_products', JSON.stringify(   allProductsDB));                
+                      allProductsDB = await allProductsDB.data                   
+                      localStorage.setItem('all_products', JSON.stringify(   allProductsDB));
+                      this.allProductsDB = allProductsDB;                                    
                  }
 
                  setTimeout(async () => {
                     let allProductsDB = await axios.get('{{route("get_products")}}');  
                         allProductsDB = await allProductsDB.data
-                         allProductsDB = await this.get_products(allProductsDB)                        
-                        localStorage.setItem('all_products',   JSON.stringify(   allProductsDB));
-  
+                         allProductsDB = await this.get_products(allProductsDB) 
+                         this.allProductsDB = allProductsDB;                    
+                        localStorage.setItem('all_products',   JSON.stringify( allProductsDB));  
                  }, 3000); 
 
                  this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))

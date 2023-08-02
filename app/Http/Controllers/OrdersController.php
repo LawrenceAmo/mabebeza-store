@@ -33,7 +33,6 @@ class OrdersController extends Controller
                     ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
                     ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name')
-                    // ->where('orders.paid', true)  
                     ->get();
         } else {
             $orders = DB::table('orders')
@@ -48,12 +47,8 @@ class OrdersController extends Controller
         return view('portal.orders.index')
                 ->with("orders", $orders);
     }
+ 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function order($id)
     {
         $order = DB::table('orders')
@@ -157,7 +152,7 @@ class OrdersController extends Controller
         $del->driverID = (int)$request->driver;
         $del->userID = $userID;
         $del->orderID = $request->orderID;
-        // $del->save();
+        $del->save();
 
          Mail::to($order->email)->send(new customer_order_shipping($order)); 
 
