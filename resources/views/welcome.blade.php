@@ -336,7 +336,7 @@
       <div class=" ">
         <p class=" h3 text-center font-Raleway text-purple">Our Partners</p>            
     </div>
-      <div class=" p-3 px-5  d-flex justify-content-between">
+      <div class=" p-3 px-5  d-flex justify-content-between main-categories">
             <div class="">
                 <a href="" class="  rounded-circle shadow" >
                     <img loading="lazy" height="100" class=" p-1 rounded " src="{{ asset('/images/brands/Picture1.png') }}" alt="">
