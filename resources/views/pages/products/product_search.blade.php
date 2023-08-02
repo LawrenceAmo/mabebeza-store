@@ -138,7 +138,7 @@
               }  
           },
           StringToLowerCase: function(string){
-            let words = string.split(' '); 
+            let words = string.toLowerCase().split(' '); 
               
               for (let i = 0; i < words.length; i++) {
                 if (i === 0 || !['and', 'of'].includes(words[i])) {

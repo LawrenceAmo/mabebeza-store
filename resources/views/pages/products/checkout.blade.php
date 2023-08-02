@@ -256,11 +256,13 @@
               }  
           },
           StringToLowerCase: function(string){
-            let lowerCaseString = string.toLowerCase(); 
-            let wordsArray = lowerCaseString.split(' '); 
-            // Capitalize the first letter of each word
-            let capitalizedArray = wordsArray.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-            return capitalizedArray.join(' ');      
+            let words = string.toLowerCase().split(' ');               
+              for (let i = 0; i < words.length; i++) {
+                if (i === 0 || !['and', 'of'].includes(words[i])) {
+                  words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                }
+              }
+              return words.join(' ');      
         }
           // 
       }
