@@ -150,11 +150,11 @@
       </div>
       <div class="carousel-item">
         <!--Mask color-->
-        <div class="view">
+        <a href="#sale" class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner4.jpg')}}"
             alt="Third slide">
           <div class="mask rgba-black-slight"></div>
-        </div>
+        </a>
         <div class="carousel-caption">
           {{-- <h3 class="h3-responsive">Slight mask</h3>
           <p>Third text</p> --}}
@@ -284,9 +284,9 @@
  
     </section>
     <hr>
-    <section class="">
+    <section class="" id="sale">
       <div class=" ">
-          <p class=" h3 text-center font-Raleway text-purple"> Sale</p>            
+          <p class=" h3 text-center font-Raleway text-purple" > Sale</p>            
       </div>
       <div class="px-3">
           <div class="row " >
