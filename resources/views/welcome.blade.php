@@ -43,6 +43,12 @@
     /* top: 13px; */
     /* right: 0px; */
    }
+   .main-categories{
+    width: 100% !important;
+    overflow: auto !important;
+    white-space: nowrap !important; /* Prevent line breaks */
+
+  }
     </style>
     <script>
       function initMap() {
@@ -176,7 +182,7 @@
           </div>
         </div>
     </section>
-    <section class=" px-3 d-flex justify-content-between">
+    <section class=" px-3 d-flex justify-content-between main-categories" style="">
                @foreach ($categories as $category)
                 @if ($category->category_name != 'Other')
                 <div class="   text-center">
@@ -283,8 +289,8 @@
         </div>
  
     </section>
-    <hr>
-    <section class="" id="sale">
+    <hr  id="sale">
+    <section class="">
       <div class=" ">
           <p class=" h3 text-center font-Raleway text-purple" > Sale</p>            
       </div>
