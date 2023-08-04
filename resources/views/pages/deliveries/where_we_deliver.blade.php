@@ -22,7 +22,7 @@
             </div>
             <div class=" col-md-8 col-sm-12 ">
                 <div   class="  ">
-                    <img height="400" class="border rounded shadow bg-white p-1" src="{{ asset('images/background/where-we-deliver.jpg') }}" alt="" srcset="">
+                    <img  style="width: 100%;" class="border rounded shadow bg-white p-1" src="{{ asset('images/background/where-we-deliver.jpg') }}" alt="" srcset="">
                 </div>
             </div>
         </div>

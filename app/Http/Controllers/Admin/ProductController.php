@@ -391,15 +391,7 @@ class ProductController extends Controller
 
 
     public function product_save_publish(Request $request)
-    {
-        // return $request;
-        // $request->validate([
-        //     // 'quantity' => 'required',
-        //     // 'price' => 'required',                       
-        //  ]);
-
-        // return $request;
-
+    {        
         $sale = (bool)$request->sale;
         $availability = (bool)$request->availability;
         $publish = (bool)$request->publish;
@@ -416,6 +408,15 @@ class ProductController extends Controller
                 //  
         
         return redirect()->to(route('product_update_publish', [(int)$request->productID]))->with('success', '');
+    }
+
+    public function product_delete($id)
+    {         
+          DB::table('products')
+                ->where('productID', $id)
+                ->delete(); 
+ 
+        return redirect()->back()->with('success', 'Product deleted successfuly');
     }
 
     public function update_stock(Request $request) {
@@ -461,7 +462,7 @@ class ProductController extends Controller
         });
 
         for ($i=0; $i < count($products) ; $i++) { 
-            
+             
             // DB::table('store_inventories')
             //     ->where('productID', (int)$products[$i]->productID)   
             //     ->where('storeID', (int)$products[$i]->storeID)   

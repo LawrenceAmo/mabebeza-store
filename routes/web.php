@@ -73,6 +73,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     Route::POST('/product/save/media', [ProductController::class, 'product_save_media'])->name('product_save_media');
     Route::get('/product/update/publish/{id}', [ProductController::class, 'product_update_publish'])->name('product_update_publish');
     Route::POST('/product/save/publish', [ProductController::class, 'product_save_publish'])->name('product_save_publish');
+    Route::get('/product/delete/{id}', [ProductController::class, 'product_delete'])->name('product_delete');
 
     //   product_save_info
     //  Categories

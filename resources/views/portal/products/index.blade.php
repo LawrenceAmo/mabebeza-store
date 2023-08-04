@@ -105,9 +105,9 @@
                            No
                        </span>
                    </td>
-                   <td class=" px-0">
+                   <td class=" px-0">  
                      <a data-href='{{ route('product_update_info', ['productID']) }}' @click="productUpdateUrl(product.productID )" id="productUpdateUrl" class="px-1 text-info c-pointer"><i class="fas fa-pencil-alt  "></i></a> |
-                     <a href="" class="px-1 text-danger"><i class="fas fa-trash-alt    "></i></a>
+                     <a data-href='{{ route('product_delete', ['productID']) }}' @click="productDeleteUrl(product.productID )" id="productDeleteUrl" class="px-1 text-danger c-pointer"><i class="fas fa-trash-alt    "></i></a> 
                 </td>
                 </tr>          
                 {{-- @foreach ($products as $product)
@@ -255,6 +255,12 @@
         methods: {
             productUpdateUrl: function(val){
                 var link = document.getElementById('productUpdateUrl');
+                var href = link.getAttribute('data-href');
+                href = href.replace('productID', val)
+                location.href = href
+            },
+            productDeleteUrl: function(val){
+                var link = document.getElementById('productDeleteUrl');
                 var href = link.getAttribute('data-href');
                 href = href.replace('productID', val)
                 location.href = href

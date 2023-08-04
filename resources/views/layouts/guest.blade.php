@@ -378,7 +378,7 @@
           let ship_location =  localStorage.getItem('ship_location')
           document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
           if (!ship_location) {
-              document.getElementById("ship_to_modal_msg").innerHTML = 'To continue shopping, Please enter address where you want to ship to.';
+              document.getElementById("ship_to_modal_msg").innerHTML = 'To continue shopping. Please enter address where you want to ship to.';
               $('#ship_to_modal').modal('show');
               return true;
           }
