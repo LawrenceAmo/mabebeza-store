@@ -63,6 +63,7 @@
     .searchSuggestions li{
       list-style: none;
     }
+    
     .product_name{
     height: 50px !important;
     white-space:pre-wrap;  

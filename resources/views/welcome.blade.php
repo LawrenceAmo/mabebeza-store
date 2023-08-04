@@ -27,12 +27,7 @@
     height: 100px;
     overflow: scroll !important;
   }
-  .product_name{
-    height: 50px !important;
-    white-space:pre-wrap;  
-    overflow: hidden; /* Hide any overflowing content */
-    text-overflow: ellipsis;
-   }
+  
    .tag-new{
     /* border: red solid 3px !important; */
     position:absolute !important;

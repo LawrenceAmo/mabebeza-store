@@ -148,7 +148,7 @@
           add_to_wish_list: function(item){
               add_to_wish_list(item) 
           },
-          StringToLowerCase: function(string){
+          StringToLowerCase: function(string){ 
             let words = string.toLowerCase().split(' ');               
               
               for (let i = 0; i < words.length; i++) {
