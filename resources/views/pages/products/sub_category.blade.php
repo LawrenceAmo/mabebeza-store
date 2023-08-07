@@ -17,7 +17,7 @@
                       </div>
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom" height="150" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap product_name" style="height: 50px;">@{{ StringToLowerCase(product.product_name)}}</a>
+                          <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple text-wrap product_name"  >@{{ StringToLowerCase(product.product_name)}}</a>
                           <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
                             <span class="text-muted   " >
                                <del class="text-muted">@{{ product.price}}</del> 

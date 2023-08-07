@@ -1,188 +1,76 @@
-<!DOCTYPE html>
-  <html>
-    <head>
-      <title>Address Selection</title>
-      <style>
-        body {
-          margin: 0;
-        }
-  
-        .sb-title {
-          position: relative;
-          top: -12px;
-          font-family: Roboto, sans-serif;
-          font-weight: 500;
-        }
-  
-        .sb-title-icon {
-          position: relative;
-          top: -5px;
-        }
-  
-        .card-container {
-          display: flex;
-          height: 500px;
-          width: 600px;
-        }
-  
-        .panel {
-          background: white;
-          width: 300px;
-          padding: 20px;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-around;
-        }
-  
-        .half-input-container {
-          display: flex;
-          justify-content: space-between;
-        }
-  
-        .half-input {
-          max-width: 120px;
-        }
-  
-        .map {
-          width: 300px;
-        }
-  
-        h2 {
-          margin: 0;
-          font-family: Roboto, sans-serif;
-        }
-  
-        input {
-          height: 30px;
-        }
-  
-        input {
-          border: 0;
-          border-bottom: 1px solid black;
-          font-size: 14px;
-          font-family: Roboto, sans-serif;
-          font-style: normal;
-          font-weight: normal;
-        }
-  
-        input:focus::placeholder {
-          color: white;
-        }
-  
-        .button-cta {
-          height: 40px;
-          width: 40%;
-          background: #3367d6;
-          color: white;
-          font-size: 15px;
-          text-transform: uppercase;
-          font-family: Roboto, sans-serif;
-          border: 0;
-          border-radius: 3px;
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.48);
-          cursor: pointer;
-        }
-      </style>
-      <script>
-      "use strict";
-  
-      function initMap() {
-        // const CONFIGURATION = {
-        //   "ctaTitle": "address",
-        //   "mapOptions": {"center":{"lat":37.4221,"lng":-122.0841},"fullscreenControl":true,"mapTypeControl":false,"streetViewControl":true,"zoom":12,"zoomControl":true,"maxZoom":22,"mapId":""},
-        //   "mapsApiKey": "AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA",
-        //   "capabilities": {"addressAutocompleteControl":true,"mapDisplayControl":true,"ctaControl":true}
-        // };
-        // const componentForm = [
-        //   'location',
-        //   'locality',
-        //   'administrative_area_level_1',
-        //   'country',
-        //   'postal_code',
-        // ];
-  
-        const getFormInputElement = (component) => document.getElementById(component + '-input');
-        // const map = new google.maps.Map(document.getElementById("gmp-map"), {
-        //   zoom: CONFIGURATION.mapOptions.zoom,
-        //   center: { lat: 37.4221, lng: -122.0841 },
-        //   mapTypeControl: false,
-        //   fullscreenControl: CONFIGURATION.mapOptions.fullscreenControl,
-        //   zoomControl: CONFIGURATION.mapOptions.zoomControl,
-        //   streetViewControl: CONFIGURATION.mapOptions.streetViewControl
-        // });
-        // const marker = new google.maps.Marker({map: map, draggable: false});
-        const autocompleteInput = getFormInputElement('location');
-        const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-          fields: ["address_components", "geometry", "name"],
-          types: ["address"],
-        });
-        autocomplete.addListener('place_changed', function () {
-        //   marker.setVisible(false);
-          const place = autocomplete.getPlace();
-          if (!place.geometry) {
-            // User entered the name of a Place that was not suggested and
-            // pressed the Enter key, or the Place Details request failed.
-            window.alert('No details available for input: \'' + place.name + '\'');
-            return;
-          }
-        //   renderAddress(place);
-          fillInAddress(place);
-        });
-  
-        function fillInAddress(place) {  // optional parameter
-          const addressNameFormat = {
-            'street_number': 'short_name',
-            'route': 'long_name',
-            'locality': 'long_name',
-            'administrative_area_level_1': 'short_name',
-            'country': 'long_name',
-            'postal_code': 'short_name',
-          };
-          const getAddressComp = function (type) {
-            for (const component of place.address_components) {
-              if (component.types[0] === type) {
-                return component[addressNameFormat[type]];
-              }
-            }
-            return '';
-          };
-          getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
-                    console.log(getAddressComp('locality'))
-        //   for (const component of componentForm) {
-        //     // Location field is handled separately above as it has different logic.
-        //     if (component !== 'location') {
-        //       getFormInputElement(component).value = getAddressComp(component);
-        //     }
-        //   }
-        }
-  
-        // function renderAddress(place) {
-        //   map.setCenter(place.geometry.location);
-        //   marker.setPosition(place.geometry.location);
-        //   marker.setVisible(true);
-        // }
-      }
-      </script>
-    </head>
-    <body>
-      <div class="card-container">
-        <div class="panel">
-          <div>
-            <img class="sb-title-icon" src="https://fonts.gstatic.com/s/i/googlematerialicons/location_pin/v5/24px.svg" alt="">
-            <span class="sb-title">Address Selection</span>
-          </div>
-          <input type="text" placeholder="Address" id="location-input"/>
-          {{-- <input type="text" placeholder="Apt, Suite, etc (optional)"/>
-          <input type="text" placeholder="City" id="locality-input"/> --}}
-          {{-- <div class="half-input-container">
-            <input type="text" class="half-input" placeholder="State/Province" id="administrative_area_level_1-input"/>
-            <input type="text" class="half-input" placeholder="Zip/Postal code" id="postal_code-input"/>
-          </div> --}}
-          {{-- <input type="text" placeholder="Country" id="country-input"/>
-          <button class="button-cta">address</button> --}}
-        </div>
-        {{-- <div class="map" id="gmp-map"></div> --}}
-      </div>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
-    </body>
-  </html>
+<html>
+  <head>
+    <title>Simple Polygon</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+    <style>
+      /* 
+ * Always set the map height explicitly to define the size of the div element
+ * that contains the map. 
+ */
+#map {
+  height: 100%;
+}
+
+/* 
+ * Optional: Makes the sample page fill the window. 
+ */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&callback=initMap&v=weekly"
+      defer
+    ></script>
+    
+    <script>
+      // This example creates a simple polygon representing the Bermuda Triangle.
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 11,
+    center: { lng: 28.112411, lat: -25.981459 },
+    mapTypeId: "terrain",
+  });
+  // Define the LatLng coordinates for the polygon's path.
+  const triangleCoords = [
+    { lng: 28.253860, lat: -26.039158 }, //tembisa
+    { lng: 28.223991, lat: -25.916012 }, // olif
+    { lng: 28.103484, lat: -25.890379 },  // ilov
+    { lng: 28.003234, lat:  -25.927746},  //diepsloot
+    { lng: 27.913627, lat: -26.025276},    //cosmo
+    { lng: 27.999801, lat: -26.033297},   // 4way
+    { lng: 28.089065, lat: -26.051496},   // woodmed
+    { lng: 28.253860, lat: -26.039158},   // tembisa
+  ];
+  // Construct the polygon.
+  const bermudaTriangle = new google.maps.Polygon({
+    paths: triangleCoords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    fillOpacity: 0.30,
+  });
+  bermudaTriangle.setMap(map);
+}
+window.initMap = initMap;
+    </script>
+  </body>
+</html>
