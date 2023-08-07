@@ -52,12 +52,12 @@
     const triangleCoords = [
       { lng: 28.253860, lat: -26.039158 }, //tembisa
       { lng: 28.233604, lat: -25.922497 }, // olif 
-      { lng: 28.103484, lat: -25.890379 },  // ilov
-      { lng: 28.003234, lat:  -25.927746},  //diepsloot
-      { lng: 27.913627, lat: -26.025276},    //cosmo
-      { lng: 27.999801, lat: -26.033297},   // 4way
-      { lng: 28.089065, lat: -26.051496},   // woodmed
-      { lng: 28.253860, lat: -26.039158},   // tembisa
+      { lng: 28.103484, lat: -25.890379 },  // oliv
+      { lng: 28.003234, lat: -25.927746 },  //diepsloot
+      { lng: 27.913627, lat: -26.025276 },    //cosmo
+      { lng: 27.999801, lat: -26.033297 },   // 4way
+      { lng: 28.089065, lat: -26.051496 },   // woodmed
+      { lng: 28.253860, lat: -26.039158 },   // tembisa
     ];
     // Construct the polygon.
     const bermudaTriangle = new google.maps.Polygon({
