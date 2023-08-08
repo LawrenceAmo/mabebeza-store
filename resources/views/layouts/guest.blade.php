@@ -194,9 +194,9 @@
             <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0  ">
               <h6 class="heading mb-3">Account</h6>
               <ul class="list-unstyled">
-                <li><a href="admin/profile.html">My Account</a></li>
-                <li><a href="admin/company.html">My Cart</a></li>
-                <li><a href="admin/company.html">My Wish List</a></li>
+                <li><a href="{{ url('/accounts') }}">My Account</a></li>
+                <li><a href="{{ route('my_cart') }}">My Cart</a></li>
+                <li><a href="{{ route('my_wish_list') }}">My Wish List</a></li>
                </ul>
             </div>
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
@@ -266,14 +266,14 @@
               >
                 &copy; 2023
                 <a
-                  href="https://mabebeza.com"
+                  href="/"
                   class="font-weight-bold"
                   target="_blank"
                   >Mabebeza (Pty) Ltd</a
                 >. All rights reserved
               </div>
             </div>
-            
+
             <div class="col-md-6">
               <ul
                 class="nav justify-content-center justify-content-md-end mt-3 mt-md-0"
