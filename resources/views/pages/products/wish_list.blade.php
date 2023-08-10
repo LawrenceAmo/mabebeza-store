@@ -12,9 +12,9 @@
                  <div class="row">
                   <div class="col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products">                     
                     <div class="card text-left"   >
-                        <img @click="view_product(product)" class="card-img-top zoom c-pointer" height="150" :src="productImg(product.url)" alt="">
+                        <img @click="view_product(product)" class="card-img-top zoom c-pointer" height="185" :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
-                          <a @click="view_product(product)" class="card-title font-weight-light py-0 my-0 c-pointer text-purple text-wrap" style="height: 50px;">@{{ product.product_name}}</a>
+                          <a @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ product.product_name}}</a>
                           <p @click="view_product(product)" class="card-text d-flex justify-content-between c-pointer py-0 my-0" v-if="product.sale_price">
                             <span class="text-muted   " >
                                <del class="text-muted">@{{ product.price}}</del> 

@@ -66,9 +66,9 @@
     
     .product_name{
     height: 50px !important;
-    white-space:pre-wrap;  
-    overflow: hidden; /* Hide any overflowing content */
-    text-overflow: ellipsis;
+    white-space:pre-wrap !important;  
+    overflow: hidden !important; /* Hide any overflowing content */
+    text-overflow: ellipsis !important;
    }
    </style>
     </head>
