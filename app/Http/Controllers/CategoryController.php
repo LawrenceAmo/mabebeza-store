@@ -54,10 +54,21 @@ class CategoryController extends Controller
         return view('portal.category.main_category')->with('category', $category);
     }
 
+    public function update_sub_category(int $id) { 
+
+        $category = DB::table('sub_categories')
+                        ->where('sub_categoryID', $id)
+                        ->first();
+
+                        // return $category;
+ 
+        return view('portal.category.sub_category')->with('category', $category);
+    }
+
     public function save_main_category(Request $request) {
 
         $request->validate([
-            // 'name' => 'required',                  
+            'name' => 'required',                   
             // 'image' => 'required',                  
           ]);
      
@@ -70,13 +81,26 @@ class CategoryController extends Controller
                         'category_descript' => $request->description,
                         'category_short_descript' => $category_image_name,
                         'updated_at' => now(),
-                     ]); 
-
-        // it doesn't work yet
-        // return  $request;
-        // return [$category_image_name, $request];
-
+                     ]);  
         return redirect()->back()->with('success', 'Main Category was created successfully!!!');
+    }
+
+    public function save_sub_category(Request $request) {
+
+        $request->validate([
+            'name' => 'required',                   
+            // 'image' => 'required',                  
+          ]);
+      
+            // return $request;
+              DB::table('sub_categories')
+                    ->where('sub_categoryID', (int)$request->sub_categoryID)
+                    ->update([
+                        'sub_category_name' => $request->name,
+                        'sub_category_short_descript' => $request->description,
+                         'updated_at' => now(),
+                     ]);  
+        return redirect()->back()->with('success', 'Sub Category was edited successfully!!!');
     }
 
     // 

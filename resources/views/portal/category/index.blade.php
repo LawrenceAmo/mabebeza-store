@@ -74,7 +74,7 @@
                                 <td>{{ $sub_category->sub_category_short_descript }}</td>
                                 <td>{{ $sub_category->category_name }}</td>
                                 <td>
-                                     <a href=""> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href="{{ route('update_sub_category', [$sub_category->sub_categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a> | 
                                     <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
                                  </td>
                             </tr>
@@ -102,7 +102,7 @@
                         <h5 class="modal-title">Create Main Category</h5>
                             <button type="button" class="close border-0 bg-white rounded text-danger " data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </button> 
                     </div>
                     <div class="modal-body">
                     <div class="">
