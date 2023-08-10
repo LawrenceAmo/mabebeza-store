@@ -419,11 +419,11 @@
                 return localStorage.getItem(key) !== null;
                 }
  
-                if (!checkLocalStorage('all_sub_categories')) {
+                // if (!checkLocalStorage('all_sub_categories')) {
                   let all_sub_categories = await axios.get('{{route("get_sub_categories")}}'); 
                       all_sub_categories = await all_sub_categories.data
                   localStorage.setItem('all_sub_categories', JSON.stringify(all_sub_categories));                
-                }
+                // }
 
                 let sub_categories = JSON.parse(localStorage.getItem('all_sub_categories'))
 
