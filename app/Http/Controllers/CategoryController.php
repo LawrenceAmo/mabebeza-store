@@ -69,7 +69,7 @@ class CategoryController extends Controller
 
         $request->validate([
             'name' => 'required',                   
-            // 'image' => 'required',                  
+            // 'image' => 'required',                   
           ]);
      
              $category_image_name = $this->upload_category_image($request->image);

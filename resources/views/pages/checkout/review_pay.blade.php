@@ -142,45 +142,45 @@
  * @param null $passPhrase
  * @return string
  */
-function generateSignature($data, $passPhrase = null) {
-    // Create parameter string
-    $pfOutput = '';
-    foreach( $data as $key => $val ) {
-        if($val !== '') {
-            $pfOutput .= $key .'='. urlencode( trim( $val ) ) .'&';
-        }
-    }
-    // Remove last ampersand
-    $getString = substr( $pfOutput, 0, -1 );
-    if( $passPhrase !== null ) {
-        $getString .= '&passphrase='. urlencode( trim( $passPhrase ) );
-    }
-    return md5( $getString );
-}
-// // ////////////////////////////
-// // Construct variables
-$cartTotal = 1023.00; // This amount needs to be sourced from your application
-$passphrase = '22693275Merchantwkz2p71vpunvf';
-$data = array(
-    // Merchant details
-    'merchant_id' => '22693275',
-    'merchant_key' => 'wkz2p71vpunvf',
-    'receiver' => '22693275',
-    'merchant_key' => 'wkz2p71vpunvf',
-    'return_url' => 'https://mabebeza.com/accounts/checkout/payment/success',
-    'cancel_url' => 'https://mabebeza.com/accounts/checkout/payment/failed',
-    'notify_url' => 'http://www.yourdomain.co.za/notify.php',
-    // Buyer details
-    'name_first' => 'Amo',
-    'name_last'  => 'Madiba',
-    'email_address'=> 'amo@amomad.com',
-    // Transaction details
-    'm_payment_id' => '1234213124', //Unique payment ID to pass through to notify_url
-    'amount' => number_format( sprintf( '%.2f', $cartTotal ), 2, '.', '' ),
-    'item_name' => 'Order:4324'
-);
+// function generateSignature($data, $passPhrase = null) {
+//     // Create parameter string
+//     $pfOutput = '';
+//     foreach( $data as $key => $val ) {
+//         if($val !== '') {
+//             $pfOutput .= $key .'='. urlencode( trim( $val ) ) .'&';
+//         }
+//     }
+//     // Remove last ampersand
+//     $getString = substr( $pfOutput, 0, -1 );
+//     if( $passPhrase !== null ) {
+//         $getString .= '&passphrase='. urlencode( trim( $passPhrase ) );
+//     }
+//     return md5( $getString );
+// }
+// // // ////////////////////////////
+// // // Construct variables
+// $cartTotal = 1023.00; // This amount needs to be sourced from your application
+// $passphrase = '22693275Merchantwkz2p71vpunvf';
+// $data = array(
+//     // Merchant details
+//     'merchant_id' => '22693275',
+//     'merchant_key' => 'wkz2p71vpunvf',
+//     'receiver' => '22693275',
+//     'merchant_key' => 'wkz2p71vpunvf',
+//     'return_url' => 'https://mabebeza.com/accounts/checkout/payment/success',
+//     'cancel_url' => 'https://mabebeza.com/accounts/checkout/payment/failed',
+//     'notify_url' => 'http://www.yourdomain.co.za/notify.php',
+//     // Buyer details
+//     'name_first' => 'Amo',
+//     'name_last'  => 'Madiba',
+//     'email_address'=> 'amo@amomad.com',
+//     // Transaction details
+//     'm_payment_id' => '1234213124', //Unique payment ID to pass through to notify_url
+//     'amount' => number_format( sprintf( '%.2f', $cartTotal ), 2, '.', '' ),
+//     'item_name' => 'Order:4324'
+// );
 
-$signature = generateSignature($data, $passphrase);
+// $signature = generateSignature($data, $passphrase);
 // $data['signature'] = $signature;
 
 // // If in testing mode make use of either sandbox.payfast.co.za or www.payfast.co.za
@@ -205,8 +205,8 @@ $signature = generateSignature($data, $passphrase);
                             <input type="hidden" name="email_confirmation" value="1">
                             <input type="hidden" name="confirmation_address" value="info@mabebeza.com">
                             <input type="hidden" name="email_address" value="{{$user->email}}">
-                            <input type="hidden" name="signature" value="{{$signature}}">
-                            <input type="hidden" name="cell_number" value="0823456789">
+                            {{-- <input type="hidden" name="signature" value="{{$signature}}"> --}}
+                            <input type="hidden" name="cell_number" value="0719273169">
                             <input type="hidden" name="return_url" value="https://mabebeza.co.za/accounts/checkout/payment/success">
                             <input type="hidden" name="cancel_url" value="https://mabebeza.co.za/accounts/checkout/payment/failed">
                             <input type="hidden" name="notify_url" value="https://www.example.co.za/notify">

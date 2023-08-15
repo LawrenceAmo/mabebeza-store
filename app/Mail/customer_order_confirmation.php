@@ -7,9 +7,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels; 
 
-class customer_order_confirmation extends Mailable implements ShouldQueue
+class customer_order_confirmation extends Mailable 
 {
-    use Queueable, SerializesModels;
+    use SerializesModels;
 
     // protected $user;
     protected $order;
