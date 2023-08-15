@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\customer_order_confirmation;   //customer_order_shipping
 use App\Mail\customer_order_shipping;   //
+use App\Mail\MyMail;
+
 class TestController extends Controller
 {
     public function mail() {
 
+
+        Mail::to('amocodes@gmail.com')->send(new MyMail('Amohelang Madiba')); //customer_order_shipping
+
+
+                            return 1;
         $userID = (int)Auth::id();
         $data = DB::table('users')
                     ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
