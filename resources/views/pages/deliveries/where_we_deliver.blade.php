@@ -1,7 +1,7 @@
 <x-guest-layout>
     <style>
-        #map {
-        height: 400px;
+    #map {
+           height: 400px;
         }
     </style>
     <div class="container my-5 p-5">
@@ -21,13 +21,12 @@
                     <li>Fourways</li>
                     <li>Sunninghill</li>
                     <li>Waterfall city</li>
-                    <li>Farmall</li>
-                    
+                    <li>Farmall</li>                    
                 </ol>
             </div>                  
             </div>
             <div class=" col-md-8 col-sm-12 ">
-                <div   class="  ">
+                <div   class="">
                     <div id="map"></div>
                 </div>
             </div>
@@ -42,7 +41,7 @@
         const { createApp } = Vue;
     </script>
      <script>
-        // This example creates a simple polygon representing the Bermuda Triangle.
+        //  creates a simple polygon.
   function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       zoom: 11,
@@ -61,7 +60,7 @@
       const mdm = new google.maps.Marker({
         position: md,
         map: map,
-        title: 'Mabebeza DOC'
+        title: 'Mabebeza Bambanani'
       }); 
     // Define the LatLng coordinates for the polygon's path.
     const triangleCoords = [
@@ -73,7 +72,7 @@
       { lng: 27.999801, lat: -26.033297 },   // 4way
       { lng: 28.089065, lat: -26.051496 },   // woodmed
       { lng: 28.253860, lat: -26.039158 },   // tembisa
-    ];
+    ]; 
     // Construct the polygon.
     const bermudaTriangle = new google.maps.Polygon({
       paths: triangleCoords,

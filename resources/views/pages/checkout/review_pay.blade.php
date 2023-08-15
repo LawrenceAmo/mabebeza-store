@@ -16,9 +16,9 @@
                 <a class="pl-3">/<a href="/">Home</a>/Checkout/Review-and-Pay</a>
             </div>
             <div class="col-md-9 ">
-               <div class=" ">
-                <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="step-arrow"></span>
-                <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="step-arrow"></span>
+               <div class=" d-flex">
+                <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
+                <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
                 <a  class="btn btn-sm   btn-outline-purple rounded">3 Review & Pay</a>
                </div>
             </div>

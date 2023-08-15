@@ -16,9 +16,9 @@
                 <a class="pl-3">/<a href="/">Home</a>/Checkout/Shipping</a>
             </div>
             <div class="col-md-9 ">
-               <div class=" ">
-                <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="step-arrow"></span>
-                <a  class="btn btn-sm   btn-outline-purple rounded">2 Shipping</a><span class="step-arrow"></span>
+               <div class=" d-flex">
+                <a  class="btn btn-sm   btn-outline-light rounded">1 Billing</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
+                <a  class="btn btn-sm   btn-outline-purple rounded">2 Shipping</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
                 <a  class="btn btn-sm   btn-outline-light rounded">3 Review & Pay</a>
                </div>
             </div>
@@ -50,23 +50,23 @@
                                         <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
                                     </div>
                                 </div>
-                                <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                                <div class="row py-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Recipient First Name</label> <br>
                                         <input type="text" name="first_name"  v-model="shipping_info.first_name" class="form-control" placeholder="">
                                     </div>
                                     {{-- v-model="cart_qty" --}}
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Recipient Last Name</label>
                                         <input type="text" name="last_name"v-model="shipping_info.last_name" class="form-control" placeholder="">
                                     </div>
                                </div>
-                                <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                                <div class="row py-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Recipient email</label> <br>
                                         <input type="email" name="email"v-model="shipping_info.email" class="form-control" placeholder="">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Recipient Mobile Number</label>
                                         <input type="text" name="phone" v-model="shipping_info.phone" class="form-control" placeholder="">
                                     </div>
@@ -79,32 +79,32 @@
                                          </div>
                                     </div>
                                     {{--  --}}
-                                <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                                <div class="row py-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Street</label> <br>
                                         <input type="text" name="street"v-model="shipping_info.street" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Suburb</label>
                                         <input type="text" name="suburb"v-model="shipping_info.suburb" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                </div>
-                               <div class="d-flex py-3 justify-content-between">
-                                <div class="input-group px-3">
+                               <div class="row py-3">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Town/City</label> <br>
                                     <input type="text" name="city" v-model="shipping_info.city" class="form-control" placeholder="Enter Town or City" aria-describedby="prefixId">
                                 </div>
-                                <div class="input-group px-3">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Province</label>
                                     <input type="text" name="state"  v-model="shipping_info.state" class="form-control" placeholder="Gauteng" aria-describedby="prefixId">
                                 </div>
                                </div>
-                               <div class="d-flex py-3 justify-content-between">
-                                <div class="input-group px-3">
+                               <div class="row py-3">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Country</label> <br>
                                     <input type="text" name="country"  v-model="shipping_info.country" class="form-control" placeholder="South Africa" aria-describedby="prefixId">
                                 </div>
-                                <div class="input-group px-3">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Zip Code</label>
                                     <input type="number" name="zip_code" v-model="shipping_info.postal_code" class="form-control" placeholder="Enter Zip Code" aria-describedby="prefixId">
                                 </div>

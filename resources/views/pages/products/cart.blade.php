@@ -6,7 +6,7 @@
          <div class="  p-3">
               
                  <div class=" row">
-                    <div class="col-md-8">
+                    <div class="col-md-8 pb-5">
                         <div class="w-100 m-0 pt-3  w-100 rounded border-bottom shadow py-5" v-if="cart.length < 1">
                             <p class="h5 text-muted text-center"><span>Your cart is empty...</span><br>
                               <a href="/" class="btn btn-sm btn-outline-info rounded">Go Shopping</a></p>
@@ -17,13 +17,13 @@
                                     <img height="80" :src="productImg(product.url)" alt="">
                                 </div>
                                 <div @click="view_product(product)" class="col-5">
-                                    <div class="h5 font-Raleway">@{{ StringToLowerCase(product.product_name) }}</div>
+                                    <p class=" font-Raleway">@{{ StringToLowerCase(product.product_name) }}</p>
                                     {{-- <small class=" ">/@{{product.sub_category_name}}</small> --}}
                                 </div>
                                 <div @click="view_product(product)" class="col-2 font-Raleway">
                                     <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
-                                    <div class="h5" v-else>R@{{product.price}}</div>
-                                    <div class="h5" v-if="product.sale_price">R@{{product.sale_price}}</div>
+                                    <div class="h6" v-else>R@{{product.price}}</div>
+                                    <div class="h6" v-if="product.sale_price">R@{{product.sale_price}}</div>
                                 </div>
                                 <div class="col-2 d-flex">
                                     <div class="form-group">

@@ -16,10 +16,10 @@
             <a class="pl-3">/<a href="/">Home</a>/Checkout/Billing</a>
         </div>
         <div class="col-md-9 ">
-           <div class=" ">
-            <a  class="btn btn-sm   btn-outline-purple rounded">1 Billing</a><span class="step-arrow"></span>
-            <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="step-arrow"></span>
-            <a  class="btn btn-sm   btn-outline-light rounded">3 Review & Pay</a>
+           <div class=" d-flex">
+                <a  class="btn btn-sm   btn-outline-purple rounded">1 Billing</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
+                <a  class="btn btn-sm   btn-outline-light rounded">2 Shipping</a><span class="d-flex flex-column justify-content-center"><span class="step-arrow"></span></span>
+                <a  class="btn btn-sm   btn-outline-light rounded">3 Review & Pay</a>
            </div>
         </div>
         </div>
@@ -41,64 +41,64 @@
                                         <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
                                     </div>
                                 </div>
-                               <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                               <div class="row py-3 ">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">First Name</label> <br>
                                         <input type="text" name="first_name" value="{{$user->first_name}}" class="form-control" placeholder="">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Last Name</label>
                                         <input type="text" name="last_name"value="{{$user->last_name}}" class="form-control" placeholder="">
                                     </div>
                                </div>
-                               <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                               <div class="row py-3 ">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Email</label> <br>
                                         <input type="email" name="email"value="{{$user->email}}" class="form-control" placeholder="">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Mobile Number</label>
                                         <input type="text" name="phone" value="{{$user->mobile_phone}}" class="form-control" placeholder="">
                                     </div>
                                 </div>
-                                <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                                <div class="row py-3 ">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Alternative Email</label> <br>
                                         <input type="email" name="alt_email"value="{{$user->alt_email}}" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Alternative Mobile Number</label>
                                         <input type="number" name="alt_phone"value="{{$user->alt_phone}}" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                 </div>
                                 <hr>
  
-                               <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                               <div class="row py-3 ">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Street</label> <br>
                                         <input type="text" name="street"value="{{$user->street}}" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Suburb</label>
                                         <input type="text" name="suburb"value="{{$user->suburb}}" class="form-control" placeholder="" aria-describedby="prefixId">
                                     </div>
                                </div>
-                               <div class="d-flex py-3 justify-content-between">
-                                <div class="input-group px-3">
+                               <div class="row py-3 ">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Town/City</label> <br>
                                     <input type="text" name="city" value="{{$user->city}}" class="form-control" placeholder="Enter Town or City" aria-describedby="prefixId">
                                 </div>
-                                <div class="input-group px-3">
+                                <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                     <label class="input-group">Province</label>
                                     <input type="text" name="state"  value="{{$user->state ?? "Gauteng"}}" class="form-control" placeholder="Gauteng" aria-describedby="prefixId">
                                 </div>
                                </div>
-                                <div class="d-flex py-3 justify-content-between">
-                                    <div class="input-group px-3">
+                                <div class="row py-3 ">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Country</label> <br>
                                         <input type="text" name="country"  value="{{$user->country ?? "South Africa" }}" class="form-control" placeholder="South Africa" aria-describedby="prefixId">
                                     </div>
-                                    <div class="input-group px-3">
+                                    <div class="input-group px-3 col-md-6 col-sm-12 py-3">
                                         <label class="input-group">Zip Code</label>
                                         <input type="number" name="zip_code" value="{{$user->zip_code}}" class="form-control" placeholder="Enter Zip Code" aria-describedby="prefixId">
                                     </div>
