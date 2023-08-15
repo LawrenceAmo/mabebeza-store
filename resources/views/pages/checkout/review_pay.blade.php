@@ -92,20 +92,20 @@
                                  </div>
                                  <div class="row w-100 py-2 h6 border-bottom">
                                     <div class="col-6 ">Cart</div>
-                                    <div class="col-6 ">R@{{ cart_total }}</div>
+                                    <div class="col-6 ">R@{{ cart_total.toFixed(2) }}</div>
                                 </div>
                                 <div class="row w-100 py-2 h6 border-bottom">
                                     <div class="col-6 ">Discount</div>
-                                    <div class="col-6 ">-R@{{ discount_total }}</div>
+                                    <div class="col-6 ">-R@{{ discount_total.toFixed(2) }}</div>
                                 </div>
                                 <div class="row w-100 py-2 h6 border-bottom">
                                     <div class="col-6 ">Delivery Fee</div>
-                                    <div class="col-6 ">R@{{ shipping_fee }}</div>
+                                    <div class="col-6 ">R@{{ shipping_fee.toFixed(2) }}</div>
                                 </div>
                                 {{-- discount_total --}}
                                 <div class="row py-2 w-100 h5 border-bottom">
                                     <div class="col-6 ">Order Total</div>
-                                    <div class="col-6 ">R@{{ order_total }}</div>
+                                    <div class="col-6 ">R@{{ order_total.toFixed(2) }}</div>
                                 </div>
                                 <div class="row py-2 w-100 h5 border-bottom" v-if="!loading">
                                     <button type="submit" class="btn btn-sm rounded btn-purple">
