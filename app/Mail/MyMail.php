@@ -23,7 +23,7 @@ class MyMail extends Mailable
          $this->name = $name;
     }
 
-    /**
+    /** 
      * Build the message.
      *
      * @return $this

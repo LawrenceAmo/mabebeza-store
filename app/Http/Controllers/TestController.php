@@ -13,6 +13,7 @@ use App\Mail\MyMail;
 class TestController extends Controller
 {
     public function mail() {
+        
 
 
         Mail::to('amocodes@gmail.com')->send(new MyMail('Amohelang Madiba')); //customer_order_shipping
