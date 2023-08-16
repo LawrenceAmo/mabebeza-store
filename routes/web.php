@@ -121,9 +121,7 @@ Route::prefix('accounts/' )->middleware(['auth'])->group(function ()
     Route::get('/checkout/shipping', [CheckoutController::class, 'guest_shipping'])->name('guest_shipping');
     Route::post('/checkout/shipping/save', [CheckoutController::class, 'save_guest_shipping'])->name('save_guest_shipping');
     Route::get('/checkout/review-pay', [CheckoutController::class, 'review_payment'])->name('review_payment');
-    Route::get('/checkout/payment/success', [CheckoutController::class, 'payment_success'])->name('payment_success');
-    Route::get('/checkout/payment/failed', [CheckoutController::class, 'payment_failed'])->name('payment_failed');
-
+   
     // Orders
     Route::get('/orders/{id}', [OrdersController::class, 'guest_order'])->name('guest_order');
 
@@ -133,7 +131,11 @@ Route::prefix('accounts/' )->middleware(['auth'])->group(function ()
     Route::get('/profile', [CustomersController::class, 'guest_customer_profile'])->name('guest_customer_profile');
     Route::post('/profile/save', [CustomersController::class, 'guest_customer_profile_save'])->name('guest_customer_profile_save');
 });
- 
+
+Route::get('accounts/checkout/payment/success', [CheckoutController::class, 'payment_success'])->name('payment_success');
+Route::get('accounts/checkout/payment/failed', [CheckoutController::class, 'payment_failed'])->name('payment_failed');
+
+
 require __DIR__.'/auth.php';
 
   

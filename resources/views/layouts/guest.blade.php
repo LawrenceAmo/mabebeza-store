@@ -308,7 +308,6 @@
       <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
 
     </footer>
- 
   
     <!-- Modal -->
     <div class="modal fade" id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
