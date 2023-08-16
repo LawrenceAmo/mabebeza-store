@@ -70,7 +70,7 @@ class OrdersController extends Controller
                 ->where('orders.orderID', $id)
                 ->first();
 
-                // return $order;
+                return $order;
                 // return $order;
 
                 $approved_by = [];
