@@ -308,9 +308,8 @@
       <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
 
     </footer>
-
-
-   
+ 
+  
     <!-- Modal -->
     <div class="modal fade" id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -362,7 +361,7 @@
       }
 
       function areas(area = null) {
-        let locations = [ "Tembisa", "Midrand", "Fourways", "Sunninghill", "Waterfall city", "Farmall", "Diepsloot", "Olieven", "Randjespark", "Noordwyk", "Olifants", "Clayville" ];
+        let locations = [ "Tembisa", "Midrand", "Fourways", "Sunninghill", "Waterfall city", "Farmall", "Diepsloot", "Olievenhoutbosch", "Randjespark", "Noordwyk", "Olifantsfontein", "Clayville" ];
           locations = locations.map(function(string) {  return string.toLowerCase();   }); // convert all areas toLowerCase
           area = area.toLowerCase();
 

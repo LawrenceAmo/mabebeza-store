@@ -71,8 +71,7 @@ class OrdersController extends Controller
                 ->first();
 
                 // return $order;
-                // return $order;
-
+ 
                 $approved_by = [];
 
                 if ($order->paid_all) {
