@@ -350,20 +350,23 @@ class CheckoutController extends Controller
 
                     if (!in_array(strtolower($order->suburb), $doc) || !in_array(strtolower($order->city), $doc) || !in_array(strtolower($order->suburb), $tembisa) || !in_array(strtolower($order->city), $tembisa)) {
                         $store = 'tembisa'; 
-                    }
-
-                    // Mail::to($sent_to_store)->send(new customer_order_confirmation($order));  // mail to tembisa order not located
-                    Mail::to($order->user_email)->send(new customer_order_confirmation($order));
-                    Mail::to($sent_to_store)->send(new store_order_confirmation($order, $store));   
+                    } 
 
                     DB::table('orders')
                             ->where('orderID',  $order->orderID)
-                            ->update([
+                            ->update([ 
                                 'store' => $store,                                  
                                 'paid' => true,                                  
                                 'payment' => $order->total_amount,                                 
                             ]);
                     //////////////////////////////////////////////////
+                   
+                    try {
+                        Mail::to($order->user_email)->send(new customer_order_confirmation($order));
+                        Mail::to($sent_to_store)->send(new store_order_confirmation($order, $store));   
+                    } catch (\Throwable $th) {
+                        //throw $th;
+                    }
  
                 return view('pages.checkout.payment_success')->with('order', $order);
 
