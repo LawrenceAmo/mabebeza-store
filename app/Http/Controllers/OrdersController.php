@@ -73,9 +73,14 @@ class OrdersController extends Controller
                 // return $order;
                 // return $order;
 
-        $approved_by = DB::table('users')->where('id', (int)$order->approved_by)->first();
-        $drivers = DB::table('users')->where('driver', true)->get();
-        $deliveries = DB::table('deliveries')
+                $approved_by = [];
+                
+                if ($order->approved_by) {
+                    $approved_by = DB::table('users')->where('id', (int)$order->approved_by)->first();
+                }
+
+                $drivers = DB::table('users')->where('driver', true)->get();
+                $deliveries = DB::table('deliveries')
                         ->leftJoin('users', 'users.id', '=', 'deliveries.driverID' )
                         ->where('deliveries.orderID', (int)$order->orderID)
                         ->first();
