@@ -74,8 +74,8 @@ class OrdersController extends Controller
                 // return $order;
 
                 $approved_by = [];
-                
-                if ($order->approved_by) {
+
+                if ($order->paid_all) {
                     $approved_by = DB::table('users')->where('id', (int)$order->approved_by)->first();
                 }
 
