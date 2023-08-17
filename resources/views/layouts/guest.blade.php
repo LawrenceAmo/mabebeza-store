@@ -232,7 +232,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="https://facebook.com/fadaeco.sa" target="_blank">
+                  <a class="nav-link" href="https://www.facebook.com/mabebezababy" target="_blank">
                     <i class="fab fa-facebook"></i> MabebezaBaby
                   </a>
                 </li>
