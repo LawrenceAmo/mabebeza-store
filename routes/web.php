@@ -99,6 +99,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     Route::POST('/staff/create', [StaffController::class, 'create_new_staff'])->name('create_new_staff');
     Route::get('/staff/update/{id}', [StaffController::class, 'update_staff'])->name('update_staff');
     Route::get('/staff/convert-to-staff/{id}', [StaffController::class, 'edit_customer_to_staff'])->name('edit_customer_to_staff'); // Temporary
+    Route::POST('/staff/update/driver', [StaffController::class, 'update_staff_to_driver'])->name('update_staff_to_driver');
 
        //  Orders
       Route::get('/orders', [OrdersController::class, 'index'])->name('orders');

@@ -97,14 +97,14 @@ class StaffController extends Controller
         return view('portal.staff.update')->with('staff', $staff)->with('stores', $stores);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {       
         $request->validate([
             'store' => ['required'],
             'driver' => ['required'],
         ]);
 
-        $driver = (bool)$request->store;
+        $driver = (bool)$request->driver;
 
         DB::table('users') 
             ->where('id', (int)$request->id )
@@ -113,9 +113,30 @@ class StaffController extends Controller
                 'driver' => $driver,
             ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Staff Updated');
     }
 
+
+    public function update_staff_to_driver(Request $request)
+    {       
+        $request->validate([
+            'store' => ['required'],
+            'driver' => ['required'],
+        ]);
+
+        // return $request;
+        $driver = (bool)$request->driver;
+
+        DB::table('users') 
+            ->where('id', (int)$request->userID )
+            ->update([
+                'store' => $request->store,
+                'driver' => $driver,
+            ]);
+
+        return redirect()->back()->with('success', 'Staff Updated');
+    }
+ 
     /**
      * Remove the specified resource from storage.
      *

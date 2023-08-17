@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\customer_order_shipping;
 use App\Jobs\SendOrderConfirmation;
 use App\Mail\customer_order_confirmation;
+use App\Mail\store_order_confirmation;
+
 class OrdersController extends Controller
 {
     /**
@@ -288,6 +290,9 @@ class OrdersController extends Controller
                         'paid' => true,                                  
                         'payment' => $order->total_amount,                                 
                     ]);
+
+                    Mail::to($order->user_email)->send(new customer_order_confirmation($order));
+                    Mail::to($sent_to_store)->send(new store_order_confirmation($order, $store));
 
                 return redirect()->back()->with('success', ' Payment was approve Successfully!!!');
         }
