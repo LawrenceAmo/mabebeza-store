@@ -106,7 +106,8 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
       Route::post('/orders/approve', [OrdersController::class, 'approve_order'])->name('approve_order');
       Route::POST('/orders/shipping/update', [OrdersController::class, 'update_shipping'])->name('update_shipping');
       Route::POST('/orders/order/update', [OrdersController::class, 'update_order'])->name('update_order');
-  
+      Route::get('/orders/confirm/payment/{id}', [OrdersController::class, 'confirm_payment'])->name('confirm_payment');
+
      
     //  Explore more
     Route::get('/explore', [ExploreController::class, 'index'])->name('explore'); 

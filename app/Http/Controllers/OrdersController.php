@@ -74,7 +74,7 @@ class OrdersController extends Controller
  
                 $approved_by = [];
 
-                if ($order->paid_all) {
+                if ($order->paid_all) { 
                     $approved_by = DB::table('users')->where('id', (int)$order->approved_by)->first();
                 }
 
@@ -92,6 +92,7 @@ class OrdersController extends Controller
                 ->with("drivers", $drivers)
                 ->with("order", $order);
 }
+
 
     /**
      * Store a newly created resource in storage.
@@ -240,5 +241,56 @@ class OrdersController extends Controller
 
             return view('customers.order')
                     ->with("order", $order);
+    }
+
+
+    public function confirm_payment($id) {
+ 
+        if(strpos(Auth::user()->email, 'madibaamohelang') !== false ){
+            
+            $order = DB::table('users')
+                            ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
+                            ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
+                            ->select('users.first_name as user_name',
+                                    'users.last_name as user_surname',
+                                    'users.email as user_email',
+                                    'users.phone as user_phone',
+                                    'shipping_addresses.street as user_street',
+                                    'shipping_addresses.suburb as user_suburb',
+                                    'shipping_addresses.city as user_city',
+                                    'shipping_addresses.state as user_state',
+                                    'shipping_addresses.country as user_country',
+                                    'shipping_addresses.postal_code as user_postal_code', 
+                                    'shipping_addresses.*','orders.*',
+                                    )
+                            ->where([ ['orders.order_number', $id]])
+                            ->first();
+
+                            $store = 'tembisa';
+                    $sent_to_store = 'info@mabebeza.com';
+
+                    $tembisa = [ "tembisa", "midrand", "sunninghill", "waterfall city", "randjespark", "noordwyk", "olifantsfontein", "clayville" ];
+                    $doc = [ "fourways", "sunninghill", "farmall", "diepsloot", "olievenhoutbosch" ];
+ 
+                    if (in_array(strtolower($order->suburb), $tembisa) || in_array(strtolower($order->city), $tembisa)) {
+                        $store = 'tembisa'; 
+                    }
+                    if (in_array(strtolower($order->suburb), $doc) || in_array(strtolower($order->city), $doc)) {
+                        $store = 'bambanani'; 
+                    }
+                    if (!in_array(strtolower($order->suburb), $doc) || !in_array(strtolower($order->city), $doc) || !in_array(strtolower($order->suburb), $tembisa) || !in_array(strtolower($order->city), $tembisa)) {
+                        $store = 'tembisa'; 
+                    }
+                    DB::table('orders')
+                    ->where('orderID',  $order->orderID)
+                    ->update([ 
+                        'store' => $store,                                  
+                        'paid' => true,                                  
+                        'payment' => $order->total_amount,                                 
+                    ]);
+
+                return redirect()->back()->with('success', ' Payment was approve Successfully!!!');
+        }
+        return redirect()->back();
     }
  }

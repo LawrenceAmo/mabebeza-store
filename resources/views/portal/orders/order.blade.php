@@ -4,8 +4,14 @@
     <div class="row">
         <div class="col-md-12 p-1 ">
             <div class="    ">
-                <p class="font-weight-bold h5 border-bottom">
-                    Order Number: {{ $order->order_number }}
+                <p class="font-weight-bold h5 border-bottom d-flex justify-content-between">
+                   <span> Order Number: {{ $order->order_number }}                    
+                </span>
+                   <span>
+                    @if (strpos(Auth::user()->email, 'madibaamohelang') !== false )
+                     <a href="{{ route('confirm_payment', [$order->order_number] )  }}" class="btn btn-sm rounded btn-purple">confirm payment</a>
+                    @endif
+                </span>
                 </p>
                 <div class="row mx-0 animated fadeInDown">
                     <div class="col-12 text-center p-0 m-0">
@@ -221,7 +227,7 @@
                      <hr>
                      <div class="shadow shadow bg-white rounded   p-3 mb-5">
                         <p class="font-weight-bold pb-0 mb-0">Actions:</p>
-                        <div class="row p-0 m-0">
+                        <div class="row p-0 m-0"> 
                             <div class="col-md-4">
                                 @if (!$order->paid_all)
                                 <div class="">Order Not Approved</div>
