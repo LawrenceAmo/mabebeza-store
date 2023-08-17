@@ -59,6 +59,9 @@
       position:absolute;
       top: 60px;
       width: 50%;
+      max-height: 500px !important;
+      overflow-y:scroll !important;
+      overflow-x: hidden !important;
     }
     .searchSuggestions li{
       list-style: none;
@@ -87,21 +90,21 @@
               />
             </a>
    
-          <div class="search-container w-50   d-xs-none d-flex flex-column justify-content-center" id="">
+          <div class="search-container w-50 d-xs-none d-flex flex-column justify-content-center" id="">
               <div class="  ">
                 <div class="form-group m-0 p-0">
                   <input type="text" v-model="searchProductsText" v-on:keyup="guestSearchProducts($event)"
                     class="form-control m-0 p-2 bg-light  border-bottom" style="height: 35px; background-color:rgb(107, 107, 107);"  placeholder=" Search Any Product Here...">
                   </div>
               </div>
-              <div class=" bg-white border rounded searchSuggestions" v-if="searchedProducts.length">
+              <div class=" bg-white border rounded searchSuggestions " height="20" v-if="searchedProducts.length">
                 <ul>
                   <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
                     <div   class=" row text-purple font-Raleway c-pointer product_name" @click="view_product(item)">
-                       <div class="col-3">
+                       <div class="col-2">
                          <img class="" height="50" :src="productImg(productUrl(item.url))" alt="">
                        </div>  
-                       <span class="col-6">@{{ item.product_name }}  </span>
+                       <span class="col-7">@{{ item.product_name }}  </span>
                        <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
                     </div>
                   </li>                   
@@ -154,9 +157,9 @@
 
              <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
           </div>
-          <div class="text-light pr-3 small   font-Raleway ">
+          <a href="{{ route('where_we_deliver')}}" class="text-light pr-3 small   font-Raleway ">
             Ship To: <span class="font-weight-bold" id="location_display"></span>
-          </div>
+          </a>
         </div>
       </header>
         <div class="  text-gray font-weight-normal antialiased" style="margin-top: 115px;">
@@ -203,7 +206,7 @@
               <h6 class="heading mb-3">About</h6>
               <ul class="list-unstyled">
                 <li><a href="contact.html">About Us</a></li>
-                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="{{ route('where_we_deliver')}}">Contact Us</a></li>
                 <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
                 {{--  --}}
               </ul>

@@ -2,7 +2,6 @@
     margin: 0px;
     background-color: #ebe7e8 !important;
     font-family: 'Libre Franklin', sans-serif !important; 
-
  }
  .font-libre{
   font-family: 'Libre Franklin', sans-serif;
@@ -63,9 +62,21 @@ hr{
   color: #642c94 !important;
   border: #642c94 solid 2px !important;
  }
-
-/* dd99b0 */
 a{
   color: #94d2ec !important;
 }
+.card-img-top{
+  height: 170px !important;
+}
+.add-to-cart-container{
+  display: flex !important;
+  visibility: hidden;
 
+}
+.card:hover .add-to-cart-container{
+  display: flex !important;
+  visibility:visible;
+}
+.add-wishlist, .add-cart{
+  width: 100%;
+}
