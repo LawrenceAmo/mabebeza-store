@@ -29,7 +29,7 @@
                                     <div class="form-group">
                                         <label class="text-center font-Raleway">Qty</label>
                                        <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
-                                         <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
+                                         <option v-for="x in product.quantity" :value="x" >@{{x}}</option>                                           
                                        </select>
                                     </div>
                                 </div>

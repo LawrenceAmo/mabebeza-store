@@ -45,7 +45,7 @@
                                 <label class="text-center font-weight-bold">Qty</label>
                                 {{-- v-model="product.qty" --}}
                                <select class="form-control form-control-sm" v-model="product.qty"  @change="addCartQty(product)">   
-                                <option v-for="x in 100" :value="x" >@{{x}}</option>                                           
+                                <option v-for="x in product.quantity" :value="x" >@{{x}}</option>                                           
                               </select>
                             </div>
                         </div>
