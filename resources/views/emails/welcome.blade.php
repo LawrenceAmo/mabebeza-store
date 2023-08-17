@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="mail-conatiner">
-        <p class="">Dear <b class="font-weight-bold">{{ $name }}</b>,</p>
+        <p class="">Dear <b class="font-weight-bold"> </b>,</p>
         <p>Thank you for joining Mabebeza. We are excited to have you on board.</p>
         <p>If you have any questions or need assistance, feel free to contact us.</p>
         <p class=""><a class="" href="mailto:info@mabebeza.com">info@mabebeza.com</a></p>  

@@ -31,7 +31,6 @@ return new class extends Migration
             $table->dropColumn('approved_by');
             $table->dropColumn('updated_by');
             $table->dropColumn('approved_at');
-
         });
     }
 };

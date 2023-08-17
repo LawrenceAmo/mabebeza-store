@@ -14,7 +14,7 @@ class TestController extends Controller
 {
     public function mail() {
          
-        Mail::to('amocodes@gmail.com')->send(new MyMail('Amohelang Madiba')); //customer_order_shipping
+        Mail::to('amocodes@gmail.com')->send(new MyMail()); //customer_order_shipping
  
         return 1;
         $userID = (int)Auth::id();

@@ -11,16 +11,16 @@ class MyMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $name;
+    // protected $name;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct()
     {
-         $this->name = $name;
+        //  $this->name = $name;
     }
 
     /** 
@@ -32,11 +32,7 @@ class MyMail extends Mailable
     {
         return $this  //->from('info@effectivewing.com')
                 ->subject('Welcome to Mabebeza')
-                ->view('emails.welcome')
-                ->with([
-                    'name' => $this->name,
-                    // other variables you want to pass to the email view
-                ]);
+                ->view('emails.welcome') ;
 
     }
 }
