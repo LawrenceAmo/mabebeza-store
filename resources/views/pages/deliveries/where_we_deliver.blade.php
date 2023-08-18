@@ -45,7 +45,7 @@
           </div>
           <div class="col-4">
             <div class=""> 
-                <a href="mailto:info@mabebeza.com" class="text-dark"><i class="fa fa-envelope"  ></i> &nbsp; info@mabebeza.com</a> <br>
+                {{-- <a href="mailto:info@mabebeza.com" class="text-dark"><i class="fa fa-envelope"  ></i> &nbsp; info@mabebeza.com</a> <br> --}}
                 <a href="mailto:careline@mabebeza.com" class="text-dark"><i class="fa fa-envelope"  ></i> &nbsp; careline@mabebeza.com</a>
              </div>
            </div>
@@ -68,11 +68,11 @@
               </p>
             </div>
             <div class="col-md-6">
-              <p class="">
-                <span> Mabebeza Shop 32b</span> <br> 
-                <span>Tembisa Megamart</span> , <br>
-                 Cnr Olifanstsfontein & Algeria Rd, <br>
-                  Gauteng, South Africa
+               <p class="">
+                <span> Mabebeza Shop 91A</span> <br> 
+                <span>Bambanani shopping center</span> , <br>
+                Apple street, Diepsloot <br>
+                   Gauteng, South Africa
               </p>
             </div>
           </div>
@@ -108,7 +108,7 @@
       const mdm = new google.maps.Marker({
         position: md,
         map: map,
-        title: 'Mabebeza Bambanani'
+        title: 'Mabebeza Shop 91A Bambanani shopping center Apple street, Diepsloot'
       }); 
     // Define the LatLng coordinates for the polygon's path.
     const triangleCoords = [
