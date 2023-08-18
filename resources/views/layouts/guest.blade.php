@@ -54,6 +54,10 @@
       z-index: 100;
       background-color: rgb(255, 255, 255);
     }
+    .search-container-mobile{
+      display: none !important;
+      visibility:hidden !important;
+    }
     .searchSuggestions{
       z-index: 100;
       position:absolute;
@@ -74,22 +78,56 @@
    }
    .menu-bar{
     display: flex;
+    animation: fadeIn 0.5s ease;
    }
    .menu-bar-toggle{
     display: none;
+    animation: fadeIn 0.5s ease;
    }
    .login-mobile{
     display: none !important;
    }
-   /* cart-mobile */
-   @media (max-width: 960px) { 
-    .menu-bar, .login-desktop, .cart-dektop{
-        display: none !important;
-      } 
-      .menu-bar-toggle, .login-mobile{
-        display: flex !important;
-      }       
+   /* //////////////////////// */
+   @media (max-width: 575px) { 
+    .search-container-mobile{
+      display:flex !important;
+      visibility:visible !important;
+    } 
+    .searchSuggestions{
+      z-index: 100;
+      position:absolute;
+      top: 110px;
+      width: 100%;
+    }
    }
+   @media (max-width: 960px) { 
+    .menu-bar, .login-desktop, .cart-desktop{
+        display: none !important;
+        animation: fadeIn 0.5s ease;
+      } 
+      .menu-bar-toggle, .login-mobile, .cart-mobile{
+        display: flex !important;
+      } 
+      #menu_bar{
+        display: flex;
+        flex-direction: column;
+        animation: fadeIn 0.9s ease;
+       }
+      #menu_bar div{
+        padding-bottom: 10px;
+      }
+          
+   }
+   @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+  }
    </style>
     </head>
     <body class="bg-white">
@@ -98,7 +136,7 @@
         <div class="   top-nav p-2   d-flex justify-content-between ">
            
           <div class=" menu-bar-toggle ">
-            <div class=" d-flex pt-3 flex-column justify-content-center px-4">
+            <div @click="menu_bar_toggle()" class=" d-flex pt-3 flex-column justify-content-center px-4">
               <i class="fas fa-bars    h3 text-white bt-3"></i>
             </div>
           </div>
@@ -112,7 +150,7 @@
               />
             </a>
    
-          <div class="search-container w-50 d-xs-none d-flex flex-column justify-content-center" id="">
+          <div class="search-container search-container-desktop  w-50 d-xs-none d-flex flex-column justify-content-center" id="">
               <div class="  ">
                 <div class="form-group m-0 p-0">
                   <input type="text" v-model="searchProductsText" v-on:keyup="guestSearchProducts($event)"
@@ -167,27 +205,59 @@
                       <span><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
                     </a>
                   </div>
-                  <a href="{{ route('my_cart') }}" class="  text-blue pr-3 pl-3 d-flex flex-column justify-content-center cart-desktop pt-2">
-                    <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
-                  </a>
+                  
+                  <div class="cart-desktop">
+                    <a href="{{ route('my_cart') }}" class="  text-blue pr-3 pl-3 d-flex flex-column justify-content-center  pt-2">
+                      <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
+                    </a>
+                  </div>
 
                   <div class=" cart-mobile d-none ">
-                    <a href="{{ route('my_wish_list') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
+                    <a href="{{ route('my_wish_list') }}" class=" text-pink pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
                       <span><i class="fa fa-heart fa-2x" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
                     </a>
                   </div>
-                  <a href="{{ route('my_wish_list') }}" class="  text-pink pr-3 pl-3 d-flex flex-column justify-content-center cart-desktop pt-2">
-                    <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
-                  </a> 
+                  <div class="cart-desktop">
+                    <a href="{{ route('my_wish_list') }}" class="  text-pink pr-3 pl-3 d-flex flex-column justify-content-center  pt-2">
+                      <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
+                    </a>  
+                  </div> 
                  
                 </div>
               </div>
             </div>
           </div>
         </div>
-         <div class=" menu-bar border d-flex justify-content-between text-dark py-2 pl-2 d-none">
-          
-             <div class="pl-4  "> 
+        <div class="search-container search-container-mobile bg-white  w-100 d-flex flex-column justify-content-center d-none " id="">
+          <div class="  ">
+            <div class="form-group m-0 p-0">
+              <input type="text"  v-model="searchProductsText" v-on:keyup="guestSearchProducts($event)"
+                class="form-control m-0 p-2 bg-white  border rounded-0 rounded-bottom" style="height: 35px; border:#642c94 solid 2px !important;  "  placeholder=" Search Any Product Here...">
+              </div>
+          </div>
+          <div class=" bg-white border rounded searchSuggestions " height="20" v-if="searchedProducts.length">
+            <ul>
+              <li class="text-dark border-bottom py-2" v-for="item,i in searchedProducts" >
+                <div   class=" row text-purple font-Raleway c-pointer product_name" @click="view_product(item)">
+                   <div class="col-2">
+                     <img class="" height="50" :src="productImg(productUrl(item.url))" alt="">
+                   </div>  
+                   <span class="col-7">@{{ item.product_name }}  </span>
+                   <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
+                </div>
+              </li>                   
+            </ul> 
+            <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="search_product_url"></a>             
+          </div>
+          <div class=" bg-white border rounded searchSuggestions" v-if="(!searchedProducts.length && (searchProductsText.length > 1))">
+            <ul>
+              <li class="text-dark border-bottom py-2 "  ><i class="">No Items Found</i></li>                   
+            </ul>              
+          </div>
+      </div>
+         <div class=" menu-bar border d-flex justify-content-between text-dark py-2 pl-2 " id="menu_bar">
+                    
+             <div class="pl-sm-4  "> 
               <div class="dropdown">
                 <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false">
@@ -224,6 +294,7 @@
               Ship To: <span class="font-weight-bold" id="location_display"></span>
             </a>
          </div>
+         
       </header>
         <div class="  text-gray font-weight-normal bg-white antialiased" style="margin-top: 115px;">
             {{ $slot }}
@@ -539,6 +610,11 @@
               methods: {
                 checkLocalStorage: function(key){
                  return localStorage.getItem(key) !== null;
+                },
+                menu_bar_toggle: function(){
+                  let menu_bar = document.getElementById('menu_bar');
+                  menu_bar.classList.toggle('menu-bar');
+                  console.log("Amo")
                 },
                 view_product: function(item){
  

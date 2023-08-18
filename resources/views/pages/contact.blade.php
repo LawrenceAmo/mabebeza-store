@@ -3,9 +3,9 @@
     <main   class="m-0 p-0">
         <main class="m-0 p-0" id="app">
              <!-- Container -->
-            <div class="">
+            <a class="" href="{{ route('store-locator')}}">
               <img class="d-block w-100" src="{{ asset('images/background/slides/banner3.jpg')}}" alt="Third slide">
-            </div>
+            </a>
              <section class="slice   pt-0">
             <!-- Container -->
             <div class="container   mt-0">
