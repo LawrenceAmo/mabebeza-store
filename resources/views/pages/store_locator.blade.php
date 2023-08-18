@@ -4,26 +4,32 @@
            height: 400px;
         }
     </style>
-    <div class="container  bg-white my-5 p-5">
+    <div class="container bg-white my-5 p-5">
       
         <div class="row">
             <div class=" col-md-4 col-sm-12 ">
             <div class="">
-                <p class="h5 font-Raleway">Locations</p>
-                <ol>
-                    <li class="font-weight-bold text-purple">Tembisa</li>
-                    <li>Midrand</li>                    
-                    <li>Olifantsfontein</li>
-                    <li>Clayville</li>
-                    <li>Noordwyk</li>
-                    <li>Randjespark</li>
-                    <li class="font-weight-bold text-purple">Diepsloot</li>
-                    <li>Olievenhoutbosch</li>
-                    <li>Fourways</li>
-                    <li>Sunninghill</li>
-                    <li>Waterfall city</li>
-                    <li>Farmall</li>                    
-                </ol>
+                <p class="h5 font-Raleway">Store Locations</p>
+                <div class=" ">
+                  <div class="mt-3 pt-3"><p class="h5 text-purple">Tembisa Store  </p></div>
+                  <p class="">
+                   <span> Mabebeza Shop 32b</span> <br> 
+                   <span>Tembisa Megamart</span> , <br>
+                    Cnr Olifanstsfontein & Algeria Rd, <br>
+                     Gauteng, South Africa
+                  </p>
+                </div>
+
+                <div class=" ">
+                  <div class="mt-3 pt-3"><p class="h5 text-purple">Diepsloot Store</p></div>
+                   <p class="">
+                    <span> Mabebeza Shop 91A</span> <br> 
+                    <span>Bambanani shopping center</span> , <br>
+                    Apple street, Diepsloot <br>
+                       Gauteng, South Africa
+                  </p>
+                </div>
+
             </div>                  
             </div>
             <div class=" col-md-8 col-sm-12 ">
@@ -86,7 +92,7 @@
       fillColor: "#dd99b0",
       fillOpacity: 0.50,
     });
-    bermudaTriangle.setMap(map);
+    // bermudaTriangle.setMap(map);
   }
   window.initMap = initMap;
       </script>

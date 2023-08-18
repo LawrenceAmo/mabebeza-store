@@ -66,20 +66,42 @@
     .searchSuggestions li{
       list-style: none;
     }
-    
     .product_name{
     height: 50px !important;
     white-space:pre-wrap !important;  
     overflow: hidden !important; /* Hide any overflowing content */
     text-overflow: ellipsis !important;
    }
+   .menu-bar{
+    display: flex;
+   }
+   .menu-bar-toggle{
+    display: none;
+   }
+   .login-mobile{
+    display: none !important;
+   }
+   /* cart-mobile */
+   @media (max-width: 960px) { 
+    .menu-bar, .login-desktop, .cart-dektop{
+        display: none !important;
+      } 
+      .menu-bar-toggle, .login-mobile{
+        display: flex !important;
+      }       
+   }
    </style>
     </head>
-    <body>
+    <body class="bg-white">
        
       <header class="nav-bar bg-purple " id="guestApp">
         <div class="   top-nav p-2   d-flex justify-content-between ">
            
+          <div class=" menu-bar-toggle ">
+            <div class=" d-flex pt-3 flex-column justify-content-center px-4">
+              <i class="fas fa-bars    h3 text-white bt-3"></i>
+            </div>
+          </div>
             <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
               <img
                 alt="logo"
@@ -124,45 +146,86 @@
                 @if (Route::has('login'))
                   @auth 
                      <a href="{{ url('/accounts') }}" class=" nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> My Account</a>  
-                  @else
-                    <a href="{{ route('login') }}" class=" text-light nav-link">Log in</a>                       
-                    <a href="{{ route('register') }}" class=" text-light nav-link">Register</a>                      
+                  @else 
+                    <a href="{{ route('login') }}" class=" login-mobile nav-link d-flex flex-column justify-content-center pt-2">
+                      <i class="fas fa-user-plus fa-2x text-white "></i>
+                    </a>
+                    <a href="{{ route('login') }}" class=" login-desktop nav-link d-flex flex-column justify-content-center pt-2">
+                      Log in
+                    </a>
+                    <a href="{{ route('register') }}" class=" login-desktop nav-link d-flex flex-column justify-content-center pt-2">
+                      Register
+                    </a>                       
+                    {{-- <a href="{{ route('login') }}" class="  text-light nav-link"></a>                        --}}
+                    {{-- <a href="{{ route('') }}" class=" login-desktop text-light nav-link"></a>                       --}}
                   @endauth
-                @endif       
-                | 
-                <div class="  d-flex">
-                  <a href="{{ route('my_cart') }}" class="text-blue pr-3 pl-3"><i class="fa fa-cart-plus" aria-hidden="true"></i><span id="cart_qty_display">0</span></a> 
-                <a href="{{ route('my_wish_list') }}" class="text-pink d-xs-none pr-5 pl-1"> <i class="fa fa-heart" aria-hidden="true"></i> <span id="wish_list_qty_display">0</span></a>  
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-         <div class="border d-flex justify-content-between text-dark py-2 pl-2">
-          <div class="pl-4  "> 
-            <div class="dropdown">
-              <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  <i class="fa fa-bars "></i>  Shop By Category
-              </button>
-              <div class="dropdown-menu" aria-labelledby="triggerId" >
-                <div class="" v-for="category,i in sub_categories"> 
-                  {{-- guest_view_sub_category --}}
-                  <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name != Other" >@{{category.sub_category_name}}</a>  
-                  <div class="dropdown-divider"></div>
-                </div>
-                {{-- <div class="dropdown-divider"></div> --}}
-              </div>
-            </div>
+                @endif
+                 <div class="d-flex flex-column justify-content-center pt-2">| </div>
+                <div class=" d-flex">
+                  <div class=" cart-mobile d-none ">
+                    <a href="{{ route('my_cart') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
+                      <span><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
+                    </a>
+                  </div>
+                  <a href="{{ route('my_cart') }}" class="  text-blue pr-3 pl-3 d-flex flex-column justify-content-center cart-desktop pt-2">
+                    <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
+                  </a>
 
-             <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+                  <div class=" cart-mobile d-none ">
+                    <a href="{{ route('my_wish_list') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
+                      <span><i class="fa fa-heart fa-2x" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
+                    </a>
+                  </div>
+                  <a href="{{ route('my_wish_list') }}" class="  text-pink pr-3 pl-3 d-flex flex-column justify-content-center cart-desktop pt-2">
+                    <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
+                  </a> 
+                 
+                </div>
+              </div>
+            </div>
           </div>
-          <a href="{{ route('where_we_deliver')}}" class="text-light pr-3 small   font-Raleway ">
-            Ship To: <span class="font-weight-bold" id="location_display"></span>
-          </a>
         </div>
+         <div class=" menu-bar border d-flex justify-content-between text-dark py-2 pl-2 d-none">
+          
+             <div class="pl-4  "> 
+              <div class="dropdown">
+                <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <i class="fa fa-bars "></i>  Shop By Category
+                </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId" >
+                  <div class="" v-for="category,i in sub_categories"> 
+                    {{-- guest_view_sub_category --}}
+                    <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name != Other" >@{{category.sub_category_name}}</a>  
+                    <div class="dropdown-divider"></div>
+                  </div>
+                  {{-- <div class="dropdown-divider"></div> --}}
+                </div>
+              </div>
+  
+               <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+            </div>
+            <div class="">
+              <a href="{{ route('store-locator')}}" class="text-light pr-3     font-Raleway ">Store Locator</a>
+            </div>
+            <div class=""> 
+              <a href="{{ route('where_we_deliver')}}" class="text-light pr-3     font-Raleway ">Where We Deliver</a>
+            </div>
+            <div class="">
+              <a href="" class="text-light pr-3     font-Raleway ">Delivery Policy</a>
+            </div>
+            <div class="">
+              <a href="{{ route('contact-us')}}" class="text-light pr-3     font-Raleway ">Contact Us</a>
+            </div>
+            <div class="">
+              <a href="" class="text-light pr-3     font-Raleway ">About Us</a>
+            </div>
+            <a href="{{ route('where_we_deliver')}}" class="text-light pr-3     font-Raleway ">
+              Ship To: <span class="font-weight-bold" id="location_display"></span>
+            </a>
+         </div>
       </header>
-        <div class="  text-gray font-weight-normal antialiased" style="margin-top: 115px;">
+        <div class="  text-gray font-weight-normal bg-white antialiased" style="margin-top: 115px;">
             {{ $slot }}
         </div>
           <footer class="position-relative" id="footer-main pt-0">
@@ -206,7 +269,7 @@
               <h6 class="heading mb-3">About</h6>
               <ul class="list-unstyled">
                 <li><a href="contact.html">About Us</a></li>
-                <li><a href="{{ route('where_we_deliver')}}">Contact Us</a></li>
+                <li><a href="{{ route('contact-us')}}">Contact Us</a></li>
                 <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
                 {{--  --}}
               </ul>
@@ -243,19 +306,19 @@
             </div>
             <div class="col-md-6  d-flex flex-column justify-content-center">
               <div class="d-flex justify-content-around"> 
-                <div class="px-2">
+                <div class="px-3 py-2 bg-white rounded">
                     <img height="20" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="">
                 </div>
-                <div class="px-2">
+                <div class="px-3 py-2 bg-white rounded">
                     <img height="20" src="https://www.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="">
                 </div> 
-                <div class="px-2">
+                <div class="px-3 py-2 bg-white rounded">
                     <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/InstantEFT@2x.png" alt="">
                 </div>
-                <div class="px-2">
+                <div class="px-3 py-2 bg-white rounded">
                     <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/MobiCred@2x.png" alt="">
                 </div>
-                <div class="px-2">
+                <div class="px-3 py-2 bg-white rounded">
                     <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/RCS@2x.png" alt="">
                 </div>
             </div>

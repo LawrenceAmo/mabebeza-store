@@ -146,6 +146,7 @@ require __DIR__.'/auth.php';
         Route::get('/terms-and-conditions', function () {  return view('pages.legal.t&c');  })->name('terms-and-conditions');
         Route::get('/privacy-policy', function () {  return view('pages.legal.pp');  })->name('privacy-policy');
         Route::get('/contact-us', function () {  return view('pages.contact');  })->name('contact-us');
+        Route::get('/store-locator', function () {  return view('pages.store_locator');  })->name('store-locator');
  
     });
 
