@@ -500,9 +500,7 @@
           let qty = JSON.parse(localStorage.getItem('wish_list')).length
           document.getElementById('wish_list_qty_display_mobile').innerHTML = qty;
           document.getElementById('wish_list_qty_display_desktop').innerHTML = qty;
-      }
-
-      
+      }    
 
       function set_location(location){
           localStorage.setItem('ship_location', ''+location); 

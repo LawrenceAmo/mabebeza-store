@@ -16,6 +16,7 @@
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
    
@@ -188,6 +189,7 @@
                   {{ $slot }}
                 </section>
             </main>
+
             <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
             <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>
       

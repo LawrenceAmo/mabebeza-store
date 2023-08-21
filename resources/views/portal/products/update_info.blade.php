@@ -1,4 +1,6 @@
 <x-app-layout>
+    {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
 
     <div class="mx-0 mb-5  shadow rounded p-3  w-100" id="app">
         <div class="card border rounded w-100">
@@ -55,13 +57,13 @@
             <div class="col-md-6 p-2">
                  <div class="form-group">
                     <label for="">Product Short Description</label>
-                    <textarea class="form-control" name="description"   rows="3">{{$product->description}}</textarea>
-                </div>
+                    <textarea class="form-control" name="description" id="description"  rows="3">{!!$product->description!!}</textarea>
+                 </div>
             </div>
              <div class="col-md-6 p-2">
                  <div class="form-group">
                     <label for="">Product Detailed information</label>
-                    <textarea class="form-control" name="product_detail" placeholder="optional" id="" rows="3">{{$product->product_detail}}</textarea>
+                    <textarea class="form-control" name="product_detail" placeholder="optional" id="product_detail" rows="3">{!! $product->product_detail !!}</textarea>
                     </div>
             </div>
         </div>
@@ -75,83 +77,15 @@
 
 </form>
      </div>
-    <script>
-             const { createApp } = Vue;
-      createApp({
-        data() {
-          return {
-            vendor_product_price: '',
-            product_price: '',
-            profit: '',
-            margin: '',
-            margin_value: 0,
-           };
-        },
-        async created(){
-            console.log("amo start pricing")
-        },
-        methods: {
-            margin_type: function(margin_type_v){
-                let margin_value = 0;
-                if (margin_type_v == "percent") {
-                    margin_value = (this.margin / 100) * this.vendor_product_price;
-                }else{
-                margin_value = this.margin; 
-                }
-                // console.log(margin_type_v +" ============ "+ margin_value)
-                 this.margin_value = margin_value;
-            },
-            pricing: function(){
-                            console.log(this.margin_value)
-                            // console.log(this.margin_in_rand)
-
-                // this.product_price = this.margin_type + this.vendor_product_price
-            }
-        }
-
-     }).mount("#app");
-
- let selected_files = document.getElementById('selected_files');
-//  files.innerHTML = "AMo amo";
-     let files = document.getElementById('files');
-     let file = document.getElementById('file');
-
-     let all_files = [];
-     file.addEventListener('change', function(e) {  
-        console.log(e.target.files[0]);
-        all_files.push(e.target.files[0])
-        console.log(all_files);
-        files = all_files;
-        selected_files.innerHTML +=   "<li>"+e.target.files[0].name+"</li><br/>";   //  "<li><img src="+e.target.files[0]+"/></li><br/>";     //+"<br/>";
-        setTimeout(() => {
-                file.value = ''
-        }, 1000);
-    });
+     <script>
+        ClassicEditor.create( document.querySelector( '#description' ) )
+		.catch( error => {
+			console.error( error );
+		} );
+        ClassicEditor.create( document.querySelector( '#product_detail' ) )
+		.catch( error => {
+			console.error( error );
+		} );
+     </script>
  
-
-let is_physical_product = document.getElementById('is_physical_product');
-if (!is_physical_product.checked) {
-        //  document.getElementById('shipping').classlist.add('d-none');
-          document.getElementById('weight').disabled = true;
-         document.getElementById('shipping_time_period').disabled = true;
-    } else {
-        //  document.getElementById('shipping').classlist.remove('d-none');
-         document.getElementById('weight').disabled = false;
-         document.getElementById('shipping_time_period').disabled = false;
-    }
-is_physical_product.addEventListener('change', function() {
-    if (!is_physical_product.checked) {
-        //  document.getElementById('shipping').classlist.add('d-none');
-          document.getElementById('weight').disabled = true;
-         document.getElementById('shipping_time_period').disabled = true;
-    } else {
-        //  document.getElementById('shipping').classlist.remove('d-none');
-         document.getElementById('weight').disabled = false;
-         document.getElementById('shipping_time_period').disabled = false;
-    }
-   
-})
-
-
-    </script>
 </x-app-layout>

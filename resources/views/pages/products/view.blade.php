@@ -85,12 +85,12 @@
                     <!-- Tabs content -->
                     <div class="tab-content pl-5" id="ex-with-icons">
                         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="ex-with-icons-tab-1">
-                            @{{ product.description }}
+                             <span  v-html="product.description"> </span>
                         </div>
                         <div class="tab-pane fade" id="product_details" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
                            Barcode &nbsp; @{{ product.sku }} <br>
-                            @{{ product.product_detail }}
-                        </div>
+                           <span  v-html="product.product_detail"> </span>
+                         </div>
                     </div>
                     <!-- Tabs content -->
                 </div>
