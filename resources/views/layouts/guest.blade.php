@@ -664,20 +664,25 @@
                     return url[0];
                   } 
                 },
-                guestSearchProducts: function(event){
-                    const allProductsDB =  this.allProductsDB
-                    let search = this.searchProductsText.toLowerCase()
+                guestSearchProducts: function(event) {
+                      const allProductsDB = this.allProductsDB;
+                      const searchWords = this.searchProductsText.toLowerCase().split(/\s+/); // Split by whitespace
 
-                    this.searchedProducts = [];
-                    if (search.length < 1) {    return false       } 
+                      this.searchedProducts = [];
 
-                    for (let i = 0; i < allProductsDB.length; i++) {
-                      let productName = allProductsDB[i].product_name.toLowerCase()
-                        if ( productName.includes(search)) {
-                          this.searchedProducts.push(allProductsDB[i])
-                          console.log(allProductsDB[i])
-                        } 
-                    }        
+                      if (searchWords.length < 1) {
+                          return false;
+                      }
+
+                      for (let i = 0; i < allProductsDB.length; i++) {
+                          const productName = allProductsDB[i].product_name.toLowerCase();
+                          
+                          // Use every() to check if all search words are present in the product name
+                          if (searchWords.every(word => productName.includes(word))) {
+                              this.searchedProducts.push(allProductsDB[i]);
+                              console.log(allProductsDB[i]);
+                          }
+                      }
                   },
                   // /////////////////
                 get_products: async function(products){
