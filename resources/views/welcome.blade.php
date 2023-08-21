@@ -2,8 +2,8 @@
     <style>
  
   .carousel {
-    max-height: 300px; /* Adjust the value as needed */
-    overflow: hidden;
+    max-height: 350px !important;  
+     overflow: hidden;
   }
   .carousel .carousel-inner {
     max-height: 100%;
@@ -12,9 +12,8 @@
   .carousel .carousel-item {
     height: 100%;
   }
-
   .carousel .carousel-item img {
-    max-height: 100%;
+    -height: 100%;
     width: auto;
   }
   .main-category-img{
@@ -38,6 +37,13 @@
     overflow: auto !important;
     white-space: nowrap !important; /* Prevent line breaks */
 
+  }
+  hr{
+    background-color: rgb(167, 158, 165) !important;
+    padding: 0px !important;
+    margin: 0px !important;
+    padding-top: 20px !important;
+     padding-bottom: 20px !important;
   }
     </style>
     <script>
@@ -92,26 +98,23 @@
      }
     </script>
 <main id="app">
-    <section class="  border-bottom pb-2">
+    <section class="  border-bottom pb-2 ">
         <div class="">
-            {{-- <div class="border p-5 bg-black" style="height: 350px;"> --}}
-
                 <!--Carousel Wrapper-->
     <div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" >
     <!--Indicators-->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-2" data-slide-to="1"></li>
+      {{-- <li data-target="#carousel-example-2" data-slide-to="1"></li> --}}
       <li data-target="#carousel-example-2" data-slide-to="2"></li>
       <li data-target="#carousel-example-2" data-slide-to="3"></li>
-    </ol>
-
+    </ol> 
     <!--/.Indicators-->
     <!-- Slides -->
-    <div class="carousel-inner max-vh-30" role="listbox"  >
+    <div class="carousel-inner  " role="listbox"  >
       <div class="carousel-item active">
         <div class="view">
-          <img  class="d-block w-100" src="{{ asset('images/background/slides/banner1.jpg')}}"
+          <img  class="d-block w-100  " src="{{ asset('images/background/slides/banner1.jpg')}}"
             alt="First slide">
           <div class="mask rgba-black-light"></div>
         </div>
@@ -120,18 +123,16 @@
           <p>First text</p> --}}
         </div>
       </div>
-      <div class="carousel-item">
-        <!--Mask color-->
-        <div class="view">
+      {{-- <div class="carousel-item d-none">
+         <div class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner2.jpg')}}"
             alt="Second slide">
           <div class="mask rgba-black-strong"></div>
         </div>
         <div class="carousel-caption">
-          {{-- <h3 class="h3-responsive">Strong mask</h3>
-          <p>Secondary text</p> --}}
+          
         </div>
-      </div>
+      </div> --}}
       <div class="carousel-item">
         <!--Mask color-->
         <div class="view">
@@ -186,7 +187,7 @@
      </section>
     <hr>
     <section class="">
-        <div class=" ">
+        <div class="">
             <p class=" h3 text-center font-Raleway text-purple">Featured Products</p>
         </div>
         <div class="px-3">

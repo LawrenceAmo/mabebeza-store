@@ -37,6 +37,9 @@
       body {
                 font-family: 'Libre Franklin' !important;
             }
+      .page-content-conntainer{
+        padding-top: 125px !important;
+      }
     .top-navbar{
       position: fixed;
       top: 0px;
@@ -89,6 +92,9 @@
    }
    /* //////////////////////// */
    @media (max-width: 575px) { 
+    .page-content-conntainer{
+        padding-top: 200px !important;
+      }
     .search-container-mobile{
       display:flex !important;
       visibility:visible !important;
@@ -101,6 +107,9 @@
     }
    }
    @media (max-width: 960px) { 
+    .page-content-conntainer{
+        padding-top: 80px !important;
+      }
     .menu-bar, .login-desktop, .cart-desktop{
         display: none !important;
         animation: fadeIn 0.5s ease;
@@ -116,6 +125,7 @@
       #menu_bar div{
         padding-bottom: 10px;
       }
+      /* 0655464609 */
           
    }
    @keyframes fadeIn {
@@ -128,6 +138,7 @@
         transform: translateY(0);
       }
   }
+  
    </style>
     </head>
     <body class="bg-white">
@@ -164,7 +175,7 @@
                        <div class="col-2">
                          <img class="" height="50" :src="productImg(productUrl(item.url))" alt="">
                        </div>  
-                       <span class="col-7">@{{ item.product_name }}  </span>
+                       <span class="col-7">@{{ StringToLowerCase(item.product_name) }}  </span>
                        <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
                     </div>
                   </li>                   
@@ -242,7 +253,7 @@
                    <div class="col-2">
                      <img class="" height="50" :src="productImg(productUrl(item.url))" alt="">
                    </div>  
-                   <span class="col-7">@{{ item.product_name }}  </span>
+                   <span class="col-7">@{{ StringToLowerCase(item.product_name) }}  </span>
                    <span class="col-3"> &nbsp; &nbsp; R@{{ item.sale_price || item.price }}  </span>
                 </div>
               </li>                   
@@ -266,7 +277,7 @@
                 <div class="dropdown-menu" aria-labelledby="triggerId" >
                   <div class="" v-for="category,i in sub_categories"> 
                     {{-- guest_view_sub_category --}}
-                    <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name != Other" >@{{category.sub_category_name}}</a>  
+                    <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name  " >@{{category.sub_category_name}}</a>  
                     <div class="dropdown-divider"></div>
                   </div>
                   {{-- <div class="dropdown-divider"></div> --}}
@@ -296,7 +307,7 @@
          </div>
          
       </header>
-        <div class="  text-gray font-weight-normal bg-white antialiased" style="margin-top: 115px;">
+        <div class="  text-gray font-weight-normal p-0 m-0   antialiased page-content-conntainer"  >
             {{ $slot }}
         </div>
           <footer class="position-relative" id="footer-main pt-0">
@@ -700,9 +711,19 @@
 
                            return  productsDB;
                 },
-              },
-              
-            });
+                StringToLowerCase: function(string){
+                    let words = string.toLowerCase().split(' '); 
+                      
+                      for (let i = 0; i < words.length; i++) {
+                        if (i === 0 || !['and', 'of'].includes(words[i])) {
+                          words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                        }
+                      }
+                      return words.join(' ');
+                }
+            },
+             
+        });
             guestApp.mount('#guestApp')
   
     </script>
