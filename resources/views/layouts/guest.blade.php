@@ -213,24 +213,24 @@
                 <div class=" d-flex">
                   <div class=" cart-mobile d-none ">
                     <a href="{{ route('my_cart') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
-                      <span><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
+                      <span><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i><span id="cart_qty_display_mobile" class="cart_qty_display">0</span></span>
                     </a>
                   </div>
                   
                   <div class="cart-desktop">
                     <a href="{{ route('my_cart') }}" class="  text-blue pr-3 pl-3 d-flex flex-column justify-content-center  pt-2">
-                      <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display">0</span></span>
+                      <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display_desktop" class="cart_qty_display">0</span></span>
                     </a>
                   </div>
 
                   <div class=" cart-mobile d-none ">
                     <a href="{{ route('my_wish_list') }}" class=" text-pink pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
-                      <span><i class="fa fa-heart fa-2x" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
+                      <span><i class="fa fa-heart fa-2x" aria-hidden="true"></i><span id="wish_list_qty_display_mobile" class="wish_list_qty_display">0</span></span>
                     </a>
                   </div>
                   <div class="cart-desktop">
                     <a href="{{ route('my_wish_list') }}" class="  text-pink pr-3 pl-3 d-flex flex-column justify-content-center  pt-2">
-                      <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display">0</span></span>
+                      <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display_desktop" class="wish_list_qty_display">0</span></span>
                     </a>  
                   </div> 
                  
@@ -498,7 +498,8 @@
 
       function wish_list_qty_display() {
           let qty = JSON.parse(localStorage.getItem('wish_list')).length
-          document.getElementById('wish_list_qty_display').innerHTML = qty;
+          document.getElementById('wish_list_qty_display_mobile').innerHTML = qty;
+          document.getElementById('wish_list_qty_display_desktop').innerHTML = qty;
       }
 
       
