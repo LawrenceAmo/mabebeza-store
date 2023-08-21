@@ -5,6 +5,11 @@
     max-height: 350px !important;  
      overflow: hidden;
   }
+  @media (max-width: 575px) {
+    .carousel {
+    padding-top: 32px !important;  
+   }
+  }
   .carousel .carousel-inner {
     max-height: 100%;
   }
@@ -13,7 +18,7 @@
     height: 100%;
   }
   .carousel .carousel-item img {
-    -height: 100%;
+    max-height: 100%;
     width: auto;
   }
   .main-category-img{
@@ -38,8 +43,8 @@
     white-space: nowrap !important; /* Prevent line breaks */
 
   }
-  hr{
-    background-color: rgb(167, 158, 165) !important;
+  .hr{
+    background-color: rgb(227, 215, 230) !important;
     padding: 0px !important;
     margin: 0px !important;
     padding-top: 20px !important;
@@ -112,7 +117,7 @@
     <!--/.Indicators-->
     <!-- Slides -->
     <div class="carousel-inner  " role="listbox"  >
-      <div class="carousel-item active">
+      <a href="#sale" class="carousel-item active">
         <div class="view">
           <img  class="d-block w-100  " src="{{ asset('images/background/slides/banner1.jpg')}}"
             alt="First slide">
@@ -122,7 +127,7 @@
           {{-- <h3 class="h3-responsive">Light mask</h3>
           <p>First text</p> --}}
         </div>
-      </div>
+      </a>
       {{-- <div class="carousel-item d-none">
          <div class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner2.jpg')}}"
@@ -135,11 +140,11 @@
       </div> --}}
       <div class="carousel-item">
         <!--Mask color-->
-        <div class="view">
+        <a href="{{ route('store-locator')}}" class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner3.jpg')}}"
             alt="Third slide">
           <div class="mask rgba-black-slight"></div>
-        </div>
+        </a>
         <div class="carousel-caption">
           {{-- <h3 class="h3-responsive">Slight mask</h3>
           <p>Third text</p> --}}
@@ -162,7 +167,7 @@
   </div>
   <!--/.Carousel Wrapper-->
       </div>
-        <div class="border bg-purple pb-2">
+        <div class="  bg-purple pb-2">
           <div class="">
             <div class="text-center">
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
@@ -185,7 +190,7 @@
                 @endif
               @endforeach 
      </section>
-    <hr>
+    <hr class="hr">
     <section class="">
         <div class="">
             <p class=" h3 text-center font-Raleway text-purple">Featured Products</p>
@@ -233,7 +238,7 @@
         </div>
 
     </section>
-    <hr>
+    <hr class="hr">
     <section class="">
         <div class=" ">
             <p class=" h3 text-center font-Raleway text-purple">New Items</p>            
@@ -280,7 +285,7 @@
         </div>
  
     </section>
-    <hr  id="sale">
+    <hr class="hr"  id="sale">
     <section class="">
       <div class=" ">
           <p class=" h3 text-center font-Raleway text-purple" > Sale</p>            
@@ -322,7 +327,7 @@
           </div>
       </div>
   </section>   
-    <hr>
+    <hr class="hr">
     <section>
       <div class=" ">
         <p class=" h3 text-center font-Raleway text-purple">Our Partners</p>            

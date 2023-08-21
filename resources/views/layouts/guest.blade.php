@@ -93,7 +93,7 @@
    /* //////////////////////// */
    @media (max-width: 575px) { 
     .page-content-conntainer{
-        padding-top: 200px !important;
+        padding-top: 450px !important;
       }
     .search-container-mobile{
       display:flex !important;
@@ -350,8 +350,9 @@
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
               <h6 class="heading mb-3">About</h6>
               <ul class="list-unstyled">
-                <li><a href="contact.html">About Us</a></li>
+                {{-- <li><a href="contact.html">About Us</a></li> --}}
                 <li><a href="{{ route('contact-us')}}">Contact Us</a></li>
+                <li><a href="{{ route('store-locator')}}">Store Locator</a></li>
                 <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
                 {{--  --}}
               </ul>
