@@ -360,9 +360,9 @@
             <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
               <h6 class="heading mb-3">Company</h6>
               <ul class="list-unstyled">
-                {{-- <li><a href="contact.html#departments">Information</a></li> --}}
-                <li><a href="contact.html#departments">Help Center</a></li>
-                 <li><a href="contact.html#departments">Cutie of The Year</a></li>
+                {{-- <li><a href="contact.html#departments">Information</a></li> --}}   
+                <li><a href="{{ route('contact-us')}}">Help Center</a></li>
+                 <li><a href="{{ route('cutie-of-the-year')}}">Cutie of The Year</a></li>
               </ul>
             </div>
           </div>
