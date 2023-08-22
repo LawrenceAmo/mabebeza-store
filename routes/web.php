@@ -12,6 +12,7 @@ use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\GuestProductsController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CutieYearController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TestController;
@@ -143,11 +144,21 @@ require __DIR__.'/auth.php';
   
  Route::prefix('pg/' )->group(function ()
     {
+        Route::get('/cutie-of-the-year', function () {  return view('pages.cutie_of_the_year.index');  })->name('cutie-of-the-year');
         Route::get('/terms-and-conditions', function () {  return view('pages.legal.t&c');  })->name('terms-and-conditions');
         Route::get('/privacy-policy', function () {  return view('pages.legal.pp');  })->name('privacy-policy');
         Route::get('/contact-us', function () {  return view('pages.contact');  })->name('contact-us');
         Route::get('/store-locator', function () {  return view('pages.store_locator');  })->name('store-locator');
  
+    });
+
+    Route::prefix('survey/' )->group(function ()
+    {
+        Route::get('/cutie-of-the-year', [CutieYearController::class, 'index'])->name('cutie-of-the-year');
+        Route::get('/cutie-of-the-year/create', [CutieYearController::class, 'create'])->name('cutie-of-the-year-create');
+        Route::post('/cutie-of-the-year/save', [CutieYearController::class, 'save'])->name('cutie-of-the-year-save');
+        Route::get('/cutie-of-the-year/thanks', [CutieYearController::class, 'thanks'])->name('cutie-of-the-year-thanks');
+     
     });
 
     Route::get('/mail',[TestController::class, 'mail'])->name('mail');
