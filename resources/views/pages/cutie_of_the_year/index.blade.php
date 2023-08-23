@@ -1,12 +1,11 @@
- 
 <x-CutieYear-layout> 
-<style>
-    @media screen and (max-width: 1000px) {
-        .hero_text_container p span{
-            font-size: 30px
-        }  
-    }
-</style>
+        <style>
+            @media screen and (max-width: 1000px) {
+                .hero_text_container p span{
+                    font-size: 30px
+                }  
+            } 
+        </style> 
         <section class="hero_container row  m-0 pt-5 mx-0 px-0">
             <img src="{{ asset('/CutieYear/images/PinkCircle.svg') }}" loading="lazy"  class="circle-pink" alt=""> 
             <img src="{{ asset('/CutieYear/images/PurpleCircle.svg') }}" loading="lazy"  class="circle-purple" alt=""> 

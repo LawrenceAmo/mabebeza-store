@@ -106,6 +106,9 @@
       width: 100%;
     }
    }
+   .z-index-1000{
+    z-index: 1000 !important;
+   }
    @media (max-width: 960px) { 
     .page-content-conntainer{
         padding-top: 80px !important;
@@ -140,6 +143,59 @@
   }
   
    </style>
+   <script>
+    function initMap() {
+     
+     const getFormInputElement = (component) => document.getElementById(component + '-input');
+     const autocompleteInput = getFormInputElement('location');
+     const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
+       fields: ["address_components", "geometry", "name"],
+       types: ["address"],
+     });
+     autocomplete.addListener('place_changed', function () {
+        const place = autocomplete.getPlace();
+       if (!place.geometry) {
+         // User entered the name of a Place that was not suggested and
+         // pressed the Enter key, or the Place Details request failed.
+         window.alert('No details available for input: \'' + place.name + '\'');
+         return;
+       }
+        fillInAddress(place);
+     });
+    //  getFormInputElement.classList.add('z-index-1000');
+
+     function fillInAddress(place) {  // optional parameter
+       const addressNameFormat = {
+         'street_number': 'short_name',
+         'route': 'long_name',
+         'locality': 'long_name',
+         'administrative_area_level_1': 'short_name',
+         'country': 'long_name',
+         'postal_code': 'short_name',
+       };
+       const getAddressComp = function (type) {
+         for (const component of place.address_components) {
+           if (component.types[0] === type) {
+             return component[addressNameFormat[type]];
+           }
+         }
+         return '';
+       };
+
+       getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
+                //  console.log(
+                //   getAddressComp('street_number')+', '+
+                //   getAddressComp('route')+', '+
+                //   getAddressComp('locality')+', '+
+                //   getAddressComp('administrative_area_level_1')+', '+
+                //   getAddressComp('country')+', '+
+                //   getAddressComp('postal_code'))
+                  // if locality = to my suburbs and county = gp then enable shop
+        set_location(getAddressComp('locality')) 
+        console.log("Amo amo")
+     } 
+   }
+  </script>
     </head>
     <body class="bg-white">
        
@@ -302,7 +358,7 @@
               <a href="" class="text-light pr-3     font-Raleway ">About Us</a>
             </div>
             <a href="{{ route('where_we_deliver')}}" class="text-light pr-3     font-Raleway ">
-              Ship To: <span class="font-weight-bold" id="location_display"></span>
+              Ship To: <span class="font-weight-bold" id="location_display">Not Set</span>
             </a>
          </div>
          
@@ -457,13 +513,16 @@
       <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
 
     </footer>
-  
+
     <!-- Modal -->
     <div class="modal fade" id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            {{-- <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3> --}}
+            {{-- <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3> --}} 
+            <div class=" w-100">
+              <input type="text" class="form-control w-100 form-control-sm rounded location-active" placeholder="Enter Address"  id="location-input" >
+            </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -492,7 +551,25 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
 ></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
+
     <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+  const locationInput1 = document.querySelector('.location-active');
+  const locationInput2 = document.querySelector('.location-inactive');
+
+  locationInput1.addEventListener('focus', function() {
+    locationInput1.id = 'location-input';
+    locationInput2.id = ''; // Remove ID from inactive input
+  });
+
+  locationInput2.addEventListener('focus', function() {
+    locationInput2.id = 'location-input';
+    locationInput1.id = ''; // Remove ID from inactive input
+  });
+});
+
     
       cart_qty_display(); 
 
@@ -531,8 +608,10 @@
           }
         areas(ship_location)
        }
+       let ship_location =  localStorage.getItem('ship_location')
+          document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
 
-       set_location_display();
+      //  set_location_display();
 
       wish_list_qty_display();
 

@@ -136,6 +136,7 @@
                 this.cart_productIDs.push(item.productID)
                 this.updateCartLocalStorage();
               }  
+              check_delivery_area()
           },
           StringToLowerCase: function(string){
             let words = string.toLowerCase().split(' '); 

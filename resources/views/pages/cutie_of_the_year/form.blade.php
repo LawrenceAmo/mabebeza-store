@@ -109,24 +109,20 @@
                                 </select>
                             </div>
                             <div class="form-outline input-container mb-3">
-                                {{-- <label for="">Receipt number</label> --}}
                                 <input type="text" value="{{ old('reciept',$data["reciept"])}}" name="reciept" class="form-control form-control-md input-field " placeholder="Receipt number" />
                                 <label  class="placeholder-label pl-3">Enter receipt number</label>
                             </div>
                             <div class="form-outline input-container mb-3">
-                                {{-- <label for="">Email Address</label> --}}
                                 <input type="email" value="{{ old('email',$data["email"])}}" name="email" class="form-control form-control-md input-field " placeholder="Email Address" />
                                 <label  class="placeholder-label pl-3">Enter email</label>
                             </div>
                             <div class="form-outline input-container mb-3">
-                                {{-- <label for="">Cell Number</label> --}}
                                 <input type="tel" value="{{ old('cell_number',$data["cell_number"])}}" name="cell_number" class="form-control form-control-md input-field " placeholder="Cell Number" />
                                 <label  class="placeholder-label pl-3">Enter cell number</label>
                             </div>
                             <div class="form-outline mb-3">
                                 <label class=" ">
                                     Baby Photo
-                                    {{-- <span id=""></span> --}}
                                     <input type="file" value="{{ old('photo',$data["photo"])}}" name="photo" class="form-control  form-control-md border-0" style="border:none;" placeholder="" />
                                 </label>
                             </div>
@@ -150,21 +146,20 @@
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-  const inputField = document.querySelector('.input-field');
-  const placeholderLabel = document.querySelector('.placeholder-label');
-  
-  inputField.addEventListener('input', function() {
-    if (inputField.value) {
-      placeholderLabel.style.transform = 'translateY(-100%) scale(0.8)';
-      placeholderLabel.style.fontSize = '12px';
-      placeholderLabel.style.color = '#999';
-    } else {
-      placeholderLabel.style.transform = 'translateY(-50%)';
-      placeholderLabel.style.fontSize = '16px';
-      placeholderLabel.style.color = '';
-    }
-  });
-});
-
+                const inputField = document.querySelector('.input-field');
+                const placeholderLabel = document.querySelector('.placeholder-label');
+                
+                inputField.addEventListener('input', function() {
+                    if (inputField.value) {
+                    placeholderLabel.style.transform = 'translateY(-100%) scale(0.8)';
+                    placeholderLabel.style.fontSize = '12px';
+                    placeholderLabel.style.color = '#999';
+                    } else {
+                    placeholderLabel.style.transform = 'translateY(-50%)';
+                    placeholderLabel.style.fontSize = '16px';
+                    placeholderLabel.style.color = '';
+                    }
+                });
+                });
             </script>
 </x-CutieYear-layout> 

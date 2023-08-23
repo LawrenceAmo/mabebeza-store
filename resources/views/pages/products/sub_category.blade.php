@@ -139,6 +139,7 @@
                 this.cart_productIDs.push(item.productID)
                 this.updateCartLocalStorage();
               }  
+              check_delivery_area()
           },
           add_to_wish_list: function(item){
               add_to_wish_list(item) 

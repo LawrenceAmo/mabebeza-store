@@ -51,57 +51,7 @@
      padding-bottom: 20px !important;
   }
     </style>
-    <script>
-      function initMap() {
-       
-       const getFormInputElement = (component) => document.getElementById(component + '-input');
-      
-       const autocompleteInput = getFormInputElement('location');
-       const autocomplete = new google.maps.places.Autocomplete(autocompleteInput, {
-         fields: ["address_components", "geometry", "name"],
-         types: ["address"],
-       });
-       autocomplete.addListener('place_changed', function () {
-          const place = autocomplete.getPlace();
-         if (!place.geometry) {
-           // User entered the name of a Place that was not suggested and
-           // pressed the Enter key, or the Place Details request failed.
-           window.alert('No details available for input: \'' + place.name + '\'');
-           return;
-         }
-          fillInAddress(place);
-       });
- 
-       function fillInAddress(place) {  // optional parameter
-         const addressNameFormat = {
-           'street_number': 'short_name',
-           'route': 'long_name',
-           'locality': 'long_name',
-           'administrative_area_level_1': 'short_name',
-           'country': 'long_name',
-           'postal_code': 'short_name',
-         };
-         const getAddressComp = function (type) {
-           for (const component of place.address_components) {
-             if (component.types[0] === type) {
-               return component[addressNameFormat[type]];
-             }
-           }
-           return '';
-         };
-         getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
-                  //  console.log(
-                  //   getAddressComp('street_number')+', '+
-                  //   getAddressComp('route')+', '+
-                  //   getAddressComp('locality')+', '+
-                  //   getAddressComp('administrative_area_level_1')+', '+
-                  //   getAddressComp('country')+', '+
-                  //   getAddressComp('postal_code'))
-                    // if locality = to my suburbs and county = gp then enable shop
-                   set_location(getAddressComp('locality')) 
-       } 
-     }
-    </script>
+    
 <main id="app">
     <section class="  border-bottom pb-2 ">
         <div class="">
@@ -173,7 +123,7 @@
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
             </div>
             <div class="px-3">
-              <input type="text" class="form-control form-control-sm rounded " placeholder="Enter Address"  id="location-input" >
+              <input type="text" class="form-control form-control-sm rounded location-inactive" placeholder="Enter Address"  id="location-input" >
             </div>
           </div>
         </div>
@@ -484,6 +434,7 @@
                   this.cart_productIDs.push(item.productID)
                   this.updateCartLocalStorage();
                 }
+                check_delivery_area()
                 console.log(item)
             },
             add_to_wish_list: function(item){
@@ -501,11 +452,8 @@
          }
          }
      }).mount("#app");
-
-     
+ 
 </script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
-
+ 
 </x-guest-layout>  
  

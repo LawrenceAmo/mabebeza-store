@@ -25,7 +25,7 @@ class CutieYearController extends Controller
                 'cell_number' => '',
                 'store' => '',
                 'photo' => '',
-         ];
+            ];
           }
         return view('pages.cutie_of_the_year.form')->with('data',$data);
     }
@@ -47,28 +47,28 @@ class CutieYearController extends Controller
         if($request->hasFile('photo')){       ///// check if file is available
             $filename = $request->photo->getClientOriginalName();
             $ext = substr($filename,-5);
-           
+
             // encripting file so that it can be uniq
              function uniqFile($filename,$ext){
                   $file = md5($filename)."".uniqid($filename, true);
                  return "ba".md5($file)."by".$ext;//.$ext;
              } 
-            $filename =uniqFile($filename,$ext);
+            $filename = uniqFile($filename,$ext);
            
             $request->photo->storeAs('survey_img/',"$filename",'public');           
          }
 
-        $form = new Form();
-        $form->parent_name = $request->parent_name;
-        $form->parent_surname = $request->parent_surname;
-        $form->child_name = $request->child_name;
-        $form->child_surname = $request->child_surname;
-        $form->reciept = $request->reciept;
-        $form->email = $request->email;
-        $form->cell_number = $request->cell_number;
-        $form->store = $request->store;
-        $form->photo = $filename;
-       $form->save();
+    //     $form = new Form();
+    //     $form->parent_name = $request->parent_name;
+    //     $form->parent_surname = $request->parent_surname;
+    //     $form->child_name = $request->child_name;
+    //     $form->child_surname = $request->child_surname;
+    //     $form->reciept = $request->reciept;
+    //     $form->email = $request->email;
+    //     $form->cell_number = $request->cell_number;
+    //     $form->store = $request->store;
+    //     $form->photo = $filename;
+    //    $form->save();
  
         return redirect()->route('thanks');
     }
