@@ -44,7 +44,7 @@
               </table>
             </div>                 
             </div>
-            <div class=" col-md-4 col-sm-12 pl-5">
+            <div class=" col-md-4 col-sm-12 pl-md-5">
                 <div   class=" shadow rounded p-3">
                   <p class="h5 text-center">Contact us</p>
 

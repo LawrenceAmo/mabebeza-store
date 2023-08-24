@@ -256,7 +256,7 @@
                      <a href="{{ url('/accounts') }}" class=" nav-link"><i class="fa fa-user-circle" aria-hidden="true"></i> My Account</a>  
                   @else 
                     <a href="{{ route('login') }}" class=" login-mobile nav-link d-flex flex-column justify-content-center pt-2">
-                      <i class="fas fa-user-plus fa-2x text-white "></i>
+                      <i class="fas fa-user-plus fa-1x text-white "></i>
                     </a>
                     <a href="{{ route('login') }}" class=" login-desktop nav-link d-flex flex-column justify-content-center pt-2">
                       Log in
@@ -272,7 +272,7 @@
                 <div class=" d-flex">
                   <div class=" cart-mobile d-none ">
                     <a href="{{ route('my_cart') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
-                      <span><i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i><span id="cart_qty_display_mobile" class="cart_qty_display">0</span></span>
+                      <span><i class="fa fa-cart-plus fa-1x" aria-hidden="true"></i><span id="cart_qty_display_mobile" class="cart_qty_display">0</span></span>
                     </a>
                   </div>
                   
@@ -284,7 +284,7 @@
 
                   <div class=" cart-mobile d-none ">
                     <a href="{{ route('my_wish_list') }}" class=" text-pink pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
-                      <span><i class="fa fa-heart fa-2x" aria-hidden="true"></i><span id="wish_list_qty_display_mobile" class="wish_list_qty_display">0</span></span>
+                      <span><i class="fa fa-heart fa-1x" aria-hidden="true"></i><span id="wish_list_qty_display_mobile" class="wish_list_qty_display">0</span></span>
                     </a>
                   </div>
                   <div class="cart-desktop">
@@ -352,7 +352,7 @@
               <a href="{{ route('where_we_deliver')}}" class="text-light pr-3     font-Raleway ">Where We Deliver</a>
             </div>
             <div class="">
-              <a href="" class="text-light pr-3     font-Raleway ">Delivery Policy</a>
+              <a href="{{route('delivery-policy')}}" class="text-light pr-3     font-Raleway ">Delivery Policy</a>
             </div>
             <div class="">
               <a href="{{ route('contact-us')}}" class="text-light pr-3     font-Raleway ">Contact Us</a>
@@ -495,7 +495,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link font-italic" href="{{route('privacy-policy')}}">
+                  <a class="nav-link font-italic" href="{{route('delivery-policy')}}">
                     Delivery Policy
                   </a>
                 </li>

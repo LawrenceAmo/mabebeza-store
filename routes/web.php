@@ -147,6 +147,7 @@ require __DIR__.'/auth.php';
         Route::get('/cutie-of-the-year', function () {  return view('pages.cutie_of_the_year.index');  })->name('cutie-of-the-year');
         Route::get('/terms-and-conditions', function () {  return view('pages.legal.t&c');  })->name('terms-and-conditions');
         Route::get('/privacy-policy', function () {  return view('pages.legal.pp');  })->name('privacy-policy');
+        Route::get('/delivery-policy', function () {  return view('pages.legal.dp');  })->name('delivery-policy');
         Route::get('/contact-us', function () {  return view('pages.contact');  })->name('contact-us');
         Route::get('/store-locator', function () {  return view('pages.store_locator');  })->name('store-locator');
         Route::get('/enter-address-to-deliver', function () {  return view('pages.deliveries.enter_deliver_location');  })->name('enter_deliver_location');

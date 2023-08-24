@@ -27,4 +27,7 @@
       </div>
 
     </main>
+    <script>
+      const { createApp } = Vue;
+  </script>
 </x-guest-layout>
