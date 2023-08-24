@@ -165,7 +165,6 @@
        }
         fillInAddress(place);
      });
-    //  getFormInputElement.classList.add('z-index-1000');
 
      function fillInAddress(place) {  // optional parameter
        const addressNameFormat = {
@@ -753,24 +752,27 @@ document.addEventListener('DOMContentLoaded', function() {
                   } 
                 },
                 guestSearchProducts: function(event) {
-                      const allProductsDB = this.allProductsDB;
-                      const searchWords = this.searchProductsText.toLowerCase().split(/\s+/); // Split by whitespace
+                      let allProductsDB = this.allProductsDB;
+                      let searchWords = this.searchProductsText.toLowerCase().split(/\s+/); // Split by whitespace
+                      const searchSuggestionsElements = document.querySelectorAll('.searchSuggestions');
 
                       this.searchedProducts = [];
-
-                      if (searchWords.length < 1) {
+                      // console.log(searchWords.length)
+                      if (searchWords[0].length < 1) {
+                        searchSuggestionsElements.forEach(element => {
+                          element.classList.add('d-none');
+                        });
                           return false;
                       }
-
                       for (let i = 0; i < allProductsDB.length; i++) {
-                          const productName = allProductsDB[i].product_name.toLowerCase();
+                          let productName = allProductsDB[i].product_name.toLowerCase();
                           
                           // Use every() to check if all search words are present in the product name
                           if (searchWords.every(word => productName.includes(word))) {
                               this.searchedProducts.push(allProductsDB[i]);
-                              console.log(allProductsDB[i]);
                           }
                       }
+                      // console.log( this.searchedProducts)
                   },
                   // /////////////////
                 get_products: async function(products){
