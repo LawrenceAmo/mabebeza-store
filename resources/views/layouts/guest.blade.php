@@ -567,15 +567,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   locationInput1.addEventListener('focus', function() {
     locationInput1.id = 'location-input';
-    locationInput1.value = 'location-input';
-    locationInput2.value = '';
+    // locationInput1.value = 'location-input';
+    // locationInput2.value = '';
     locationInput2.id = ''; // Remove ID from inactive input
   });
 
   locationInput2.addEventListener('focus', function() {
     locationInput2.id = 'location-input';
-    locationInput2.value = 'location-input';
-    locationInput1.value = '';
+    // locationInput2.value = 'location-input';
+    // locationInput1.value = '';
     locationInput1.id = ''; // Remove ID from inactive input
   });
 });

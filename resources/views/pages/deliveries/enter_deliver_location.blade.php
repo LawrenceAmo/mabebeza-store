@@ -77,10 +77,7 @@
         {{--  --}}
  
     </div> 
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&callback=initMap&v=weekly"
-    defer
-  ></script>
+    
     <script>
         const { createApp } = Vue;
     </script>
