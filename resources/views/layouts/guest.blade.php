@@ -90,6 +90,9 @@
    .login-mobile{
     display: none !important;
    }
+   .location-input{
+    z-index: 1000 !important;
+   }
    /* //////////////////////// */
    @media (max-width: 575px) { 
     .page-content-conntainer{
@@ -515,20 +518,23 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade" id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade"   id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header">
-            {{-- <h3 class="modal-title font-weight-bold text-danger">Sorry!!!</h3> --}} 
-            <div class=" w-100">
-              <input type="text" class="form-control w-100 form-control-sm rounded location-active" placeholder="Enter Address"  id="location-input" >
-            </div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
+          {{-- <div class="modal-header">
+               
+          </div> --}}
           <div class="modal-body">
-            <p class="h5" id="ship_to_modal_msg"></p>
+           <div class="d-flex justify-content-between pb-5">
+            <p class="h5 text-purple" id="ship_to_modal_msg"></p>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+           </div>
+           <div class=" w-100">
+            <a href="{{ route('enter_deliver_location') }}" class=" btn btn-sm rounded btn-purple w-100">enter address where to deliver</a>
+          </div>
           </div>
         
         </div>
@@ -561,11 +567,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   locationInput1.addEventListener('focus', function() {
     locationInput1.id = 'location-input';
+    locationInput1.value = 'location-input';
+    locationInput2.value = '';
     locationInput2.id = ''; // Remove ID from inactive input
   });
 
   locationInput2.addEventListener('focus', function() {
     locationInput2.id = 'location-input';
+    locationInput2.value = 'location-input';
+    locationInput1.value = '';
     locationInput1.id = ''; // Remove ID from inactive input
   });
 });

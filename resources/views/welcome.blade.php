@@ -123,7 +123,7 @@
               <span class="font-weight-bold text-light">Where do you want to ship to?</span>
             </div>
             <div class="px-3">
-              <input type="text" class="form-control form-control-sm rounded location-inactive" placeholder="Enter Address"  id="location-input" >
+              <input type="text" class="form-control form-control-sm rounded location-input location-inactive" placeholder="Enter Address"  id="location-input" >
             </div>
           </div>
         </div>
