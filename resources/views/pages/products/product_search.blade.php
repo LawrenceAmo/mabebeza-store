@@ -12,7 +12,7 @@
                  <div class="row"> 
                   <div class="col-md-2 d-flex  " v-for="product,i in products">                     
                     <div class="card text-left"   >
-                        <img @click="view_product(product)" class="card-img-top zoom c-pointer" height="185" :src="productImg(product.url)" alt="">
+                        <img @click="view_product(product)" class="card-img-top zoom c-pointer"  :src="productImg(product.url)" alt="">
                         <div class="card-body   px-2 py-0">
                           <a @click="view_product(product)" class="card-title font-weight-light py-0 my-0 c-pointer text-wrap product_name" style="height: 50px;">@{{ StringToLowerCase(product.product_name)}}</a>
                           <p @click="view_product(product)" class="card-text d-flex justify-content-between c-pointer py-0 my-0" v-if="product.sale_price">
