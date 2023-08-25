@@ -66,10 +66,13 @@ a{
   color: #787aff !important;
 }
 .card-img-top{
-  /* height: auto !important; */
+  height: auto !important;
+  /* max-height: 150px !important; */
+  /* min-height: 150px !important; */
 }
 .product-card-img-container{
-  /* height: 150px !important; */
+  max-height: 150px !important;
+  min-height: 150px !important;
 }
 .add-to-cart-container{
   display: flex !important;

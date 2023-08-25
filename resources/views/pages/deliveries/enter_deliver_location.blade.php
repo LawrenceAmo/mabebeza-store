@@ -10,11 +10,11 @@
         <div class="row">
             <div class=" col-md-8 col-sm-12 ">
             <div class="">
-              <p class="h5">Enter address where to deliver</p>
+              <p class="h5 text-purple">Enter address where to deliver</p>
                 <input type="text" class="form-control w-100 form-control-sm rounded location-active location-input" placeholder="Enter Address"  id="location-input" >
             </div> 
             <div class=" py-5  ">
-              <p class="h5">Our delivery times</p>
+              <p class="h5 text-purple">Our delivery times</p>
 
               <table class="table table-striped table-border table-inverse  ">
                 <thead class="thead-inverse">
@@ -46,7 +46,7 @@
             </div>
             <div class=" col-md-4 col-sm-12 pl-md-5">
                 <div   class=" shadow rounded p-3">
-                  <p class="h5 text-center">Contact us</p>
+                  <p class="h5 text-center text-purple">Contact us</p>
 
                   <div class="row  ">
                     <div class="col-2"><i class="fas fa-phone-volume    "></i></div>
@@ -67,10 +67,11 @@
                   </div>
                   <hr>
                   <div class="">
-                    <p class="">Please note that our delivery fee is R35</p>
-                    <p class=" p-0"><a href="{{ route('where_we_deliver')}}" class="">Locations where we deliver</a></p>
-                    <p class=" p-0"><a href="{{ route('store-locator')}}" class="">Where we are located</a></p>
-                  </div>
+                    <p class=" h5 text-purple">Important Links</p>
+                     <p class=" p-0 m-0"><a href="{{ route('where_we_deliver')}}" class="">Locations where we deliver</a></p>
+                     <p class=" p-0 m-0"><a href="{{ route('store-locator')}}" class="">Where we are located</a></p>
+                     <p class=" p-0 m-0"><a href="{{ route('delivery-policy')}}" class="">Our Delivery Policy</a></p>
+                    </div>
                  </div>
             </div>
         </div>

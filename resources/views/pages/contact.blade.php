@@ -31,10 +31,18 @@
                    </div>
                   </div>
  
-                  <div class="py-5">
-                    <div class=" h3 text-purple">Store Locator</div>
+                  <div class=" d-flex justify-content-around py-5">
                     <div class="">
-                      <a href="{{ route('store-locator')}}" class="btn btn-sm rounded btn-purple">find our Store location</a>
+                      <div class=" h3 text-purple">Store Locator</div>
+                      <div class="">
+                        <a href="{{ route('store-locator')}}" class="btn btn-sm rounded btn-purple">find our Store location</a>
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class=" h3 text-purple">Where We Deliver</div>
+                      <div class="">
+                        <a href="{{ route('where_we_deliver')}}" class="btn btn-sm rounded btn-purple">Our Delivery Areas</a>
+                      </div>
                     </div>
                   </div>
                 </div>
