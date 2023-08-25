@@ -2,22 +2,15 @@
 <x-guest-layout> 
     <!-- Main content -->
     <main   class="m-0 p-0">
-
-        <!-- Main content -->
-
-         <!-- <div class="p-5 m-5"> -->
-
-
-
+ 
       <div class=" p-5 m-lg-5 mt-3 "> 
-
-       
+ 
           <div class="container">
               <h1>Privacy Policy</h1>
               
-              <p>Last Updated: [Date]</p>
+              <p>Last Updated: 25 August 2023</p>
       
-              <p>Welcome to [Your Company Name] ("we", "us", or "our"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website [Your Website URL] (the "Site").</p>
+              <p>Welcome to Mabebeza Retailers ("we", "us", or "our"). We respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines how we collect, use, and safeguard your data when you use our website <a href="https://mabebeza.com">Mabebeza</a> (the "Site").</p>
       
               <h2>Information We Collect</h2>
               <p>We may collect personal information such as your name, email address, postal address, phone number, and other data you provide when you use our Site, sign up for an account, make a purchase, or communicate with us.</p>
@@ -41,7 +34,7 @@
               <p>We may update our Privacy Policy from time to time. Any changes will be posted on this page, and the updated version will be effective as of the date of posting.</p>
       
               <h2>Contact Us</h2>
-              <p>If you have questions about this Privacy Policy, please contact us at [Your Contact Information].</p>
+              <p>If you have questions about this Privacy Policy, please contact us at <a href="mailto:careline@mabebeza.com">careline@mabebeza.com</a>.</p>
           </div>
     
 
