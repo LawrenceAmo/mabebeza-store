@@ -169,7 +169,7 @@ require __DIR__.'/auth.php';
     });
  
     // return phpinfo();
-        // Products
+        // Products guest_view_searched_products
     Route::get('/categories/{id}/{category?}',[GuestProductsController::class, 'category'])->name('guest_view_category');
     Route::get('/sub-categories/{id}/{category?}',[GuestProductsController::class, 'view_sub_category'])->name('guest_view_sub_category');
     Route::get('/where-we-deliver',[GuestProductsController::class, 'where_we_deliver'])->name('where_we_deliver');

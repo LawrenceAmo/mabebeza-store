@@ -238,7 +238,7 @@
                     </div>
                   </li>                   
                 </ul> 
-                <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="search_product_url"></a>             
+                <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' search-href='{{ route('guest_search_product', ['product_name']) }}' id="search_product_url"></a>             
               </div>
               <div class=" bg-white border rounded searchSuggestions" v-if="(!searchedProducts.length && (searchProductsText.length > 1))">
                 <ul>
@@ -316,7 +316,7 @@
                 </div>
               </li>                   
             </ul> 
-            <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' id="search_product_url"></a>             
+            <a data-href='{{ route('guest_view_product', ['category','product_name']) }}' search-href='{{ route('guest_search_product', ['product_name']) }}'  id="search_product_url"></a>             
           </div>
           <div class=" bg-white border rounded searchSuggestions" v-if="(!searchedProducts.length && (searchProductsText.length > 1))">
             <ul>
@@ -356,9 +356,9 @@
             <div class="">
               <a href="{{ route('contact-us')}}" class="text-light pr-3     font-Raleway ">Contact Us</a>
             </div>
-            <div class="">
+            {{-- <div class="">
               <a href="" class="text-light pr-3     font-Raleway ">About Us</a>
-            </div>
+            </div> --}}
             <a href="{{ route('enter_deliver_location') }}" class="text-light pr-3     font-Raleway ">
               Ship To: <span class="font-weight-bold" id="location_display">Not Set</span>
             </a>
@@ -728,20 +728,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
                       location.href = href 
                   },
-                  view_sub_category: function(item){
- 
+                  view_sub_category: function(item){ 
                     var link = document.getElementById('guest_view_sub_category');
                     var href = link.getAttribute('data-href');
-                    let sub_category_name = item.sub_category_name.replace(/ /g, '-')
-                     
+                    let sub_category_name = item.sub_category_name.replace(/ /g, '-')                  
                     href = href.replace('sub_category_name', sub_category_name )
-                    // let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
-                    // href = href.replace('product_name', product_name )
-
-                    location.href = href 
-                    console.log(sub_category_name)
-                    console.log(href)
-                },
+                     location.href = href 
+                 },
                 productImg: function(val){
                   return `{{ asset('storage/products/${val}')}}`;
                 }, 
@@ -772,39 +765,41 @@ document.addEventListener('DOMContentLoaded', function() {
                               this.searchedProducts.push(allProductsDB[i]);
                           }
                       }
-                      // console.log( this.searchedProducts)
+                      console.log()
+                      if (this.searchedProducts.length < 1) {
+                        return false;
+                      }
+                      if (event.key === "Enter") {
+                          // Perform your desired action here
+                          console.log("Enter key pressed");
+                          var link = document.getElementById('search_product_url');
+                          var href = link.getAttribute('search-href');                         
+                          searchWords = searchWords.join(" ")
+                          searchWords = searchWords.replaceAll(" ", '-')
+
+                          href = href.replace('product_name', searchWords )
+ 
+                          location.href = href
+                          console.log(href) 
+                      }
                   },
                   // /////////////////
                 get_products: async function(products){
                 
                         let productsDB = []; let productIDs = [];  
                           for (let y = 0; y < products.length; y++) {
-            //  
+
                             let productID = products[y].productID; 
                             if (!productIDs.includes(productID)) {
                               if (parseInt(products[y].price) > 0) {
-                                  
-                              // productsDB[ productID ] = [];   // add array of sales for this code
                                 productIDs.push(productID);
                                 productsDB.push(products[y]);
-
-                              // productsDB[ productID ]['images'] = [];  
-                              // productsDB[ productID ]['item'] = [];  
-                              // productsDB[ productID ]['item'].push( products[y]); 
                               } 
                             }
-                            // productsDB[ productID ]['images'].push( products[y].url);
-                          }
-
+                           }
                           productsDB = productsDB.filter(value => value !== '');
-
-                          this.allProductsDB = await productsDB   
-                          
+                          this.allProductsDB = await productsDB                            
                           localStorage.setItem('all_products', JSON.stringify( await productsDB )); 
-
-                          // console.log(   productsDB )            
-                          // console.log(   productsDB )            
-
                            return  productsDB;
                 },
                 StringToLowerCase: function(string){

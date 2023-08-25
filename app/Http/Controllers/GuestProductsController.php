@@ -162,9 +162,7 @@ class GuestProductsController extends Controller
                          ->whereIn('products.sub_categoryID', $categories)
                          ->groupBy('products.productID', 'products.name', 'products.description', 'products.product_detail', 'products.sku', 'products.cost_price', 'products.sale_price', 'products.price', 'product_photos.url', 'product_photos.title', 'sub_categories.sub_category_name')
                          ->get();
- 
-                        //  return $categories; 
-                        //  return $products; 
+  
         return view('pages.products.sub_category')->with('products', $products);
       }
     /**
@@ -173,22 +171,43 @@ class GuestProductsController extends Controller
     public function get_sub_categories()
     {
         $cacheKey = 'api-guest_get_sub_categories';
-
         // Check if the cached response exists
         if (Cache::has($cacheKey)) {
             // If the cached response exists, return it
             return Cache::get($cacheKey);
         }
-
         // If the cached response doesn't exist, retrieve the data from the API
         $sub_categories = DB::table('sub_categories')->get();// Fetch data from your API
-
         // Cache the response for 5 minutes
         Cache::put($cacheKey, $sub_categories, 300);
-
          return $sub_categories;
     }
 
+    // 
+    public function guest_search_product(String $name)
+    {
+        $keywords = explode('-', strtolower($name));
+
+        $products = DB::table('products')
+                ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                ->leftJoin('product_photos', function ($join) {
+                    $join->on('product_photos.productID', '=', 'products.productID')
+                        ->whereRaw('product_photos.product_photoID = (SELECT MIN(product_photoID) FROM product_photos WHERE productID = products.productID)');
+                })
+                ->select('products.productID', 'products.name as product_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type', 'store_inventories.quantity' )
+                ->where(function ($query) use ($keywords) {
+                    foreach ($keywords as $keyword) {
+                        $query->orWhereRaw('LOWER(name) like ?', ['%' . strtolower($keyword) . '%']);
+                    }
+                })
+                ->where( 'products.availability', '=',  true)
+                ->where( 'products.publish', '=', true)
+                ->groupBy('products.productID', 'products.name' , 'products.publish','product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price','products.sale_price', 'products.price', 'products.type', 'store_inventories.quantity')
+                ->get();
+
+        // return $products;
+        return view('pages.products.product_search')->with('products', $products);
+    }
     
     public function my_cart()
     {
