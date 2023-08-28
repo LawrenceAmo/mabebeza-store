@@ -67,12 +67,12 @@ a{
 }
 .card-img-top{
   height: auto !important;
-  max-height: 150px !important;
-  /* min-height: 150px !important; */
+  max-height: 175px !important;
+  min-height: 175px !important;
 }
 .product-card-img-container{
-  max-height: 150px !important;
-  min-height: 150px !important;
+  max-height: 175px !important;
+  min-height: 175px !important;
 }
 .add-to-cart-container{
   display: flex !important;
