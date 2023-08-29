@@ -23,7 +23,7 @@
          
         <div class="col-md-4">
              <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value}}</span></p>
+                <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value.toFixed(2)}}</span></p>
              </div>
         </div>
         <div class="col-md-4">
@@ -31,11 +31,7 @@
                 <p class="font-weight-bold h5 text-center"> Total Products <span>@{{total_stock_units}}</span></p>
              </div>
         </div>
-        {{-- <div class="col-md-4">
-             <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center">  Earnings <span>R2342</span></p>
-             </div>
-        </div> --}}
+
         <div class="col-md-4">
              <div class="card p-2 border border-light btn btn-purple" @click="update_stock()">
                 <p class="font-weight-bold h5 text-center  ">Update Stock</p>

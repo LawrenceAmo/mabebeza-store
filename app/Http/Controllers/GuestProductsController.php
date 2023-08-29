@@ -50,7 +50,7 @@ class GuestProductsController extends Controller
             return Cache::get('guest-welcome');
         }
 
-        $categories = DB::table('categories')->get();
+        $categories = DB::table('categories')->where('category_descript', '!=', null)->get();
 
         $view = view('welcome')->with("categories", $categories)->render();
 

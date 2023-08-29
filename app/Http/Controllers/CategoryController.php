@@ -17,8 +17,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        // return 111;
-        $categories = DB::table('categories')->get();
+         $categories = DB::table('categories')->get();
+
         $sub_categories = DB::table('sub_categories')
         ->join('categories', 'categories.categoryID', '=', 'sub_categories.categoryID')
         ->get();
@@ -71,17 +71,30 @@ class CategoryController extends Controller
             'name' => 'required',                   
             // 'image' => 'required',                   
           ]);
-     
+      
              $category_image_name = $this->upload_category_image($request->image);
-
-              DB::table('categories')
+             $description = (bool)$request->description;
+            //  return $description;
+             if ($category_image_name) {
+                DB::table('categories')
                     ->where('categoryID', (int)$request->categoryID)
                     ->update([
                         'category_name' => $request->name,
-                        'category_descript' => $request->description,
+                        'category_descript' =>  $description,
                         'category_short_descript' => $category_image_name,
                         'updated_at' => now(),
-                     ]);  
+                    ]);
+             } else {
+                DB::table('categories')
+                    ->where('categoryID', (int)$request->categoryID)
+                    ->update([
+                        'category_name' => $request->name,
+                        'category_descript' =>  $description,
+                        // 'category_short_descript' => $category_image_name,
+                        'updated_at' => now(),
+                     ]);
+             }
+              
         return redirect()->back()->with('success', 'Main Category was created successfully!!!');
     }
 

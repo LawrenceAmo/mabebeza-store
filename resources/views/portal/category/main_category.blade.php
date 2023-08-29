@@ -21,9 +21,14 @@
                         </div>
         
                         <div class="form-group py-2">
-                        <label for="">Short Description</label>
-                        <textarea class="form-control" name="description" id="" rows="3">{{$category->category_descript}}</textarea>
+                        <label for="">Activate Category on Home Page</label>
+                        <div class="">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" name="description" {{ $category->category_descript ? 'checked' : '' }}   class="custom-control-input" >
+                                <span class="custom-control-indicator">Activate</span>
+                            </label>                           
                         </div>
+                         </div>
                  </div>
              
                 <div class="col-md-6 border-left">

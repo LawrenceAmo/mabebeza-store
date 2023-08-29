@@ -19,7 +19,8 @@
                         <tr class="bg-purple">
                             <th>#</th>
                             <th>Name</th>
-                            <th>Description</th>
+                            <th>Active</th>
+                            <th>Image Name</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -29,9 +30,15 @@
                             <tr>
                                 <td scope="row">{{$i}}</td>
                                 <td>{{ $category->category_name }}</td>
+                                <td>@if ($category->category_descript )
+                                    Yes
+                                    @else
+                                        No
+                                    @endif
+                                </td>
                                 <td>{{ $category->category_short_descript }}</td>
                                  <td>
-                                     <a href="{{ route('update_main_category', [$category->categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a> | 
+                                     <a href="{{ route('update_main_category', [$category->categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a>  
                                     {{-- <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a> --}}
                                  </td>
                             </tr>
