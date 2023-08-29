@@ -119,8 +119,6 @@ class GuestProductsController extends Controller
      */
     public function category($categoryID, $category)
     {
-        // $category_name =  explode(' ',  $category);//str_replace('-', ' ', $category );
-
         $categories = DB::table('categories')
                         ->leftjoin('sub_categories', 'sub_categories.categoryID', '=', 'categories.categoryID')
                         ->where('categories.categoryID', '=', $categoryID)
@@ -144,13 +142,11 @@ class GuestProductsController extends Controller
 
      public function view_sub_category($sub_category_name)
      {
-         $sub_category_name = str_replace('-', ' ', $sub_category_name );
-        //   explode(' ',  $category);//str_replace('-', ' ', $category );
- 
+         $sub_category_name = str_replace('-', ' ', $sub_category_name ); 
          $categories = DB::table('sub_categories')
                           ->where('sub_category_name', '=', $sub_category_name)
                          ->pluck('sub_categoryID' )                        
-                         ->toArray();
+                         ->toArray(); 
   
          $products =  DB::table('products')
                          ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID')
@@ -183,7 +179,6 @@ class GuestProductsController extends Controller
          return $sub_categories;
     }
 
-    // 
     public function guest_search_product(String $name)
     {
         $keywords = explode('-', strtolower($name));

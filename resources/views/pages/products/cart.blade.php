@@ -1,39 +1,40 @@
 <x-guest-layout> 
+<style>
 
+</style>
     <main id="app">
      <section class="pb-5 pt-3">
       <a class="pl-3">/<a href="/">Home</a>/Cart</a>
-         <div class="  p-3">
-              
+         <div class="  p-3">              
                  <div class=" row">
                     <div class="col-md-8 pb-5">
                         <div class="w-100 m-0 pt-3  w-100 rounded border-bottom shadow py-5" v-if="cart.length < 1">
                             <p class="h5 text-muted text-center"><span>Your cart is empty...</span><br>
                               <a href="/" class="btn btn-sm btn-outline-info rounded">Go Shopping</a></p>
                           </div>
-                        <div class="w-100 border-bottom" v-for="product,i in cart">                     
+                        <div class="w-100 border-bottom" v-for="product,i in cart"> 
                             <div  class="shadow c-pointer m-0  p-0 row  w-100 rounded">
-                                <div @click="view_product(product)" class="col-2">
-                                    <img height="80" :src="productImg(product.url)" alt="">
+                                <div @click="view_product(product)" class="col-2   d-flex p-0 m-0">
+                                    <img height="80" :src="productImg(product.url)" alt="" class=" ">
                                 </div>
-                                <div @click="view_product(product)" class="col-5">
+                                <div @click="view_product(product)" class="col-5 pl-4 product_name" :title="StringToLowerCase(product.product_name)">
                                     <p class=" font-Raleway">@{{ StringToLowerCase(product.product_name) }}</p>
                                     {{-- <small class=" ">/@{{product.sub_category_name}}</small> --}}
                                 </div>
                                 <div @click="view_product(product)" class="col-2 font-Raleway">
-                                    <div class="h6 text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
-                                    <div class="h6" v-else>R@{{product.price}}</div>
-                                    <div class="h6" v-if="product.sale_price">R@{{product.sale_price}}</div>
+                                    <div class="  text-muted" v-if="product.sale_price"><del>R@{{product.price}}</del></div>
+                                    <div class=" " v-else>R@{{product.price}}</div>
+                                    <div class=" " v-if="product.sale_price">R@{{product.sale_price}}</div>
                                 </div>
-                                <div class="col-2 d-flex">
-                                    <div class="form-group">
+                                <div class="col-2 d-flex  ">
+                                    <div class="form-group ">
                                         <label class="text-center font-Raleway">Qty</label>
-                                       <select class="form-control" v-model="product.qty" name="" id="" @change="addCartQty(product)">   
+                                       <select class="form-control  " v-model="product.qty" name="" id="" @change="addCartQty(product)">   
                                          <option v-for="x in product.quantity" :value="x" >@{{x}}</option>                                           
                                        </select>
                                     </div>
                                 </div>
-                                <div class="col-md-1   d-flex flex-column justify-content-center">
+                                <div class="col-1    d-flex flex-column justify-content-center">
 
                                     <a @click="remove_from_cart(product)" class="text-danger c-pointer zoom">
                                          <i class="fa fa-times" aria-hidden="true"></i>

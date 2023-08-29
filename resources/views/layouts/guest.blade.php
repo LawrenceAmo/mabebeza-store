@@ -90,6 +90,12 @@
    .login-mobile{
     display: none !important;
    }
+   .tag-new{
+     position:absolute !important;
+   }
+   .tag-sale{
+     position:absolute !important; 
+   }
    .location-input{
     z-index: 1000 !important;
    }

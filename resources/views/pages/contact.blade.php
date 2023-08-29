@@ -13,9 +13,9 @@
             <a class="" href="{{ route('store-locator')}}">
               <img class="d-block w-100 hero-banner" src="{{ asset('images/background/slides/banner3.jpg')}}" alt="Third slide">
             </a>
-             <section class="slice   pt-0">
+             <section class="slice pt-0">
             <!-- Container -->
-            <div class="container   mt-0">
+            <div class="container mt-0">
 
               <div class="text-dark text-center rounded p-3  ">
                 <div class="  h3 text-purple "><p class=" ">Contact Us</p></div>

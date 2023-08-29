@@ -27,16 +27,7 @@
     overflow: scroll !important;
   }
   
-   .tag-new{
-    /* border: red solid 3px !important; */
-    position:absolute !important;
-   }
-   .tag-sale{
-    /* border: red solid 3px !important; */
-    position:absolute !important;
-    /* top: 13px; */
-    /* right: 0px; */
-   }
+
    .main-categories{
     width: 100% !important;
     overflow: auto !important;
@@ -200,7 +191,7 @@
                 <div class="card text-left" >
                   <div class="tag-new">
                     <span class="bg-purple rounded p-1 font-weight-bold">New</span>
-                  </div>
+                  </div> 
                   <div class="product-card-img-container">
                     <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom"  :src="productImg( product.url )" alt="">
                   </div>
