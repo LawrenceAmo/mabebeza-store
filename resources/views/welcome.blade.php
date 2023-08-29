@@ -22,8 +22,8 @@
     width: auto;
   }
   .main-category-img{
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     overflow: scroll !important;
   }
   
