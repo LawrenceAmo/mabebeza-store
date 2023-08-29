@@ -27,13 +27,13 @@
             <div class="col-md-6 p-2">
                  <div class="form-group">
                     <label for="">Cost Price <x-required></x-required> </label>
-                    <input type="number" class="form-control" value="{{ $product->cost_price }}" name="cost_price" placeholder="">
+                    <input type="number" step="0.01" class="form-control" value="{{ $product->cost_price }}" name="cost_price" placeholder="">
                 </div> 
             </div>
              <div class="col-md-6 p-2">
                 <div class="form-group">
                     <label for="">Normal Selling price</label>
-                    <input type="number" name="price" value="{{ $product->price }}" class="form-control" placeholder=""  >
+                    <input type="number" step="0.01" name="price" value="{{ $product->price }}" class="form-control" placeholder=""  >
                     <i class="text-muted small">Normal price. Customers will only see this price</i>
                 </div> 
             </div>
@@ -55,7 +55,7 @@
             <div class="col-md-3 p-2">
                 <div class="form-group">
                    <label for="">Sale Price</label>
-                   <input type="number"  class="form-control" name="sale_price" value="{{ $product->sale_price }}"   placeholder="Optional">
+                   <input type="number" step="0.01"  class="form-control" name="sale_price" value="{{ $product->sale_price }}"   placeholder="Optional">
                    <i class="text-muted small">Leave blank if no sale</i>
                    </div> 
            </div>                 

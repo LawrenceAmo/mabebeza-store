@@ -195,8 +195,9 @@
       
             <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
             <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
-         <script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
-    </body>
+            <script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+          </body>
 </html>
 
  
