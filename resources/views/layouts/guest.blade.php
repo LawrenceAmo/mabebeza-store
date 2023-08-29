@@ -93,8 +93,14 @@
    .location-input{
     z-index: 1000 !important;
    }
+   .payment-logos{
+    max-height: 20px !important;
+   }
    /* //////////////////////// */
    @media (max-width: 575px) { 
+    .payment-logos{
+    max-height: 10px !important;
+   }
     .page-content-conntainer{
         padding-top: 450px !important;
       }
@@ -112,7 +118,10 @@
    .z-index-1000{
     z-index: 1000 !important;
    }
-   @media (max-width: 960px) { 
+   @media (max-width: 960px) {
+    .payment-logos{
+    max-height: 15px !important;
+   } 
     .page-content-conntainer{
         padding-top: 80px !important;
       }
@@ -369,7 +378,7 @@
             {{ $slot }}
         </div>
           <footer class="position-relative" id="footer-main pt-0">
-      <div class="footer pt-lg-7 footer-dark footer-dark">
+      <div class="footer  footer-dark footer-dark">
         <!-- SVG shape -->
         <div
           class="shape-container shape-line shape-position-top shape-orientation-inverse"
@@ -377,11 +386,11 @@
            
         </div>
         <!-- Footer -->
-        <div class="container pt-4 ">
+        <div class="container pt-0 ">
           <div class="row">
-            <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="col-md-4  text-center mb-5 mb-lg-0">
               <!-- Theme's logo -->
-              <a href="index.html ">
+              <a href="index.html " class="">
                 <img
                   class="w-50"
                   alt="Image placeholder"
@@ -397,31 +406,37 @@
               </p>
              
             </div>
-            <div class="col-lg-2 col-6 col-sm-4 ml-lg-auto mb-5 mb-lg-0  ">
-              <h6 class="heading mb-3">Account</h6>
-              <ul class="list-unstyled">
-                <li><a href="{{ url('/accounts') }}">My Account</a></li>
-                <li><a href="{{ route('my_cart') }}">My Cart</a></li>
-                <li><a href="{{ route('my_wish_list') }}">My Wish List</a></li>
-               </ul>
-            </div>
-            <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-              <h6 class="heading mb-3">About</h6>
-              <ul class="list-unstyled">
-                {{-- <li><a href="contact.html">About Us</a></li> --}}
-                <li><a href="{{ route('contact-us')}}">Contact Us</a></li>
-                <li><a href="{{ route('store-locator')}}">Store Locator</a></li>
-                <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
-                {{--  --}}
-              </ul>
-            </div>
-            <div class="col-lg-2 col-6 col-sm-4 mb-5 mb-lg-0">
-              <h6 class="heading mb-3">Company</h6>
-              <ul class="list-unstyled">
-                {{-- <li><a href="contact.html#departments">Information</a></li> --}}   
-                <li><a href="{{ route('contact-us')}}">Help Center</a></li>
-                 <li><a href="{{ route('cutie-of-the-year')}}">Cutie of The Year</a></li>
-              </ul>
+            <div class="col-md-8    d-flex flex-column justify-content-center">
+              <div class=" d-flex justify-content-end">
+                  <div class="row pl-auto    w-100">
+                  <div class="col-4   col-md-4 ml-lg-auto mb-5 mb-lg-0  ">
+                  <h6 class="heading mb-3">Account</h6>
+                  <ul class="list-unstyled">
+                    <li><a href="{{ url('/accounts') }}">My Account</a></li>
+                    <li><a href="{{ route('my_cart') }}">My Cart</a></li>
+                    <li><a href="{{ route('my_wish_list') }}">My Wish List</a></li>
+                  </ul>
+                  </div>
+                  <div class="col-4 col-md-4 mb-5 mb-lg-0">
+                    <h6 class="heading mb-3">About</h6>
+                    <ul class="list-unstyled">
+                      {{-- <li><a href="contact.html">About Us</a></li> --}}
+                      <li><a href="{{ route('contact-us')}}">Contact Us</a></li>
+                      <li><a href="{{ route('store-locator')}}">Store Locator</a></li>
+                      <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
+                      {{--  --}}
+                    </ul>
+                  </div>
+                  <div class="col-4 col-md-4 mb-5 mb-lg-0">
+                    <h6 class="heading mb-3">Company</h6>
+                    <ul class="list-unstyled">
+                      {{-- <li><a href="contact.html#departments">Information</a></li> --}}   
+                      <li><a href="{{ route('contact-us')}}">Help Center</a></li>
+                        <li><a href="{{ route('cutie-of-the-year')}}">Cutie of The Year</a></li>
+                    </ul>
+                  </div>
+              </div>
+              </div>
             </div>
           </div>
           <div class="row">
@@ -448,19 +463,19 @@
             <div class="col-md-6  d-flex flex-column justify-content-center">
               <div class="d-flex justify-content-around"> 
                 <div class="px-3 py-2 bg-white rounded">
-                    <img height="20" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="">
+                    <img class="payment-logos" src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="">
                 </div>
                 <div class="px-3 py-2 bg-white rounded">
-                    <img height="20" src="https://www.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="">
+                    <img class="payment-logos" src="https://www.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="">
                 </div> 
                 <div class="px-3 py-2 bg-white rounded">
-                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/InstantEFT@2x.png" alt="">
+                    <img class="payment-logos" src="https://www.payfast.co.za/eng/images/payment_methods/logo/InstantEFT@2x.png" alt="">
                 </div>
                 <div class="px-3 py-2 bg-white rounded">
-                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/MobiCred@2x.png" alt="">
+                    <img class="payment-logos" src="https://www.payfast.co.za/eng/images/payment_methods/logo/MobiCred@2x.png" alt="">
                 </div>
                 <div class="px-3 py-2 bg-white rounded">
-                    <img height="20" src="https://www.payfast.co.za/eng/images/payment_methods/logo/RCS@2x.png" alt="">
+                    <img class="payment-logos" src="https://www.payfast.co.za/eng/images/payment_methods/logo/RCS@2x.png" alt="">
                 </div>
             </div>
             </div>
@@ -503,10 +518,7 @@
                     Privacy Policy 
                   </a>
                 </li>
-                 
-                <!-- <li class="nav-item">
-                  <a class="nav-link" href="#"> Cookies </a>
-                </li> -->
+             
               </ul>
             </div>
           </div>
