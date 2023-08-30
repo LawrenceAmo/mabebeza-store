@@ -170,7 +170,6 @@
                               <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
                                <del class="text-muted" v-else>R@{{ product.price}}</del> 
                             </span>
-
                             <span class=" font-weight-bold "  >R@{{ product.sale_price}}</span>
                           </p> 
 
@@ -421,10 +420,8 @@
                 return localStorage.getItem(key) !== null;
             },
             view_product: function(item){
-
                 var link = document.getElementById('view_product_url');
                 var href = link.getAttribute('data-href');
-
                 let sub_category_name = item.sub_category_name.replace(/ /g, '-')
                 href = href.replace('category', sub_category_name )
                 let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
@@ -445,7 +442,8 @@
                   this.updateCartLocalStorage();
                 }
                 check_delivery_area()
-                console.log(item)
+                // add_to_cart(item)
+                // console.log(item)
             },
             add_to_wish_list: function(item){
               add_to_wish_list(item) 

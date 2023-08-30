@@ -35,10 +35,10 @@
         {{--  --}}
  
     </div> 
-    <script
+    {{-- <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&callback=initMap&v=weekly"
     defer
-  ></script>
+  ></script> --}}
     <script>
         const { createApp } = Vue;
     </script>
@@ -51,21 +51,29 @@
       mapTypeId: "terrain",
     });
 
-    let mt = { lng: 28.212632, lat: -25.964747 };  //  
-    let md = { lng: 27.994393, lat: -25.932238 }; //  
-
+    // let mt = [
+    //       { lng: 28.212632, lat: -25.964747 },
+    //       { lng: 27.994393, lat: -25.932238 }
+    //     ];  
     
- 
-    const mtm = new google.maps.Marker({
-        position: mt,
-        map: map,
-        title: 'Mabebeza Shop 32b Tembisa Megamart, Cnr Olifanstsfontein & Algeria Rd, Tembisa, South Africa'
-      });
-      const mdm = new google.maps.Marker({
-        position: md,
-        map: map,
-        title: 'Mabebeza Shop 91A Bambanani shopping center Apple street, Diepsloot'
-      }); 
+      // for (let i = 0; i < mt.length; i++) {
+
+          let mt = { lng: 28.21263, lat: -25.964747 };  //  
+          let md = { lng: 27.994393, lat: -25.932238 }; //  
+
+          // console.log(mt[i])
+            const mtm = new google.maps.Marker({
+              position: mt,
+              map: map,
+              title: 'Mabebeza Shop 32b Tembisa Megamart, Cnr Olifanstsfontein & Algeria Rd, Tembisa, South Africa'
+            });
+            const mdm = new google.maps.Marker({
+              position: md,
+              map: map,
+              title: 'Mabebeza Shop 91A Bambanani shopping center Apple street, Diepsloot'
+            }); 
+      // }
+    
     // Define the LatLng coordinates for the polygon's path.
     const triangleCoords = [
       { lng: 28.253860, lat: -26.039158 },   //tembisa

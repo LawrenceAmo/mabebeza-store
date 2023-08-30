@@ -281,11 +281,8 @@ class CheckoutController extends Controller
        ->get();
     }
 
-
-
     public function guest_update_order(Request $request)
-    { 
- 
+    {  
         DB::table('orders')
                     ->where('order_number',  $request->order_number)
                     ->update([

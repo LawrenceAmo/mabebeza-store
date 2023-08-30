@@ -532,7 +532,7 @@
       </div>
       <a data-href='{{ route('guest_view_sub_category', [ 'sub_category_name']) }}' id="guest_view_sub_category"></a>
 
-    </footer>
+    </footer> 
 
     <!-- Modal -->
     <div class="modal fade"   id="ship_to_modal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -578,24 +578,24 @@
 
     <script>
 
-document.addEventListener('DOMContentLoaded', function() {
-  const locationInput1 = document.querySelector('.location-active');
-  const locationInput2 = document.querySelector('.location-inactive');
+// document.addEventListener('DOMContentLoaded', function() {
+//   const locationInput1 = document.querySelector('.location-active');
+//   const locationInput2 = document.querySelector('.location-inactive');
 
-  locationInput1.addEventListener('focus', function() {
-    locationInput1.id = 'location-input';
-    // locationInput1.value = 'location-input';
-    // locationInput2.value = '';
-    locationInput2.id = ''; // Remove ID from inactive input
-  });
+//   locationInput1.addEventListener('focus', function() {
+//     locationInput1.id = 'location-input';
+//     // locationInput1.value = 'location-input';
+//     // locationInput2.value = '';
+//     locationInput2.id = ''; // Remove ID from inactive input
+//   });
 
-  locationInput2.addEventListener('focus', function() {
-    locationInput2.id = 'location-input';
-    // locationInput2.value = 'location-input';
-    // locationInput1.value = '';
-    locationInput1.id = ''; // Remove ID from inactive input
-  });
-});
+//   locationInput2.addEventListener('focus', function() {
+//     locationInput2.id = 'location-input';
+//     // locationInput2.value = 'location-input';
+//     // locationInput1.value = '';
+//     locationInput1.id = ''; // Remove ID from inactive input
+//   });
+// });
 
     
       cart_qty_display(); 

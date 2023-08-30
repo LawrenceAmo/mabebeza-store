@@ -1,4 +1,32 @@
 <x-guest-layout> 
+    <style>
+.image-container {
+    /* width: 300px; */
+    height: 300px;
+    overflow: hidden;
+    /* position: relative; */
+  }
+
+  .magnifier {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #ccc;
+    position: absolute;
+    pointer-events: none;
+    display: none;
+    background-repeat: no-repeat;
+    background-size: 600% 600%;
+    transform: translate(0%, -10%); /* Center the magnifier */
+  }
+
+  .image-container img {
+    /* width: 100%; */
+    height: 100%;
+    transition: transform 0.2s ease;
+    transform-origin: 0 0;
+  }
+
+    </style>
 
    <main id="app">
     <section class="pb-5 pt-3">
@@ -7,8 +35,9 @@
             <div class="row">
                 <div class="col-md-5">
                     <div class="">
-                        <div class=" p-0   text-center border-bottom pb-2">
-                            <img height="300" class=" " :src="productImg(main_img)" class=" " alt="">
+                        <div class=" p-0 image-container  text-center border-bottom pb-2">
+                            <div class="magnifier"></div>
+                            <img   class=" " :src="productImg(main_img)" class="product-image " alt="">
                         </div>
                         <div class="d-flex justify-content-around mt-2">
                             <div class="  rounded" v-for="images in product.images ">
@@ -102,6 +131,10 @@
    </main>
 
     <script>
+
+
+
+
         const { createApp } = Vue;
    createApp({
      data() {
@@ -241,6 +274,35 @@ console.log(this.product)
          // 
      }
   }).mount("#app");
+
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    const imageContainer = document.querySelector('.image-container');
+    const magnifier = document.querySelector('.magnifier');
+    const image = imageContainer.querySelector('img');
+
+    const magnifierWidth = magnifier.offsetWidth;
+    const magnifierHeight = magnifier.offsetHeight;
+
+    image.addEventListener('mousemove', (e) => {
+      const x = e.offsetX;
+      const y = e.offsetY;
+
+      magnifier.style.backgroundImage = `url("${image.src}")`;
+      magnifier.style.backgroundPosition = `-${x - magnifierWidth / 10}px -${y - magnifierHeight / 2}px`;
+
+      magnifier.style.left = x + 'px';
+      magnifier.style.top = y + 'px';
+
+      magnifier.style.display = 'block';
+    });
+
+    image.addEventListener('mouseleave', () => {
+      magnifier.style.display = 'none';
+    });
+  });
+  
+
 
 </script>
 

@@ -341,11 +341,7 @@
                   let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
                   href = href.replace('product_name', product_name )
      
-                   location.href = href
-     
-                // console.log(href);
-                // console.log(item);
-     
+                   location.href = href 
                },
       
               updateCartLocalStorage: function(){
