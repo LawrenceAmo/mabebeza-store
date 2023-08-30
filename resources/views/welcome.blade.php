@@ -26,13 +26,10 @@
     height: 150px;
     overflow: scroll !important;
   }
-  
-
-   .main-categories{
+ .main-categories{
     width: 100% !important;
     overflow: auto !important;
     white-space: nowrap !important; /* Prevent line breaks */
-
   }
   .hr{
     background-color: rgb(227, 215, 230) !important;
@@ -41,6 +38,17 @@
     padding-top: 20px !important;
      padding-bottom: 20px !important;
   }
+  .carousel-indicators li {
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        margin: 0 4px;
+        background-color: #dd99b0;
+    }
+
+    .carousel-indicators .active {
+        background-color: #642c94;
+    }
     </style>
     
 <main id="app">
@@ -51,9 +59,8 @@
     <!--Indicators-->
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
-      {{-- <li data-target="#carousel-example-2" data-slide-to="1"></li> --}}
+      <li data-target="#carousel-example-2" data-slide-to="1"></li>
       <li data-target="#carousel-example-2" data-slide-to="2"></li>
-      <li data-target="#carousel-example-2" data-slide-to="3"></li>
     </ol> 
     <!--/.Indicators-->
     <!-- Slides -->
@@ -104,6 +111,16 @@
         </div>
       </a>
     </div>
+
+        <!-- Controls -->
+      {{-- <button class="carousel-control-prev" type="button" href="#carousel-example-2" data-mdb-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" href="#carousel-example-2" data-mdb-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button> --}}
 
   </div>
   <!--/.Carousel Wrapper-->
