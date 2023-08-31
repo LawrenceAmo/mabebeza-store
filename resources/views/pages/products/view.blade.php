@@ -3,7 +3,7 @@
 .image-container {
     /* width: 300px; */
     height: 300px;
-    overflow: hidden;
+    /* overflow: hidden; */
     /* position: relative; */
   }
 
@@ -15,19 +15,16 @@
     pointer-events: none;
     display: none;
     background-repeat: no-repeat;
-    background-size: 600% 600%;
-    transform: translate(0%, -10%); /* Center the magnifier */
+    background-size: 400% 400%;
+    transform: translate(100%, -70%); /* Center the magnifier */
   }
 
   .image-container img {
-    /* width: 100%; */
     height: 100%;
     transition: transform 0.2s ease;
     transform-origin: 0 0;
   }
-
     </style>
-
    <main id="app">
     <section class="pb-5 pt-3">
         <a class="pl-3"> / <a href="/">Home</a> / <a href="/" class="">@{{product.sub_category_name}}</a> / @{{ StringToLowerCase(product.product_name)}}</a> 
@@ -37,7 +34,7 @@
                     <div class="">
                         <div class=" p-0 image-container  text-center border-bottom pb-2">
                             <div class="magnifier"></div>
-                            <img   class=" " :src="productImg(main_img)" class="product-image " alt="">
+                            <img   class=" " :src="productImg(main_img)" class="product-image img" alt="">
                         </div>
                         <div class="d-flex justify-content-around mt-2">
                             <div class="  rounded" v-for="images in product.images ">
@@ -127,14 +124,8 @@
             </div>
         </div>
     </section>
-    {{-- <input type="hidden" name="" id=""> --}}
-   </main>
-
-    <script>
-
-
-
-
+    </main>
+    <script> 
         const { createApp } = Vue;
    createApp({
      data() {
@@ -289,7 +280,7 @@ console.log(this.product)
       const y = e.offsetY;
 
       magnifier.style.backgroundImage = `url("${image.src}")`;
-      magnifier.style.backgroundPosition = `-${x - magnifierWidth / 10}px -${y - magnifierHeight / 2}px`;
+      magnifier.style.backgroundPosition = `-${x - magnifierWidth / -100}px -${y - magnifierHeight / 10}px`;
 
       magnifier.style.left = x + 'px';
       magnifier.style.top = y + 'px';

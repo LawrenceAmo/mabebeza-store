@@ -81,8 +81,8 @@
                                 <td>{{ $sub_category->sub_category_short_descript }}</td>
                                 <td>{{ $sub_category->category_name }}</td>
                                 <td>
-                                     <a href="{{ route('update_sub_category', [$sub_category->sub_categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a> | 
-                                    <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a>
+                                     <a href="{{ route('update_sub_category', [$sub_category->sub_categoryID]) }}"> <i class="fas fa-pencil-alt    "></i> </a>  
+                                    {{-- <a href="" class="text-danger"> <i class="fas fa-trash-alt    "></i> </a> --}}
                                  </td>
                             </tr>
                             <?php $i++; ?>

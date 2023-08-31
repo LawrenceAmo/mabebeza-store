@@ -85,6 +85,7 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     Route::get('/categories/main/update/{id}', [CategoryController::class, 'update_main_category'])->name('update_main_category');
     Route::get('/categories/sub/update/{id}', [CategoryController::class, 'update_sub_category'])->name('update_sub_category');
     Route::POST('/categories/sub/create', [CategoryController::class, 'create_sub_category'])->name('create_sub_category');
+    Route::get('/categories/sub/delete/{id}', [CategoryController::class, 'delete_sub_category'])->name('delete_sub_category');
 
     //  suppliers
     Route::get('/suppliers', [SupplierController::class, 'index'])->name('suppliers');

@@ -141,9 +141,14 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function delete_sub_category(int $id)
     {
-        //
+        $products = DB::table('products')->where('sub_categoryID', $id)->get();
+        if ($products->isEmpty()) {
+            DB::table('sub_categories')->where('sub_categoryID', $id)->delete();
+            return redirect()->to( route('categories') )->with('success', 'Sub-category was deleted successfully!!!');            
+        }
+        return redirect()->back()->with('error', 'This Sub-category have products linked to. You must delete those products first...');            
     }
 
     /**
