@@ -446,7 +446,7 @@ class ProductController extends Controller
             }
         });
 
-        // return response()->json($products);
+        return response()->json($products);
 
     
         // for Bambanani     

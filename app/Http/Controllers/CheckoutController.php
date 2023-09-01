@@ -302,13 +302,13 @@ class CheckoutController extends Controller
     } 
 
     // send mail if order paid successfully
-    public function payment_success()
+    public function payment_success( $id )
     {
         if (isset($_SERVER['HTTP_REFERER'])) {
             $lastURL = $_SERVER['HTTP_REFERER'];
             if (strpos($lastURL, 'payfast.co.za') !== false) {
                
-                $userID = (int)Auth::id();
+                $userID = (int)$id;
 
                 $order = DB::table('users')
                             ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
@@ -377,14 +377,14 @@ class CheckoutController extends Controller
  
     }
 
-    public function payment_failed()
+    public function payment_failed( $id )
     {
  
         // if (isset($_SERVER['HTTP_REFERER'])) {
         //     $lastURL = $_SERVER['HTTP_REFERER'];
         //     if (strpos($lastURL, 'payfast.co.za') !== false) {
                
-                $userID = (int)Auth::id();
+                $userID = (int)$id;
 
                 $order = DB::table('users')
                             ->leftJoin('orders', 'users.id', '=', 'orders.userID' )
@@ -411,7 +411,6 @@ class CheckoutController extends Controller
                                 'status' => 'cancelled',                                 
                             ]); 
 
-
                 $order_status = false;   // payment successful
                 // dispatch(new SendOrderConfirmation($order, $order_status));
                 // Mail::to($mail_to)->send(new customer_order_confirmation($order));
@@ -424,6 +423,6 @@ class CheckoutController extends Controller
         //   } else {
         //     return redirect()->back();
         //   }
- 
+
     }
 }

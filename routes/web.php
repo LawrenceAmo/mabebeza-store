@@ -136,8 +136,8 @@ Route::prefix('accounts/' )->middleware(['auth'])->group(function ()
     Route::post('/profile/save', [CustomersController::class, 'guest_customer_profile_save'])->name('guest_customer_profile_save');
 });
 
-Route::get('accounts/checkout/payment/success', [CheckoutController::class, 'payment_success'])->name('payment_success');
-Route::get('accounts/checkout/payment/failed', [CheckoutController::class, 'payment_failed'])->name('payment_failed');
+Route::get('checkout/payment/success/{id}', [CheckoutController::class, 'payment_success'])->name('payment_success');
+Route::get('checkout/payment/failed/{id}', [CheckoutController::class, 'payment_failed'])->name('payment_failed');
 
 
 require __DIR__.'/auth.php';
