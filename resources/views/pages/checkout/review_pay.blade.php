@@ -227,7 +227,7 @@
                     this.loading = false;
                 }
 
-                this.order_total = parseFloat(this.order_total).toFixed(2)
+                this.order_total = parseFloat(this.order_total)//.toFixed(2)
 
                 // console.log(document.getElementById('return_url').value)
           }, 
