@@ -153,12 +153,10 @@
                             <input required type="hidden" name="amount" id="payfast_order_total" v-model="order_total">
                             <input required type="hidden" name="item_name" maxlength="255" id="payfast_order_number" v-model="payfast_order_number">
                             <input type="hidden" name="item_description" maxlength="255" v-model="payfast_order_number">
-                             
- 
+                              
                     {{--  --}}
                              </div>
-                        </div>
-
+                        </div> 
                 </form>
                      </div>
                </div> 
@@ -251,6 +249,9 @@
                     this.items_qty += this.cart[i].qty;
                  }
                  this.order_total = (this.cart_total - this.discount_total) + this.shipping_fee;
+                 this.discount_total = parseFloat(this.discount_total)
+                 this.cart_total = parseFloat(this.cart_total)
+                 this.order_total = parseFloat(this.order_total)
               },
              //  
              changeImg: function(url){
