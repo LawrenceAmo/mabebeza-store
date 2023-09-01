@@ -208,27 +208,28 @@
             this.payfast_order_number = 'Order Number: '+this.order_number
 
             let data = { 
-                items: this.cart,
-                order_number: this.order_number,
-                total_amount: this.order_total,
-                discount_amount: this.discount_total,
-                shipping_amount: this.shipping_fee,
-                shipping_method: 'delivery',
-                sub_total: this.cart_total,
-                qty: this.items_qty,
-                };
+                            items: this.cart,
+                            order_number: this.order_number,
+                            total_amount: this.order_total,
+                            discount_amount: this.discount_total,
+                            shipping_amount: this.shipping_fee,
+                            shipping_method: 'delivery',
+                            sub_total: this.cart_total,
+                            qty: this.items_qty,
+                        };
 
                 try {
                     let order = await axios.post("{{ route('guest_update_order') }}", data);
-                    order = order.data;
+                        order = order.data;
                 } catch (error) {
                     console.error(error);
                 } finally {
                     this.loading = false;
                 }
 
-                console.log(document.getElementById('return_url').value)
+                this.order_total = parseFloat(this.order_total)
 
+                // console.log(document.getElementById('return_url').value)
           }, 
           methods: {           
               productUpdateUrl: function(val){
@@ -249,11 +250,11 @@
                     this.items_qty += this.cart[i].qty;
                  }
                  this.order_total = (this.cart_total - this.discount_total) + this.shipping_fee;
-                 this.discount_total = parseFloat(this.discount_total)
-                 this.cart_total = parseFloat(this.cart_total)
+                //  this.discount_total = parseFloat(this.discount_total)
+                //  this.cart_total = parseFloat(this.cart_total)
                  this.order_total = parseFloat(this.order_total)
               },
-             //  
+             //
              changeImg: function(url){
                   this.main_img = url;
               },
