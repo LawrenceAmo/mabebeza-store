@@ -105,7 +105,7 @@
                                 {{-- discount_total --}}
                                 <div class="row py-2 w-100 h5 border-bottom">
                                     <div class="col-6 ">Order Total</div>
-                                    <div class="col-6 ">R@{{ order_total.toFixed(2) }}</div>
+                                    <div class="col-6 ">R@{{ order_total }}</div>
                                 </div>
                                 <div class="row py-2 w-100 h5 border-bottom" v-if="!loading">
                                     <button type="submit" class="btn btn-sm rounded btn-purple">
@@ -227,7 +227,8 @@
                     this.loading = false;
                 }
 
-                this.order_total = parseFloat(this.order_total)//.toFixed(2)
+                // this.order_total = parseFloat(this.order_total)//.toFixed(2)
+                this.order_total = this.order_total.toFixed(2)
 
                 // console.log(document.getElementById('return_url').value)
           }, 

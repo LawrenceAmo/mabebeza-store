@@ -10,39 +10,10 @@
         <div class="row">
             <div class=" col-md-8 col-sm-12 ">
             <div class="">
-              <p class="h5 text-purple">Enter address where to deliver</p>
+              <p class="h5 text-purple">Please enter delivery address</p>
                 <input type="text" class="form-control w-100 form-control-sm rounded location-active location-input" placeholder="Enter Address"  id="location-input" >
             </div> 
-            <div class=" py-5  ">
-              <p class="h5 text-purple">Our delivery times</p>
-
-              <table class="table table-striped table-border table-inverse  ">
-                <thead class="thead-inverse">
-                  <tr class="font-weight-bold bg-purple">
-                    <th  class="font-weight-bold">#</th>
-                    <th  class="font-weight-bold">Day</th>
-                    <th  class="font-weight-bold">Period</th>
-                   </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td scope="row">1</td>
-                      <td>Mon - Fri</td>
-                      <td>12 - 24 hours</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">2</td>
-                      <td>Sat - Sun </td>
-                      <td>Next Monday</td>
-                    </tr>
-                    <tr>
-                      <td scope="row">3</td>
-                      <td>Public Holidays</td>
-                      <td>Next working day</td>
-                    </tr>
-                  </tbody>
-              </table>
-            </div>                 
+                             
             </div>
             <div class=" col-md-4 col-sm-12 pl-md-5">
                 <div   class=" shadow rounded p-3">

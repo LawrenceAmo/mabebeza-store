@@ -5,7 +5,15 @@
         }
     </style>
     <div class="container  bg-white my-5 p-5">
-      
+
+      <div class="">
+        <p class="font-weight-bold text-purple">
+          Our shipping is currently limited only to these areas.
+Stay in touch to see when we expand to your area, alternatively, visit us in-store to shop our
+great deals
+        </p>
+      </div>
+       <br>
         <div class="row">
             <div class=" col-md-4 col-sm-12 ">
             <div class="">

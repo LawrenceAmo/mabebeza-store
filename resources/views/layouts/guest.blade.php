@@ -6,33 +6,22 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Fadaeco') }}</title>
-        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}"> --}}
-        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
-        
-        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}}
-        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}"> --}}
-       
-        <!-- MDB -->
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css"
-            rel="stylesheet"
-            />
-        <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
-        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}"> --}}
-         {{-- <script src="{{ asset('mdb/js/vue.js') }}"></script> --}}
-         <script src="
-         https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js
-         "></script>
-          {{-- <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
-         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-         {{-- <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}"> --}}
-         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-          <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
-
  
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> 
+        <script src="{{ asset('mdb/js/vue.js') }}"></script>
+        <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+        <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
+
+        <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
+        <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
+
+        <!-- MDB -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
+         <script src="https://cdn.jsdelivr.net/npm/vue@3.3.4/dist/vue.global.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+         <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
    <style>
       body {
                 font-family: 'Libre Franklin' !important;
@@ -394,23 +383,19 @@
         <!-- Footer -->
         <div class="container pt-0 ">
           <div class="row">
-            <div class="col-md-4  text-center mb-5 mb-lg-0">
+            <div class="col-md-4    text-center mb-5 mb-lg-0">
               <!-- Theme's logo -->
-              <a href="index.html " class="">
+              <a href="/ " class=" -mr-3 d-flex flex-column">
                 <img
-                  class="w-50"
+                  class="w-75 pl-5  -mr-3"
                   alt="Image placeholder"
-                  src="{{ asset('logo.png') }}"
+                  src="{{ asset('logo-footer.png') }}"
                   id="footer-logo"
                 />
+                {{-- <span class="h6 text-white border pr-5"> Love at First Sight. </span> --}}
               </a>
               <!-- Webpixels' mission -->
-              <p class="mt-4 text-sm opacity-8 pr-lg-4">
-                We exist to give all babies and their moms the dignity of choice through
-                accessible baby products at reasonable prices and offering real services
-                that make life easier for mom and baby.
-              </p>
-             
+
             </div>
             <div class="col-md-8    d-flex flex-column justify-content-center">
               <div class=" d-flex justify-content-end">
@@ -559,46 +544,21 @@
     </div>
  
     {{-- <script src="{{ asset('mdb/js/popper.min.js') }}"></script>
-
     <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('mdb/js/mdb.min.js') }}"></script> --}}
-    {{-- <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script> --}}
+    <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('mdb/js/mdb.min.js') }}"></script>
+    <script src="{{ asset('mdb/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script> --}}
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-<!-- MDB -->
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"
-></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js" ></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7uUbl0Ol0kXBam07UPsjThrxL18qoVzA&libraries=places&callback=initMap&solution_channel=GMP_QB_addressselection_v1_cABC" async defer></script>
 
     <script>
 
-// document.addEventListener('DOMContentLoaded', function() {
-//   const locationInput1 = document.querySelector('.location-active');
-//   const locationInput2 = document.querySelector('.location-inactive');
-
-//   locationInput1.addEventListener('focus', function() {
-//     locationInput1.id = 'location-input';
-//     // locationInput1.value = 'location-input';
-//     // locationInput2.value = '';
-//     locationInput2.id = ''; // Remove ID from inactive input
-//   });
-
-//   locationInput2.addEventListener('focus', function() {
-//     locationInput2.id = 'location-input';
-//     // locationInput2.value = 'location-input';
-//     // locationInput1.value = '';
-//     locationInput1.id = ''; // Remove ID from inactive input
-//   });
-// });
-
-    
-      cart_qty_display(); 
+      cart_qty_display();
 
       function wish_list_qty_display() {
           let qty = JSON.parse(localStorage.getItem('wish_list')).length
