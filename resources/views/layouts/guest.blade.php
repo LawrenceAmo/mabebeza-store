@@ -13,8 +13,7 @@
         <link sync rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
         <script src="{{ asset('mdb/js/axios.js') }}"></script> --}}
 
-        <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
-        <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
+
 
         <!-- MDB -->
          <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet" />
@@ -22,6 +21,8 @@
          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
          <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Libre+Franklin:wght@300&family=Raleway:wght@500;900&display=swap" rel="stylesheet"> 
+         <link rel="stylesheet" href="{{ asset('mdb/css/quick-website.css') }}">
+         <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
    <style>
       body {
                 font-family: 'Libre Franklin' !important;

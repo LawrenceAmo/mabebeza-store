@@ -292,18 +292,14 @@
                       if (searchWords[0].length < 1) {
                           this.products = [ ...allProductsDB ]
                           return false;
-                      }
-                 
-                     
+                      } 
                       for (let i = 0; i < allProductsDB.length; i++) {
                           let productName = allProductsDB[i].product_name.toLowerCase();                          
                           // Use every() to check if all search words are present in the product name
                           if (searchWords.every(word => productName.includes(word))) {
                               this.products.push(allProductsDB[i]);
                           }
-                      }
-
-                       
+                      }                     
 
                       console.log(this.products)
                       console.log(allProductsDB)
