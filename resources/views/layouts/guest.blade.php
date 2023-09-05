@@ -384,18 +384,14 @@
         <div class="container pt-0 ">
           <div class="row">
             <div class="col-md-4    text-center mb-5 mb-lg-0">
-              <!-- Theme's logo -->
-              <a href="/ " class=" -mr-3 d-flex flex-column">
+               <a href="/ " class="   d-flex flex-column">
                 <img
-                  class="w-75 pl-5  -mr-3"
+                  class="w-auto pl-5   "
                   alt="Image placeholder"
                   src="{{ asset('logo-footer.png') }}"
                   id="footer-logo"
                 />
-                {{-- <span class="h6 text-white border pr-5"> Love at First Sight. </span> --}}
-              </a>
-              <!-- Webpixels' mission -->
-
+               </a>
             </div>
             <div class="col-md-8    d-flex flex-column justify-content-center">
               <div class=" d-flex justify-content-end">
@@ -411,19 +407,16 @@
                   <div class="col-4 col-md-4 mb-5 mb-lg-0">
                     <h6 class="heading mb-3">About</h6>
                     <ul class="list-unstyled">
-                      {{-- <li><a href="contact.html">About Us</a></li> --}}
                       <li><a href="{{ route('contact-us')}}">Contact Us</a></li>
                       <li><a href="{{ route('store-locator')}}">Store Locator</a></li>
                       <li><a href="{{ route('where_we_deliver')}}"> Where We Deliver</a></li>
-                      {{--  --}}
                     </ul>
                   </div>
                   <div class="col-4 col-md-4 mb-5 mb-lg-0">
                     <h6 class="heading mb-3">Company</h6>
                     <ul class="list-unstyled">
-                      {{-- <li><a href="contact.html#departments">Information</a></li> --}}   
-                      <li><a href="{{ route('contact-us')}}">Help Center</a></li>
-                        <li><a href="{{ route('cutie-of-the-year')}}">Cutie of The Year</a></li>
+                     <li><a href="{{ route('contact-us')}}">Help Center</a></li>
+                     <li><a href="{{ route('cutie-of-the-year')}}">Cutie of The Year</a></li>
                     </ul>
                   </div>
               </div>
@@ -730,7 +723,6 @@
                       const searchSuggestionsElements = document.querySelectorAll('.searchSuggestions');
 
                       this.searchedProducts = [];
-                      // console.log(searchWords.length)
                       if (searchWords[0].length < 1) {
                         searchSuggestionsElements.forEach(element => {
                           element.classList.add('d-none');
@@ -745,7 +737,6 @@
                               this.searchedProducts.push(allProductsDB[i]);
                           }
                       }
-                      console.log()
                       if (this.searchedProducts.length < 1) {
                         return false;
                       }

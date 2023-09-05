@@ -94,13 +94,6 @@
             class="list-group-item list-group-item-action py-2 ripple"
             ><i class="fa fa-clipboard-list fa-x2 mr-3"></i> <span>Categories</span></a
           >
-             
-              {{-- <a
-           href="{{ route('explore')}}"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-rocket fa-fw mr-3"></i><span>Explore More</span></a
-          > --}}
-          
           <a
           href="{{ route('suppliers')}}"   
           class="list-group-item list-group-item-action py-2 ripple"
@@ -127,8 +120,7 @@
       <!-- Navbar -->
       <nav
         id="main-navbar"
-        class="navbar navbar-expand-lg navbar-light p-0 bg-white fixed-top"
-      >
+        class="navbar navbar-expand-lg navbar-light p-0 bg-white fixed-top">
         <!-- Container wrapper -->
         <div class="container-fluid">
           <!-- Toggle button -->
@@ -139,24 +131,15 @@
             data-mdb-target="#sidebarMenu"
             aria-controls="sidebarMenu"
             aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
+            aria-label="Toggle navigation">
             <i class="fas fa-bars"></i>
           </button>
-
           <!-- Brand -->
           <a class="navbar-brand px-3 m-0"  > 
           </a>
           <a class=" text-dark d-flex flex-column justify-content-center px-1 " href="{{route('portal')}}">
-            {{-- <img
-              src="{{ asset('logo.png') }}"
-              height="35"
-              alt="mabebeza store logo"
-              loading="lazy"
-            /> --}}
             <span class=" h5 font-weight-bold">{{Auth::user()->first_name}} {{Auth::user()->last_name}}</span>
           </a>
-
           <!-- Right links -->
           <ul class="navbar-nav ms-auto d-flex flex-row">
             <!-- Icon -->
@@ -171,24 +154,19 @@
               @csrf
               <label for="logout" class="c-pointer  text-danger"><i class="fas fa-door-open"></i> Log out</label>
               <input type="submit" name="" id="logout" class="d-none" >
-              </form
-            >
-               
+              </form>               
             </li>
           </ul>
         </div>
         <!-- Container wrapper -->
       </nav>
       <!-- Navbar -->
-    </header>
-
-            <!-- Page Content -->
-            
+    </header> 
             <main class="mt-5 pt-3 bg-light "  style="">
                 <section class="m-0 px-md-3 w-100 bg-light">
                   {{ $slot }}
                 </section>
-            </main>
+            </main> 
 
             <script src="{{ asset('mdb/js/jquery.min.js') }}"></script>
             <script src="{{ asset('mdb/js/bootstrap.min.js') }}"></script>

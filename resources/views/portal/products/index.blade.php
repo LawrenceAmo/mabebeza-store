@@ -48,10 +48,19 @@
         </div>
      </div>
     <div class="card   rounded p-3 w-100" >
-<p class="font-weight-bold h4 d-flex justify-content-between">
-   <span> All Products  </span> <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
-</p>
-{{-- href="{{ route('create_product')}}" --}}
+<div class=" pb-3  row">
+   <span class="  col-md-3 "> All Products  </span>
+   <div class="col-md-6">
+    <div class="form-group">
+      {{-- <label for=""></label> --}}
+      <input type="text" class="form-control" v-model="searchProductsText" v-on:keyup="SearchProducts($event)" placeholder="Search product by name">
+      {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
+    </div>
+   </div>
+   <div class="col-md-3 d-flex justify-content-end">
+    <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
+   </div>
+</div>
  <div class="tableFixHead" style="height: 500px;">
     <table class="table table-striped table-inverse table-responsive" >
         <thead class="thead-inverse  ">
@@ -200,15 +209,18 @@
           return {
             vendor_product_price: '',
             product_price: '',
-            products: '',
+            products: [],
+            productsDB: [],
             margin: '',
             stock_value: 0,
             total_stock_units: 0,
+            searchProductsText: '',
+
            };
         },
         async created(){
             let productsDB = @json($products);
-            console.log(productsDB)
+            // console.log(productsDB)
  
             this.products = productsDB
             let productIDs =[];
@@ -238,6 +250,7 @@
             console.log("////////////////////////////////////////")
             console.log(products)
             this.stock_value = stock_value
+            this.productsDB = [ ...Object.values(products) ]
             this.products = [ ...Object.values(products) ]
 
             let filteredArray = products.filter(value => value !== "");
@@ -267,9 +280,39 @@
  
                 let data = await axios.post('{{route("update_stock")}}', stock );  
                     data = await data.data
-
                 console.log(data);
             },
+            SearchProducts: function(event) {
+                      let allProductsDB = this.productsDB;
+                      let searchWords = this.searchProductsText.toLowerCase().split(/\s+/); // Split by whitespace
+                    //   const searchSuggestionsElements = document.querySelectorAll('.searchSuggestions');
+
+                      this.products = [];
+
+                      if (searchWords[0].length < 1) {
+                          this.products = [ ...allProductsDB ]
+                          return false;
+                      }
+                 
+                     
+                      for (let i = 0; i < allProductsDB.length; i++) {
+                          let productName = allProductsDB[i].product_name.toLowerCase();                          
+                          // Use every() to check if all search words are present in the product name
+                          if (searchWords.every(word => productName.includes(word))) {
+                              this.products.push(allProductsDB[i]);
+                          }
+                      }
+
+                       
+
+                      console.log(this.products)
+                      console.log(allProductsDB)
+                      console.log(searchWords)
+
+                      return false;
+                    
+                       
+                  },
         }
 
      }).mount("#app");
