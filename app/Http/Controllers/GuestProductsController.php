@@ -173,7 +173,9 @@ class GuestProductsController extends Controller
             return Cache::get($cacheKey);
         }
         // If the cached response doesn't exist, retrieve the data from the API
-        $sub_categories = DB::table('sub_categories')->get();// Fetch data from your API
+        $sub_categories = DB::table('sub_categories')
+                            ->whereNotIn('sub_category_name', ['other', 'Other'])
+                            ->get();// Fetch data from your API
         // Cache the response for 5 minutes
         Cache::put($cacheKey, $sub_categories, 300);
          return $sub_categories;

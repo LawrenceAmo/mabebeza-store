@@ -5,7 +5,18 @@
     max-height: 350px !important;  
      overflow: hidden;
   }
+  .carousel-indicators li {
+        border-radius: 50%;
+        width: 20px !important;
+        height: 20px !important;
+        margin: 0 4px;
+        background-color: #dd99b0;
+    }
   @media (max-width: 575px) {
+    .carousel-indicators li {
+         width: 10px !important;
+        height: 10px !important; 
+    }
     .carousel {
     padding-top: 32px !important;  
    }
@@ -38,13 +49,7 @@
     padding-top: 20px !important;
      padding-bottom: 20px !important;
   }
-  .carousel-indicators li {
-        border-radius: 50%;
-        width: 20px;
-        height: 20px;
-        margin: 0 4px;
-        background-color: #dd99b0;
-    }
+  
 
     .carousel-indicators .active {
         background-color: #642c94;

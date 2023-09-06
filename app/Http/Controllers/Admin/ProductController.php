@@ -429,6 +429,8 @@ class ProductController extends Controller
 
         $tembisa = collect($request->tembisa);
         $bambanani = collect($request->bambanani);
+
+        // return response()->json($products);
         
         // // Get the common products by matching 'sku' from $array1 with 'barcode' from $array2
         $products->each(function ($item) use ($tembisa) {
@@ -440,10 +442,8 @@ class ProductController extends Controller
                     $item->price = $matchingProduct['sellpinc1'];
                   }
             }
-        });
+        }); 
 
-
-    
         // for Bambanani     
         $products->each(function ($item) use ($bambanani) {
             $matchingProduct = $bambanani->firstWhere('barcode', $item->sku);
@@ -458,16 +458,7 @@ class ProductController extends Controller
         // return response()->json($products);
 
         for ($i=0; $i < count($products) ; $i++) { 
-             
-            // DB::table('store_inventories')
-            //     ->where('productID', (int)$products[$i]->productID)   
-            //     ->where('storeID', (int)$products[$i]->storeID)   
-            //     ->limit(1)   
-            //     ->update([
-            //         'quantity' => $products[$i]->quantity,                                                              
-            //     ]);
-                
-
+          
             if ( strpos(strtolower($products[$i]->store_name), 'tembisa') || strpos(strtolower($products[$i]->store_name), 'mega') ) {
                 DB::table('products')
                     ->where('productID', (int)$products[$i]->productID)   
@@ -500,14 +491,10 @@ class ProductController extends Controller
                     'productID' => $products[$i]->productID,
                     'created_at' => now(),
                     'updated_at' => now(),
-                ];
-            
+                ];            
                 DB::table('store_inventories')->updateOrInsert(['storeID' => (int)$products[$i]->storeID, 'productID' => (int)$products[$i]->productID], $data);
-   
         }
  
-        //  return  $stores;
-        // return response()->json($tembisa);
         return response()->json($products);
     }
     // /////////////////////////////////////////////////////
@@ -528,6 +515,5 @@ class ProductController extends Controller
         return $filename;
     }
 
-    //  product_photoID	url	title	main	thumbnail	productID	
 }
 
