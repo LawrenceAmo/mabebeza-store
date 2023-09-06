@@ -93,10 +93,10 @@
                         @{{product.price}}
                     </td>
                     <td  :title="'qty: '+product.tembisa"> 
-                        R@{{product.tembisa * product.cost_price  }}
+                        R@{{(product.tembisa * product.cost_price).toFixed(2)  }}
                     </td>
                     <td  :title="'qty: '+product.bambanani"> 
-                        R@{{product.bambanani * product.cost_price  }}
+                        R@{{ (product.bambanani * product.cost_price).toFixed(2)  }}
                     </td>
                     
                     <td  >

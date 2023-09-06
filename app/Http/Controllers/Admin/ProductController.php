@@ -442,7 +442,6 @@ class ProductController extends Controller
             }
         });
 
-        return response()->json($products);
 
     
         // for Bambanani     
@@ -456,6 +455,7 @@ class ProductController extends Controller
                   }
             }
         });
+        // return response()->json($products);
 
         for ($i=0; $i < count($products) ; $i++) { 
              
@@ -476,8 +476,7 @@ class ProductController extends Controller
                         'cost_price' => $products[$i]->cost_price,                                                            
                         'price' => $products[$i]->price,                                                             
                     ]);
-
-            }  // quantity
+            }
 
             if (!$products[$i]->storeID) {
                 for ($x=0; $x <count($stores) ; $x++){
@@ -489,9 +488,7 @@ class ProductController extends Controller
                             $products[$i]->storeID = $stores[$x]->storeID;
                         } 
                 }
-            } 
-            // "SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'storeID' cannot be null (SQL: insert into `store_inventories` (`storeID`, `productID`, `quantity`, `created_at`, `updated_at`)
-            //  values (?, 1, 0, 2023-07-22 09:44:41, 2023-07-22 09:44:41))"
+            }  
                 $qty = 0;
                 if ($products[$i]->quantity) {
                     $qty = $products[$i]->quantity;
