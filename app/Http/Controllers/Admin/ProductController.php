@@ -23,32 +23,28 @@ class ProductController extends Controller
      */
     public function index()
     { 
-        $userID = Auth::id();
-        $store = DB::table('stores')->where('userID', $userID)->get('storeID');
-        $suppliers = DB::table('suppliers')->get();
-        $sub_categories = DB::table('sub_categories')->get();
+        // $userID = Auth::id();
+        // $store = DB::table('stores')->where('userID', $userID)->get('storeID');
+        // $suppliers = DB::table('suppliers')->get();
+        // $sub_categories = DB::table('sub_categories')->get();
  
         $products = DB::table('products')
                             ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
                             ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
-                            ->select('products.productID', 'products.name as product_name' , 'stores.name as store_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',// 'products.publish', 'products.publish', 'products.publish',
-                                         DB::raw('SUM(products.cost_price * store_inventories.quantity) as stock_value'))
-                            ->groupBy('products.productID', 'products.name' , 'stores.name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',)
+                            ->select('products.productID', 'products.name as product_name' , 'store_inventories.quantity', 'stores.name as store_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price')// 'products.publish', 'products.publish', 'products.publish',
+                                        //  DB::raw('SUM(products.cost_price * store_inventories.quantity) as stock_value'))
+                            // ->groupBy('products.productID', 'products.name' , 'stores.name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',)
                             ->get();
  
         // return $products;        
   
        return view('portal.products.index')
-                ->with('products',$products)
-                ->with('suppliers',$suppliers)
-                ->with('sub_categories',$sub_categories); //
+                ->with('products',$products);
+                // ->with('suppliers',$suppliers)
+                // ->with('sub_categories',$sub_categories); 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create(Request $request)
     {
         $request->validate([

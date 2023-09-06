@@ -70,7 +70,8 @@
                 <th>Name</th>
                 <th>Cost Price</th>
                 <th>Price</th>
-                <th>Total Inventory</th>
+                <th>Tembisa Inventory</th>
+                <th>Bambanani Inventory</th>
                 <th>Availability</th>
                 <th>Published</th>
                 <th>Action</th>
@@ -91,9 +92,13 @@
                     <td>
                         @{{product.price}}
                     </td>
-                    <td  >
-                        R@{{product.stock_value || 0}}
+                    <td  :title="'qty: '+product.tembisa"> 
+                        R@{{product.tembisa * product.cost_price  }}
                     </td>
+                    <td  :title="'qty: '+product.bambanani"> 
+                        R@{{product.bambanani * product.cost_price  }}
+                    </td>
+                    
                     <td  >
                          <span v-if="product.availability">
                             Yes
@@ -240,26 +245,34 @@
                     products[ productID ]['publish'] = productsDB[i].publish;    
                     products[ productID ]['availability'] = productsDB[i].availability;    
                     products[ productID ]['stock_value'] = 0; //productsDB[i].stock_value;    
-                    products[ productID ]['inventory'] = []; //productsDB[i].stock_value;    
-  
+                    products[ productID ]['tembisa'] = 0; 
+                    products[ productID ]['bambanani'] = 0; 
+                    products[ productID ]['inventory'] = []; 
                 }
-                products[ productID ]['stock_value'] += Number(productsDB[i].stock_value);    
-                products[ productID ]['inventory'].push( { store:productsDB[i].store_name, qty: Number(productsDB[i].stock_value) } ) //productsDB[i].stock_value;    
-                stock_value += Number(productsDB[i].stock_value)
-            }
-            console.log("////////////////////////////////////////")
-            console.log(products)
-            this.stock_value = stock_value
-            this.productsDB = [ ...Object.values(products) ]
-            this.products = [ ...Object.values(products) ]
 
+                products[ productID ]['stock_value'] += Number(productsDB[i].quantity);  
+               // Check if the store_name includes 'embisa' or 'ega'
+                if (productsDB[i].store_name.includes('embisa') || productsDB[i].store_name.includes('ega')) {
+                     products[productID]['tembisa'] = Number(productsDB[i].quantity); 
+                }
+                if (productsDB[i].store_name.includes('nani') || productsDB[i].store_name.includes('oot')) {
+                    products[ productID ]['bambanani'] = Number(productsDB[i].quantity); 
+                }  
+                products[ productID ]['inventory'].push(  { store:productsDB[i].store_name, qty:Number(productsDB[i].quantity)}  )  
+                // stock_value += Number(productsDB[i].stock_value) store_name
+            }
+            // console.log("////////////////////////////////////////")
             let filteredArray = products.filter(value => value !== "");
+
+            this.stock_value = stock_value
+            this.productsDB = [ ...filteredArray ]
+            this.products = [ ...filteredArray ]
 
             // Rearrange the remaining values
             let rearrangedArray = filteredArray.sort();
             this.total_stock_units = rearrangedArray.length ;
- 
-            console.log(rearrangedArray);
+            console.log( this.products)
+
         },
         methods: {
             productUpdateUrl: function(val){
@@ -301,9 +314,9 @@
                           }
                       }                     
 
-                      console.log(this.products)
-                      console.log(allProductsDB)
-                      console.log(searchWords)
+                    //   console.log(this.products)
+                    //   console.log(allProductsDB)
+                    //   console.log(searchWords)
 
                       return false;
                     
