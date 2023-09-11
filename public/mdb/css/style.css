@@ -73,11 +73,16 @@ hr{
 a{ 
   color: #787aff !important;
 }
-.card-img-top{
-  height: auto !important;
+.product-card-img-container{
+  max-height: 180px !important;
   max-width: 100% !important;
   /* max-height: 175px !important; */
   /* min-height: 175px !important; */
+}
+/* Zoom in when hovering */
+.zoom:hover {
+  transform: scale(1.05);
+  transition: transform 0.2s ease; /* Add a smooth transition effect */
 }
 .product-card-img-container{
   max-height: 175px !important;

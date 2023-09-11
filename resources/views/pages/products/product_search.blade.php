@@ -15,19 +15,24 @@
                     <div class="tag-sale" v-if="product.sale_price">
                       <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
                     </div>
-                      <img loading="lazy"  @click="view_product(product)" class="c-pointer card-img-top zoom"  :src="productImg(product.url)" alt="">
-                      <div class="card-body   px-2 py-0">
+                    <div class="product-card-img-container">
+                      <img loading="lazy"  @click="view_product(product)" class="c-pointer   zoom img-fluid"  :src="productImg(product.url)" alt="">
+                    </div>
+                    <div class="card-body   px-2 py-0">
                         <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name) }}</p>
                         <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
-                          <span class="text-muted" >
-                             <del class="text-muted">@{{ product.price}}</del> 
-                          </span>
-                          <span class=" font-weight-bold ">@{{ product.sale_price}}</span>
-                        </p>
-                        <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
-                          <span class=" "> </span>
-                          <span class=" font-weight-bold ">@{{ product.price}}</span>
-                        </p>
+                            <span class="text-muted   " >
+                              <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
+                               <del class="text-muted" v-else>R@{{ product.price}}</del> 
+                            </span>
+                            <span class=" font-weight-bold "  >R@{{ product.sale_price}}</span>
+                          </p> 
+
+                          <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
+                            <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
+                            <span v-else></span>
+                            <b class=" font-weight-bold ">R@{{ product.price}}</b>
+                          </p>
 
                         <p class="card-footer py-0 px-1 m-0 d-flex justify-content-between py-1 add-to-cart-container" >
                           <span class="add-wishlist btn btn-sm rounded btn-pink py-0 px-3"   @click="add_to_wish_list(product)">
