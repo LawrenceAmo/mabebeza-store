@@ -76,8 +76,13 @@ a{
 .product-card-img-container{
   max-height: 180px !important;
   max-width: 100% !important;
-  /* max-height: 175px !important; */
-  /* min-height: 175px !important; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.card-text{
+  max-height: 45px !important;
+  overflow: hidden;
 }
 /* Zoom in when hovering */
 .zoom:hover {
