@@ -17,8 +17,16 @@
 }
 
 @media (max-width: 575.98px) {
+  .card-img-top{
+     max-width: 30% !important; 
+  }
   .d-xs-none {
     display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .card-img-top {
+    wmax-idth: 50% !important; /* Adjust the width for smaller screens */
   }
 }
 hr{
@@ -62,13 +70,14 @@ hr{
   color: #642c94 !important;
   border: #642c94 solid 2px !important;
  }
-a{
+a{ 
   color: #787aff !important;
 }
 .card-img-top{
   height: auto !important;
-  max-height: 175px !important;
-  min-height: 175px !important;
+  max-width: 100% !important;
+  /* max-height: 175px !important; */
+  /* min-height: 175px !important; */
 }
 .product-card-img-container{
   max-height: 175px !important;
