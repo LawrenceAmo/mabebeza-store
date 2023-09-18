@@ -152,6 +152,8 @@ require __DIR__.'/auth.php';
         Route::get('/contact-us', function () {  return view('pages.contact');  })->name('contact-us');
         Route::get('/store-locator', function () {  return view('pages.store_locator');  })->name('store-locator');
         Route::get('/enter-address-to-deliver', function () {  return view('pages.deliveries.enter_deliver_location');  })->name('enter_deliver_location');
+        Route::get('/gift-registry', [GuestProductsController::class, 'gift_registry'])->name('gift-registry');
+
     });
 
     Route::prefix('survey/' )->group(function ()

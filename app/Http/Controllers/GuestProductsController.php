@@ -220,6 +220,10 @@ class GuestProductsController extends Controller
     {
         return view('pages.deliveries.where_we_deliver');
     }
+    public function gift_registry()
+    {
+        return view('pages.gift.index');
+    }
    
 
     // 

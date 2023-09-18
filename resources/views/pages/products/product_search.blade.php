@@ -16,7 +16,7 @@
                       <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
                     </div>
                     <div class="product-card-img-container">
-                      <img loading="lazy"  @click="view_product(product)" class="c-pointer   zoom img-fluid"  :src="productImg(product.url)" alt="">
+                      <img loading="lazy"  @click="view_product(product)" class="c-pointer    zoom img-fluid"  :src="productImg(product.url)" alt="">
                     </div>
                     <div class="card-body   px-2 py-0">
                         <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name) }}</p>

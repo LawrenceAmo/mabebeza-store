@@ -81,7 +81,7 @@
     display: none !important;
    }
    .tag-new{
-     position:absolute !important;
+     position:absolute !important; 
    }
    .tag-sale{
      position:absolute !important; 
@@ -211,7 +211,7 @@
            
           <div class=" menu-bar-toggle ">
             <div @click="menu_bar_toggle()" class=" d-flex pt-3 flex-column justify-content-center px-4">
-              <i class="fas fa-bars    h3 text-white bt-3"></i>
+              <i class="fa fa-bars text-white bt-3 fa-2x " aria-hidden="true"></i>
             </div>
           </div>
             <a class="navbar-brand logo-container d-flex flex-column justify-content-center   " href="/">    
@@ -346,6 +346,9 @@
               </div>
   
                <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+            </div>
+            <div class="">
+              <a href="{{ route('gift-registry')}}" class="text-light pr-3     font-Raleway ">Gift Registry</a>
             </div>
             <div class="">
               <a href="{{ route('store-locator')}}" class="text-light pr-3     font-Raleway ">Store Locator</a>

@@ -418,7 +418,7 @@ class ProductController extends Controller
     public function update_stock(Request $request) {
         
         ini_set('max_execution_time', 300);
-
+ 
         $products = DB::table('products')
                     ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
                     ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )

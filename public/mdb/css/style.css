@@ -3,10 +3,17 @@
     background-color: #ebe7e8 !important;
     font-family: 'Libre Franklin', sans-serif !important; 
  }
+ @font-face {
+  font-family: cuty-font;
+  src: url(./HelloCute.otf);
+}
  .font-libre{
   font-family: 'Libre Franklin', sans-serif;
 }
-.font-Raleway{
+.font-cuty{
+  font-family: 'cuty-font', sans-serif; 
+}
+ .font-Raleway{
   font-family: 'Raleway', sans-serif !important;
 }
  .c-pointer{
@@ -80,6 +87,9 @@ a{
   flex-direction: column;
   justify-content: center;
 }
+.product-card-img-container img{
+  max-height: 180px !important;
+}
 .card-text{
   max-height: 45px !important;
   overflow: hidden;
@@ -88,10 +98,6 @@ a{
 .zoom:hover {
   transform: scale(1.05);
   transition: transform 0.2s ease; /* Add a smooth transition effect */
-}
-.product-card-img-container{
-  max-height: 175px !important;
-  min-height: 175px !important;
 }
 .add-to-cart-container{
   display: flex !important;

@@ -10,7 +10,7 @@
         width: 20px !important;
         height: 20px !important;
         margin: 0 4px;
-        background-color: #dd99b0;
+        background-color: #dd99b0; 
     }
   @media (max-width: 575px) {
     .carousel-indicators li {
@@ -162,7 +162,7 @@
             <div class="row " >
 
                 <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in featured_products" >
-                    <div class="card text-left"  >
+                    <div class="card text-left  "  >
                       <div class="tag-sale" v-if="product.sale_price">
                         <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
                       </div>

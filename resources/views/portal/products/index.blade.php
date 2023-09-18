@@ -13,7 +13,7 @@
         .tableFixHead thead th { position: sticky !important; top: 0 !important; z-index: 1 !important;background-color: rgb(37, 37, 37)  !important; }
   
          table  { border-collapse: collapse; width: 100% !important; }
-        th, td { padding: 8px 16px; }
+        th, td { padding: 8px 16px; } 
    
     </style>
 
@@ -312,15 +312,10 @@
                           if (searchWords.every(word => productName.includes(word))) {
                               this.products.push(allProductsDB[i]);
                           }
-                      }                     
-
-                    //   console.log(this.products)
-                    //   console.log(allProductsDB)
-                    //   console.log(searchWords)
+                      }                      
 
                       return false;
-                    
-                       
+                     
                   },
         }
 
