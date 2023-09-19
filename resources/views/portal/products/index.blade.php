@@ -239,16 +239,15 @@
             },
             update_stock: async function(){
                 let update_stock_btn = document.getElementById('update_stock');
-                    update_stock_btn.innerHTML = 'Updating stock please wait...';
+                    update_stock_btn.innerHTML = 'Pulling stock from Dashboard...';
                 let stock = await axios.get('https://stokkafela.com/api/mabebeza/products');  
                     stock = await stock.data
- 
-                let data = await axios.post('{{route("update_stock")}}', stock );  
-                    data = await data
-                console.log(data);
-                // if (condition) {
                     
-                // }
+                    update_stock_btn.innerHTML = 'Updating stock please wait...';
+
+                let data = await axios.post('{{route("update_stock")}}', stock );  
+                    data = await data.data
+                console.log(data);
                 update_stock_btn.innerHTML = 'Stock Updated';
 
             },

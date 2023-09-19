@@ -437,10 +437,13 @@ class ProductController extends Controller
                 // if ( strpos(strtolower($item->store_name), 'tembisa') || strpos(strtolower($item->store_name), 'mega') ) {
                     $item->tembisa_quantity = (int)$matchingProduct['onhand'];
                     $item->cost_price = $matchingProduct['avrgcost'];
-                    $item->price = $matchingProduct['sellpinc1'];
+                    if (empty($item->sale_price)) {
+                        $item->price = $matchingProduct['sellpinc1'];
+                    }
                 //   }
             }
         }); 
+        // return response()->json($products);  // store
 
         // for Bambanani     
         $products->each(function ($item) use ($bambanani) {
