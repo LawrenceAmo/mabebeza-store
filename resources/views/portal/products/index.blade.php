@@ -34,11 +34,10 @@
 
         <div class="col-md-4">
              <div class="card p-2 border border-light btn btn-purple" @click="update_stock()">
-                <p class="font-weight-bold h5 text-center  ">Update Stock</p>
-                <i class=""><small>last update: 2023-07-18 15:13:05</small></i>
+                <p class="font-weight-bold h5 text-center  "  id="update_stock">Update Stock</p>
+                {{-- <i class=""><small>last update: 2023-07-18 15:13:05</small></i> --}}
              </div>
-        </div>
-
+        </div> 
         
     </div>
     <hr>
@@ -120,40 +119,12 @@
                      <a data-href='{{ route('product_delete', ['productID']) }}' @click="productDeleteUrl(product.productID )" id="productDeleteUrl" class="px-1 text-danger c-pointer"><i class="fas fa-trash-alt    "></i></a> 
                 </td>
                 </tr>          
-                {{-- @foreach ($products as $product)
-                 <tr>
-                    <td scope="row">{{$i}}</td>
-                    <td><img src="{{ asset('images/products/img.jpg') }}" alt="" style="height: 60px;"></td>
-                    <td>{{$product->product_name}}</td>
-                    <td>R{{$product->cost_price}}</td>
-                    <td>R{{$product->price}}</td>
-                    <td>R{{$product->quantity}}</td> 
-                    <td>
-                        @if ($product->availability)
-                            <span class="">Yes</span>
-                        @else
-                            <span class="">No</span> 
-                        @endif
-                    </td>
-                    <td>
-                        @if ($product->publish)
-                            <span class="">Yes</span>
-                        @else
-                            <span class="">No</span> 
-                        @endif
-                        </td>
-                     <td class=" px-0">
-                        <a href="{{ route('product_update_info', [$product->productID]) }}" class="px-1 text-info"><i class="fas fa-pencil-alt    "></i></a> |
-                         <a href="" class="px-1 text-danger"><i class="fas fa-trash-alt    "></i></a>
-                    </td>
-                </tr>
-                 @endforeach             --}}
+
             </tbody>
     </table>
 </div>
     </div>
- 
-    
+     
     <!-- Modal -->
     <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -174,27 +145,8 @@
                         <div class="form-group py-2">
                             <label for="">Product Name</label>
                             <input type="text" name="product_name"  class="form-control" placeholder="Enter Category Name"  >
-                        </div>
-                                              
-                        {{-- <div class="form-group py-3">
-                            <label for="">Select Sub Category</label>
-                            <select class="form-control" name="sub_category" >
-                                <option selected disabled >Select Category </option>                              
-                                @foreach ($sub_categories as $category)
-                                    <option value="{{$category->sub_categoryID}}">{{$category->sub_category_name}}</option>                              
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group py-3">
-                            <label for="">Select Supplier</label> 
-                            <select class="form-control" name="supplier" id="">
-                                <option selected disabled >Select Supplier </option>                              
-                                @foreach ($suppliers as $supplier)                            
-                                    <option value="{{$supplier->supplierID}}">{{$supplier->supplier_name}} {{$supplier->company_name}}</option>                              
-                                @endforeach
-                            </select>
-                        </div> --}}
-
+                        </div>                                     
+                     
                 </div>
                 </div>
                 <div class="modal-footer">
@@ -207,8 +159,7 @@
  
      </main>
     <script>
-        // {{$products}}
-             const { createApp } = Vue;
+     const { createApp } = Vue;
       createApp({
         data() {
           return {
@@ -220,12 +171,11 @@
             stock_value: 0,
             total_stock_units: 0,
             searchProductsText: '',
-
            };
         },
         async created(){
             let productsDB = @json($products);
-            // console.log(productsDB)
+            console.log(productsDB)
  
             this.products = productsDB
             let productIDs =[];
@@ -255,7 +205,7 @@
                 if (productsDB[i].store_name.includes('embisa') || productsDB[i].store_name.includes('ega')) {
                      products[productID]['tembisa'] = Number(productsDB[i].quantity); 
                 }
-                if (productsDB[i].store_name.includes('nani') || productsDB[i].store_name.includes('oot')) {
+                if (productsDB[i].store_name.includes('nani') || productsDB[i].store_name.includes('oot')|| productsDB[i].store_name.includes('doc')) {
                     products[ productID ]['bambanani'] = Number(productsDB[i].quantity); 
                 }  
                 products[ productID ]['inventory'].push(  { store:productsDB[i].store_name, qty:Number(productsDB[i].quantity)}  )  
@@ -288,12 +238,19 @@
                 location.href = href
             },
             update_stock: async function(){
+                let update_stock_btn = document.getElementById('update_stock');
+                    update_stock_btn.innerHTML = 'Updating stock please wait...';
                 let stock = await axios.get('https://stokkafela.com/api/mabebeza/products');  
                     stock = await stock.data
  
                 let data = await axios.post('{{route("update_stock")}}', stock );  
-                    data = await data.data
+                    data = await data
                 console.log(data);
+                // if (condition) {
+                    
+                // }
+                update_stock_btn.innerHTML = 'Stock Updated';
+
             },
             SearchProducts: function(event) {
                       let allProductsDB = this.productsDB;

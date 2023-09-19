@@ -188,27 +188,22 @@
          }
          return '';
        };
-
        getFormInputElement('location').value = getAddressComp('street_number') + ' '+ getAddressComp('route');
-                //  console.log(
                 //   getAddressComp('street_number')+', '+
                 //   getAddressComp('route')+', '+
                 //   getAddressComp('locality')+', '+
                 //   getAddressComp('administrative_area_level_1')+', '+
                 //   getAddressComp('country')+', '+
-                //   getAddressComp('postal_code'))
-                  // if locality = to my suburbs and county = gp then enable shop
+                //   getAddressComp('postal_code')
+                // if locality = to my suburbs and county = gp then enable shop
         set_location(getAddressComp('locality')) 
-        console.log("Amo amo")
      } 
    }
   </script>
     </head>
-    <body class="bg-white">
-       
+    <body class="bg-white">       
       <header class="nav-bar bg-purple " id="guestApp">
-        <div class="   top-nav p-2   d-flex justify-content-between ">
-           
+        <div class="   top-nav p-2   d-flex justify-content-between ">           
           <div class=" menu-bar-toggle ">
             <div @click="menu_bar_toggle()" class=" d-flex pt-3 flex-column justify-content-center px-4">
               <i class="fa fa-bars text-white bt-3 fa-2x " aria-hidden="true"></i>
@@ -220,10 +215,9 @@
                 height="60"
                 src="{{ asset('logo.png') }}"
                 id=" "
-                class="animate fadeInLeft"
-              />
+                class="animate fadeInLeft"/>
             </a>
-   
+
           <div class="search-container search-container-desktop  w-50 d-xs-none d-flex flex-column justify-content-center" id="">
               <div class="  ">
                 <div class="form-group m-0 p-0">
@@ -250,8 +244,7 @@
                   <li class="text-dark border-bottom py-2 "  ><i class="">No Items Found</i></li>                   
                 </ul>              
               </div>
-          </div>
-   
+          </div>   
           <div class="auth-btn-container   d-flex flex-column justify-content-center">  
             <div class="d-flex flex-column justify-content-center">
               <div class=" d-flex     ">
@@ -268,9 +261,7 @@
                     <a href="{{ route('register') }}" class=" login-desktop nav-link d-flex flex-column justify-content-center pt-2">
                       Register
                     </a>                       
-                    {{-- <a href="{{ route('login') }}" class="  text-light nav-link"></a>                        --}}
-                    {{-- <a href="{{ route('') }}" class=" login-desktop text-light nav-link"></a>                       --}}
-                  @endauth
+                   @endauth
                 @endif
                  <div class="d-flex flex-column justify-content-center pt-2">| </div>
                 <div class=" d-flex">
@@ -278,14 +269,12 @@
                     <a href="{{ route('my_cart') }}" class=" text-blue pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
                       <span><i class="fa fa-cart-plus fa-1x" aria-hidden="true"></i><span id="cart_qty_display_mobile" class="cart_qty_display">0</span></span>
                     </a>
-                  </div>
-                  
+                  </div>                  
                   <div class="cart-desktop">
                     <a href="{{ route('my_cart') }}" class="  text-blue pr-3 pl-3 d-flex flex-column justify-content-center  pt-2">
                       <span><i class="fa fa-cart-plus  " aria-hidden="true"></i><span id="cart_qty_display_desktop" class="cart_qty_display">0</span></span>
                     </a>
                   </div>
-
                   <div class=" cart-mobile d-none ">
                     <a href="{{ route('my_wish_list') }}" class=" text-pink pr-3 pl-3 d-flex flex-column justify-content-center pt-2">
                       <span><i class="fa fa-heart fa-1x" aria-hidden="true"></i><span id="wish_list_qty_display_mobile" class="wish_list_qty_display">0</span></span>
@@ -296,7 +285,6 @@
                       <span><i class="fa fa-heart" aria-hidden="true"></i><span id="wish_list_qty_display_desktop" class="wish_list_qty_display">0</span></span>
                     </a>  
                   </div> 
-                 
                 </div>
               </div>
             </div>
@@ -329,8 +317,7 @@
             </ul>              
           </div>
       </div>
-         <div class=" menu-bar border d-flex justify-content-between text-dark py-2 pl-2 " id="menu_bar">
-                    
+         <div class=" menu-bar border d-flex justify-content-between text-dark py-2 pl-2 " id="menu_bar">                    
              <div class="pl-sm-4  "> 
               <div class="dropdown">
                 <button class="text-light px-md-3 font-weight-bold font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
@@ -344,32 +331,27 @@
                   </div>
                  </div>
               </div>
-  
                <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
             </div>
             <div class="">
-              <a href="{{ route('gift-registry')}}" class="text-light pr-3     font-Raleway ">Gift Registry</a>
+              <a href="{{ route('gift-registry')}}" class="text-light pr-3 font-Raleway ">Gift Registry</a>
             </div>
             <div class="">
-              <a href="{{ route('store-locator')}}" class="text-light pr-3     font-Raleway ">Store Locator</a>
+              <a href="{{ route('store-locator')}}" class="text-light pr-3 font-Raleway ">Store Locator</a>
             </div>
             <div class=""> 
-              <a href="{{ route('where_we_deliver')}}" class="text-light pr-3     font-Raleway ">Where We Deliver</a>
+              <a href="{{ route('where_we_deliver')}}" class="text-light pr-3 font-Raleway ">Where We Deliver</a>
             </div>
             <div class="">
-              <a href="{{route('delivery-policy')}}" class="text-light pr-3     font-Raleway ">Delivery Policy</a>
+              <a href="{{route('delivery-policy')}}" class="text-light pr-3 font-Raleway ">Delivery Policy</a>
             </div>
             <div class="">
-              <a href="{{ route('contact-us')}}" class="text-light pr-3     font-Raleway ">Contact Us</a>
+              <a href="{{ route('contact-us')}}" class="text-light pr-3 font-Raleway ">Contact Us</a>
             </div>
-            {{-- <div class="">
-              <a href="" class="text-light pr-3     font-Raleway ">About Us</a>
-            </div> --}}
             <a href="{{ route('enter_deliver_location') }}" class="text-light pr-3     font-Raleway ">
               Ship To: <span class="font-weight-bold" id="location_display">Not Set</span>
             </a>
-         </div>
-         
+         </div>         
       </header>
         <div class="  text-gray font-weight-normal p-0 m-0   antialiased page-content-conntainer"  >
             {{ $slot }}
@@ -378,9 +360,7 @@
       <div class="footer  footer-dark footer-dark">
         <!-- SVG shape -->
         <div
-          class="shape-container shape-line shape-position-top shape-orientation-inverse"
-        >
-           
+          class="shape-container shape-line shape-position-top shape-orientation-inverse">           
         </div>
         <!-- Footer -->
         <div class="container pt-0 ">
@@ -469,28 +449,23 @@
           <hr class="divider divider-fade divider-dark my-4" />
           <div class="row align-items-center justify-content-md-between pb-4">
             <div class="col-md-6">
-              <div
-                class="copyright text-sm font-weight-bold text-center text-md-left"
-              >
+              <div class="copyright text-sm font-weight-bold text-center text-md-left">
                 &copy; 2023
-                <a
-                  href="/"
+                <a href="/"
                   class="font-weight-bold"
-                  target="_blank"
-                  >Mabebeza (Pty) Ltd</a
-                >. All rights reserved
+                  target="_blank">
+                  Mabebeza (Pty) Ltd
+                </a>
+                  . All rights reserved
               </div>
             </div>
 
             <div class="col-md-6">
-              <ul
-                class="nav justify-content-center justify-content-md-end mt-3 mt-md-0"
-              >
+              <ul class="nav justify-content-center justify-content-md-end mt-3 mt-md-0">
                 <li class="nav-item">
                   <a
                     class="nav-link font-italic"
-                    href="{{route('terms-and-conditions')}}"
-                  >
+                    href="{{route('terms-and-conditions')}}">
                     Terms &nbsp;and &nbsp;Conditions
                   </a>
                 </li>
@@ -596,7 +571,6 @@
           document.getElementById("location_display").innerHTML = ship_location || 'Not Set';
 
       //  set_location_display();
-
       wish_list_qty_display();
 
       // update the wish list
@@ -639,17 +613,14 @@
                return sub_categories;
             }
              get_sub_categories() 
- 
-
+  
             try {
-              createApp ; // Accessing the variable
-               
+              createApp ; // Accessing the variable               
              } catch (error) {
               // if (error instanceof ReferenceError) {
                 const { createApp } = Vue;
               // }
-            } 
-
+            }
             const guestApp = createApp({
               data() {
                 return {
@@ -660,9 +631,7 @@
                 }
               },
               async created(){ 
- 
-                 this.sub_categories = JSON.parse(localStorage.getItem('all_sub_categories'))
-  
+                 this.sub_categories = JSON.parse(localStorage.getItem('all_sub_categories'))  
                  if (!this.checkLocalStorage('all_products')) {
                   let allProductsDB = await axios.get('{{route("get_products")}}');  
                       allProductsDB = await allProductsDB.data                   
@@ -677,9 +646,7 @@
                          this.allProductsDB = allProductsDB;                    
                         localStorage.setItem('all_products',   JSON.stringify( allProductsDB));  
                  }, 3000); 
-
-                 this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))
-                  
+                 this.allProductsDB = JSON.parse(localStorage.getItem('all_products'))                  
               },
               methods: {
                 checkLocalStorage: function(key){
@@ -700,10 +667,9 @@
                       href = href.replace('category', sub_category_name )
                       let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
                       href = href.replace('product_name', product_name )
-
                       location.href = href 
-                  },
-                  view_sub_category: function(item){ 
+                },
+                view_sub_category: function(item){ 
                     var link = document.getElementById('guest_view_sub_category');
                     var href = link.getAttribute('data-href');
                     let sub_category_name = item.sub_category_name.replace(/ /g, '-')                  
@@ -755,8 +721,7 @@
                           location.href = href
                           console.log(href) 
                       }
-                  },
-                  // /////////////////
+                },
                 get_products: async function(products){
                 
                         let productsDB = []; let productIDs = [];  
@@ -785,11 +750,9 @@
                       }
                       return words.join(' ');
                 }
-            },
-             
+            },             
         });
-            guestApp.mount('#guestApp')
-  
+        guestApp.mount('#guestApp')  
     </script>
     </body>
 </html>

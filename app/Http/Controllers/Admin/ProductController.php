@@ -34,16 +34,14 @@ class ProductController extends Controller
                             ->select('products.productID', 'products.name as product_name' , 'store_inventories.quantity', 'stores.name as store_name' , 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price')// 'products.publish', 'products.publish', 'products.publish',
                                         //  DB::raw('SUM(products.cost_price * store_inventories.quantity) as stock_value'))
                             // ->groupBy('products.productID', 'products.name' , 'stores.name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price',)
+                            ->groupBy('products.productID', 'products.name', 'store_inventories.quantity', 'stores.name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price')
                             ->get();
  
         // return $products;        
   
        return view('portal.products.index')
                 ->with('products',$products);
-                // ->with('suppliers',$suppliers)
-                // ->with('sub_categories',$sub_categories); 
     }
-
     
     public function create(Request $request)
     {
@@ -420,9 +418,9 @@ class ProductController extends Controller
         ini_set('max_execution_time', 300);
  
         $products = DB::table('products')
-                    ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
-                    ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
-                    ->select( 'stores.name as store_name' , 'products.*', 'store_inventories.quantity', 'store_inventories.storeID',	'store_inventories.productID as pID')
+                    // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
+                    // ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
+                    // ->select( 'stores.name as store_name' , 'products.*', )
                     ->get();
                     
         $stores = DB::table('stores')->get();
@@ -430,17 +428,17 @@ class ProductController extends Controller
         $tembisa = collect($request->tembisa);
         $bambanani = collect($request->bambanani);
 
-        // return response()->json($products);
+        // return response()->json($stores);  // store
         
         // // Get the common products by matching 'sku' from $array1 with 'barcode' from $array2
         $products->each(function ($item) use ($tembisa) {
             $matchingProduct = $tembisa->firstWhere('barcode', (string)$item->sku);
             if ($matchingProduct) {
-                if ( strpos(strtolower($item->store_name), 'tembisa') || strpos(strtolower($item->store_name), 'mega') ) {
-                    $item->quantity = (int)$matchingProduct['onhand'];
+                // if ( strpos(strtolower($item->store_name), 'tembisa') || strpos(strtolower($item->store_name), 'mega') ) {
+                    $item->tembisa_quantity = (int)$matchingProduct['onhand'];
                     $item->cost_price = $matchingProduct['avrgcost'];
                     $item->price = $matchingProduct['sellpinc1'];
-                  }
+                //   }
             }
         }); 
 
@@ -448,18 +446,31 @@ class ProductController extends Controller
         $products->each(function ($item) use ($bambanani) {
             $matchingProduct = $bambanani->firstWhere('barcode', $item->sku);
             if ($matchingProduct) {
-                if ( strpos(strtolower($item->store_name), 'bambanani') || strpos( strtolower($item->store_name), 'doc') ) {
-                    $item->quantity = (int)$matchingProduct['onhand'];
-                    $item->cost_price = $matchingProduct['avrgcost'];
-                    $item->price = $matchingProduct['sellpinc1'];
-                  }
+                // if ( strpos(strtolower($item->store_name), 'bambanani') || strpos( strtolower($item->store_name), 'doc') ) {
+                    $item->bambanani_quantity = (int)$matchingProduct['onhand'];
+                    // $item->cost_price = $matchingProduct['avrgcost'];
+                    // $item->price = $matchingProduct['sellpinc1'];
+                //   }
             }
         });
         // return response()->json($products);
 
+        $tembisa_storeID = 0;
+        $bambanani_storeID = 0;
+
+        for ($x=0; $x <count($stores) ; $x++){
+            $storeName = strtolower($stores[$x]->name);                    
+            if (strpos(strtolower($storeName), 'tembisa')  !== false || strpos(strtolower($storeName), 'mega') !== false) {
+                $tembisa_storeID = $stores[$x]->storeID;
+            }
+            if (strpos(strtolower($storeName), 'doc') !== false || strpos(strtolower($storeName), 'bambanani') !== false) {
+                $bambanani_storeID = $stores[$x]->storeID;
+            } 
+        }
+ 
         for ($i=0; $i < count($products) ; $i++) { 
           
-            if ( strpos(strtolower($products[$i]->store_name), 'tembisa') || strpos(strtolower($products[$i]->store_name), 'mega') ) {
+            // if ( strpos(strtolower($products[$i]->store_name), 'tembisa') || strpos(strtolower($products[$i]->store_name), 'mega') ) {
                 DB::table('products')
                     ->where('productID', (int)$products[$i]->productID)   
                     ->limit(1)   
@@ -467,33 +478,39 @@ class ProductController extends Controller
                         'cost_price' => $products[$i]->cost_price,                                                            
                         'price' => $products[$i]->price,                                                             
                     ]);
-            }
-
-            if (!$products[$i]->storeID) {
-                for ($x=0; $x <count($stores) ; $x++){
-                    $storeName = strtolower($stores[$x]->name);                    
-                        if (strpos(strtolower($storeName), 'tembisa')  !== false || strpos(strtolower($storeName), 'mega') !== false) {
-                            $products[$i]->storeID = $stores[$x]->storeID;
-                        }
-                        if (strpos(strtolower($storeName), 'doc') !== false || strpos(strtolower($storeName), 'bambanani') !== false) {
-                            $products[$i]->storeID = $stores[$x]->storeID;
-                        } 
-                }
-            }  
-                $qty = 0;
-                if ($products[$i]->quantity) {
-                    $qty = $products[$i]->quantity;
-                }
-
-                $data = [
-                    'quantity' => $qty,
-                    'storeID' => $products[$i]->storeID,
+            // }
+  
+        // update Tembisa stock
+                $tembisa_data = [
+                    'quantity' => $products[$i]->tembisa_quantity,
+                    'storeID' => $tembisa_storeID,
                     'productID' => $products[$i]->productID,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ];            
-                DB::table('store_inventories')->updateOrInsert(['storeID' => (int)$products[$i]->storeID, 'productID' => (int)$products[$i]->productID], $data);
-        }
+                DB::table('store_inventories')
+                    ->updateOrInsert([
+                        'storeID' => $tembisa_storeID,
+                        'productID' => (int)$products[$i]->productID],
+                        $tembisa_data
+                    );
+
+            // update Tembisa stock
+            $bambanani_data = [
+                'quantity' => $products[$i]->bambanani_quantity,
+                'storeID' => $bambanani_storeID,
+                'productID' => $products[$i]->productID,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];            
+            DB::table('store_inventories')
+                ->updateOrInsert([
+                    'storeID' => $bambanani_storeID,
+                    'productID' => (int)$products[$i]->productID],
+                    $bambanani_data
+                );
+
+        } 
  
         return response()->json($products);
     }
