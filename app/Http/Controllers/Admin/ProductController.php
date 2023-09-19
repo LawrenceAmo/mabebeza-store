@@ -415,7 +415,8 @@ class ProductController extends Controller
 
     public function update_stock(Request $request) {
         
-        ini_set('max_execution_time', 300);
+        set_time_limit(1800); // Set to 30 minutes (30m * 60s)
+
  
         $products = DB::table('products')
                     // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
@@ -443,8 +444,7 @@ class ProductController extends Controller
                 //   }
             }
         }); 
-        // return response()->json($products);  // store
-
+ 
         // for Bambanani     
         $products->each(function ($item) use ($bambanani) {
             $matchingProduct = $bambanani->firstWhere('barcode', $item->sku);
