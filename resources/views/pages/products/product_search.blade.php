@@ -115,17 +115,12 @@
             var link = document.getElementById('view_product_url');
             var href = link.getAttribute('data-href');
             let sub_category_name = item.sub_category_name.replace(/ /g, '-')
-            console.log(href)
-
+ 
             href = href.replace('category', sub_category_name )
             let product_name = item.product_name.replace(/ /g, '-')+'-'+item.productID
             href = href.replace('product_name', product_name )
 
-             location.href = href
-
-          console.log(href);
-          console.log(item);
-
+            location.href = href 
          },
         disableAddToCart: function(key){  // not yet done
             // return localStorage.getItem(key) !== null;

@@ -187,11 +187,12 @@ class GuestProductsController extends Controller
 
         $products = DB::table('products')
             ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID')
+            ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID')
             ->leftJoin('product_photos', function ($join) {
                 $join->on('product_photos.productID', '=', 'products.productID')
                     ->whereRaw('product_photos.product_photoID = (SELECT MIN(product_photoID) FROM product_photos WHERE productID = products.productID)');
             })
-            ->select('products.productID', 'products.name as product_name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type', 'store_inventories.quantity')
+            ->select('products.productID', 'products.name as product_name', 'products.publish', 'products.availability', 'products.sku', 'products.cost_price', 'products.price', 'products.sale_price', 'product_photos.url', 'product_photos.title', 'products.type', 'store_inventories.quantity', 'sub_categories.sub_category_name')
             ->where(function ($query) use ($keywords) {
                 foreach ($keywords as $keyword) {
                     $query->whereRaw('LOWER(name) like ?', ['%' . strtolower($keyword) . '%']);
@@ -199,7 +200,7 @@ class GuestProductsController extends Controller
             })
             ->where('products.availability', '=', true)
             ->where('products.publish', '=', true)
-            ->groupBy('products.productID', 'products.name', 'products.publish', 'product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price', 'products.sale_price', 'products.price', 'products.type', 'store_inventories.quantity')
+            ->groupBy('products.productID', 'products.name', 'products.publish', 'product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price', 'products.sale_price', 'products.price', 'products.type', 'store_inventories.quantity', 'sub_categories.sub_category_name')
             ->get();
 
 

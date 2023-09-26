@@ -45,9 +45,9 @@
                     </div>
                     <div class="col-md-4">
                         <div class="shadow p-3 text-center ">
-                            <div class=" row  pb-3  border-bottom">
+                            <div class=" row  pb-3  border-bottom" >
                                     <div class="col-12 h5 font-Raleway">
-                                        <div class="small"> Delivery Fee is set to <b class="text-purple"><u>ZERO</u></b> only for testing </div>
+                                        <div class="small" v-if="cart_total < 250"> minimum order is <b class="text-purple"><u>R250</u></b> excluding delivery fee of <b class="text-purple"><u>R35</u></b> </div>
                                         <div class="">Order Summary</div>
                                     </div>
                              </div>
@@ -68,11 +68,11 @@
                                 <div class="col-6 ">Order Total</div>
                                 <div class="col-6 ">R@{{ order_total.toFixed(2) }}</div>
                             </div>
-                            <div class="row py-2 w-100 h5 border-bottom" v-if="cart_total > 0">
+                            <div class="row py-2 w-100 h5 border-bottom" v-if="cart_total > 250">
                                  <a href="{{ route('checkout') }}" class="btn btn-sm rounded btn-purple">PROCEED TO CHECKOUT</a>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom" v-else>
-                                <a class="btn btn-sm rounded btn-purple">Your cart is empty</a>
+                                <a class="btn btn-sm rounded btn-purple">minimum order is required</a>
                            </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
           order_total: 0,
           main_img: '',
           category: '',
-          shipping_fee: 0,
+          shipping_fee: 35,
          };
       },
       async created(){ 

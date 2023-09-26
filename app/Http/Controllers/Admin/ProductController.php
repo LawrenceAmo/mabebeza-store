@@ -416,7 +416,6 @@ class ProductController extends Controller
     public function update_stock(Request $request) {
         
         set_time_limit(1800); // Set to 30 minutes (30m * 60s)
-
  
         $products = DB::table('products')
                     // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
@@ -505,7 +504,7 @@ class ProductController extends Controller
                 'productID' => $products[$i]->productID,
                 'created_at' => now(),
                 'updated_at' => now(),
-            ];            
+            ];
             DB::table('store_inventories')
                 ->updateOrInsert([
                     'storeID' => $bambanani_storeID,
@@ -537,3 +536,5 @@ class ProductController extends Controller
 
 }
 
+
+// "SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`stokkafelaDB`.`store_inventories`, CONSTRAINT `store_inventories_storeid_foreign` FOREIGN KEY (`storeID`) REFERENCES `stores` (`storeID`) ON DELETE CASCADE) (SQL: insert into `store_inventories` (`storeID`, `productID`, `quantity`, `created_at`, `updated_at`) values (0, 5, 0, 2023-09-19 13:37:35, 2023-09-19 13:37:35))"

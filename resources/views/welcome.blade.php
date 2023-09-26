@@ -65,7 +65,7 @@
     <ol class="carousel-indicators">
       <li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
       <li data-target="#carousel-example-2" data-slide-to="1"></li>
-      <li data-target="#carousel-example-2" data-slide-to="2"></li>
+      {{-- <li data-target="#carousel-example-2" data-slide-to="2"></li> --}}
     </ol> 
     <!--/.Indicators-->
     <!-- Slides -->
@@ -103,18 +103,16 @@
           <p>Third text</p> --}}
         </div>
       </div>
-      <a href="#sale" class="carousel-item">
-        <!--Mask color-->
-        <a  class="view">
+      {{-- <a href="#sale" class="carousel-item">
+         <a  class="view">
           <img  class="d-block w-100" src="{{ asset('images/background/slides/banner4.jpg')}}"
             alt="Third slide">
           <div class="mask rgba-black-slight"></div>
         </a>
         <div class="carousel-caption">
-          {{-- <h3 class="h3-responsive">Slight mask</h3> 
-          <p>Third text</p> --}}
+         
         </div>
-      </a>
+      </a> --}}
     </div>
 
         <!-- Controls -->

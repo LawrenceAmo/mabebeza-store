@@ -325,13 +325,13 @@
                     <i class="fa fa-bars "></i>  Shop By Category
                 </button>
                 <div class="dropdown-menu" aria-labelledby="triggerId" >
-                  <div class="" v-for="category in sub_categories" > 
-                     <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="category.sub_category_name  " >@{{category.sub_category_name}}</a>  
+                  <div class="" v-for="category in sub_categories" >
+                     <a @click="view_sub_category(category)" class="dropdown-header text-purple c-pointer" v-if="!category.sub_category_name.includes('asics')  " >@{{category.sub_category_name}}</a>  
                     <div class="dropdown-divider"></div>
                   </div>
                  </div>
               </div>
-               <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user    "></i> Cutie of the Year</a>
+               <a href="" class="text-light px-3 d-none font-weight-bold font-Raleway"> <i class="fa fa-user "></i> Cutie of the Year</a>
             </div>
             <div class="">
               <a href="{{ route('gift-registry')}}" class="text-light pr-3 font-Raleway ">Gift Registry</a>
@@ -612,8 +612,8 @@
 
                return sub_categories;
             }
-             get_sub_categories() 
-  
+             get_sub_categories()
+
             try {
               createApp ; // Accessing the variable               
              } catch (error) {

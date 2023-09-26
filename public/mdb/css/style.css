@@ -82,6 +82,7 @@ a{
 }
 .product-card-img-container{
   max-height: 180px !important;
+  min-height: 180px !important;
   max-width: 100% !important;
   display: flex;
   flex-direction: column;
