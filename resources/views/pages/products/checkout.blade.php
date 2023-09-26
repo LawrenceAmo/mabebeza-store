@@ -126,7 +126,7 @@
                             </div>
                             {{-- discount_total --}}
                             <div class="row py-2 w-100 h5 border-bottom">
-                                <div class="col-6 ">Order Total</div>
+                                <div class="col-6 ">Order Total</div> 
                                 <div class="col-6 ">R@{{ order_total.toFixed(2) }}</div>
                             </div>
                             <div class="row py-2 w-100 h5 border-bottom">
@@ -183,9 +183,7 @@
           let cart = await axios.post("{{ route('guest_update_cart') }}", data);
 
           console.log( await cart.data)  // not yet done 
-
-        //   create cart 
-           
+ 
       }, 
       methods: {           
           productUpdateUrl: function(val){
