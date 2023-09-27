@@ -149,6 +149,9 @@
         transform: translateY(0);
       }
   }
+  .product-card-img-container{
+   min-height: 180px !important;
+  }
   
    </style>
    <script>

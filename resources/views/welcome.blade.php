@@ -166,7 +166,8 @@
                       </div>
                       <div class="product-card-img-container">
                         <img loading="lazy"  @click="view_product(product)" class="c-pointer   zoom img-fluid"  :src="productImg(product.url)" alt="">
-                      </div>                        <div class="card-body   px-2 py-0">
+                      </div>                        
+                      <div class="card-body   px-2 py-0">
                           <p @click="view_product(product)" class="c-pointer card-title py-0 my-0  text-purple product_name"  >@{{ StringToLowerCase(product.product_name) }}</p>
 
                           <p @click="view_product(product)" class="c-pointer card-text d-flex justify-content-between py-0 my-0 text-purple" v-if="product.sale_price">
