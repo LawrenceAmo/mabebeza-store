@@ -27,6 +27,10 @@ class PortalController extends Controller
 
         $customers = DB::table('users')->where('customer', true)->count();
 
+        $total_orders = DB::table('orders')
+                      ->where('orders.paid', true)  
+                      ->count();
+
         $user = Auth::user();
         if ( $user->store ) {
             $orders = DB::table('orders')
@@ -54,6 +58,7 @@ class PortalController extends Controller
         return view('dashboard')
              ->with("total_stock_value", $totalStockValue)
              ->with("customers", $customers)
+             ->with("total_orders", $total_orders)
              ->with("orders", $orders)
              ->with("new_orders", $new_orders);
 

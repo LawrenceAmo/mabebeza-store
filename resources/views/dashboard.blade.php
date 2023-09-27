@@ -17,7 +17,7 @@
         <div class="col-md-3">
             <div class=" p-3 rounded shadow bg-white   text-center">
                <p class="font-weight-bold h5 ">Total Orders </p>
-               <b>{{count($orders)}}</b>
+               <b>{{$total_orders}}</b>
             </div>
         </div>
         <div class="col-md-3">
