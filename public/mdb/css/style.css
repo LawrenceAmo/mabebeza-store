@@ -19,11 +19,14 @@
  .c-pointer{
    cursor: pointer;
  }
-.footer-dark{
+ .footer-dark{
   background-color: #642c94 !important;
 }
+.bg-blue{
+  background-color: #94d2eb !important;
+}
 
-@media (max-width: 575.98px) {
+ @media (max-width: 575.98px) {
   .card-img-top{
      max-width: 30% !important; 
   }
@@ -67,11 +70,17 @@ hr{
   color: #ffffff !important;
   font-family: 'Raleway', sans-serif !important;
 }
+.btn-blue{
+  background-color: #94d2eb !important;
+  color: #ffffff !important;
+  font-family: 'Raleway', sans-serif !important;
+}
 .btn-pink{
   background-color: #dd99b0 !important;
   color: #ffffff !important;
   font-family: 'Raleway', sans-serif !important;
 }
+/*  */
 .btn-outline-purple{
   /* background-color: #ebe7e8 !important; */
   color: #642c94 !important;
