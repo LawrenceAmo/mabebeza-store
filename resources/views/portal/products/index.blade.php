@@ -17,7 +17,7 @@
    
     </style>
 
-    <main class="shadow rounded p-3" id="app">
+    <main class="shadow rounded p-3" id="app" v-cloak>
          
     <div class="  row bg-white shadow m-0   rounded p-3 w-100">
          
@@ -38,7 +38,7 @@
                 {{-- <i class=""><small>last update: 2023-07-18 15:13:05</small></i> --}}
              </div>
         </div> 
-        
+
     </div>
     <hr>
     <div class="row mx-0 animated fadeInDown">
@@ -56,6 +56,9 @@
       {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
     </div>
    </div>
+   <!--  
+        // for the IQ retail thing then we'll have to contact Ashley about the licenses.
+    -->
    <div class="col-md-4 d-flex justify-content-around">
    <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
    <a class="btn btn-pink rounded btn-sm"  @click="download_stock_list()">Download products</a>

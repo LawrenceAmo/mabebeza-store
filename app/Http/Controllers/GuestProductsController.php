@@ -183,7 +183,7 @@ class GuestProductsController extends Controller
 
     public function guest_search_product(String $name)
     {
-        $keywords = explode('-', strtolower($name));
+        $keywords = explode('-', strtolower($name)); 
 
         $products = DB::table('products')
             ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID')
@@ -201,6 +201,7 @@ class GuestProductsController extends Controller
             ->where('products.availability', '=', true)
             ->where('products.publish', '=', true)
             ->groupBy('products.productID', 'products.name', 'products.publish', 'product_photos.url', 'product_photos.title', 'products.availability', 'products.sku', 'products.cost_price', 'products.sale_price', 'products.price', 'products.type', 'store_inventories.quantity', 'sub_categories.sub_category_name')
+            ->distinct('products.productID')  // Add this line to retrieve distinct products based on productID
             ->get();
 
 

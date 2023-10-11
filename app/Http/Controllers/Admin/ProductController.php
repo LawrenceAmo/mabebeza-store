@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Collection;
+use App\Jobs\UpdateStock;
+
 class ProductController extends Controller
 { 
     /**
@@ -123,11 +125,6 @@ class ProductController extends Controller
     public function product_update_info(int $id)
     {  
         $product = DB::table('products')
-                    // ->leftJoin('suppliers', 'suppliers.supplierID', '=', 'products.supplierID' )
-                    // ->leftJoin('sub_categories', 'sub_categories.sub_categoryID', '=', 'products.sub_categoryID' )
-                    // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.supplierID' )
-                    // ->leftJoin('product_colors', 'product_colors.productID', '=', 'products.supplierID' )
-                    // ->leftJoin('product_photos', 'product_photos.productID', '=', 'products.supplierID' )
                     ->where('products.productID', '=', (int)$id)
                     ->select(['products.name as product_name','products.productID as product_productID', 'products.*',  ])
                     ->get();
@@ -417,18 +414,11 @@ class ProductController extends Controller
         
         set_time_limit(1800); // Set to 30 minutes (30m * 60s)
  
-        $products = DB::table('products')
-                    // ->leftJoin('store_inventories', 'store_inventories.productID', '=', 'products.productID' )
-                    // ->leftJoin('stores', 'stores.storeID', '=', 'store_inventories.storeID' )
-                    // ->select( 'stores.name as store_name' , 'products.*', )
+        $products = DB::table('products') 
                     ->get();
                     
-        $stores = DB::table('stores')->get();
-
         $tembisa = collect($request->tembisa);
         $bambanani = collect($request->bambanani);
-
-        // return response()->json($stores);  // store
         
         // // Get the common products by matching 'sku' from $array1 with 'barcode' from $array2
         $products->each(function ($item) use ($tembisa) {
@@ -457,64 +447,10 @@ class ProductController extends Controller
         });
         // return response()->json($products);
 
-        $tembisa_storeID = 0;
-        $bambanani_storeID = 0;
-
-        for ($x=0; $x <count($stores) ; $x++){
-            $storeName = strtolower($stores[$x]->name);                    
-            if (strpos(strtolower($storeName), 'tembisa')  !== false || strpos(strtolower($storeName), 'mega') !== false) {
-                $tembisa_storeID = $stores[$x]->storeID;
-            }
-            if (strpos(strtolower($storeName), 'doc') !== false || strpos(strtolower($storeName), 'bambanani') !== false) {
-                $bambanani_storeID = $stores[$x]->storeID;
-            } 
-        }
+        // //////////////////////////////
+        dispatch(new UpdateStock($products));
  
-        for ($i=0; $i < count($products) ; $i++) { 
-          
-            // if ( strpos(strtolower($products[$i]->store_name), 'tembisa') || strpos(strtolower($products[$i]->store_name), 'mega') ) {
-                DB::table('products')
-                    ->where('productID', (int)$products[$i]->productID)   
-                    ->limit(1)   
-                    ->update([
-                        'cost_price' => $products[$i]->cost_price,                                                            
-                        'price' => $products[$i]->price,                                                             
-                    ]);
-            // }
-  
-        // update Tembisa stock
-                $tembisa_data = [
-                    'quantity' => $products[$i]->tembisa_quantity,
-                    'storeID' => $tembisa_storeID,
-                    'productID' => $products[$i]->productID,
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ];            
-                DB::table('store_inventories')
-                    ->updateOrInsert([
-                        'storeID' => $tembisa_storeID,
-                        'productID' => (int)$products[$i]->productID],
-                        $tembisa_data
-                    );
-
-            // update Tembisa stock
-            $bambanani_data = [
-                'quantity' => $products[$i]->bambanani_quantity,
-                'storeID' => $bambanani_storeID,
-                'productID' => $products[$i]->productID,
-                'created_at' => now(),
-                'updated_at' => now(),
-            ];
-            DB::table('store_inventories')
-                ->updateOrInsert([
-                    'storeID' => $bambanani_storeID,
-                    'productID' => (int)$products[$i]->productID],
-                    $bambanani_data
-                );
-
-        } 
- 
-        return response()->json($products);
+        return true;
     }
     // /////////////////////////////////////////////////////
  
