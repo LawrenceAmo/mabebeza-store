@@ -77,10 +77,26 @@
        currentUrl = currentUrl.split('/').pop();
        currentUrl = currentUrl.replace(/-/g, " ");
        this.category = currentUrl;
+ 
+       let products = []; let productIDs = [];
+       for (let i = 0; i < product.length; i++) {
+        let productID = product[i].productID;
+       
+          if (!productIDs.includes(productID)) {
+              products[ productID ] = [];
+              productIDs.push(productID);
+              products[ productID ].push(product[i]);
+          }else{
+              products[ productID ][0].quantity += product[i].quantity;
+          }        
+       }
 
-       this.products = product;
-       console.log(product)
-      //  this.main_img = product[0].images[0]['url']
+       products = products.filter(value => value !== "");
+       products = Object.values(products).flat();
+       this.products = products; 
+
+
+       console.log(products)
 
       // if no cart then create new empty cat
         if (!this.checkLocalStorage('cart')) {
