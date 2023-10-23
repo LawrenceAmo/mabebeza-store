@@ -7,12 +7,12 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}} 
-<link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.dark.min.css') }}"> --}}
-<link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}">
-<link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/bootstrap.min.css') }}"> --}} 
+        <link rel="stylesheet" href="{{ asset('mdb/css/mdb.min.css') }}">
+        {{-- <link rel="stylesheet" href="{{ asset('mdb/css/mdb.dark.min.css') }}"> --}}
+        <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('mdb/css/admin.layout.css') }}">
+        <link rel="stylesheet" href="{{ asset('mdb/css/style.css') }}">
          <script src="{{ asset('mdb/js/vue.js') }}"></script>
          <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
@@ -99,6 +99,11 @@
           class="list-group-item list-group-item-action py-2 ripple"
           ><i class="fas fa-users fa-fw mr-3"></i 
          ><span>Suppliers</span></a> 
+         <a
+          href="{{ route('surveys')}}"   
+          class="list-group-item list-group-item-action py-2 ripple"
+          ><i class="fas fa-users fa-fw mr-3"></i 
+         ><span>Surveys</span></a> 
           
             <a
               href="get_help.html"

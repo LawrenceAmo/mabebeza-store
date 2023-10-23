@@ -5,6 +5,7 @@
                     font-size: 30px
                 }  
             } 
+            
         </style> 
         <section class="hero_container row  m-0 pt-5 mx-0 px-0">
             <img src="{{ asset('/CutieYear/images/PinkCircle.svg') }}" loading="lazy"  class="circle-pink" alt=""> 

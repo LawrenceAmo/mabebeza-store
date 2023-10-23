@@ -16,9 +16,10 @@ use App\Http\Controllers\CutieYearController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\CutieOfTheYearController;
+use App\Http\Controllers\SurveysController;
 // CustomersController
 use Illuminate\Support\Facades\DB;
-
 /* 
    function convert($size)
     {
@@ -113,7 +114,11 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
 
      
     //  Explore more
-    Route::get('/explore', [ExploreController::class, 'index'])->name('explore'); 
+    Route::get('/explore', [ExploreController::class, 'index'])->name('explore');
+    
+    // Surveys
+    Route::get('/surveys', [SurveysController::class, 'index'])->name('surveys'); 
+    Route::get('/cutie-of-the-year-data', [CutieOfTheYearController::class, 'vewData'])->name('cutie_of_the_year_data'); 
 
 });
  
@@ -145,7 +150,7 @@ require __DIR__.'/auth.php';
   
  Route::prefix('pg/' )->group(function ()
     {
-        Route::get('/cutie-of-the-year', function () {  return view('pages.cutie_of_the_year.index');  })->name('cutie-of-the-year');
+        // Route::get('/cutie-of-the-year', function () {  return view('pages.cutie_of_the_year.index');  })->name('cutie_of_the_year');
         Route::get('/terms-and-conditions', function () {  return view('pages.legal.t&c');  })->name('terms-and-conditions');
         Route::get('/privacy-policy', function () {  return view('pages.legal.pp');  })->name('privacy-policy');
         Route::get('/delivery-policy', function () {  return view('pages.legal.dp');  })->name('delivery-policy');
@@ -158,10 +163,10 @@ require __DIR__.'/auth.php';
 
     Route::prefix('survey/' )->group(function ()
     {
-        Route::get('/cutie-of-the-year', [CutieYearController::class, 'index'])->name('cutie-of-the-year');
-        Route::get('/cutie-of-the-year/create', [CutieYearController::class, 'create'])->name('cutie-of-the-year-create');
-        Route::post('/cutie-of-the-year/save', [CutieYearController::class, 'save'])->name('cutie-of-the-year-save');
-        Route::get('/cutie-of-the-year/thanks', [CutieYearController::class, 'thanks'])->name('cutie-of-the-year-thanks');
+        Route::get('/cutie-of-the-year', [CutieOfTheYearController::class, 'index'])->name('cutie-of-the-year');
+        Route::get('/cutie-of-the-year/create', [CutieOfTheYearController::class, 'create'])->name('cutie-of-the-year-create');
+        Route::post('/cutie-of-the-year/save', [CutieOfTheYearController::class, 'save'])->name('cutie-of-the-year-save');
+        Route::get('/cutie-of-the-year/thanks', [CutieOfTheYearController::class, 'thanks'])->name('cutie-of-the-year-thanks');
      
     });
 

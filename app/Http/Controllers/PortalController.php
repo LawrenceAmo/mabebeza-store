@@ -35,12 +35,12 @@ class PortalController extends Controller
                     ->where('orders.paid', true)  
                     ->where('orders.store', '=', $user->store)
                     ->get();
-        } else {            
+        } else {
             $orders = DB::table('orders')
                     ->leftJoin('users', 'users.id', '=', 'orders.userID' )
                     ->leftJoin('shipping_addresses', 'shipping_addresses.orderID', '=', 'orders.orderID' )
                     ->select('orders.*', 'shipping_addresses.*', 'users.store as user_store', 'users.first_name', 'users.last_name')
-                    ->where('orders.status', 'pending')    // Just for testing
+                    ->where('orders.status', 'pending')     
                     ->where('orders.paid', true)  
                     ->get();
         }         

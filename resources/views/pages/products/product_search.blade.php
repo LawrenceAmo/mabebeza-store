@@ -94,10 +94,7 @@
        products = products.filter(value => value !== "");
        products = Object.values(products).flat();
        this.products = products; 
-
-
-       console.log(products)
-
+ 
       // if no cart then create new empty cat
         if (!this.checkLocalStorage('cart')) {
             localStorage.setItem('cart', JSON.stringify([]));                
@@ -105,9 +102,7 @@
         }
         // always update the UI with data from local storage
         this.cart = JSON.parse(localStorage.getItem('cart'))
-        this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs'))
-
-         
+        this.cart_productIDs = JSON.parse(localStorage.getItem('cart_productIDs')) 
     }, 
     methods: {           
         productUpdateUrl: function(val){

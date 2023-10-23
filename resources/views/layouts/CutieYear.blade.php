@@ -25,6 +25,9 @@
                 padding: 0px !important;
                 margin: 0px !important;
             }
+            .text-purple{
+            color:#7f38bc !important;
+        }
         </style>
     </head>
     <body class="antialiased body  "> 
@@ -37,7 +40,7 @@
         </main>
         <div class="  w-100 p-2 footer" style="">
             <p class="text-white text-center">
-                One-stop-shop with GREAT PRICES for baby'sessentials. Shop 32A Tembisa Megamart & Shop 91A Bambanani Mall in Diepsloot.
+                <a href="{{ route('store-locator') }}" class="text-purple">One-stop-shop with GREAT PRICES for baby'sessentials. Shop 32A Tembisa Megamart & Shop 91A Bambanani Mall in Diepsloot.</a>
             </p>
         </div>
  
