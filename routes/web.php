@@ -18,7 +18,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CutieOfTheYearController;
 use App\Http\Controllers\SurveysController;
-// CustomersController
+use App\Http\Controllers\PromotionsController;
 use Illuminate\Support\Facades\DB;
 /* 
    function convert($size)
@@ -119,7 +119,13 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     // Surveys
     Route::get('/surveys', [SurveysController::class, 'index'])->name('surveys'); 
     Route::get('/cutie-of-the-year-data', [CutieOfTheYearController::class, 'vewData'])->name('cutie_of_the_year_data'); 
+    Route::post('/cutie-of-the-year-upload-users', [CutieOfTheYearController::class, 'uploadUsers'])->name('cutie_of_the_year_upload_users'); 
 
+    
+    //  Promotions
+    Route::get('/promotions', [PromotionsController::class, 'index'])->name('promotions');
+    Route::post('/promotions/create', [PromotionsController::class, 'create'])->name('promotion_create');
+    
 });
  
 Route::prefix('accounts/' )->middleware(['auth'])->group(function ()

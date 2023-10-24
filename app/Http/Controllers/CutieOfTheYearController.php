@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CutieOfTheYear;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ExcelImport;
+use Illuminate\Support\Facades\Auth;
 
 class CutieOfTheYearController extends Controller
 {
@@ -83,6 +87,48 @@ class CutieOfTheYearController extends Controller
         $form->photo = $filename;
        $form->save();
  
+        return redirect()->route('cutie-of-the-year-thanks');
+    }
+
+    public function uploadUsers(Request $request)
+    {    
+        $user = Auth::user();
+        if (!(strpos($user->email, 'amo') !== false)) {
+            return redirect()->back()->with('error', "You don't have access to this function...");
+        }
+        $data = Excel::toArray(new ExcelImport, $request->file); 
+        $data = $this->arrayToObject($data);
+        $data = json_encode($data);
+        $data = json_decode($data);
+
+        for ($i=0; $i < count($data) ; $i++) { 
+            
+        $user = CutieOfTheYear::where('parent_name',  $data[$i]->{'Parent Name'})
+                            ->where('parent_surname',  $data[$i]->{'Parent Surname'})
+                            ->where('child_name',  $data[$i]->{'Child Name'})
+                            ->where('child_surname',  $data[$i]->{'Child Surname'})
+                            ->where('cell_number',  $data[$i]->{'Phone Number'})
+                            ->where('reciept',  $data[$i]->{'Reciept Number'})
+                            ->first();
+
+            if ($user) {      continue;    }
+
+            $userData = [
+            'parent_name' => $data[$i]->{'Parent Name'},
+            'parent_surname' => $data[$i]->{'Parent Surname'},
+            'child_name' => $data[$i]->{'Child Name'},
+            'child_surname' => $data[$i]->{'Child Surname'},
+            'reciept' => $data[$i]->{'Reciept Number'},
+            'email' => $data[$i]->{'Email Address'},
+            'cell_number' => $data[$i]->{'Phone Number'},
+            'store' => $data[$i]->{'Store Name'},
+            'photo' => $data[$i]->{'Photo'},
+            'created_at' => date('Y-m-d H:i:s', strtotime( $data[$i]->{'Registered At'} )),
+            'updated_at' => now(),
+            ];
+            DB::table('cutie_of_the_years')->insert($userData);
+        }
+                  
         return redirect()->route('cutie-of-the-year-thanks');
     }
 

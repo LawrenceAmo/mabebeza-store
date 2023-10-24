@@ -48,8 +48,8 @@
      </div>
     <div class="card   rounded p-3 w-100" >
 <div class=" pb-3  row">
-   <span class="  col-md-3 "> All Products  </span>
-   <div class="col-md-5">
+   <span class="  col-md-2 "> All Products  </span>
+   <div class="col-md-4">
     <div class="form-group">
       {{-- <label for=""></label> --}}
       <input type="text" class="form-control" v-model="searchProductsText" v-on:keyup="SearchProducts($event)" placeholder="Search product by name">
@@ -59,9 +59,10 @@
    <!--  
         // for the IQ retail thing then we'll have to contact Ashley about the licenses.
     -->
-   <div class="col-md-4 d-flex justify-content-around">
-   <a class="btn btn-purple rounded btn-sm" data-toggle="modal" data-target="#modelId">add new product</a>
-   <a class="btn btn-pink rounded btn-sm"  @click="download_stock_list()">Download products</a>
+   <div class="col-md-6 d-flex justify-content-end  ">
+    <a class="btn btn-purple rounded btn-sm mx-2" data-toggle="modal" data-target="#modelId">add new product</a>
+    <a class="btn btn-pink rounded btn-sm mx-2" data-toggle="modal" data-target="#filter">Filter Data</a>
+    <a class="btn btn-pink rounded btn-sm mx-2"  @click="download_stock_list()">Download products</a>
    </div>
 </div>
  <div class="tableFixHead" style="height: 500px;">
@@ -136,7 +137,7 @@
             <form action="{{route('create_product')}}" method="POST" class="modal-content">
                 @csrf
                 <div class="modal-header ">
-                    <h5 class="modal-title">Create Sub Category</h5>
+                    <h5 class="modal-title">Create Product</h5>
                         <button type="button" class="close border-0 bg-white rounded text-danger " data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -155,9 +156,38 @@
                 </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm rounded btn-primary">create product</button>
+                    <button type="submit" class="btn btn-sm rounded btn-purple">create product</button>
                 </div>
             </form>
+        </div>
+        
+    </div>
+
+    {{-- //////////////////////////////////////////////////////////////////////////// --}}
+    <!-- Modal -->
+    <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                @csrf
+                <div class="modal-header ">
+                    <h5 class="modal-title">Filter Product Data</h5>
+                        <button type="button" class="close border-0 bg-white rounded text-danger " data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body px-2"> 
+                <div class=" row ">
+                       <div class="col-md-2 border card">
+                        <div class="">Items on Sale</div>
+                        <div class=""></div>
+                       </div>
+                    
+                </div>
+                </div>
+                {{-- <div class="modal-footer">
+                    <button type="submit" class="btn btn-sm rounded btn-purple">create product</button>
+                </div> --}}
+            </div>
         </div>
         
     </div>
