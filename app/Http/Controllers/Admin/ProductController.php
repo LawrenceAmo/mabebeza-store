@@ -192,8 +192,8 @@ class ProductController extends Controller
                     'vat' => $vat,
                     'sale_price' => $request->sale_price,
                     'sale_name' => (string)$request->sale_name,                       
-                    'description' => (string)$request->description,                       
-                    'product_detail' => (string)$request->product_detail,                       
+                    // 'description' => (string)$request->description,                       
+                    // 'product_detail' => (string)$request->product_detail,                       
                  ]); 
 
         return redirect()->to(route('product_update_vendor', [(int)$request->productID]));

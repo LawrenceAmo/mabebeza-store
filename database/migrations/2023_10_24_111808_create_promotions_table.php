@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('promotions', function (Blueprint $table) {
             $table->bigIncrements("promotionID")->unique();
-            $table->string('promotion_name');
-            $table->string('description');
-            $table->date('start');
-            $table->date('end');
+            $table->string('promotion_name')->nullable();
+            $table->string('description')->nullable();
+            $table->date('start_date');
+            $table->time('start_time');
+            $table->date('end_date');
+            $table->time('end_time');
             $table->boolean('status')->default(false);
-            // $table->string('cell_number')->nullable();
-            // $table->string('store');
-            $table->text('comments');
+            $table->decimal('minimum_spend')->default(0);
+            $table->text('comments')->nullable();
             $table->timestamps();
         });
     }

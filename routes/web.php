@@ -18,7 +18,8 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\CutieOfTheYearController;
 use App\Http\Controllers\SurveysController;
-use App\Http\Controllers\PromotionsController;
+use App\Http\Controllers\PromotionsController; 
+use App\Http\Controllers\PromotionItemsController;  
 use Illuminate\Support\Facades\DB;
 /* 
    function convert($size)
@@ -125,7 +126,13 @@ Route::prefix('portal/' )->middleware(['auth'])->group(function ()
     //  Promotions
     Route::get('/promotions', [PromotionsController::class, 'index'])->name('promotions');
     Route::post('/promotions/create', [PromotionsController::class, 'create'])->name('promotion_create');
-    
+    Route::get('/promotion/edit/{id?}', [PromotionsController::class, 'edit'])->name('promotion_edit');
+    Route::post('/promotion/update', [PromotionsController::class, 'update'])->name('promotion_update');
+
+    Route::get('/promotion/items/{id?}', [PromotionItemsController::class, 'index'])->name('promotion_items');
+    Route::get('/promotion/items/add/{id?}', [PromotionItemsController::class, 'add_items'])->name('promotion_items_add');
+    Route::get('/promotion/items/sale/prices/{id?}', [PromotionItemsController::class, 'promotion_items_sele_prices'])->name('promotion_items_sele_prices');
+
 });
  
 Route::prefix('accounts/' )->middleware(['auth'])->group(function ()

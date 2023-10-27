@@ -180,32 +180,15 @@
         data() {
           return {
             vendor_product_price: '',
-            product_price: '',
-            profit: '',
-            margin: '',
-            margin_value: 0,
-           };
+            };
         },
         async created(){
             console.log("amo start pricing")
         },
         methods: {
-            margin_type: function(margin_type_v){
-                let margin_value = 0;
-                if (margin_type_v == "percent") {
-                    margin_value = (this.margin / 100) * this.vendor_product_price;
-                }else{
-                margin_value = this.margin; 
-                }
-                // console.log(margin_type_v +" ============ "+ margin_value)
-                 this.margin_value = margin_value;
+            margin_type: function(margin_type_v){ 
             },
-            pricing: function(){
-                            console.log(this.margin_value)
-                            // console.log(this.margin_in_rand)
-
-                // this.product_price = this.margin_type + this.vendor_product_price
-            }
+          
         }
 
      }).mount("#app");

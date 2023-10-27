@@ -122,3 +122,10 @@ a{
 .add-wishlist, .add-cart{
   width: 100%;
 }
+
+.v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ }

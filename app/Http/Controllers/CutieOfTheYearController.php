@@ -92,24 +92,38 @@ class CutieOfTheYearController extends Controller
 
     public function uploadUsers(Request $request)
     {    
+
+        $request->validate([
+            'file' => 'required',
+        ]);
+
         $user = Auth::user();
         if (!(strpos($user->email, 'amo') !== false)) {
             return redirect()->back()->with('error', "You don't have access to this function...");
         }
-        $data = Excel::toArray(new ExcelImport, $request->file); 
+        try {
+            $data = Excel::toArray(new ExcelImport, $request->file); 
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error', 'File format not supported, please upload Excel file...');
+        }
         $data = $this->arrayToObject($data);
+         
         $data = json_encode($data);
         $data = json_decode($data);
 
-        for ($i=0; $i < count($data) ; $i++) { 
-            
-        $user = CutieOfTheYear::where('parent_name',  $data[$i]->{'Parent Name'})
+        for ($i=0; $i < count($data) ; $i++) {             
+
+            try {
+                $user = CutieOfTheYear::where('parent_name',  $data[$i]->{'Parent Name'})
                             ->where('parent_surname',  $data[$i]->{'Parent Surname'})
                             ->where('child_name',  $data[$i]->{'Child Name'})
                             ->where('child_surname',  $data[$i]->{'Child Surname'})
                             ->where('cell_number',  $data[$i]->{'Phone Number'})
                             ->where('reciept',  $data[$i]->{'Reciept Number'})
                             ->first();
+            } catch (\Throwable $th) {
+                return redirect()->back()->with('error', 'Your Excel header format is incorrect...');
+            }
 
             if ($user) {      continue;    }
 
@@ -127,8 +141,7 @@ class CutieOfTheYearController extends Controller
             'updated_at' => now(),
             ];
             DB::table('cutie_of_the_years')->insert($userData);
-        }
-                  
+        }                  
         return redirect()->route('cutie-of-the-year-thanks');
     }
 

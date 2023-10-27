@@ -19,27 +19,7 @@
 
     <main class="shadow rounded p-3" id="app" v-cloak>
          
-    <div class="  row bg-white shadow m-0   rounded p-3 w-100">
-         
-        <div class="col-md-4">
-             <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center">Stock Value <span>R@{{stock_value.toFixed(2)}}</span></p>
-             </div>
-        </div>
-        <div class="col-md-4">
-             <div class="card p-3 border border-light">
-                <p class="font-weight-bold h5 text-center"> Total Products <span>@{{total_stock_units}}</span></p>
-             </div>
-        </div>
-
-        <div class="col-md-4">
-             <div class="card p-2 border border-light btn btn-purple" @click="update_stock()">
-                <p class="font-weight-bold h5 text-center  "  id="update_stock">Update Stock</p>
-                {{-- <i class=""><small>last update: 2023-07-18 15:13:05</small></i> --}}
-             </div>
-        </div> 
-
-    </div>
+     
     <hr>
     <div class="row mx-0 animated fadeInDown">
         <div class="col-12 text-center p-0 m-0">
@@ -56,12 +36,10 @@
       {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
     </div>
    </div>
-   <!--  
-        // for the IQ retail thing then we'll have to contact Ashley about the licenses.
-    -->
+ 
    <div class="col-md-6 d-flex justify-content-end  ">
-    <a class="btn btn-purple rounded btn-sm mx-2" data-toggle="modal" data-target="#modelId">add new product</a>
-    <a class="btn btn-pink rounded btn-sm mx-2" data-toggle="modal" data-target="#filter">Filter Data</a>
+    <a class="btn btn-purple rounded btn-sm mx-2" href="{{ route('promotion_items_add', [$promotionID]) }}">add new products</a>
+    <a class="btn btn-pink rounded btn-sm mx-2" href="{{ route('promotion_items_sele_prices', [$promotionID]) }}" >Update Sales Price</a>
     <a class="btn btn-pink rounded btn-sm mx-2"  @click="download_stock_list()">Download products</a>
    </div>
 </div>
@@ -73,9 +51,8 @@
                 <th>Code</th>
                 <th>Name</th>
                 <th>Cost Price</th>
-                <th>Price</th>
-                <th>Tembisa Inventory</th>
-                <th>Bambanani Inventory</th>
+                <th>Price</th> 
+                <th>Sale Price</th> 
                 <th>Availability</th>
                 <th>Published</th>
                 <th>Action</th>
@@ -88,7 +65,7 @@
                         @{{product.sku}}
                     </td>
                     <td>
-                        @{{product.product_name}}
+                        @{{product.name}}
                     </td>
                     <td>
                         @{{product.cost_price}}
@@ -96,14 +73,10 @@
                     <td>
                         @{{product.price}}
                     </td>
-                    <td  :title="'qty: '+product.tembisa"> 
-                        R@{{(product.tembisa * product.cost_price).toFixed(2)  }}
+                    <td>
+                        @{{product.sale_price}}
                     </td>
-                    <td  :title="'qty: '+product.bambanani"> 
-                        R@{{ (product.bambanani * product.cost_price).toFixed(2)  }}
-                    </td>
-                    
-                    <td  >
+                    <td>
                          <span v-if="product.availability">
                             Yes
                         </span>
@@ -120,8 +93,8 @@
                        </span>
                    </td>
                    <td class=" px-0">  
-                     <a data-href='{{ route('product_update_info', ['productID']) }}' @click="productUpdateUrl(product.productID )" id="productUpdateUrl" class="px-1 text-info c-pointer"><i class="fas fa-pencil-alt  "></i></a> |
-                     <a data-href='{{ route('product_delete', ['productID']) }}' @click="productDeleteUrl(product.productID )" id="productDeleteUrl" class="px-1 text-danger c-pointer"><i class="fas fa-trash-alt    "></i></a> 
+                     {{-- <a data-href='{{ route('product_update_info', ['productID']) }}' @click="productUpdateUrl(product.productID )" id="productUpdateUrl" class="px-1 text-info c-pointer"><i class="fas fa-pencil-alt  "></i></a> | --}}
+                     <a data-href='{{ route('product_delete', ['productID']) }}' @click="productDelete(product.productID )" id="productDeleteUrl" class="px-1 text-danger c-pointer"><i class="fas fa-trash-alt    "></i></a> 
                 </td>
                 </tr>          
 
@@ -165,27 +138,17 @@
 
     {{-- //////////////////////////////////////////////////////////////////////////// --}}
     <!-- Modal -->
-    <div class="modal fade" id="filter" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal fade" id="modelID" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 @csrf
                 <div class="modal-header ">
-                    <h5 class="modal-title">Filter Product Data</h5>
+                    <h5 class="modal-title">@{{msg}}</h5>
                         <button type="button" class="close border-0 bg-white rounded text-danger " data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                 </div>
-                <div class="modal-body px-2"> 
-                <div class=" row ">
-                       <div class="col-md-2 border card">
-                        <div class="">Items on Sale</div>
-                        <div class=""></div>
-                       </div>                    
-                </div>
-                </div>
-                {{-- <div class="modal-footer">
-                    <button type="submit" class="btn btn-sm rounded btn-purple">create product</button>
-                </div> --}}
+                  
             </div>
         </div>
         
@@ -202,7 +165,7 @@
             product_price: '',
             products: [],
             productsDB: [],
-            margin: '',
+            msg: '',
             stock_value: 0,
             total_stock_units: 0,
             searchProductsText: '',
@@ -226,69 +189,43 @@
                     products[ productID ]['sku'] = productsDB[i].sku;    
                     products[ productID ]['cost_price'] = productsDB[i].cost_price;    
                     products[ productID ]['price'] = productsDB[i].price;    
-                    products[ productID ]['product_name'] = productsDB[i].product_name;    
+                    products[ productID ]['sale_price'] = productsDB[i].sale_price;    
+                    products[ productID ]['name'] = productsDB[i].name;    
                     products[ productID ]['publish'] = productsDB[i].publish;    
-                    products[ productID ]['availability'] = productsDB[i].availability;    
-                    products[ productID ]['stock_value'] = 0; //productsDB[i].stock_value;    
-                    products[ productID ]['tembisa'] = 0; 
-                    products[ productID ]['bambanani'] = 0; 
-                    products[ productID ]['inventory'] = []; 
+                    products[ productID ]['availability'] = productsDB[i].availability; 
                 }
-
-                products[ productID ]['stock_value'] += Number(productsDB[i].quantity);  
-               // Check if the store_name includes 'embisa' or 'ega'
-                if (productsDB[i].store_name.includes('embisa') || productsDB[i].store_name.includes('ega')) {
-                     products[productID]['tembisa'] = Number(productsDB[i].quantity); 
-                }
-                if (productsDB[i].store_name.includes('nani') || productsDB[i].store_name.includes('oot')|| productsDB[i].store_name.includes('doc')) {
-                    products[ productID ]['bambanani'] = Number(productsDB[i].quantity); 
-                }  
-                products[ productID ]['inventory'].push(  { store:productsDB[i].store_name, qty:Number(productsDB[i].quantity)}  )  
-                // stock_value += Number(productsDB[i].stock_value) store_name
-            }
+ 
+              }
             // console.log("////////////////////////////////////////")
             let filteredArray = products.filter(value => value !== "");
 
             this.stock_value = stock_value;
             this.products = [ ...filteredArray ];
-            this.productsDB = [ ...filteredArray ];
-
+            this.productsDB = [ ...filteredArray ]; 
 
             // Rearrange the remaining values
             let rearrangedArray = filteredArray.sort();
             this.total_stock_units = rearrangedArray.length ;
-            // console.log( "this.products")
-            // console.log( this.products)
-            // console.log( this.productsDB)
+            // console.log( "this.products") 
 
         },
         methods: {
-            productUpdateUrl: function(val){
-                var link = document.getElementById('productUpdateUrl');
-                var href = link.getAttribute('data-href');
-                href = href.replace('productID', val)
-                location.href = href
-            },
-            productDeleteUrl: function(val){
-                var link = document.getElementById('productDeleteUrl');
-                var href = link.getAttribute('data-href');
-                href = href.replace('productID', val)
-                location.href = href
-            },
-            update_stock: async function(){
-                let update_stock_btn = document.getElementById('update_stock');
-                    update_stock_btn.innerHTML = 'Pulling stock from Dashboard...';
-                let stock = await axios.get('https://stokkafela.com/api/mabebeza/products');  
-                    stock = await stock.data
-                    
-                    update_stock_btn.innerHTML = 'Updating stock please wait...';
+            productDelete: async function(val){
+                let form = { productID: val };
+                let data = await axios.post('{{route("promotions_item_delete")}}', form );  
+                //     data = await data
+                    // console.log(data);
+                    let products = this.products.filter(function(product) {
+                        return product.productID !== val;
+                    });
+                    this.products = [];
+                    this.productsDB = [];
+                    this.products = [ ...products];
+                    this.productsDB = [ ...products];
 
-                let data = await axios.post('{{route("update_stock")}}', stock );  
-                    data = await data.data
-                console.log(data);
-                update_stock_btn.innerHTML = 'Stock Updated';
-
-            },
+                this.msg = 'Product was deleted successful, from this Promotion'
+                $('#modelID').modal('show');
+            }, 
             SearchProducts: function(event) {
                       let allProductsDB = this.productsDB;
                       let searchWords = this.searchProductsText.toLowerCase().split(/\s+/); // Split by whitespace
@@ -302,7 +239,7 @@
                       console.log(searchWords)
 
                       for (let i = 0; i < allProductsDB.length; i++) {
-                          let productName = allProductsDB[i].product_name.toLowerCase();                          
+                          let productName = allProductsDB[i].name.toLowerCase();                          
                           // Use every() to check if all search words are present in the product name
                           if (searchWords.every(word => productName.includes(word))) {
                               this.products.push(allProductsDB[i]);

@@ -17,14 +17,13 @@
         th, td { padding: 8px 16px; } 
 </style>
     <main class="m-0  px-4 py-5   w-100" id="app">
-      
-   
+         
     <div class="card border rounded p-3 w-100 table-responsive">
         <div class="row mx-0 animated fadeInDown">
             <div class="col-12 text-center p-0 m-0">
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
             </div>
-         </div> 
+         </div>
          <div class="card rounded " >
             <div class="d-flex   py-3" style="height:200px;">
                 <div class="col-md-6 d-flex flex-column justify-content-center border-right">

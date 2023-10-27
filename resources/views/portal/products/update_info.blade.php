@@ -1,6 +1,7 @@
 <x-app-layout>
     {{-- <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet"> --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+    {{-- <script src="{{ asset('/ckeditor/ckeditor.js') }}"></script> --}}
 
     <div class="mx-0 mb-5  shadow rounded p-3  w-100" id="app">
         <div class="card border rounded w-100">
