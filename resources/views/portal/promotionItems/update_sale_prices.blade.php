@@ -187,7 +187,7 @@
                 }
                  let res = await axios.post('{{route("promotions_items_sale_price_update")}}', {items:products} );  
                     data = await res.data
-                    if (data.status === 200) {
+                    if (res.status === 200) {
                         this.msg = 'Your changes were saved successful. This page will refresh in 5 seconds...'
                         $('#modelID').modal('show');
                         setTimeout(() => {
