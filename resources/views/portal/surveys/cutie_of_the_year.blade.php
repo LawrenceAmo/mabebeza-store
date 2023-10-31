@@ -68,9 +68,8 @@
                             <td>@{{user.email}}</td>
                             <td>@{{user.reciept}}</td>
                             <td>@{{user.store}}</td>
-                            {{-- <td>@{{user.photo}}</td> --}}
-                            <td> </td>
-                            <td>@{{user.created_at}}</td>
+                            <td><a target="blank" :href="imageUrl(user.photo)"><img  class="" style="height: 80px; width: 100px;" :src="imageUrl(user.photo)" alt=""></a></td>
+                             <td>@{{user.created_at}}</td>
                          </tr>
                   </tbody>
         </table>     
@@ -144,9 +143,12 @@ var qrcode = new QRCode("qrcode", {
         async created(){
             let data = @json($data);
             this.users = data;
-            // console.log(data) 
+            console.log(data) 
         },
         methods: {
+            imageUrl: function(img){
+                return `{{ asset('storage/cutie_of_the_year/${img}')}}`;
+            },
             download_stock_list: function(){   // Not yet done            
             let dataDB = this.users;
             let data = [] 

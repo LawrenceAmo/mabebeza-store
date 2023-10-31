@@ -2,7 +2,7 @@
     <main class="m-0  px-4 py-5   w-100">
       
    
-    <div class="card border rounded p-3 w-100 table-responsive">
+    <div class="card border rounded p-3 w-100 table-responsive d-none">
         <div class="row mx-0 animated fadeInDown">
             <div class="col-12 text-center p-0 m-0">
                 <p class="animated pulse w-100 pt-2">@include('inc.messages')</p>
@@ -13,7 +13,7 @@
    <a  class="btn btn-info rounded btn-sm" data-toggle="modal" data-target="#create_new_store">add new Survey</a>
 </p>
 {{-- href="{{ route('create_store')}}" --}}
- <table class="table table-striped w-auto p-0 " >
+ <table class="table table-striped w-auto p-0 d-none" >
     <thead class=" m-0 p-0">
         <tr class="border font-weight-bold shadow bg-dark text-light rounded"  >
             <th>#</th>

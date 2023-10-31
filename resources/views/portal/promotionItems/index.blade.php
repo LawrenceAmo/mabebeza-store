@@ -74,7 +74,7 @@
                         @{{product.price}}
                     </td>
                     <td>
-                        @{{product.sale_price}}
+                        @{{ product.sale_price ? product.sale_price : '0.00' }}
                     </td>
                     <td>
                          <span v-if="product.availability">
@@ -84,7 +84,7 @@
                             No
                         </span>
                     </td>
-                    <td  >
+                    <td>
                         <span v-if="product.publish">
                            Yes
                        </span>

@@ -54,7 +54,7 @@ class CutieOfTheYearController extends Controller
             'parent_surname' => ['required','regex:/^[a-zA-Z]+$/u', 'string', 'max:255'],
             'child_name' => ['required','regex:/^[a-zA-Z]+$/u', 'string', 'max:255'],
             'child_surname' => ['required','regex:/^[a-zA-Z]+$/u', 'string', 'max:255'],
-            'reciept' => ['required', 'max:255'],
+            'reciept' => ['required', 'max:6', 'min:4'],
             'email' => ['required'],
             'cell_number' => ['required'],
             'store' => 'required',
@@ -72,8 +72,21 @@ class CutieOfTheYearController extends Controller
              } 
             $filename = uniqFile($filename,$ext);
            
-            $request->photo->storeAs('survey_img/',"$filename",'public');           
+            $request->photo->storeAs('cutie_of_the_year/',"$filename",'public');           
          }
+
+         $user = CutieOfTheYear::where('parent_name',  $request->parent_name)
+                                ->where('parent_surname',  $request->parent_surname)
+                                ->where('child_name',  $request->child_name)
+                                ->where('child_surname',  $request->child_surname)
+                                ->where('cell_number',  $request->cell_number)
+                                ->where('reciept',  $request->reciept)
+                                ->first();
+
+         if ( $user) {
+           return redirect()->back()->with('error', 'We already have this information in our database, If you have a problem you can contact us at [ careline@mabebeza.co.za ]...');
+         }
+
 
         $form = new CutieOfTheYear();
         $form->parent_name = $request->parent_name;

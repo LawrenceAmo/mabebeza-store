@@ -342,11 +342,25 @@
             <div class="">
               <a href="{{ route('store-locator')}}" class="text-light pr-3 font-Raleway ">Store Locator</a>
             </div>
-            <div class=""> 
-              <a href="{{ route('where_we_deliver')}}" class="text-light pr-3 font-Raleway ">Where We Deliver</a>
-            </div>
+
+
             <div class="">
-              <a href="{{route('delivery-policy')}}" class="text-light pr-3 font-Raleway ">Delivery Policy</a>
+              <div class="dropdown">
+                <button class=" text-light pr-3 font-Raleway bg-purple border-0 " type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    Delivery Details
+                    </button>
+                <div class="dropdown-menu" aria-labelledby="triggerId">
+                  <a href="{{ route('where_we_deliver')}}" class="text-purple pr-3 font-Raleway dropdown-item">Where We Deliver</a>
+                  <div class="dropdown-divider"></div>
+                  <a href="{{route('delivery-policy')}}" class="text-purple pr-3 font-Raleway dropdown-item">Delivery Policy</a>
+                </div>
+              </div> 
+            </div>
+
+
+            <div class="">
+              <a href="{{ route('cutie-of-the-year')}}" target="blank" class="text-light pr-3 font-Raleway ">Cutie of the Year</a>
             </div>
             <div class="">
               <a href="{{ route('contact-us')}}" class="text-light pr-3 font-Raleway ">Contact Us</a>

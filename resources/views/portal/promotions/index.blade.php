@@ -1,8 +1,6 @@
 
 <x-app-layout>
-    <main class="m-0  px-4 py-5   w-100">
-      
-   
+    <main class="m-0  px-4 py-5   w-100"> 
     <div class="card border rounded p-3 w-100 table-responsive">
         <div class="row mx-0 animated fadeInDown">
             <div class="col-12 text-center p-0 m-0">
@@ -21,8 +19,8 @@
             <th>Status</th>
             <th>Start Date</th>
             <th>End Date</th>
-             <th>Created</th>
-             <th>Action</th>
+            <th>Created</th>
+            <th>Action</th>
         </tr>
         </thead> 
         <tbody>
@@ -34,16 +32,12 @@
                 <td>{{$promotion->start_date}} {{$promotion->start_time}}</td> 
                 <td>{{$promotion->end_date}} {{$promotion->end_time}}</td> 
                 <td>{{$promotion->created_at}}</td> 
-                 <td> <a href="{{ route('promotion_edit', [$promotion->promotionID])}}"> <i class="fa fa-pencil-alt" ></i> </a> </td>
-                 
+                 <td> <a href="{{ route('promotion_edit', [$promotion->promotionID])}}"> <i class="fa fa-pencil-alt" ></i> </a> </td>                 
              </tr>
-             @endforeach       
-                      
+             @endforeach                      
         </tbody>
     </table>
-     
     </div>
-
     <hr>
  
   <!-- Modal -->

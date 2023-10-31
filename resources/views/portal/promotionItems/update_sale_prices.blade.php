@@ -47,15 +47,14 @@
         <thead class="thead-inverse  ">
             <tr class="bg-purple text-light">
                 <th>#</th>
-                <th>tick</th>
-                <th>Code</th>
+                 <th>Code</th>
                 <th>Name</th>
                 <th>Cost Price</th>
-                <th>Price</th> 
+                <th>SellingPrice</th> 
                 {{-- <th>Sale Price</th>  --}}
-                <th>Availability</th>
-                <th>Published</th>
-                {{-- <th>Action</th> --}}
+                <th>Sale Price</th>
+                {{-- <th>Published</th>
+                <th>Action</th> --}}
             </tr>
             </thead>
             <tbody>  
@@ -78,9 +77,9 @@
                         @{{product.price}}
                     </td>
                     <td>
-                       <input type="number" class="form-text form-control-sm text-muted" v-model="product.sale_price" :id="'price'+product.productID">                       
+                       <input type="number" class="form-text form-control-sm text-muted" :min="product.cost_price" :max="product.price" v-model="product.sale_price" :id="'price'+product.productID">                       
                     </td>   
-                    <td>
+                    {{-- <td>
                          <span v-if="product.availability">
                             Yes
                         </span>
@@ -95,7 +94,7 @@
                        <span v-else>
                            No
                        </span>
-                   </td>
+                   </td> --}}
                     
                     </label>
                 </tr>          
