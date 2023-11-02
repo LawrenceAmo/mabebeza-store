@@ -451,7 +451,6 @@ class ProductController extends Controller
                 //   }
             }
         });
-        // return response()->json($products);
 
         // //////////////////////////////
         // dispatch(new UpdateStock($products));
@@ -469,8 +468,13 @@ class ProductController extends Controller
                 $bambanani_storeID = $stores[$x]->storeID;
             } 
         }
- 
+        //  return response()->json($products);
+
         for ($i=0; $i < count($products) ; $i++) { 
+
+            if (!$products->has('tembisa_quantity') || !$products->has('bambanani_quantity') ) {
+                continue;
+            }
           
                  DB::table('products')
                     ->where('productID', (int)$products[$i]->productID)   
