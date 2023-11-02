@@ -472,9 +472,7 @@ class ProductController extends Controller
 
         for ($i=0; $i < count($products) ; $i++) { 
 
-            if (!$products->has('tembisa_quantity') || !$products->has('bambanani_quantity') ) {
-                continue;
-            }
+            
           
                  DB::table('products')
                     ->where('productID', (int)$products[$i]->productID)   
@@ -484,6 +482,9 @@ class ProductController extends Controller
                         'price' => $products[$i]->price,                                                             
                     ]);
    
+                    if (!$products->has('tembisa_quantity') ) {
+                        continue;
+                    }
               // update Tembisa stock
                 $tembisa_data = [
                     'quantity' => $products[$i]->tembisa_quantity,
@@ -499,6 +500,9 @@ class ProductController extends Controller
                         $tembisa_data
                     );
 
+                    if (!$products->has('bambanani_quantity') ) {
+                        continue;
+                    }
             // update Bambanani stock
             $bambanani_data = [
                 'quantity' => $products[$i]->bambanani_quantity,
