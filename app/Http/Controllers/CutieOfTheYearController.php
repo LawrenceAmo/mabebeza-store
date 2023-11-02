@@ -120,7 +120,7 @@ class CutieOfTheYearController extends Controller
             return redirect()->back()->with('error', 'File format not supported, please upload Excel file...');
         }
         $data = $this->arrayToObject($data);
-         
+
         $data = json_encode($data);
         $data = json_decode($data);
 

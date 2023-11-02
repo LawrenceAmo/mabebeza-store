@@ -365,7 +365,7 @@
             <div class="">
               <a href="{{ route('contact-us')}}" class="text-light pr-3 font-Raleway ">Contact Us</a>
             </div>
-            <a href="{{ route('enter_deliver_location') }}" class="text-light pr-3     font-Raleway ">
+            <a href="{{ route('enter_deliver_location') }}" class="text-light pr-3 font-Raleway ">
               Ship To: <span class="font-weight-bold" id="location_display">Not Set</span>
             </a>
          </div>         

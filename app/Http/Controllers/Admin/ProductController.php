@@ -18,6 +18,12 @@ use App\Jobs\UpdateStock;
 
 class ProductController extends Controller
 { 
+    public function __construct()
+    {
+        // $this->middleware('timeout:100'); // Set a timeout of 30 seconds
+    }
+    // protected $timeout = 1;
+
     /**
      * Display a listing of the resource.
      *
@@ -412,8 +418,8 @@ class ProductController extends Controller
 
     public function update_stock(Request $request) {
         
-        set_time_limit(1800); // Set to 30 minutes (30m * 60s)
- 
+        set_time_limit(3000); // Set to 30 minutes (30m * 60s)
+        sleep(70);
         $products = DB::table('products') 
                     ->get();
                     
@@ -448,8 +454,63 @@ class ProductController extends Controller
         // return response()->json($products);
 
         // //////////////////////////////
-        dispatch(new UpdateStock($products));
+        // dispatch(new UpdateStock($products));
+        $tembisa_storeID = 0;
+        $bambanani_storeID = 0;
+
+        $stores = DB::table('stores')->get();
+
+        for ($x=0; $x <count($stores) ; $x++){
+            $storeName = strtolower($stores[$x]->name);                    
+            if (strpos(strtolower($storeName), 'tembisa')  !== false || strpos(strtolower($storeName), 'mega') !== false) {
+                $tembisa_storeID = $stores[$x]->storeID;
+            }
+            if (strpos(strtolower($storeName), 'doc') !== false || strpos(strtolower($storeName), 'bambanani') !== false) {
+                $bambanani_storeID = $stores[$x]->storeID;
+            } 
+        }
  
+        for ($i=0; $i < count($products) ; $i++) { 
+          
+                 DB::table('products')
+                    ->where('productID', (int)$products[$i]->productID)   
+                    ->limit(1)   
+                    ->update([
+                        'cost_price' => $products[$i]->cost_price,                                                            
+                        'price' => $products[$i]->price,                                                             
+                    ]);
+   
+              // update Tembisa stock
+                $tembisa_data = [
+                    'quantity' => $products[$i]->tembisa_quantity,
+                    'storeID' => $tembisa_storeID,
+                    'productID' => $products[$i]->productID,
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];            
+                DB::table('store_inventories')
+                    ->updateOrInsert([
+                        'storeID' => $tembisa_storeID,
+                        'productID' => (int)$products[$i]->productID],
+                        $tembisa_data
+                    );
+
+            // update Bambanani stock
+            $bambanani_data = [
+                'quantity' => $products[$i]->bambanani_quantity,
+                'storeID' => $bambanani_storeID,
+                'productID' => $products[$i]->productID,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+            DB::table('store_inventories')
+                ->updateOrInsert([
+                    'storeID' => $bambanani_storeID,
+                    'productID' => (int)$products[$i]->productID],
+                    $bambanani_data
+                );
+
+        } 
         return true;
     }
     // /////////////////////////////////////////////////////
@@ -471,6 +532,3 @@ class ProductController extends Controller
     }
 
 }
-
-
-// "SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`stokkafelaDB`.`store_inventories`, CONSTRAINT `store_inventories_storeid_foreign` FOREIGN KEY (`storeID`) REFERENCES `stores` (`storeID`) ON DELETE CASCADE) (SQL: insert into `store_inventories` (`storeID`, `productID`, `quantity`, `created_at`, `updated_at`) values (0, 5, 0, 2023-09-19 13:37:35, 2023-09-19 13:37:35))"
