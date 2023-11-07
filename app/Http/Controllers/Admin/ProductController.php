@@ -419,7 +419,7 @@ class ProductController extends Controller
     public function update_stock(Request $request) {
         
         set_time_limit(3000); // Set to 30 minutes (30m * 60s)
-        sleep(70);
+        // sleep(70);
         $products = DB::table('products') 
                     ->get();
                     
