@@ -201,5 +201,7 @@ require __DIR__.'/auth.php';
     Route::get('/search/{name}',[GuestProductsController::class, 'guest_search_product'])->name('guest_search_product');
     Route::get('/{category}/{name}',[GuestProductsController::class, 'index'])->name('guest_view_product');
  
+    Route::get('/loaderio-6f4fcc228e0e2752ea716bf9565e5f0c', function () { return 'loaderio-6f4fcc228e0e2752ea716bf9565e5f0c';  });
+
 
 

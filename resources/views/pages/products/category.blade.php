@@ -8,10 +8,10 @@
                 <p class="h5 text-muted text-center"><span>No products available</span>
                 <br>
                   <a href="/" class="btn btn-sm btn-outline-info rounded">Go back home</a></p>
-              </div> 
+              </div>
                  <div class="row">
                      <div class=" col-6 col-xl-2 col-lg-2 col-md-3 col-sm-4" v-for="product,i in products" >
-                      <div class="card text-left"  >
+                      <div class="card text-left"> 
                         <div class="tag-sale" v-if="product.sale_price">
                           <span class="bg-pink text-white rounded p-1 font-weight-bold">Sale</span>
                         </div>
@@ -27,8 +27,8 @@
                             </span>
     
                             <span class=" font-weight-bold "  >R@{{ product.sale_price}}</span>
-                          </p> 
-    
+                          </p>
+
                           <p @click="view_product(product)" class="c-pointer text-purple card-text d-flex justify-content-between py-0 my-0" v-else>
                             <span class=" small text-pink " v-if="product.quantity <= 1" >Out Of Stock</span>
                             <span v-else></span>
